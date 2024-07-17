@@ -79,6 +79,7 @@ function SellerOrderPage() {
                         <img className='h-full' src={"/vite.svg"} alt="" />
                     </div>
                     <div className='w-2/3 px-3'>
+                    <p className='font-semibold text-xs'><span className='text-gray-800'>Product Id:</span> {order.product?._id}</p>
                         <h3 className='font-bold'>{order.product?.name}</h3>
                         <p className='font-semibold'>&#8377;{order.product?.soldPrice}</p>
                         <p className='mt-2 font-semibold text-gray-500'>Qty: {order.product?.quantity} | {order.product?.selectColor}</p>
