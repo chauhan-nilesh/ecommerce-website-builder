@@ -64,10 +64,12 @@ function Checkout() {
                 if(responseData.data.type === "flat"){
                     if(calculateSubtotal() >= responseData.data.minimumOrderValue){
                         setDiscountValue(responseData.data.flatDiscountAmount)
+                        toast.success(responseData.message)
+                    } else {
+                        toast.error(`This coupon is valid on shopping above ${"₹"+responseData.data.minimumOrderValue}`)
                     }
                 }
                 setIsCouponApplied(true)
-                toast.success(responseData.message)
             } else {
                 toast.error(responseData.message);
             }
