@@ -13,6 +13,10 @@ app.get("/",(req,res) => {
     res.send("Hello World")
 })
 
+app.get("/test",(req,res) => {
+    res.send("Test page")
+})
+
 import { userRouter } from "./routes/user.router.js";
 import { storeRouter } from "./routes/store.router.js";
 import { customerRouter } from "./routes/customer.router.js";
