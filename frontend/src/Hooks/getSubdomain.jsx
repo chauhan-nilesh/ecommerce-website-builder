@@ -15,7 +15,7 @@ export default function getSubdomain() {
         const parts = hostname.split('.');
 
         // If the hostname has more than two parts, it's likely a subdomain
-        if (parts.length > 3) {
+        if (parts.length > 2) {
             // Return all parts except the last two as the subdomain
             return parts.slice(0, -1).join('.');
         }
