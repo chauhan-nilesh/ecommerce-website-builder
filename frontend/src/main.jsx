@@ -72,7 +72,6 @@ import CustomerPrivateRoute from './PrivateRoute/CustomerPrivateRoute.jsx'
 import getSubdomain from './Hooks/getSubdomain.jsx'
 
 const subdomain = getSubdomain()
-console.log(subdomain)
 
 const router = createBrowserRouter(
   createRoutesFromElements(
