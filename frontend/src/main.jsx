@@ -69,14 +69,15 @@ import EditProduct from './pages/Seller/EditProducts.jsx'
 import EditCoupon from './pages/Seller/EditCoupon.jsx'
 import { CartProvider } from './store/CartContext.jsx'
 import CustomerPrivateRoute from './PrivateRoute/CustomerPrivateRoute.jsx'
+import getSubdomain from './Hooks/getSubdomain.jsx'
 
-const subdomain = window.location.hostname.split('.')[0];
+const subdomain = getSubdomain()
 console.log(subdomain)
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      {subdomain !== import.meta.env.VITE_HOSTNAME ? (
+      {subdomain ? (
         <Route path="/" element={
           <SubdomainExist>
             <CartProvider>
