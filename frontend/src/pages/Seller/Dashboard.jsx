@@ -32,7 +32,7 @@ function Dashboard() {
   return (
     <>
       <section className='bg-gray-100 flex-grow h-full pb-14 lg:pb-8'>
-        <div className='lg:my-5 my-5 mx-5'>
+        <div className='lg:my-5 my-5 mx-3'>
           <h2 className='lg:text-3xl text-2xl text-zinc-900 font-extrabold tracking-tight'>Dashboard</h2>
           {/* alert to verify email */}
           <div role="alert" className="alert mt-3 hidden">
@@ -81,7 +81,7 @@ function Dashboard() {
             <div className='bg-white lg:w-full h-fit p-5 rounded-xl'>
               <h2 className='text-3xl font-bold tracking-tighter'>Store</h2>
               {user.store.logo ? <div className='flex flex-wrap justify-center mt-5'>
-                <img className='h-20' src={"/uploads/" + user?.store?.logo} alt="store logo" />
+                <img className='h-20' src={`${import.meta.env.VITE_API_URL}/uploads/` + user?.store?.logo} alt="store logo" />
               </div> : ""
               }
               <h2 className='text-center text-2xl font-bold tracking-tighter'>{user?.store?.name}</h2>
@@ -91,7 +91,7 @@ function Dashboard() {
                   Edit Store
                 </h2>
               </Link>
-              <a href={"http://" + user?.store?.subdomain + ":5173"}>
+              <a href={"https://" + user?.store?.subdomain}>
                 <h2 className='text-center mt-2 text-bold bg-slate-900 py-4 rounded-xl text-white hover:bg-slate-800'>
                   View Store
                 </h2>

@@ -44,7 +44,7 @@ function Header() {
       <div className='lg:mx-28 mx-3 md:mx-5 flex flex-wrap justify-between items-center h-full'>
         <Link to="/">
           {store?.logo ?
-            <img className='h-12' src={"/uploads/" + store?.logo} alt="Logo" />
+            <img className='h-12' src={`${import.meta.env.VITE_API_URL}/uploads/` + store?.logo} alt="Logo" />
             :
             <h2 className='text-3xl font-extrabold'>{store?.name}</h2>
           }
