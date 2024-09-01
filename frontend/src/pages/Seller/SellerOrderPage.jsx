@@ -58,7 +58,7 @@ function SellerOrderPage() {
     }
 
     return (
-        <div className='h-full mx-5 my-5 lg:my-8 mb-20'>
+        <div className='h-full mx-3 lg:mx-5 my-5 lg:my-8 mb-20'>
             <h2 className='text-xl lg:text-2xl font-bold'>View order details</h2>
             <div className='border border-gray-400 rounded-lg p-4 mt-6 flex'>
                 <div className='w-1/3'>

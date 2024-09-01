@@ -81,7 +81,7 @@ function UserProfile() {
 
     return (
         <div className='w-full h-screen'>
-            <div className='lg:my-7 lg:mx-10 my-3 mx-5'>
+            <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
                 <h2 className='text-2xl lg:text-4xl text-zinc-900 font-bold tracking-tight'>Profile</h2>
                 <div className='mt-8'>
                     <div className='grid grid-flow-row'>

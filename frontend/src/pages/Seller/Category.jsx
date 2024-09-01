@@ -51,10 +51,10 @@ function Category() {
   return (
     <>
       <section className='bg-gray-100 h-screen w-full lg:h-dvh lg:pb-0 pb-20'>
-        <div className='lg:my-7 my-5 mx-5'>
+        <div className='lg:my-7 my-5 mx-3 lg:mx-5'>
           <div className="container p-2 mx-auto sm:p-4 text-gray-800">
             <div className='flex justify-between lg:justify-start lg:gap-5'>
-              <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tight'>Category</h2>
+              <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Category</h2>
               <Link to="../add-category"><h2 className='text-md font-semibold bg-slate-900 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Category</h2></Link>
             </div>
 

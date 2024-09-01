@@ -48,8 +48,8 @@ function Customer() {
 
     return (
         <section className='bg-gray-100 flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
-            <div className='lg:my-7 my-5 mx-5'>
-                <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tight'>Customers</h2>
+            <div className='lg:my-7 my-5 mx-3 lg:mx-5'>
+                <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Customers</h2>
             </div>
 
             {/* Mobile View of Orders */}

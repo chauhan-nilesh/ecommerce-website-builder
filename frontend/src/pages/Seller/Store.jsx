@@ -5,7 +5,7 @@ function Store() {
   return (
 
     <section className='bg-gray-100 flex-grow h-full lg:h-dvh lg:pb-8 pb-20'>
-      <div className='lg:my-10 my-5 mx-5'>
+      <div className='lg:my-10 my-5 mx-3 lg:mx-5'>
         <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tightr'>Store Settings</h2>
         <div className='w-full grid grid-flow-row-dense lg:grid-cols-2 gap-4 mt-7'>
           <Link to="/seller/customize-store">

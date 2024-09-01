@@ -72,9 +72,9 @@ function Coupon() {
 
   return (
     <section className='bg-gray-100 flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
-      <div className='lg:my-10 my-5 mx-5'>
+      <div className='lg:my-10 my-5 lg:mx-5 mx-3'>
         <div className='flex justify-between lg:justify-start lg:gap-5'>
-          <h2 className='text-3xl text-zinc-900 ml-2 lg:ml-3 font-extrabold tracking-tight'>Coupons</h2>
+          <h2 className='text-xl lg:text-3xl text-zinc-900 ml-2 lg:ml-3 font-extrabold tracking-tight'>Coupons</h2>
           <Link to="../add-coupon"><h2 className='text-md font-semibold bg-slate-900 text-white rounded-xl px-3 py-2 tracking-tighter'>Create New Coupon</h2></Link>
         </div>
 

@@ -107,7 +107,7 @@ function DomainSettings() {
   return (
     <>
       <div className='flex-grow h-screen'>
-        <div className='lg:my-7 lg:mx-10 my-3 mx-5'>
+        <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
           <h2 className='text-2xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Domain Settings</h2>
           <div className='mt-8'>
             <h2 className='font-semibold text-xl tracking-tight text-gray-700'>Your store is live at</h2>

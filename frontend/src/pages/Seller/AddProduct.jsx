@@ -121,7 +121,7 @@ function AddProduct() {
   return (
     <div className="bg-white lg:bg-gray-100 p-4 lg:p-10 lg:min-h-screen h-full lg:mb-0 mb-20">
       <div className='flex justify-between'>
-        <h2 className="text-3xl font-extrabold text-gray-900">Add New Product</h2>
+        <h2 className="text-xl lg:text-3xl font-extrabold text-gray-900">Add New Product</h2>
         <div>
           <button
             type="submit"

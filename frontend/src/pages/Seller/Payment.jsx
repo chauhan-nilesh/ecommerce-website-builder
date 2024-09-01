@@ -132,8 +132,8 @@ function Payment() {
 
   return (
     <section className='bg-gray-100 flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
-      <div className='lg:my-7 lg:mx-7 my-5 mx-4'>
-        <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tight'>Set UPI ID</h2>
+      <div className='lg:my-7 lg:mx-7 my-5 mx-3'>
+        <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Set UPI ID</h2>
       </div>
       <div className='px-4 lg:px-7'>
         <form onSubmit={handleSubmit}>

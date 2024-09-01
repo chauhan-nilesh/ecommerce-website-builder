@@ -20,7 +20,7 @@ function Sidebar() {
                 <div>
                     <h2 className="text-lg font-semibold">{user?.store?.name}</h2>
                     <span className="flex items-center space-x-1">
-                        <Link to={"https://" + user?.store?.subdomain} className="text-xs hover:underline text-gray-600">View store</Link>
+                        <Link to={`https://${user?.store?.subdomain}.${import.meta.env.VITE_HOSTNAME}`} className="text-xs hover:underline text-gray-600">View store</Link>
                     </span>
                 </div>
             </div>

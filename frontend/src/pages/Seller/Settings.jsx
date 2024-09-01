@@ -45,7 +45,7 @@ function Settings() {
 
   return (
     <section className='bg-gray-100 flex-grow h-full lg:h-dvh lg:pb-8 pb-20'>
-      <div className='lg:my-10 my-5 mx-5'>
+      <div className='lg:my-10 my-5 mx-3 lg:mx-5'>
         <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tight'>Settings</h2>
       </div>
       <div className='mx-5'>

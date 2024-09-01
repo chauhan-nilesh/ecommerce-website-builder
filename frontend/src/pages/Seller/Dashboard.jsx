@@ -26,7 +26,7 @@ function Dashboard() {
   }, []);
 
   if (loading) {
-    return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+    return <div className='flex h-dvh w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
   }
 
   return (
@@ -91,7 +91,7 @@ function Dashboard() {
                   Edit Store
                 </h2>
               </Link>
-              <a href={"https://" + user?.store?.subdomain}>
+              <a href={`https://${user?.store?.subdomain}.${import.meta.env.VITE_HOSTNAME}`}>
                 <h2 className='text-center mt-2 text-bold bg-slate-900 py-4 rounded-xl text-white hover:bg-slate-800'>
                   View Store
                 </h2>
