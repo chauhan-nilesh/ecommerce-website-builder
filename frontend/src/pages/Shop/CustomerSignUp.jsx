@@ -62,7 +62,7 @@ function CustomerSignUp() {
     async function getThemeColor() {
         try {
             setLoading(true)
-            const response = await fetch(`/api/store/subdomain/${subdomain}`)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`)
             const responseData = await response.json()
             if (response.ok) {
                 setStore(responseData.data)
@@ -96,7 +96,7 @@ function CustomerSignUp() {
                             <input onChange={handleInput} value={user?.password} className='w-full bg-gray-50 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
                         </div>
                         <button type="submit"
-                            className="w-full text-xl font-bold py-4 px-4 hover:brightness-105 rounded-md transition duration-200" style={{color: color2, backgroundColor: color1}}>Register</button>
+                            className="w-full text-xl font-bold py-4 px-4 rounded-md hover:brightness-110 transition duration-200" style={{color: color2, backgroundColor: color1}}>Register</button>
                     </form>
                 </div>
             </div>

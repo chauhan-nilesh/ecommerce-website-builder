@@ -35,6 +35,28 @@ function Settings() {
     }
   }
 
+  // Function to handle sharing
+  const handleShare = async () => {
+    const shareData = {
+      title: 'My Awesome Content',
+      text: 'Check out this amazing link!',
+      url: window.location.origin,  // Replace with your desired link
+    };
+
+    // Check if the Web Share API is available
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        console.log('Content shared successfully!');
+      } catch (error) {
+        console.error('Error sharing:', error);
+      }
+    } else {
+      // Fallback for browsers that don't support the Web Share API
+      alert('Your browser does not support the Web Share API.');
+    }
+  }
+
   function closeModal() {
     setIsOpen(false)
   }
@@ -44,7 +66,7 @@ function Settings() {
   }
 
   return (
-    <section className='bg-gray-100 flex-grow h-full lg:h-dvh lg:pb-8 pb-20'>
+    <section className='bg-gray-100 flex-grow h-full min-h-dvh lg:h-dvh lg:pb-8 pb-20'>
       <div className='lg:my-10 my-5 mx-3 lg:mx-5'>
         <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tight'>Settings</h2>
       </div>
@@ -80,9 +102,9 @@ function Settings() {
             </div>
             <h2 className='text-center text-xl tracking-tight font-semibold'>Change your personal information</h2>
             <div className='flex flex-wrap justify-center mt-5'>
-              <Link to="/">
-                <button className="btn btn-accent text-white">SHARE</button>
-              </Link>
+                <button onClick={handleShare} className="btn btn-accent text-white">SHARE</button>
+              {/* <Link to="/">
+              </Link> */}
             </div>
           </div>
         </div>

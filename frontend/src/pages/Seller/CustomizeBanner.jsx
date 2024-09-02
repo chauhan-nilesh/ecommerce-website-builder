@@ -30,7 +30,7 @@ function CustomizeBanner() {
   }
 
   return (
-    <div className='flex-grow h-full mb-20'>
+    <div className='flex-grow h-full min-h-dvh mb-20'>
       <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
         <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Customize Store</h2>
         <div className='mt-8'>

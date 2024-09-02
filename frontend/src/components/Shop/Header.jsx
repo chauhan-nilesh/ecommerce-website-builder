@@ -33,14 +33,14 @@ function Header() {
   useEffect(() => {
     getThemeColor()
   }, [])
-
+  console.log(store)
 
   if (loading) {
     return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
   }
 
   return (
-    <header className='h-[75px] top-0 sticky bg-white z-50 border-b border-gray-100'>
+    <header className='h-[70px] top-0 sticky bg-white z-50 border-b border-gray-100'>
       <div className='lg:mx-28 mx-3 md:mx-5 flex flex-wrap justify-between items-center h-full'>
         <Link to="/">
           {store?.logo ?

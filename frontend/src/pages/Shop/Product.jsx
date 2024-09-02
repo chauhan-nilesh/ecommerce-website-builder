@@ -23,6 +23,7 @@ function Product() {
   const [selectColor, setSelectColor] = useState("");
   const [selectOther, setSelectOther] = useState("");
 
+  const [selectedOriginalPrice, setSelectedOriginalPrice] = useState({});
   const [selectedPrice, setSelectedPrice] = useState({});
 
   const subdomain = window.location.hostname.split('.')[0];
@@ -60,6 +61,7 @@ function Product() {
           }
         });
 
+        setSelectedOriginalPrice(responseData.data.originalPrice)
         setSelectedPrice(responseData.data.salePrice);
       }
 
@@ -152,7 +154,7 @@ function Product() {
           </div>
 
           <div className='py-2 px-4 md:px-4 md:py-4 lg:pr-10'>
-            <h2 className='text-3xl font-semibold tracking-tighter'>{product?.name}</h2>
+            <h2 className='text-xl font-semibold tracking-tighter'>{product?.name}</h2>
             <h4 className='font-semibold text-gray-600 mt-1'>{product?.category?.name}</h4>
             <div className="rating w-20">
               {[...Array(5)].map((_, i) => (
@@ -160,7 +162,8 @@ function Product() {
               ))}
             </div>
             <p>{product?.shortDescription}</p>
-            <h2 className='mt-4 text-4xl font-extrabold'>&#8377;{selectedPrice}</h2>
+            <h2 className='mt-4 text-2xl font-bold'>&#8377;{selectedPrice}&nbsp;
+            <span className='text-base line-through font-thin tracking-wider'>&#8377;{selectedOriginalPrice}</span></h2>
 
             <div className="mt-10">
               <div>
@@ -201,7 +204,7 @@ function Product() {
               <div className='mt-3'>
                 {typeColor ?
                   <>
-                    <h3 className="text-sm lg:text-lg font-medium text-gray-900">Color</h3>
+                    <h3 className="text-base lg:text-lg font-medium text-gray-900">Color</h3>
 
                     <div className='flex gap-2'>
                       {product?.variants.filter(variant => variant.type === "color").map((variant, index) => (

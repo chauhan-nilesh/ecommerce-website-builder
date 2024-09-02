@@ -49,7 +49,7 @@ function Orders() {
   }
 
   return (
-    <section className='flex-grow h-full lg:h-dvh lg:pb-0 pb-20'>
+    <section className='flex-grow min-h-dvh h-full lg:h-dvh lg:pb-0 pb-20'>
       <div className='lg:my-10 my-5 mx-3 lg:mx-5'>
         <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>All Orders</h2>
       </div>
