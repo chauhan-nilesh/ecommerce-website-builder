@@ -14,6 +14,7 @@ function Category({categories}) {
                                 src={`${import.meta.env.VITE_API_URL}/uploads/`+category?.image}
                                 alt="category"
                                 className="h-full w-full object-cover object-center"
+                                loading='lazy'
                             />
                         </div>
                         <div className="w-full hidden bg-white lg:flex items-center justify-center py-4">

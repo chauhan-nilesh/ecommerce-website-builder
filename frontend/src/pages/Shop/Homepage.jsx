@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Banner, Category, ProductCard } from '../../components/Shop'
+import React, { useEffect, useState, Suspense, lazy } from 'react'
+import { ProductCard, Category } from "../../components/Shop"
+import LazyLoadingPage from '../../components/Shop/LazyLoadingPage'
 
 function Homepage() {
   const [store, setStore] = useState({})
@@ -9,6 +10,7 @@ function Homepage() {
   const [loading, setLoading] = useState(true)
 
   const subdomain = window.location.hostname.split('.')[0];
+  const Banner = lazy(() => import('../../components/Shop/Banner'));
 
   async function getStoreData() {
     try {
@@ -34,13 +36,15 @@ function Homepage() {
 
 
   if (loading) {
-    return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+    return <LazyLoadingPage />
   }
 
 
   return (
     <>
-      <Banner />
+      <Suspense fallback={<div data-theme='light' className="skeleton rounded-none h-96 w-full"></div>}>
+        <Banner />
+      </Suspense>
       {store.hideCategory === false ?
         <Category categories={store?.categories} />
         : ""
@@ -50,7 +54,8 @@ function Homepage() {
       <div className="bg-white">
         <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">New Arrivals</h2>
-          <ProductCard products={products} color1={color1} color2={color2}/>
+
+          <ProductCard products={products} color1={color1} color2={color2} />
         </div>
       </div>
 
