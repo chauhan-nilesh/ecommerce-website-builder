@@ -5,25 +5,30 @@ import useStoreData from '../../Hooks/useStoreData'
 function Sidebar() {
     const { user, loading } = useStoreData()
 
-    if (loading) {
-        return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
-    }
-
     return (
         <>
-            <div className="flex items-center p-2 space-x-4">
-                {user?.store?.favicon ?
-                    <img src={`${import.meta.env.VITE_API_URL}/uploads/` + user?.store?.favicon} alt="" className="w-12 h-12 rounded-full bg-gray-500" />
-                    :
-                    <img src="/store-icon.jpg" alt="" className="w-12 h-12 rounded-full bg-gray-500" />
-                }
-                <div>
-                    <h2 className="text-lg font-semibold">{user?.store?.name}</h2>
-                    <span className="flex items-center space-x-1">
-                        <Link to={`https://${user?.store?.subdomain}.${import.meta.env.VITE_HOSTNAME}`} className="text-xs hover:underline text-gray-600">View store</Link>
-                    </span>
+            {loading ? <div className="flex items-center p-2 space-x-4">
+                <div className="w-20 h-12 skeleton rounded-full"></div>
+                <div className='w-full'>
+                    <div className="skeleton h-8 w-full"></div>
+                    <div className="flex items-center skeleton w-full"></div>
                 </div>
             </div>
+                :
+                <div className="flex items-center p-2 space-x-4">
+                    {user?.store?.favicon ?
+                        <img src={`${import.meta.env.VITE_API_URL}/uploads/` + user?.store?.favicon} alt="" className="w-12 h-12 rounded-full bg-gray-500" />
+                        :
+                        <img src="/store-icon.jpg" alt="" className="w-12 h-12 rounded-full bg-gray-500" />
+                    }
+                    <div>
+                        <h2 className="text-lg font-semibold">{user?.store?.name}</h2>
+                        <span className="flex items-center space-x-1">
+                            <Link to={`https://${user?.store?.subdomain}.${import.meta.env.VITE_HOSTNAME}`} className="text-xs hover:underline text-gray-600">View store</Link>
+                        </span>
+                    </div>
+                </div>
+            }
             <div className="divide-y divide-gray-300">
                 <ul className="pt-2 pb-4 space-y-1 text-sm">
                     <li>
