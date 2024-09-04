@@ -35,7 +35,7 @@ function SubdomainExist({ children }) {
     }, [])
 
     if (loading) {
-        return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+        return <LazyLoadingPage />
     }
 
 
