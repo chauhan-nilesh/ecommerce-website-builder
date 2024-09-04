@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import LazyLoadingPage from '../components/LazyLoadingPage'
 
 function SubdomainExist({ children }) {
     const [loading, setLoading] = useState(true)
