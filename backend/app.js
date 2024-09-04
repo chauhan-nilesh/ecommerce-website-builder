@@ -3,7 +3,10 @@ import cookieParser from "cookie-parser"
 import cors from "cors";
 const app = express()
 
-app.use(cors())
+app.use(cors({
+    origin: 'https://www.veelo.in' // Allow only your frontend origin
+    // origin: '*' // Allow any origin (less secure, use with caution)
+}));
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
