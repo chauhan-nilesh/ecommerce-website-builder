@@ -10,8 +10,8 @@ function Sidebar() {
             {loading ? <div className="flex items-center p-2 space-x-4">
                 <div className="w-20 h-12 skeleton rounded-full"></div>
                 <div className='w-full'>
-                    <div className="skeleton h-8 w-full"></div>
-                    <div className="flex items-center skeleton w-full"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                    <div className="flex items-center skeleton h-4 w-full mt-2"></div>
                 </div>
             </div>
                 :
