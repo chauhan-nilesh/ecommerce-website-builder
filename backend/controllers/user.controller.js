@@ -1,8 +1,10 @@
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js"
 import { asyncHandler } from "../utils/asyncHandler.js";
+import nodeMailer from "nodemailer"
 import { users } from "../models/user.model.js";
 import {z} from "zod";
+import jwt from "jsonwebtoken";
 import { storeNameValidation } from "../schemas/signUpSchema.js";
 import { stores } from "../models/store.model.js";
 
@@ -93,6 +95,47 @@ const verifyCode = async (req,res) => {
     }
 }
 
+const sendotp = async (req,res) => {
+    const {email} = req.body;
+    const OTP = Math.floor(1 + Math.random() * 9000);
+
+    const emailProvider = nodeMailer.createTransport({
+        service: "gmail",
+        secure: true,
+        port: 465,
+        auth: {
+            user: 'nileshchauhan5911@gmail.com',
+            pass: "pcnmimcutzlkhrmc"
+        },
+        tls: { rejectUnauthorized: false }
+    })
+
+    const receiver = {
+        from: "nileshchauhan5911@gmail.com",
+        to: email,
+        subject: "OTP Verification",
+        text: `Your One Time Password(OTP) is ${OTP}`,
+    }
+
+    const otpToken = await jwt.sign({otp: OTP},process.env.OTP_TOKEN_SECRET, { expiresIn: process.env.OTP_TOKEN_EXPIRY})
+
+    emailProvider.sendMail(receiver, (error, emailResponse) => {
+        if (error) {
+            return res.status(422).json({ message: error })
+        } else {
+            return res.status(200).json({ message: "OTP send successfully on your email account", otp: otpToken })
+        }
+    })
+}
+
+const verifyOtp = async (req,res) => {
+    const {otpToken} = req.body;
+
+    const otp = await jwt.verify(otpToken, process.env.OTP_TOKEN_SECRET)
+    
+    return res.status(200).json({ message: "OTP send", otp })
+}
+
 const registerUser = asyncHandler(async (req,res) => {
     const {email,password} = req.body;
 
@@ -106,7 +149,8 @@ const registerUser = asyncHandler(async (req,res) => {
 
     const user = await users.create({
         email,
-        password
+        password,
+        isVerified: true
     })
 
     const token = await user.generateAccessToken()
@@ -213,6 +257,8 @@ export {
     registerUser,
     checkStorenameUnique,
     verifyCode,
+    sendotp,
+    verifyOtp,
     loginUser,
     updatePassword,
     deleteAccount,
