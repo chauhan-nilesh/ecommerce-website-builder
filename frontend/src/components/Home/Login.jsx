@@ -11,6 +11,7 @@ function Login() {
     })
 
     const navigate = useNavigate()
+    const [loadingBtn, setLoadingBtn] = useState(false)
 
     const { storeTokenInLS, setUserId } = useAuth()
 
@@ -28,6 +29,7 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoadingBtn(true)
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/login`, {
                 method: "POST",
@@ -48,7 +50,7 @@ function Login() {
                 storeTokenInLS(responseData.data.token)
                 // localStorage.setItem("token", responseData.data.token)
                 toast.success(responseData.message)
-                if(responseData.data.user.store){
+                if (responseData.data.user.store) {
                     navigate("/seller/dashboard")
                 } else {
                     navigate("/create-store")
@@ -56,7 +58,7 @@ function Login() {
             } else {
                 toast.error(responseData.message)
             }
-
+            setLoadingBtn(false)
         } catch (error) {
             console.log(error)
         }
@@ -77,7 +79,7 @@ function Login() {
                         <input onChange={handleInput} placeholder=" " className="input input-bordered bg-gray-50 w-full max-w-xs" value={user.password} type="password" name='password' id="password" />
                     </div>
                     <button type="submit"
-                        className="bg-black w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-zinc-900 transition duration-200">Login</button>
+                        className="bg-black w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-zinc-900 transition duration-200">{!loadingBtn ? "Login" : <span className="loading loading-spinner loading-md"></span>}</button>
                 </form>
             </div>
         </div>
