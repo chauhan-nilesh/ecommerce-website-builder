@@ -104,14 +104,14 @@ const sendotp = async (req,res) => {
         secure: true,
         port: 465,
         auth: {
-            user: 'nileshchauhan5911@gmail.com',
-            pass: "pcnmimcutzlkhrmc"
+            user: process.env.OTP_EMAIL_ID,
+            pass: process.env.OTP_EMAIL_PASS
         },
         tls: { rejectUnauthorized: false }
     })
 
     const receiver = {
-        from: "nileshchauhan5911@gmail.com",
+        from: process.env.OTP_EMAIL_ID,
         to: email,
         subject: "OTP Verification",
         text: `Your One Time Password(OTP) is ${OTP}`,
