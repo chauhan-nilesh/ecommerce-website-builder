@@ -11,7 +11,7 @@ function Category({categories}) {
                     <div key={index} className="flex-shrink-0 group relative overflow-hidden border-[1px] border-gray-200 bg-white rounded-full lg:rounded-lg">
                         <div className="w-28 h-28 flex justify-center items-center bg-gray-200 group-hover:opacity-75 lg:w-56 lg:h-52">
                             <img
-                                src={`${import.meta.env.VITE_API_URL}/uploads/`+category?.image}
+                                src={category?.image}
                                 alt="category"
                                 className="h-full w-full object-cover object-center"
                                 loading='lazy'

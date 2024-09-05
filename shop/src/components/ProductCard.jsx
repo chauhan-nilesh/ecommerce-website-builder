@@ -10,7 +10,7 @@ function ProductCard({ products, color1, color2 }) {
                 if (product?.status === true && product?.stockStatus === true) {
                     return <div key={index} className="relative w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-md">
                         <Link className='hover:opacity-75' to={"/product/"+product._id}>
-                            <img className="h-fit w-auto rounded-t-lg object-cover" src={`${import.meta.env.VITE_API_URL}/uploads/` + product.images.featuredImage} alt="product image" loading='lazy' />
+                            <img className="h-fit w-auto rounded-t-lg object-cover" src={product.images.featuredImage} alt="product image" loading='lazy' />
                         </Link>
                         {product?.salePrice < product?.originalPrice ?
                             <span className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 text-center text-sm " style={{backgroundColor: color1, color: color2}}>Sale</span>

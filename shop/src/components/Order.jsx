@@ -68,11 +68,12 @@ function Order() {
 
                                     <div className='px-5 lg:px-10 py-5 lg:flex hidden'>
                                         <div className='w-1/4 h-24 flex justify-center items-center'>
-                                            <img className='h-full' src={"/uploads/" + order.product.images.featuredImage} alt="" />
+                                            <img className='h-full' src={order.product.images.featuredImage} alt="" />
                                         </div>
                                         <div className='w-2/4'>
                                             <h3 className='text-xl lg:text-2xl font-bold'>{order.product.name}</h3>
                                             <p className='text-gray-600'>{order.product.quantity} item | {order.product.selectColor || order.product.selectSize || order.product.selectOther}</p>
+                                            <p className='mt-2'>Status: <span className='font-bold'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</span></p>
                                         </div>
                                         <div className='w-1/4 grid grid-rows-2 gap-2 text-right'>
                                             <Link to={"/product/" + order.product._id} className="btn btn-primary text-white">View Product</Link>
@@ -82,7 +83,7 @@ function Order() {
 
                                     <div className='px-5 py-5 flex lg:hidden'>
                                         <div className='w-1/3 flex justify-center items-center h-20 border-[0.5px] border-gray-400 rounded-lg'>
-                                            <img className='h-full' src={"/uploads/" + order.product.images.featuredImage} alt="" />
+                                            <img className='h-full' src={order.product.images.featuredImage} alt="" />
                                         </div>
                                         <div className='w-2/3 px-3'>
                                             <h3 className='font-bold'>{order.product.name}</h3>

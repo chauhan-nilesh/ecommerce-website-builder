@@ -5,6 +5,7 @@ import { stores } from "../models/store.model.js";
 import { users } from "../models/user.model.js";
 import { products } from "../models/product.model.js";
 import { categories } from "../models/category.model.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 function createSlug(name) {
     return name.toLowerCase().replace(/[^\w\s-]/g, '')
@@ -50,13 +51,15 @@ const addProduct = asyncHandler(async (req, res) => {
         store: storeId,
         status,
         images: {
-            featuredImage: images.featuredImage ? images.featuredImage[0].filename : null,
-            image1: images.image1 ? images.image1[0].filename : null,
-            image2: images.image2 ? images.image2[0].filename : null,
-            image3: images.image3 ? images.image3[0].filename : null,
-            image4: images.image4 ? images.image4[0].filename : null
+            featuredImage: images.featuredImage ? await uploadOnCloudinary(images.featuredImage[0].path) : null,
+            image1: images.image1 ? await uploadOnCloudinary(images.image1[0].path) : null,
+            image2: images.image2 ? await uploadOnCloudinary(images.image2[0].path) : null,
+            image3: images.image3 ? await uploadOnCloudinary(images.image3[0].path) : null,
+            image4: images.image4 ? await uploadOnCloudinary(images.image4[0].path) : null
         }
     };
+
+    
 
     // Save the product to the database (assuming you're using Mongoose)
     const product = await products.create(newProduct);
@@ -139,11 +142,11 @@ const updateProduct = asyncHandler(async (req, res) => {
             variants: parsedVariants,
             status,
             images: {
-                featuredImage: images?.featuredImage?.[0]?.filename || existingProduct.images.featuredImage,
-                image1: images?.image1?.[0]?.filename || existingProduct.images.image1,
-                image2: images?.image2?.[0]?.filename || existingProduct.images.image2,
-                image3: images?.image3?.[0]?.filename || existingProduct.images.image3,
-                image4: images?.image4?.[0]?.filename || existingProduct.images.image4,
+                featuredImage: await uploadOnCloudinary(images?.featuredImage?.[0]?.path) || existingProduct.images.featuredImage,
+                image1: await uploadOnCloudinary(images?.image1?.[0]?.path) || existingProduct.images.image1,
+                image2: await uploadOnCloudinary(images?.image2?.[0]?.path) || existingProduct.images.image2,
+                image3: await uploadOnCloudinary(images?.image3?.[0]?.path) || existingProduct.images.image3,
+                image4: await uploadOnCloudinary(images?.image4?.[0]?.path) || existingProduct.images.image4,
             }
         },
         { new: true } // This option returns the updated document

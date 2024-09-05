@@ -11,7 +11,7 @@ function Ordermobile({ orders }) {
                     <Link to={"/seller/orders/" + order._id}>
                         <div className='flex mb-3'>
                             <div className='w-1/4 p-2 border-2 flex justify-center items-center border-zinc-200 rounded-lg'>
-                                <img className='h-20 w-auto' src={"/uploads/" + order.product.images.featuredImage} alt="" />
+                                <img className='h-20 w-auto' src={order.product.images.featuredImage} alt="" />
                             </div>
                             <div className='p-2 w-2/4'>
                                 <h3 className='font-semibold text-sm text-wrap tracking-tighter truncate'>{order.product.name}</h3>

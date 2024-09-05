@@ -17,7 +17,7 @@ function Sidebar() {
                 :
                 <div className="flex items-center p-2 space-x-4">
                     {user?.store?.favicon ?
-                        <img src={`${import.meta.env.VITE_API_URL}/uploads/` + user?.store?.favicon} alt="" className="w-12 h-12 rounded-full bg-gray-500" />
+                        <img src={user?.store?.favicon} alt="" className="w-12 h-12 rounded-full bg-gray-500" />
                         :
                         <img src="/store-icon.jpg" alt="" className="w-12 h-12 rounded-full bg-gray-500" />
                     }

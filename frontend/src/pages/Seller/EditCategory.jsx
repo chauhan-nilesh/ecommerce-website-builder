@@ -106,7 +106,7 @@ const EditCategory = () => {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Current Image</label>
-                                <img className='h-20 w-20 border mt-1 border-black p-3 rounded-md' src={`${import.meta.env.VITE_API_URL}/uploads/`+categoryData?.image} alt={categoryData.name} />
+                                <img className='h-20 w-20 border mt-1 border-black p-3 rounded-md' src={categoryData?.image} alt={categoryData.name} />
                             </div>
                         </>
                         :

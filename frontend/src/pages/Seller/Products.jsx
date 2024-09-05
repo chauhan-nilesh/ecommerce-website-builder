@@ -137,7 +137,7 @@ function Products() {
                       {storeProducts.map((product, index) => {
                         return <tr key={index} className="border-b border-opacity-20 border-gray-300 bg-gray-50">
                           <td className="p-3">
-                            <img className='h-10 w-10' src={`${import.meta.env.VITE_API_URL}/uploads/` + product?.images?.featuredImage || "./vite.svg"} alt="product" />
+                            <img className='h-10 w-10' src={product?.images?.featuredImage || "./vite.svg"} alt="product" />
                           </td>
                           <td className="p-3 text-base tracking-tight">
                             <p>{product?.name}</p>

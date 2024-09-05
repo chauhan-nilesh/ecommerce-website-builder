@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { stores } from "../models/store.model.js";
 import { users } from "../models/user.model.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const createStore = asyncHandler(async (req, res) => {
     const { name, storename, owner, subdomain } = req.body;
@@ -249,12 +250,13 @@ const uploadStoreImage = asyncHandler(async (req,res) => {
     const store = await stores.findById(req.body.storeId)
     
     const uploadImages = await stores.findOneAndUpdate({_id: req.body.storeId},{
-            logo: req.files.logo ? req.files.logo[0].filename : store.logo,
-            favicon: req.files.favicon ? req.files.favicon[0].filename : store.favicon,
-            banner: req.files.banner ? req.files.banner[0].filename : store.banner,
-            mobileBanner: req.files.mobileBanner ? req.files.mobileBanner[0].filename : store.mobileBanner
+            logo: req.files.logo ? await uploadOnCloudinary(req.files.logo[0].path) : store.logo,
+            favicon: req.files.favicon ? await uploadOnCloudinary(req.files.favicon[0].path) : store.favicon,
+            banner: req.files.banner ? await uploadOnCloudinary(req.files.banner[0].path) : store.banner,
+            mobileBanner: req.files.mobileBanner ? await uploadOnCloudinary(req.files.mobileBanner[0].path) : store.mobileBanner
         
     })
+
 
     return res.status(200)
     .json(

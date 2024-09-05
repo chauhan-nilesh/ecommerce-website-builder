@@ -47,7 +47,7 @@ function CustomizeBanner() {
             {user.store.logo ?
               <>
                 <h3 className='mt-5 font-semibold'>Current Logo:</h3>
-                <img className='h-20 border border-gray-500 rounded-lg p-2' src={`${import.meta.env.VITE_API_URL}/uploads/` + user.store.logo} alt="" />
+                <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.logo} alt="" />
               </>
               : ""}
             <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="favicon">Favicon</label>
@@ -61,7 +61,7 @@ function CustomizeBanner() {
             {user.store.favicon ?
               <>
                 <h3 className='mt-5 font-semibold'>Current Favicon:</h3>
-                <img className='h-20 border border-gray-500 rounded-lg p-2' src={`${import.meta.env.VITE_API_URL}/uploads/` + user.store.favicon} alt="" />
+                <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.favicon} alt="" />
               </>
               : ""}
             <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Upload Banner Image</label>
@@ -76,7 +76,7 @@ function CustomizeBanner() {
             {user.store.banner ?
               <>
                 <h3 className='mt-5 font-semibold'>Current Banner:</h3>
-                <img className='h-20 border border-gray-500 rounded-lg p-2' src={`${import.meta.env.VITE_API_URL}/uploads/` + user.store.banner} alt="" />
+                <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.banner} alt="" />
               </>
               : ""}
             {/* <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Add Banner Text</label>
@@ -100,7 +100,7 @@ function CustomizeBanner() {
             {user.store.mobileBanner ?
               <>
                 <h3 className='mt-5 font-semibold'>Current Mobile Banner:</h3>
-                <img className='h-20 border border-gray-500 rounded-lg p-2' src={`${import.meta.env.VITE_API_URL}/uploads/` + user.store.mobileBanner} alt="" />
+                <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.mobileBanner} alt="" />
               </>
               : ""}
 

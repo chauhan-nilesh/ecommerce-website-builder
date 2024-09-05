@@ -148,7 +148,7 @@ function EditProduct() {
             return URL.createObjectURL(image);
         }
         if (typeof image === 'string') {
-            return "/uploads/" + image;
+            return image;
         }
         return "/image.svg";
     };

@@ -81,7 +81,7 @@ function Dashboard() {
             <div className='bg-white lg:w-full h-fit p-5 rounded-xl'>
               <h2 className='lg:text-3xl text-2xl font-bold tracking-tighter'>Store</h2>
               {user.store.logo ? <div className='flex flex-wrap justify-center mt-5'>
-                <img className='h-20' src={`${import.meta.env.VITE_API_URL}/uploads/` + user?.store?.logo} alt="store logo" />
+                <img className='h-20' src={user?.store?.logo} alt="store logo" />
               </div> : ""
               }
               <h2 className='text-center text-2xl font-bold tracking-tighter'>{user?.store?.name}</h2>

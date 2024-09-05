@@ -7,7 +7,7 @@ function Productmobile({products, openModal}) {
             {products.map((product, index) => 
             (<div key={index} className='bg-white p-7 rounded-lg flex'>
                 <div className='h-full w-32 border-2 border-zinc-200 p-2 rounded-lg'>
-                    <img className='h-20 w-full' src={"/uploads/"+product.images.featuredImage} alt="" />
+                    <img className='h-20 w-full' src={product.images.featuredImage} alt="" />
                 </div>
                 <div className='ml-5'>
                     <h3 className='text-lg font-bold tracking-tight'>{product.name}</h3>

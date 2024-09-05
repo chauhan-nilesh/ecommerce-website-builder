@@ -5,6 +5,7 @@ import { stores } from "../models/store.model.js";
 import { users } from "../models/user.model.js";
 import { products } from "../models/product.model.js";
 import { categories } from "../models/category.model.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 function createSlug(name) {
     return name.toLowerCase().replace(/[^\w\s-]/g, '')
@@ -42,11 +43,18 @@ const createCategory = asyncHandler(async (req, res) => {
                 new ApiResponse("400", "", "Category with this name already exist")
             )
     }
+
+    let imagePath;
+
+    if(req.file?.filename){
+        imagePath = await uploadOnCloudinary(req.file?.path)
+    }
+
     const category = await categories.create({
         store: storeId,
         name: categoryName,
         description,
-        image: req.file?.filename,
+        image: imagePath,
         slug
     })
 
@@ -82,11 +90,17 @@ const updateCategory = asyncHandler(async (req, res) => {
     const { categoryName, description } = req.body;
     const slug = createSlug(categoryName)
 
+    let imagePath;
+
+    if(req.file?.filename){
+        imagePath = await uploadOnCloudinary(req.file?.path)
+    }
+
     const category = await categories.findByIdAndUpdate(id, {
         $set: {
             name: categoryName,
             description,
-            image: req.file?.filename,
+            image: imagePath,
             slug
         }
     },

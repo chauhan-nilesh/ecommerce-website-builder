@@ -89,7 +89,7 @@ function Category() {
                     {categories.map((category, index) =>
                       <tr key={index} className="border-b border-opacity-20 border-gray-300 bg-gray-50">
                         <td className="p-3 text-base tracking-tight">
-                          <img className='h-10 w-10' src={`${import.meta.env.VITE_API_URL}/uploads/` + category.image} alt="" />
+                          <img className='h-10 w-10' src={category.image} alt="" />
                         </td>
                         <td className="p-3 text-base tracking-tight">
                           <p>{category.name}</p>

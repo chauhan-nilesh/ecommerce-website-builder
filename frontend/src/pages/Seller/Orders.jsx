@@ -102,7 +102,7 @@ function Orders() {
                       <Link to={"/seller/orders/"+order?._id} className='underline font-semibold'>{"#"+order?._id}</Link>
                     </td>
                     <td className="p-3 text-base tracking-tight">
-                      <img className='h-7 w-7' src={`${import.meta.env.VITE_API_URL}/uploads/`+order?.product?.images?.featuredImage} alt="" />
+                      <img className='h-7 w-7' src={order?.product?.images?.featuredImage} alt="" />
                     </td>
                     <td className="p-3 text-base tracking-tight">
                       <p className=''>{order?.product?.name}</p>

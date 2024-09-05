@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../store/auth'
+import { Link } from 'react-router-dom'
 
 function Quicktable() {
     const { token } = useAuth()
@@ -64,7 +65,7 @@ function Quicktable() {
                             if (index < 4) {
                                 return <tr key={index}>
                                     <td>
-                                        <img className='h-10 w-10' src={`${import.meta.env.VITE_API_URL}/uploads/` + order?.product?.images?.featuredImage} />
+                                        <img className='h-10 w-10' src={order?.product?.images?.featuredImage} />
                                     </td>
                                     <td>
                                         <p>{order.product.name}</p>
@@ -76,7 +77,7 @@ function Quicktable() {
                                         <p>&#8377;{order.product.salePrice}</p>
                                     </td>
                                     <td>
-                                        <button className='btn btn-primary'>Details</button>
+                                        <Link to={"/seller/orders/" + order?._id} className='btn btn-primary'>Details</Link>
                                     </td>
                                 </tr>
                             }
