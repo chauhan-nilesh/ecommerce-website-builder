@@ -248,7 +248,7 @@ const deleteUpiId = asyncHandler(async (req, res) => {
 
 const uploadStoreImage = asyncHandler(async (req,res) => {
     const store = await stores.findById(req.body.storeId)
-    
+    console.log(store)
     const uploadImages = await stores.findOneAndUpdate({_id: req.body.storeId},{
             logo: req.files.logo ? await uploadOnCloudinary(req.files.logo[0].path) : store.logo,
             favicon: req.files.favicon ? await uploadOnCloudinary(req.files.favicon[0].path) : store.favicon,
