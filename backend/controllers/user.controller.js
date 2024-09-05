@@ -121,7 +121,7 @@ const sendotp = asyncHandler(async (req, res) => {
 
     emailProvider.sendMail(receiver, (error, emailResponse) => {
         if (error) {
-            return res.status(422).json({ message: error })
+            return res.status(400).json({ message: error })
         } else {
             return res.status(200).json({ message: "OTP send successfully on your email account", otp: otpToken })
         }
