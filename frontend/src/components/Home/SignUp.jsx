@@ -34,8 +34,7 @@ function SignUp() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ email: user.email }),
-                credentials: 'include'
+                body: JSON.stringify({ email: user.email })
             })
             const responseData = await response.json()
 
@@ -58,7 +57,7 @@ function SignUp() {
         try {
             setLoadingBtn(true)
             const otpToken = localStorage.getItem('code');
-            const verifyResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/user/verifyOtp`, {
+            const verifyResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/user/verifyotp`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

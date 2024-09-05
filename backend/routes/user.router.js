@@ -10,9 +10,9 @@ router.route("/check-storename").post(checkStorenameUnique)
 
 router.route("/verify-code").post(verifyCode)
 
-router.route('/sendotp').post(sendotp)
+router.route("/sendotp").post(sendotp)
 
-router.route('/verifyOtp').post(verifyOtp)
+router.route("/verifyotp").post(verifyOtp)
 
 router.route("/register").post(validate(registerSchema),registerUser)
 
