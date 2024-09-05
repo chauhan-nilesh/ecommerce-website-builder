@@ -131,7 +131,7 @@ const sendotp = asyncHandler(async (req, res) => {
 const verifyOtp = asyncHandler(async (req, res) => {
     const { otpToken } = req.body;
 
-    const otp = await jwt.verify(otpToken, process.env.OTP_TOKEN_SECRET)
+    const otp = await jwt.verify(otpToken, process.env.OTP_TOKEN_SECRET);
 
     return res.status(200).json({ message: "OTP send", otp })
 })
