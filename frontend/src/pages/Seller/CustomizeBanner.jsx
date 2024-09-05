@@ -107,7 +107,7 @@ function CustomizeBanner() {
               </>
               : ""}
 
-            <button onClick={handleSubmit} className="btn btn-primary text-lg mt-6 w-28">{uploading && <span className="loading loading-spinner loading-sm"></span>}Save</button>
+            <button onClick={handleSubmit} className="btn btn-primary text-lg mt-6 w-28">{uploading ? <span className="loading loading-spinner loading-sm"></span> : null}Save</button>
           </form>
         </div>
       </div>
