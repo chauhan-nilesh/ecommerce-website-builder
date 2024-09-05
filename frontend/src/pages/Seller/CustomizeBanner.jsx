@@ -9,6 +9,7 @@ function CustomizeBanner() {
   const [favicon, setFavicon] = useState("")
   const [banner, setBanner] = useState("")
   const [mobileBanner, setMobileBanner] = useState("")
+  const [uploading, setUploading] = useState(false)
 
   if (loading) {
     return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
@@ -16,6 +17,7 @@ function CustomizeBanner() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setUploading(true)
     const formdata = new FormData()
     formdata.append('logo', logo)
     formdata.append('favicon', favicon)
@@ -27,6 +29,7 @@ function CustomizeBanner() {
         toast.success(res.data.message)
       })
       .catch(err => console.log(err))
+    setUploading(false)
   }
 
   return (
@@ -104,7 +107,7 @@ function CustomizeBanner() {
               </>
               : ""}
 
-            <button onClick={handleSubmit} className="btn btn-primary text-lg mt-6 w-28">Save</button>
+            <button onClick={handleSubmit} className="btn btn-primary text-lg mt-6 w-28">{uploading && <span className="loading loading-spinner loading-sm"></span>}Save</button>
           </form>
         </div>
       </div>
