@@ -44,7 +44,7 @@ function Homepage() {
   return (
     <>
       <Helmet>
-        <title>{store.metaTitle}</title>
+        <title>{subdomain[0].toUpperCase() + subdomain.slice(1)}</title>
         <meta name="description" content={store.metaDescription} />
       </Helmet>
       <Suspense fallback={<div data-theme='light' className="skeleton rounded-none h-96 w-full"></div>}>
