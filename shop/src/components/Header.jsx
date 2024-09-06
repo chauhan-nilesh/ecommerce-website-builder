@@ -102,13 +102,18 @@ function Header() {
             </div>
             :
             <>
-              <div className='font-semibold text-xl lg:text-base tracking-tighter bg-transparent pl-4 py-2 rounded-lg' style={{ color: color1 }}>
+              <div className='lg:block hidden font-semibold text-xl lg:text-base tracking-tighter bg-transparent pl-4 py-2 rounded-lg' style={{ color: color1 }}>
                 <Link to="/login">
                   Login
                 </Link>
               </div>
-              <div className='ml-4'>
-                <Link to="/signup" className='font-bold tracking-tighter lg:font-semibold lg:block hidden text-white px-4 py-2 rounded-lg' style={{ backgroundColor: color1 }}>
+              <div className='lg:hidden font-semibold text-xl lg:text-base tracking-tighter bg-transparent pl-4 py-2 rounded-lg' style={{ color: color1 }}>
+                <Link to="/login">
+                  <img alt="Avatar" src="/profile.svg" className='h-8'/>
+                </Link>
+              </div>
+              <div className='ml-4 lg:block hidden'>
+                <Link to="/signup" className='font-bold tracking-tighter lg:font-semibold text-white px-4 py-2 rounded-lg' style={{ backgroundColor: color1 }}>
                   Signup
                 </Link>
               </div>

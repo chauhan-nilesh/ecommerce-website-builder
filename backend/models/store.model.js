@@ -96,6 +96,12 @@ const StoreSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    metaTitle: {
+        type: String
+    },
+    metaDescription: {
+        type: String
+    },
     whatsApp: {
         type: Number
     },

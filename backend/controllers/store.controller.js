@@ -31,6 +31,7 @@ const createStore = asyncHandler(async (req, res) => {
         owner,
         name,
         subdomain,
+        metaTitle: name,
         logo: "",
         favicon: "",
         banner: ""
@@ -69,12 +70,14 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
 
 const updateStoreName = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name, color1, color2, hideCategory } = req.body;
+    const { name, metaTitle, metaDescription, color1, color2, hideCategory } = req.body;
 
     const store = await stores.findByIdAndUpdate(id,
         {
             $set: {
                 name,
+                metaTitle,
+                metaDescription,
                 themeColorOne: color1,
                 themeColorTwo: color2,
                 hideCategory

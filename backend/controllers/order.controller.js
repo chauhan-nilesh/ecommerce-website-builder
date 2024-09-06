@@ -122,10 +122,32 @@ const updateStatus = asyncHandler(async (req, res) => {
         )
 })
 
+const cancelOrder = asyncHandler((async (req,res) => {
+    const {orderId} = req.params;
+    const {customerId} = req.body;
+
+    const updatedStatus = await orders.findOneAndUpdate({ _id: orderId, customerId: customerId }, {
+        status: req.body.status
+    })
+
+    if (!updatedStatus) {
+        return res.status(500)
+            .json(
+                new ApiResponse(500, "", "Failed to cancel order")
+            )
+    }
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, updatedStatus, "Order canceled")
+        )
+}))
+
 export {
     orderPlaced,
     getAllOrders,
     storeOrders,
     getOrderData,
-    updateStatus
+    updateStatus,
+    cancelOrder
 }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../store/CartContext';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function Cart() {
     const { cart, removeFromCart, updateQuantity, calculateTotal } = useCart();
+    const [store, setStore] = useState({})
     const [color1, setColor1] = useState("")
     const [color2, setColor2] = useState("")
     const [loading, setLoading] = useState(true)
@@ -16,6 +18,7 @@ function Cart() {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`)
             const responseData = await response.json()
             if (response.ok) {
+                setStore(responseData.data)
                 setColor1(responseData.data.themeColorOne)
                 setColor2(responseData.data.themeColorTwo)
             }
@@ -40,6 +43,10 @@ function Cart() {
 
     return (
         <section className="h-full bg-gray-50 py-6 sm:py-8 lg:py-10">
+            <Helmet>
+                <title>{"Cart - " + store.name}</title>
+                <meta name="description" content={store.metaDescription} />
+            </Helmet>
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-center">
                     <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900">Your Cart</h1>

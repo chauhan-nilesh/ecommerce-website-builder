@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import dateFormat from "dateformat";
 
 function OrderPage() {
-    const {id} = useParams()
+    const { id } = useParams()
     const [order, setOrder] = useState({})
     const [loading, setLoading] = useState(true)
 
@@ -12,7 +12,7 @@ function OrderPage() {
             setLoading(true)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/get-data/${id}`)
 
-            if(response.ok){
+            if (response.ok) {
                 const responseData = await response.json()
                 setOrder(responseData.data)
             }
@@ -26,7 +26,7 @@ function OrderPage() {
         getOrderData()
     }, [])
 
-    if(loading){
+    if (loading) {
         return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
     }
 
@@ -40,8 +40,8 @@ function OrderPage() {
                     <p className='text-gray-600'>Order total</p>
                 </div>
                 <div className='w-2/3'>
-                    <p className='font-semibold ml-3'>{dateFormat(order?.createdAt,"paddedShortDate")}</p>
-                    <p className='font-semibold ml-3 text-wrap'>{order?._id}</p>
+                    <p className='font-semibold ml-3'>{dateFormat(order?.createdAt, "paddedShortDate")}</p>
+                    <p className='font-semibold ml-3 truncate'>{order?._id}</p>
                     <p className='font-semibold ml-3'>&#8377;{order?.product?.soldPrice}</p>
                 </div>
             </div>
@@ -57,10 +57,68 @@ function OrderPage() {
                     <div className='w-2/3 px-3'>
                         <h3 className='font-bold'>{order?.product?.name}</h3>
                         <p className='font-semibold'>&#8377;{order?.product?.soldPrice}</p>
-                        <p className='mt-2 font-semibold text-gray-500'>Qty: {order?.product?.quantity} | {order?.product?.selectColor}</p>
+                        <p className='mt-2 font-semibold text-gray-500'>Qty: {order?.product?.quantity} {order?.product?.selectColor}</p>
                     </div>
                 </div>
             </div>
+            {order?.status === "rejected" ? null :
+                <>
+                    <h3 className='lg:text-lg font-bold mt-4'>Order Status</h3>
+                    <div className='border border-gray-400 rounded-lg p-4 mt-2'>
+                    {order?.status === "pending" ?
+                            <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                <li data-content="✓" className="step step-accent">Order placed</li>
+                                <li data-content="" className="step">Accepted</li>
+                                <li data-content="" className="step">Processed</li>
+                                <li data-content="" className="step">Shipped</li>
+                                <li data-content="" className="step">Delivered</li>
+                            </ul>
+                            : null}
+                        {order?.status === "accepted" ?
+                            <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                <li data-content="✓" className="step step-accent">Order placed</li>
+                                <li data-content="✓" className="step step-accent">Accepted</li>
+                                <li data-content="" className="step">Processed</li>
+                                <li data-content="" className="step">Shipped</li>
+                                <li data-content="" className="step">Delivered</li>
+                            </ul>
+                            : null}
+                        {order?.status === "processed" ?
+                            <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                <li data-content="✓" className="step step-accent">Order placed</li>
+                                <li data-content="✓" className="step step-accent">Accepted</li>
+                                <li data-content="✓" className="step step-accent">Processed</li>
+                                <li data-content="" className="step">Shipped</li>
+                                <li data-content="" className="step">Delivered</li>
+                            </ul>
+                            : null}
+                        {order?.status === "canceled" ?
+                            <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                <li data-content="✓" className="step step-error">Order placed</li>
+                                <li data-content="✓" className="step step-error">Canceled</li>
+                            </ul>
+                            : null}
+                        {order?.status === "shipped" ?
+                            <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                <li data-content="✓" className="step step-accent">Order placed</li>
+                                <li data-content="✓" className="step step-accent">Accepted</li>
+                                <li data-content="✓" className="step step-accent">Processed</li>
+                                <li data-content="✓" className="step step-accent">Shipped</li>
+                                <li data-content="" className="step">Delivered</li>
+                            </ul>
+                            : null}
+                        {order?.status === "delivered" ?
+                            <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                <li data-content="✓" className="step step-accent">Order placed</li>
+                                <li data-content="✓" className="step step-accent">Accepted</li>
+                                <li data-content="✓" className="step step-accent">Processed</li>
+                                <li data-content="✓" className="step step-accent">Shipped</li>
+                                <li data-content="✓" className="step step-accent">Delivered</li>
+                            </ul>
+                            : null}
+                    </div>
+                </>
+            }
             <h3 className='lg:text-lg font-bold mt-4'>Payment infomation</h3>
             <div className='border border-gray-400 rounded-lg p-4 mt-2'>
                 <b className='tracking-tighter'>Payment method</b>
@@ -84,7 +142,7 @@ function OrderPage() {
                     <p>Coupon discount:</p>
                     <b>Order Total:</b>
                 </div>
-                <div className='w-1/3'> 
+                <div className='w-1/3'>
                     <p>Rs. {order?.product?.salePrice.toFixed(2)}</p>
                     <p>Rs. 0.00</p>
                     <p>Rs. 0.00</p>

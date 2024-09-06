@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useCustomerAuth } from '../store/customerAuth'
 import { Link } from 'react-router-dom'
 import dateFormat from 'dateformat'
+import toast from "react-hot-toast"
+import { Helmet } from 'react-helmet'
 
 function Order() {
     const { customerData, loading } = useCustomerAuth()
     const [orders, setOrders] = useState([])
+    const [canceling, setCanceling] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
     const getAllOrders = async () => {
@@ -24,20 +27,69 @@ function Order() {
         }
     }
 
+    const [store, setStore] = useState({})
+    const [metaLoading, setMetaLoading] = useState(true)
+
+    const subdomain = window.location.hostname.split('.')[0];
+
+    async function getStoreData() {
+        try {
+            setMetaLoading(true)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`)
+            const responseData = await response.json()
+            if (response.ok) {
+                setStore(responseData.data)
+            }
+            setMetaLoading(false)
+        } catch (error) {
+            console.log(error)
+            setMetaLoading(false)
+        }
+    }
+
     useEffect(() => {
+        getStoreData()
         getAllOrders()
     }, [])
+
+    const handleCancelOrder = async (orderid) => {
+        try {
+            setCanceling(true)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/cancel-order/${orderid}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ customerId: customerData._id, status: "canceled" })
+            })
+
+            if (response.ok) {
+                const responseData = await response.json()
+                toast.success(`Order ${responseData.data._id} is canceled`)
+            } else {
+                toast.error("Failed to cancel order")
+            }
+            setCanceling(false)
+        } catch (error) {
+            console.log(error)
+            toast.error("Failed to cancel order")
+        }
+    }
 
     if (loading) {
         return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>;
     }
 
-    if (isLoading) {
+    if (isLoading && metaLoading) {
         return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>;
     }
 
     return (
         <div className='w-full h-full bg-white'>
+            <Helmet>
+                <title>{"Orders - " + store.name}</title>
+                <meta name="description" content={store.metaDescription} />
+            </Helmet>
             <div className='px-5 lg:px-64 py-10'>
                 <div>
                     <h2 className='text-4xl font-bold'>Orders</h2>
@@ -47,56 +99,86 @@ function Order() {
                 {orders.length > 0 ?
                     <div className='grid grid-flow-row gap-3 mt-3'>
                         {orders.map((order, idx) => (
-                                <div key={idx} className='bg-white rounded-xl border-[1px] border-gray-400 h-full w-full'>
-                                    <div className='px-5 lg:px-10 py-5 border-b-[1px] border-gray-300 grid grid-cols-2 lg:grid-cols-4'>
-                                        <div>
-                                            <h3 className='font-bold'>Order Number</h3>
-                                            <p className='text-gray-700 truncate'>{order._id}</p>
-                                        </div>
-                                        <div className='hidden lg:block'>
-                                            <h3 className='font-bold'>Date placed</h3>
-                                            <p className='text-gray-700'>{dateFormat(order.createdAt,"paddedShortDate")}</p>
-                                        </div>
-                                        <div className='hidden lg:block'>
-                                            <h3 className='font-bold'>Total Amount</h3>
-                                            <p className='text-gray-700 font-semibold'>&#8377;{order.product.soldPrice}</p>
-                                        </div>
-                                        <Link to={"/order/"+order._id} className='w-full text-right mt-3'>
-                                            <h3 className='font-bold'>Details</h3>
-                                        </Link>
+                            <div key={idx} className='bg-white rounded-xl border-[1px] border-gray-400 h-full w-full'>
+                                <div className='px-5 lg:px-10 py-5 border-b-[1px] border-gray-300 grid grid-cols-2 lg:grid-cols-4'>
+                                    <div>
+                                        <h3 className='font-bold'>Order Number</h3>
+                                        <p className='text-gray-700 truncate'>{order._id}</p>
                                     </div>
+                                    <div className='hidden lg:block'>
+                                        <h3 className='font-bold'>Date placed</h3>
+                                        <p className='text-gray-700'>{dateFormat(order.createdAt, "paddedShortDate")}</p>
+                                    </div>
+                                    <div className='hidden lg:block'>
+                                        <h3 className='font-bold'>Total Amount</h3>
+                                        <p className='text-gray-700 font-semibold'>&#8377;{order.product.soldPrice}</p>
+                                    </div>
+                                    <Link to={"/order/" + order._id} className='w-full text-right mt-3'>
+                                        <h3 className='font-bold'>Details</h3>
+                                    </Link>
+                                </div>
 
-                                    <div className='px-5 lg:px-10 py-5 lg:flex hidden'>
-                                        <div className='w-1/4 h-24 flex justify-center items-center'>
-                                            <img className='h-full' src={order.product.images.featuredImage} alt="" />
-                                        </div>
-                                        <div className='w-2/4'>
-                                            <h3 className='text-xl lg:text-2xl font-bold'>{order.product.name}</h3>
-                                            <p className='text-gray-600'>{order.product.quantity} item | {order.product.selectColor || order.product.selectSize || order.product.selectOther}</p>
-                                            <p className='mt-2'>Status: <span className='font-bold'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</span></p>
-                                        </div>
-                                        <div className='w-1/4 grid grid-rows-2 gap-2 text-right'>
-                                            <Link to={"/product/" + order.product._id} className="btn btn-primary text-white">View Product</Link>
+                                <div className='px-5 lg:px-10 py-5 lg:flex hidden'>
+                                    <div className='w-1/4 h-24 flex justify-center items-center'>
+                                        <img className='h-full' src={order.product.images.featuredImage} alt="" />
+                                    </div>
+                                    <div className='w-2/4'>
+                                        <h3 className='text-xl lg:text-2xl font-bold'>{order.product.name}</h3>
+                                        <p className='text-gray-600'>{order.product.quantity} item | {order.product.selectColor || order.product.selectSize || order.product.selectOther}</p>
+                                        <p className='mt-2'>Status: <span className='font-bold'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</span></p>
+                                    </div>
+                                    <div className='w-1/4 grid grid-rows-2 gap-2 text-right'>
+                                        <Link to={"/product/" + order.product._id} className="btn btn-primary text-white">View Product</Link>
+                                        {order.status !== "delivered" ?
+                                            <>
+                                                {order.status === "canceled" ?
+                                                    <Link to={"/product/" + order.product._id} className="btn btn-neutral text-white">Buy again</Link>
+                                                    :
+                                                    <button onClick={(e) => handleCancelOrder(order._id)} className="btn btn-neutral text-white">{canceling ? <span className="loading loading-spinner loading-md"></span> : "Cancel"}</button>
+                                                }
+                                            </>
+                                            :
                                             <Link to={"/product/" + order.product._id} className="btn btn-neutral text-white">Buy again</Link>
-                                        </div>
-                                    </div>
-
-                                    <div className='px-5 py-5 flex lg:hidden'>
-                                        <div className='w-1/3 flex justify-center items-center h-20 border-[0.5px] border-gray-400 rounded-lg'>
-                                            <img className='h-full' src={order.product.images.featuredImage} alt="" />
-                                        </div>
-                                        <div className='w-2/3 px-3'>
-                                            <h3 className='font-bold'>{order.product.name}</h3>
-                                            <p className='font-semibold'>&#8377;{order.product.soldPrice}</p>
-                                            <p className='mt-2 font-semibold text-green-700'>Ordered on {order.createdAt.split("T")[0]}</p>
-                                        </div>
-                                    </div>
-
-                                    <div className='px-5 py-5 border-t-[1px] border-gray-300 grid grid-cols-2 lg:hidden'>
-                                        <Link to={"/product/" + order.product._id} className='font-bold text-center border-r-[1px] border-gray-300'>View Product</Link>
-                                        <Link to={"/product/" + order.product._id} className='font-bold text-center'>Buy again</Link>
+                                        }
                                     </div>
                                 </div>
+
+                                <div className='px-5 py-5 flex lg:hidden'>
+                                    <div className='w-1/3 flex justify-center items-center h-20 border-[0.5px] border-gray-400 rounded-lg'>
+                                        <img className='h-full' src={order.product.images.featuredImage} alt="" />
+                                    </div>
+                                    <div className='w-2/3 px-3'>
+                                        <h3 className='font-bold'>{order.product.name}</h3>
+                                        <p className='font-semibold'>&#8377;{order.product.soldPrice}</p>
+                                        {order?.status === "delivered" ?
+                                            <p className='mt-2 font-semibold text-green-700'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
+                                            :
+                                            <>
+                                                {order?.status === "canceled" ?
+                                                    <p className='mt-2 font-semibold text-red-700'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
+                                                    :
+                                                    <p className='mt-2 font-semibold text-green-700'>Ordered on {order.createdAt.split("T")[0]}</p>
+                                                }
+                                            </>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div className='px-5 py-5 border-t-[1px] border-gray-300 grid grid-cols-2 lg:hidden'>
+                                    <Link to={"/product/" + order.product._id} className='font-bold text-center border-r-[1px] border-gray-300'>View Product</Link>
+                                    {order.status !== "delivered" ?
+                                        <>
+                                            {order.status === "canceled" ?
+                                                <Link to={"/product/" + order.product._id} className='font-bold text-center'>Buy again</Link>
+                                                :
+                                                <button onClick={(e) => handleCancelOrder(order._id)} className='font-bold text-center'>{canceling ? <span className="loading loading-spinner loading-md"></span> : "Cancel"}</button>
+                                            }
+                                        </>
+                                        :
+                                        <Link to={"/product/" + order.product._id} className='font-bold text-center'>Buy again</Link>
+                                    }
+                                </div>
+                            </div>
                         ))}
 
                     </div>

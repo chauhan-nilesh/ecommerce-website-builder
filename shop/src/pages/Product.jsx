@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useCart } from "../store/CartContext";
 import { useParams, Link } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
+import { Helmet } from 'react-helmet';
 
 function Product() {
   const { id } = useParams();
@@ -127,6 +128,10 @@ function Product() {
 
   return (
     <>
+      <Helmet>
+        <title>{product?.metaTitle}</title>
+        <meta name="description" content={product.metaDescription} />
+      </Helmet>
       <div className='lg:mx-14 flex flex-wrap justify-between items-center h-full mb-10'>
         <div className="text-sm ml-4 lg:ml-10 breadcrumbs py-5 text-gray-600">
           <ul>
@@ -163,7 +168,7 @@ function Product() {
             </div>
             <p>{product?.shortDescription}</p>
             <h2 className='mt-4 text-2xl font-bold'>&#8377;{selectedPrice}&nbsp;
-            <span className='text-base line-through font-thin tracking-wider'>&#8377;{selectedOriginalPrice}</span></h2>
+              <span className='text-base line-through font-thin tracking-wider'>&#8377;{selectedOriginalPrice}</span></h2>
 
             <div className="mt-10">
               <div>

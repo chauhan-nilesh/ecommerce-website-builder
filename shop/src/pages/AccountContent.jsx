@@ -101,7 +101,7 @@ function AccountContent() {
                                     </div>
                                     <div className="mt-4">
                                         <button
-                                            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                                            className="bg-black text-gray-50 font-semibold py-2 px-4 rounded hover:bg-zinc-800"
                                             onClick={handleEditClick}
                                         >
                                             Edit Profile
@@ -178,7 +178,7 @@ function AccountContent() {
                                                 </button>
                                                 <button
                                                     type="submit"
-                                                    className="bg-primary text-white py-2 px-4 rounded"
+                                                    className="bg-black text-white py-2 px-4 rounded-md"
                                                 >
                                                     Save
                                                 </button>

@@ -16,7 +16,7 @@ function createSlug(name) {
 }
 
 const addProduct = asyncHandler(async (req, res) => {
-    const { name, shortDescription, description, originalPrice, salePrice, category, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -44,6 +44,8 @@ const addProduct = asyncHandler(async (req, res) => {
         originalPrice,
         salePrice,
         category,
+        metaTitle: metaTitle ? metaTitle : name,
+        metaDescription: metaDescription ? metaDescription : description,
         stockQty,
         stockStatus,
         tags: parsedTags,
@@ -59,7 +61,7 @@ const addProduct = asyncHandler(async (req, res) => {
         }
     };
 
-    
+
 
     // Save the product to the database (assuming you're using Mongoose)
     const product = await products.create(newProduct);
@@ -103,7 +105,7 @@ const getProductData = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name, shortDescription, description, originalPrice, salePrice, category, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -136,6 +138,8 @@ const updateProduct = asyncHandler(async (req, res) => {
             originalPrice,
             salePrice,
             category,
+            metaTitle: metaTitle ? metaTitle : name,
+            metaDescription: metaDescription ? metaDescription : description,
             stockQty,
             stockStatus,
             tags: parsedTags,
@@ -155,8 +159,8 @@ const updateProduct = asyncHandler(async (req, res) => {
     return res.status(200).json(new ApiResponse(200, productUpdated, "Product updated successfully"));
 });
 
-const deleteProduct = asyncHandler(async (req,res) => {
-    const {id} = req.params;
+const deleteProduct = asyncHandler(async (req, res) => {
+    const { id } = req.params;
 
     const productDeleted = await products.findByIdAndDelete(id)
 
@@ -166,9 +170,9 @@ const deleteProduct = asyncHandler(async (req,res) => {
     await store.save()
 
     return res.status(200)
-    .json(
-        new ApiResponse(200,productDeleted,"Product deleted")
-    )
+        .json(
+            new ApiResponse(200, productDeleted, "Product deleted")
+        )
 })
 
 

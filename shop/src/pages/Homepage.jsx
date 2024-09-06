@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react'
 import { ProductCard, Category } from "../components"
+import { Helmet } from "react-helmet";
 import LazyLoadingPage from '../components/LazyLoadingPage'
 
 function Homepage() {
@@ -42,6 +43,10 @@ function Homepage() {
 
   return (
     <>
+      <Helmet>
+        <title>{store.metaTitle}</title>
+        <meta name="description" content={store.metaDescription} />
+      </Helmet>
       <Suspense fallback={<div data-theme='light' className="skeleton rounded-none h-96 w-full"></div>}>
         <Banner />
       </Suspense>

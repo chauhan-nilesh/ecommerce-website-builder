@@ -54,6 +54,12 @@ const ProductSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         default: true
+    },
+    metaTitle: {
+        type: String
+    },
+    metaDescription: {
+        type: String
     }
 })
 

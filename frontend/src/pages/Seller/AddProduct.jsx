@@ -20,6 +20,8 @@ function AddProduct() {
     originalPrice: '',
     salePrice: '',
     category: '',
+    metaTitle: '',
+    metaDescription: '',
     stockQty: 0,
     stockStatus: true
   });
@@ -96,6 +98,8 @@ function AddProduct() {
         originalPrice: '',
         salePrice: '',
         category: '',
+        metaTitle: '',
+        metaDescription: '',
         stockQty: 0,
         stockStatus: true
       });
@@ -203,8 +207,8 @@ function AddProduct() {
               <p className='text-gray-600 text-sm tracking-tight font-semibold'>Price: <span className='text-black'>&#8377;{product.salePrice}</span> <span className='line-through font-thin'>&#8377;{product.originalPrice}</span></p>
               <div>
                 <div className='flex justify-between'>
-                <label htmlFor="category" className="block text-sm font-medium text-gray-700">Product Category</label>
-                <Link className='text-sm font-semibold text-blue-500' to="../add-category">Add new category</Link>
+                  <label htmlFor="category" className="block text-sm font-medium text-gray-700">Product Category</label>
+                  <Link className='text-sm font-semibold text-blue-500' to="../add-category">Add new category</Link>
                 </div>
                 <select
                   onChange={handleChange}
@@ -276,6 +280,42 @@ function AddProduct() {
             </div>
           </div>
           <ProductVariants variants={variants} setVariants={setVariants} />
+          <div className="lg:p-6 bg-white rounded-lg">
+            <h2 className="text-xl font-semibold mb-2">SEO Information</h2>
+            <p className="text-gray-600 mb-4">Utilize metadata to enhance searchability and Visibility on search engine.</p>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2" htmlFor="tags">
+                Meta title
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  id="tags"
+                  name='metaTitle'
+                  value={product.metaTitle}
+                  onChange={handleChange}
+                  placeholder="Enter meta title of product"
+                  className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded"
+                />
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2" htmlFor="tags">
+                Meta description
+              </label>
+              <div className="relative">
+                <textarea
+                  name='metaDescription'
+                  id='metaDescription'
+                  value={product.metaDescription}
+                  onChange={handleChange}
+                  placeholder="Enter meta description of product"
+                  className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

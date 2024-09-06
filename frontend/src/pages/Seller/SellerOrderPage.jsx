@@ -79,29 +79,81 @@ function SellerOrderPage() {
                         <img className='h-full' src={order?.product?.images.featuredImage} alt="" />
                     </div>
                     <div className='w-2/3 px-3'>
-                    <p className='font-semibold text-xs'><span className='text-gray-800'>Product Id:</span> {order?.product?._id}</p>
+                        <p className='font-semibold text-xs'><span className='text-gray-800'>Product Id:</span> {order?.product?._id}</p>
                         <h3 className='font-bold'>{order?.product?.name}</h3>
                         <p className='font-semibold'>&#8377;{order?.product?.soldPrice}</p>
                         <p className='mt-2 font-semibold text-gray-500'>Qty: {order?.product?.quantity} {order?.product?.selectColor} {order?.product?.selectSize} {order?.product?.selectOther}</p>
                     </div>
                 </div>
             </div>
-
             <h3 className='lg:text-lg font-bold mt-4'>Status</h3>
             <div className='w-full border border-gray-400 rounded-lg p-4 mt-2'>
-                <select
-                    name="status"
-                    id="status"
-                    onChange={(e) => setStatus(e.target.value)}
-                    value={status}
-                    className="w-full rounded-md bg-gray-100 border border-gray-400 px-4 py-3 text-baseoutline-none"
-                >
-                    <option value="pending">Pending</option>
-                    <option value="accepted">Accepted</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="delivered">Delivered</option>
-                </select>
-                <button onClick={changeOrderStatus} type='button' className='btn btn-primary mt-2'>Update Status</button>
+                {status === "canceled" ?
+                    <div>
+                        <h3 className='lg:text-lg font-bold mt-4'>Order Status</h3>
+                        <div className='border border-gray-400 rounded-lg p-4 mt-2'>
+                            {status === "accepted" ?
+                                <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                    <li data-content="✓" className="step step-accent">Order placed</li>
+                                    <li data-content="✓" className="step step-accent">Accepted</li>
+                                    <li data-content="" className="step">Processed</li>
+                                    <li data-content="" className="step">Shipped</li>
+                                    <li data-content="" className="step">Delivered</li>
+                                </ul>
+                                : null}
+                            {status === "processed" ?
+                                <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                    <li data-content="✓" className="step step-accent">Order placed</li>
+                                    <li data-content="✓" className="step step-accent">Accepted</li>
+                                    <li data-content="✓" className="step step-accent">Processed</li>
+                                    <li data-content="" className="step">Shipped</li>
+                                    <li data-content="" className="step">Delivered</li>
+                                </ul>
+                                : null}
+                            {status === "canceled" ?
+                                <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                    <li data-content="✓" className="step step-error">Order placed</li>
+                                    <li data-content="✓" className="step step-error">Canceled</li>
+                                </ul>
+                                : null}
+                            {status === "shipped" ?
+                                <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                    <li data-content="✓" className="step step-accent">Order placed</li>
+                                    <li data-content="✓" className="step step-accent">Accepted</li>
+                                    <li data-content="✓" className="step step-accent">Processed</li>
+                                    <li data-content="✓" className="step step-accent">Shipped</li>
+                                    <li data-content="" className="step">Delivered</li>
+                                </ul>
+                                : null}
+                            {status === "delivered" ?
+                                <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
+                                    <li data-content="✓" className="step step-accent">Order placed</li>
+                                    <li data-content="✓" className="step step-accent">Accepted</li>
+                                    <li data-content="✓" className="step step-accent">Processed</li>
+                                    <li data-content="✓" className="step step-accent">Shipped</li>
+                                    <li data-content="✓" className="step step-accent">Delivered</li>
+                                </ul>
+                                : null}
+                        </div>
+                    </div>
+                    :
+                    <>
+                        <select
+                            name="status"
+                            id="status"
+                            onChange={(e) => setStatus(e.target.value)}
+                            value={status}
+                            className="w-full rounded-md bg-gray-100 border border-gray-400 px-4 py-3 text-baseoutline-none"
+                        >
+                            <option value="rejected">Rejected</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="processed">Processed</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                        <button onClick={changeOrderStatus} type='button' className='btn btn-primary mt-2'>Update Status</button>
+                    </>
+                }
             </div>
             <h3 className='lg:text-lg font-bold mt-4'>Payment infomation</h3>
             <div className='border border-gray-400 rounded-lg p-4 mt-2'>

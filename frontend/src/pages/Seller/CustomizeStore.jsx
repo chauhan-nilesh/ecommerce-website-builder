@@ -7,6 +7,8 @@ function CustomizeStore() {
   const [storeId, setStoreId] = useState("");
   const [updateData, setUpdateData] = useState({
     name: "",
+    metaTitle: "",
+    metaDescription: "",
     color1: "#ffffff",
     color2: "#000000",
   });
@@ -30,6 +32,8 @@ function CustomizeStore() {
         setStore(responseData.data.store);
         setUpdateData({
           name: responseData.data.store.name,
+          metaTitle: responseData.data.store.metaTitle,
+          metaDescription: responseData.data.store.metaDescription,
           color1: responseData.data.store.themeColorOne,
           color2: responseData.data.store.themeColorTwo,
         });
@@ -94,7 +98,7 @@ function CustomizeStore() {
     <div className='w-full h-screen'>
       <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
         <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Customize Title</h2>
-        <div className='mt-8'>
+        <div className='mt-7'>
           <form onSubmit={handleSubmit} className='grid grid-flow-row'>
             <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="name">Store Name</label>
             <input
@@ -137,6 +141,32 @@ function CustomizeStore() {
                 />
               </label>
             </div>
+
+            <div className='mt-7 grid grid-flow-row'>
+              <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter my-4'>Your store metadata</h2>
+              <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="name">Meta title</label>
+              <input
+                type="text"
+                name='metaTitle'
+                id="metaTitle"
+                onChange={handleInput}
+                value={updateData.metaTitle}
+                placeholder="Store Name"
+                className="input input-primary text-black bg-transparent w-full max-w-xs"
+                required
+              />
+
+            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-4' htmlFor="name">Meta description</label>
+              <textarea
+                name='metaDescription'
+                id="metaDescription"
+                onChange={handleInput}
+                value={updateData.metaDescription}
+                placeholder="Store Name"
+                className="input input-primary text-black bg-transparent w-full max-w-xs"
+              />
+            </div>
+
             <button className="btn btn-primary text-white text-lg mt-6 w-28">Save</button>
           </form>
         </div>

@@ -66,7 +66,7 @@ function Orders() {
         <>
           {/* Mobile View of Orders */}
           < div className='mx-5 flex flex-row lg:hidden'>
-            <Ordermobile orders={orders}/>
+            <Ordermobile orders={orders} />
           </div>
 
           {/* Desktop View of Orders */}
@@ -96,38 +96,42 @@ function Orders() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order,idx) => (
-                  <tr key={idx} className="border-b border-opacity-20 border-gray-300 bg-gray-50">
-                    <td className="p-3 text-base tracking-tight">
-                      <Link to={"/seller/orders/"+order?._id} className='underline font-semibold'>{"#"+order?._id}</Link>
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <img className='h-7 w-7' src={order?.product?.images?.featuredImage} alt="" />
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <p className=''>{order?.product?.name}</p>
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <p>{order?.createdAt.split("T")[0]}</p>
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <p>{order?.name}</p>
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <p>{order?.product?.quantity}</p>
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <span className="bg-orange-200 px-2 text-orange-500 font-bold tracking-tighter py-1">
-                        <span>{order?.paymentMethod}</span>
-                      </span>
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <p className='text-green-600 font-bold tracking-tighter'>{order?.status}</p>
-                    </td>
-                    <td className="p-3 text-base tracking-tight">
-                      <p className='font-bold trac'>{order?.product?.salePrice}</p>
-                    </td>
-                  </tr>
+                  {orders.map((order, idx) => (
+                    <tr key={idx} className="border-b border-opacity-20 border-gray-300 bg-gray-50">
+                      <td className="p-3 text-base tracking-tight">
+                        <Link to={"/seller/orders/" + order?._id} className='underline font-semibold'>{"#" + order?._id}</Link>
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <img className='h-7 w-7' src={order?.product?.images?.featuredImage} alt="" />
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <p className=''>{order?.product?.name}</p>
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <p>{order?.createdAt.split("T")[0]}</p>
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <p>{order?.name}</p>
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <p>{order?.product?.quantity}</p>
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <span className="bg-orange-200 px-2 text-orange-500 font-bold tracking-tighter py-1">
+                          <span>{order?.paymentMethod}</span>
+                        </span>
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        {order?.status === 'canceled' ?
+                          <p className='text-red-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
+                          :
+                          <p className='text-green-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
+                        }
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <p className='font-bold trac'>{order?.product?.salePrice}</p>
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>

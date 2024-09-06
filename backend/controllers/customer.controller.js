@@ -33,6 +33,7 @@ const registerCustomer = asyncHandler(async (req,res) => {
 
     const customer = await customers.create({
         username,
+        name: username,
         email,
         password,
         store: storeid

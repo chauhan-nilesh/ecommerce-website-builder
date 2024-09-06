@@ -3,6 +3,7 @@ import { useCart } from '../store/CartContext';
 import toast from 'react-hot-toast';
 import { useCustomerAuth } from '../store/customerAuth';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function Checkout() {
     const { storeId, customerData } = useCustomerAuth()
@@ -22,6 +23,45 @@ function Checkout() {
         pinCode: "",
         paymentMethod: ""
     })
+
+    const statesOfIndia = [
+        "Andhra Pradesh",
+        "Arunachal Pradesh",
+        "Assam",
+        "Bihar",
+        "Chhattisgarh",
+        "Goa",
+        "Gujarat",
+        "Haryana",
+        "Himachal Pradesh",
+        "Jharkhand",
+        "Karnataka",
+        "Kerala",
+        "Madhya Pradesh",
+        "Maharashtra",
+        "Manipur",
+        "Meghalaya",
+        "Mizoram",
+        "Nagaland",
+        "Odisha",
+        "Punjab",
+        "Rajasthan",
+        "Sikkim",
+        "Tamil Nadu",
+        "Telangana",
+        "Tripura",
+        "Uttar Pradesh",
+        "Uttarakhand",
+        "West Bengal",
+        "Andaman and Nicobar Islands",
+        "Chandigarh",
+        "Dadra and Nagar Haveli and Daman and Diu",
+        "Lakshadweep",
+        "Delhi",
+        "Puducherry",
+        "Ladakh",
+        "Jammu & Kashmir"
+    ];
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -52,21 +92,21 @@ function Checkout() {
             const responseData = await response.json();
 
             if (response.ok) {
-                if(responseData.data.type === "percentage"){
-                    if(calculateSubtotal() >= responseData.data.minimumOrderValue){
-                        if((calculateSubtotal() * ((responseData.data.percentValue) / 100)) > 100){
+                if (responseData.data.type === "percentage") {
+                    if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
+                        if ((calculateSubtotal() * ((responseData.data.percentValue) / 100)) > 100) {
                             setDiscountValue(responseData.data.maximumDiscount)
-                        }else{
-                            setDiscountValue(Math.floor(calculateSubtotal() * ((responseData.data.percentValue) /100)))
+                        } else {
+                            setDiscountValue(Math.floor(calculateSubtotal() * ((responseData.data.percentValue) / 100)))
                         }
                     }
                 }
-                if(responseData.data.type === "flat"){
-                    if(calculateSubtotal() >= responseData.data.minimumOrderValue){
+                if (responseData.data.type === "flat") {
+                    if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
                         setDiscountValue(responseData.data.flatDiscountAmount)
                         toast.success(responseData.message)
                     } else {
-                        toast.error(`This coupon is valid on shopping above ${"₹"+responseData.data.minimumOrderValue}`)
+                        toast.error(`This coupon is valid on shopping above ${"₹" + responseData.data.minimumOrderValue}`)
                     }
                 }
                 setIsCouponApplied(true)
@@ -132,6 +172,9 @@ function Checkout() {
 
     return (
         <>
+            <Helmet>
+                <title>Checkout</title>
+            </Helmet>
             <h2 className='text-center text-3xl lg:text-4xl mt-3 font-extrabold'>Checkout</h2>
             <div className="grid sm:px-10 lg:grid-cols-2 lg:px-24">
                 <div data-theme="light" className="px-4 pt-3">
@@ -175,6 +218,7 @@ function Checkout() {
                                 value={billingDetails.phoneNo}
                                 className="w-full rounded-md border border-gray-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                                 placeholder="Enter your name"
+                                required
                             />
                         </div>
 
@@ -215,9 +259,11 @@ function Checkout() {
                                     value={billingDetails.state}
                                     className="w-full rounded-md border border-gray-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                                 >
-                                    <option value="">Select State</option>
-                                    <option value="Maharashtra">Maharashtra</option>
-                                    <option value="Delhi">Delhi</option>
+                                    <option value="" disabled>Select State</option>
+                                    {statesOfIndia.map((state, index) => (
+                                        <option key={index} value={state}>{state}</option>
+                                    ))
+                                    }
                                 </select>
                             </div>
                             <div className='w-full'>
