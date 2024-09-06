@@ -2,6 +2,10 @@ import React from 'react'
 
 function LazyLoadingPage() {
     return (<>
+        <Helmet>
+            <title>{store.metaTitle}</title>
+            <meta name="description" content={store.metaDescription} />
+        </Helmet>
         <div data-theme='light' className="skeleton rounded-none h-96 w-full"></div>
         <div className='mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4'>
 
