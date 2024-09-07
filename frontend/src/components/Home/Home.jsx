@@ -12,22 +12,22 @@ export default function Home() {
                 <aside className="relative overflow-hidden text-black rounded-lg sm:mx-16 mx-2 sm:py-16">
                     <div className="relative z-10 max-w-screen-xl px-4  pb-20 pt-10 sm:py-24 mx-auto sm:px-6 lg:px-8">
                         <div className="max-w-xl sm:mt-1 mt-80 space-y-8 text-center sm:text-right sm:ml-auto">
-                            <h2 className="text-2xl font-bold sm:text-5xl">
+                            <h2 className="text-2xl font-extrabold sm:text-5xl">
                                 Launch your store online
-                                <br /><span className="sm:block text-2xl lg:text-3xl font-semibold font-sans text-yellow-500">with zero commissions</span>
+                                <br /><span className="sm:block text-xl lg:text-3xl font-bold font-sans text-green-700">with zero commissions</span>
                             </h2>
 
                             {token ?
                                 <Link
-                                    className="inline-flex text-white items-center px-6 py-3 font-medium bg-green-700 shadow-sm shadow-green-200 rounded-lg hover:opacity-75"
+                                    className="inline-flex text-white items-center px-6 py-3 font-bold bg-orange-600 shadow-sm shadow-orange-200 rounded-lg hover:opacity-75"
                                     to="/seller/dashboard"
-                                > Start Selling
+                                > Get started for free
                                 </Link>
                                 :
                                 <Link
-                                    className="inline-flex text-white items-center px-6 py-3 font-medium bg-green-700 shadow-sm shadow-green-200 rounded-lg hover:opacity-75"
+                                    className="inline-flex text-white items-center px-6 py-3 font-bold bg-orange-600 shadow-sm shadow-orange-200 rounded-lg hover:opacity-75"
                                     to="/signup"
-                                > Start Selling
+                                > Get started for free
                                 </Link>
                             }
                         </div>
@@ -41,7 +41,7 @@ export default function Home() {
             </div>
 
             <div className='h-full w-full bg-yellow-200 py-8'>
-                <h3 className='font-bold text-lg text-yellow-800 lg:text-2xl text-center mb-8'>Why sell on Minis</h3>
+                <h3 className='font-bold text-lg text-yellow-800 lg:text-2xl text-center mb-8'>Why sell on Eazzy</h3>
                 <div className='flex justify-center items-center mx-auto'>
                     <div className='h-full w-full mx-10 lg:mx-0 lg:flex justify-evenly items-center'>
 

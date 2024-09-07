@@ -31,6 +31,7 @@ function AddProduct() {
   const [store, setStore] = useState({});
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [uploading, setUploading] = useState(false)
   const [variants, setVariants] = useState([]);
   const navigate = useNavigate()
 
@@ -84,6 +85,7 @@ function AddProduct() {
     formData.append("tags", JSON.stringify(tags));
     formData.append("variants", JSON.stringify(variants));
 
+    setUploading(true)
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/product/add-product`, formData, {
         headers: {
@@ -116,6 +118,7 @@ function AddProduct() {
     } catch (error) {
       console.log(error);
     }
+    setUploading(false)
   };
 
   if (isLoading) {
@@ -123,16 +126,16 @@ function AddProduct() {
   }
 
   return (
-    <div className="bg-white lg:bg-gray-100 p-4 lg:p-10 lg:min-h-screen h-full lg:mb-0 mb-20">
+    <div className="bg-white p-4 lg:p-10 lg:min-h-screen h-full lg:mb-0 mb-20">
       <div className='flex justify-between'>
         <h2 className="text-xl lg:text-3xl font-extrabold text-gray-900">Add New Product</h2>
         <div>
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full px-4 py-2 font-bold text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="w-full px-4 py-2 font-bold text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
-            Publish
+            {uploading ? <span className="loading loading-spinner loading-md"></span> : "Publish"}
           </button>
         </div>
       </div>
@@ -208,7 +211,7 @@ function AddProduct() {
               <div>
                 <div className='flex justify-between'>
                   <label htmlFor="category" className="block text-sm font-medium text-gray-700">Product Category</label>
-                  <Link className='text-sm font-semibold text-blue-500' to="../add-category">Add new category</Link>
+                  <Link className='text-sm font-semibold text-orange-500' to="../add-category">Add new category</Link>
                 </div>
                 <select
                   onChange={handleChange}

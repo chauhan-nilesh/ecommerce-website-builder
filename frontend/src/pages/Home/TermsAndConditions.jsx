@@ -11,7 +11,7 @@ const TermsAndConditions = () => {
         <div className="mb-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. Introduction</h2>
           <p className="text-gray-600 text-lg">
-            Welcome to [Your Company Name]. These terms and conditions outline the rules and regulations for the use of [Your Company Name]'s Website, located at [your-website-url].
+            Welcome to Eazzy store. These terms and conditions outline the rules and regulations for the use of [Your Company Name]'s Website, located at [your-website-url].
           </p>
         </div>
         <div className="mb-8">
@@ -45,7 +45,7 @@ const TermsAndConditions = () => {
           </p>
         </div>
         <Link to="/" className="text-center">
-          <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300">Back to Home</button>
+          <button className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition duration-300">Back to Home</button>
         </Link>
       </section>
     </div>

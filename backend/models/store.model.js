@@ -85,6 +85,10 @@ const StoreSchema = new mongoose.Schema({
     upiStatus: {
         type: Boolean
     },
+    cod: {
+        type: Boolean,
+        default: true
+    },
     subdomain: {
         type: String,
         required: true

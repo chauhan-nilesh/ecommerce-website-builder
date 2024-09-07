@@ -8,6 +8,14 @@ import { customers } from "../models/customer.model.js";
 const orderPlaced = asyncHandler(async (req, res) => {
     const { storeId, custId, email, name, phoneNo, address1, address2, state, country, pinCode, paymentMethod, isCouponApplied, discountValue, coupon, totalPrice, cart } = req.body;
 
+    if(email === "" || name === "" || address1 === "" || address2 === "" || state === "" || country === "" || pinCode === "" ){
+        return res.status(404).json(new ApiResponse(404, "", "All fields are required"));
+    }
+
+    if(paymentMethod === ""){
+        return res.status(404).json(new ApiResponse(404, "", "Payment method is not selected"));
+    }
+
     const store = await stores.findById(storeId);
     if (!store) {
         return res.status(404).json(new ApiResponse(404, "", "Store not found"));

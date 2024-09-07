@@ -28,6 +28,7 @@ import { CartProvider } from './store/CartContext.jsx'
 import CustomerPrivateRoute from './PrivateRoute/CustomerPrivateRoute.jsx'
 import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
+import Category from './pages/Category.jsx'
 
 const subdomain = getSubdomain()
 
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
           <Route path='signup' element={<CustomerSignUp />} />
           <Route path='login' element={<CustomerLogin />} />
           <Route path='product/:id' element={<Product />} />
+          <Route path='category/:id' element={<Category />} />
           <Route path='cart' element={<Cart />} />
           <Route path='checkout' element={
             <CustomerPrivateRoute>

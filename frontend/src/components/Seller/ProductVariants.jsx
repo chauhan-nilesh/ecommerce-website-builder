@@ -91,7 +91,7 @@ const ProductVariants = ({variants, setVariants}) => {
             </button>
           ))}
         </div>
-        <button onClick={openModal} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">Edit or add variants</button>
+        <button onClick={openModal} className="mb-4 px-4 py-2 bg-orange-500 text-white rounded">Edit or add variants</button>
         {variants.length !== 0 ?
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white border">

@@ -7,5 +7,7 @@ import Logout from "./Logout";
 import Pricing from "./Pricing";
 import TermsAndConditions from "../../pages/Home/TermsAndConditions";
 import AboutUs from "../../pages/Home/AboutUs";
+import ContactForm from "./ContactForm";
 
-export {Header, Footer, Login, SignUp, Home, Pricing, TermsAndConditions, AboutUs, Logout}
+
+export {Header, Footer, Login, SignUp, Home, Pricing, TermsAndConditions, ContactForm, AboutUs, Logout}

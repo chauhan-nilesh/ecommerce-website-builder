@@ -4,9 +4,11 @@ import toast from 'react-hot-toast';
 import { useCustomerAuth } from '../store/customerAuth';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { useEffect } from 'react';
 
 function Checkout() {
     const { storeId, customerData } = useCustomerAuth()
+    const [store, setStore] = useState({})
     const navigate = useNavigate()
     const { cart, removeAllProductsFromCart, calculateTotal } = useCart();
     const [coupon, setCoupon] = useState("")
@@ -23,6 +25,8 @@ function Checkout() {
         pinCode: "",
         paymentMethod: ""
     })
+
+    const [loading, setLoading] = useState(false)
 
     const statesOfIndia = [
         "Andhra Pradesh",
@@ -62,6 +66,30 @@ function Checkout() {
         "Ladakh",
         "Jammu & Kashmir"
     ];
+
+    async function getStoreData() {
+        const subdomain = window.location.hostname.split('.')[0];
+        try {
+            setLoading(true)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`)
+            const responseData = await response.json()
+            if (response.ok) {
+                setStore(responseData.data)
+            }
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        getStoreData()
+    }, [])
+
+    if (loading) {
+        return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+    }
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -139,27 +167,27 @@ function Checkout() {
                 })
             })
 
-            setBillingDetails({
-                email: "",
-                name: "",
-                phoneNo: "",
-                address1: "",
-                address2: "",
-                state: "",
-                country: "India",
-                pinCode: "",
-                paymentMethod: ""
-            })
-
+            
             const responseData = await response.json()
-
+            
             if (response.ok) {
                 removeAllProductsFromCart()
                 toast.success(responseData.message)
+                setBillingDetails({
+                    email: "",
+                    name: "",
+                    phoneNo: "",
+                    address1: "",
+                    address2: "",
+                    state: "",
+                    country: "India",
+                    pinCode: "",
+                    paymentMethod: ""
+                })
+                navigate("/orders")
             } else {
                 toast.error(responseData.message)
             }
-            navigate("/orders")
         } catch (error) {
             console.log(error)
         }
@@ -224,7 +252,7 @@ function Checkout() {
 
                         <div className="gap-2 flex flex-col lg:flex-row">
                             <div className='w-full'>
-                                <label htmlFor="address1" className="mt-4 mb-2 block text-base font-medium">House/Room/Floor No.</label>
+                                <label htmlFor="address1" className="mt-4 mb-2 block text-base font-medium">Address 1</label>
                                 <input
                                     type="text"
                                     name='address1'
@@ -237,7 +265,7 @@ function Checkout() {
                                 />
                             </div>
                             <div className='w-full'>
-                                <label htmlFor="address2" className="mt-4 mb-2 block text-base font-medium">Street/Colony/Landmark</label>
+                                <label htmlFor="address2" className="mt-4 mb-2 block text-base font-medium">Address 2</label>
                                 <input type="text"
                                     name='address2'
                                     id='address2'
@@ -296,24 +324,26 @@ function Checkout() {
 
                         <p className="mt-8 text-lg font-medium">Payment Methods</p>
                         <form className="mt-5 grid gap-6 mb-10">
-                            <div className="relative">
-                                <input
-                                    className="peer hidden"
-                                    id="radio_1"
-                                    type="radio"
-                                    name="paymentMethod"
-                                    value="COD"
-                                    onChange={handleInput}
-                                />
-                                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                                <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
-                                    <img className="w-14 object-contain" src="./cash-on-delivery.png" alt="" />
-                                    <div className="ml-5">
-                                        <span className="mt-2 font-semibold">Cash on delivery</span>
-                                        <p className="text-slate-500 text-base leading-6">Pay on delivery by cash</p>
-                                    </div>
-                                </label>
-                            </div>
+                            {store.cod ?
+                                <div className="relative">
+                                    <input
+                                        className="peer hidden"
+                                        id="radio_1"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="COD"
+                                        onChange={handleInput}
+                                    />
+                                    <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                                    <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
+                                        <img className="w-14 object-contain" src="./cash-on-delivery.png" alt="" />
+                                        <div className="ml-5">
+                                            <span className="mt-2 font-semibold">Cash on delivery</span>
+                                            <p className="text-slate-500 text-base leading-6">Pay on delivery by cash</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                : null}
                             <div className="relative">
                                 <input
                                     className="peer hidden"

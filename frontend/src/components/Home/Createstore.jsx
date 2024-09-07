@@ -86,7 +86,7 @@ function Createstore() {
                             <label className='font-bold' htmlFor="storename">Set your Store link</label><br />
                             <input onChange={handleInput} value={storename} className='w-full bg-gray-50 text-xl rounded-md px-4 py-4' type="text" name='storename' id="storename" placeholder=" " />
                             <p className='text-green-600 font-semibold'>{storename.length > 1 ? checkStatus : ""}</p>
-                            <p className='text-gray-500'>Store link looks like <span className='text-gray-700 font-semibold'>storename.domain.com</span></p>
+                            <p className='text-gray-500'>Store link looks like <span className='text-gray-700 font-semibold'>storename.{import.meta.process.env.VITE_HOSTNAME}</span></p>
                         </div>
                         <button type="submit"
                             className="bg-black w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-zinc-900 transition duration-200">Create</button>

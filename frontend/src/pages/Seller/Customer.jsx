@@ -47,7 +47,7 @@ function Customer() {
     }
 
     return (
-        <section className='bg-gray-100 flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
+        <section className='bg-white flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
             <div className='lg:my-7 my-5 mx-3 lg:mx-5'>
                 <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Customers</h2>
             </div>
@@ -87,7 +87,7 @@ function Customer() {
                             <tbody>
                                 {customers.map((customer,index) => (
                                 <tr key={index} className="border-b border-opacity-20 border-gray-300 bg-gray-50">
-                                    <td className="p-3 text-base tracking-tight">
+                                    <td className="p-3 text-base tracking-tight">   
                                         <p>{customer.username}</p>
                                     </td>
                                     <td className="p-3 text-base tracking-tight">

@@ -52,7 +52,7 @@ function Homepage() {
       </Suspense>
       {store.hideCategory === false ?
         <Category categories={store?.categories} />
-        : ""
+        : null
       }
 
       {/* New Arrivals */}

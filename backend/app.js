@@ -24,6 +24,7 @@ import { productRouter } from "./routes/product.router.js";
 import { categoryRouter } from "./routes/category.router.js";
 import { couponRouter } from "./routes/coupon.router.js";
 import { orderRouter } from "./routes/order.router.js";
+import { contactFormRouter } from "./routes/contactform.router.js";
 
 app.use("/api/user", userRouter)
 
@@ -36,6 +37,8 @@ app.use("/api/product", productRouter)
 app.use("/api/category", categoryRouter)
 
 app.use("/api/coupon", couponRouter)
+
+app.use("/api/contactform", contactFormRouter)
 
 app.use("/api/order", orderRouter)
 

@@ -6,11 +6,11 @@ function Layout() {
   return (
     <>
       <Header />
-      <div className='flex bg-gray-100'>
-        <aside className='h-screen sticky top-0 p-3 space-y-2 w-60 bg-slate-900 text-gray-100 hidden lg:block'>
+      <div className='flex bg-white'>
+        <aside className='h-screen sticky top-0 p-3 space-y-2 w-60 border-r border-zinc-100 bg-white text-zinc-900 hidden lg:block'>
           <Sidebar />
         </aside>
-        <main className='w-full bg-gray-100 h-full'>
+        <main className='w-full bg-white h-full'>
           <Outlet />
         </main>
       </div>

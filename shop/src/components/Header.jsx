@@ -50,7 +50,7 @@ function Header() {
       <div className='lg:mx-28 mx-3 md:mx-5 flex flex-wrap justify-between items-center h-full'>
         <Link to="/">
           {store?.logo ?
-            <img className='h-12' src={store?.logo} alt="Logo" loading='lazy' />
+            <img className='h-12 lg:w-auto max-w-36' src={store?.logo} alt="Logo" loading='lazy' />
             :
             <h2 className='text-3xl font-extrabold'>{store?.name}</h2>
           }
@@ -89,7 +89,7 @@ function Header() {
                     <img alt="Avatar" src="/profile.svg" />
                   </div>
                 </div>
-                <ul data-theme="light" tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
+                <ul data-theme="light" tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] py-2 shadow rounded-box w-52">
                   <li>
                     <Link to="/account" className="justify-between">
                       Profile
@@ -107,9 +107,9 @@ function Header() {
                   Login
                 </Link>
               </div>
-              <div className='lg:hidden font-semibold text-xl lg:text-base tracking-tighter bg-transparent pl-4 py-2 rounded-lg' style={{ color: color1 }}>
+              <div className='lg:hidden lg:font-semibold text-base tracking-tighter bg-transparent pl-2 py-2 rounded-lg' style={{ color: color1 }}>
                 <Link to="/login">
-                  <img alt="Avatar" src="/profile.svg" className='h-8'/>
+                  <img alt="Avatar" src="/profile.svg" className='h-7'/>
                 </Link>
               </div>
               <div className='ml-4 lg:block hidden'>

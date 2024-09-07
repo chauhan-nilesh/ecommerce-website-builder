@@ -166,6 +166,31 @@ const storeData = asyncHandler(async (req, res) => {
         )
 })
 
+const changeCodStatus = asyncHandler(async (req, res) => {
+    const { storeId } = req.params;
+    const { status } = req.body;
+
+    const store = await stores.findByIdAndUpdate(storeId,
+        {
+            $set: { cod: status }
+        },
+        {
+            new: true
+        })
+
+    if (store.cod) {
+        return res.status(200)
+            .json(
+                new ApiResponse(200, store, "Payment method Activated")
+            )
+    } else {
+        return res.status(200)
+            .json(
+                new ApiResponse(200, store, "Payment method deactivated"))
+    }
+
+})
+
 const addUpi = asyncHandler(async (req, res) => {
     const { storeId } = req.params;
     const { name, upiId } = req.body;
@@ -295,6 +320,7 @@ export {
     changeStoreStatus,
     deleteStore,
     storeData,
+    changeCodStatus,
     addUpi,
     changeUpiStatus,
     deleteUpiId,

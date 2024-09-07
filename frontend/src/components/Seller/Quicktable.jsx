@@ -77,7 +77,7 @@ function Quicktable() {
                                         <p>&#8377;{order.product.salePrice}</p>
                                     </td>
                                     <td>
-                                        <Link to={"/seller/orders/" + order?._id} className='btn btn-primary'>Details</Link>
+                                        <Link to={"/seller/orders/" + order?._id} className='p-3 rounded-lg font-bold text-white bg-orange-600 tracking-wide'>Details</Link>
                                     </td>
                                 </tr>
                             }

@@ -77,7 +77,7 @@ const getCategoryData = asyncHandler(async (req, res) => {
 })
 
 const getCategory = asyncHandler(async (req, res) => {
-    const category = await categories.findById(req.params.id)
+    const category = await categories.findById(req.params.id).populate("products")
 
     return res.status(200)
         .json(

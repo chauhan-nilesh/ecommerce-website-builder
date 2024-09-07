@@ -158,14 +158,14 @@ function EditProduct() {
     };
 
     return (
-        <div className="bg-white lg:bg-gray-100 p-4 lg:p-10 lg:min-h-screen h-full lg:mb-0 mb-20">
+        <div className="bg-white p-4 lg:p-10 lg:min-h-screen h-full lg:mb-0 mb-20">
             <div className='flex justify-between'>
                 <h2 className="text-3xl font-extrabold text-gray-900">Edit Product</h2>
                 <div>
                     <button
                         type="submit"
                         onClick={handleSubmit}
-                        className="w-full px-4 py-2 font-bold text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="w-full px-4 py-2 font-bold text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                         Update
                     </button>

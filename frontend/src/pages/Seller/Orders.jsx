@@ -82,7 +82,7 @@ function Orders() {
                   <col />
                   <col />
                 </colgroup>
-                <thead className="dark:bg-gray-300">
+                <thead className="bg-gray-100">
                   <tr className="text-left">
                     <th className="p-3 text-base tracking-tighter">Order ID</th>
                     <th className="p-3 text-base tracking-tighter">Image</th>
@@ -97,7 +97,7 @@ function Orders() {
                 </thead>
                 <tbody>
                   {orders.map((order, idx) => (
-                    <tr key={idx} className="border-b border-opacity-20 border-gray-300 bg-gray-50">
+                    <tr key={idx} className="border-b border-opacity-20 border-gray-300 bg-white">
                       <td className="p-3 text-base tracking-tight">
                         <Link to={"/seller/orders/" + order?._id} className='underline font-semibold'>{"#" + order?._id}</Link>
                       </td>
@@ -129,7 +129,7 @@ function Orders() {
                         }
                       </td>
                       <td className="p-3 text-base tracking-tight">
-                        <p className='font-bold trac'>{order?.product?.salePrice}</p>
+                        <p className='font-bold trac'>{"Rs. "+order?.product?.salePrice}</p>
                       </td>
                     </tr>
                   ))}

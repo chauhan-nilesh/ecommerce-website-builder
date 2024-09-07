@@ -16,7 +16,8 @@ import {
   Logout,
   AboutUs,
   Pricing,
-  TermsAndConditions
+  TermsAndConditions,
+  ContactForm
 } from "./components/Home/index.js"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
@@ -50,6 +51,7 @@ import Createstore from './components/Home/Createstore.jsx'
 import PrivateRoute from './PrivateRoute/index.jsx'
 import EditProduct from './pages/Seller/EditProducts.jsx'
 import EditCoupon from './pages/Seller/EditCoupon.jsx'
+import PaymentMethod from './pages/Seller/PaymentMethod.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,6 +62,7 @@ const router = createBrowserRouter(
         <Route path='login' element={<Login />} />
         <Route path='pricing' element={<Pricing />} />
         <Route path='terms-and-conditions' element={<TermsAndConditions />} />
+        <Route path='contact-us' element={<ContactForm />} />
         <Route path='about-us' element={<AboutUs />} />
         <Route path='create-store' element={<Createstore />} />
         <Route path='logout' element={<Logout />} />
@@ -76,7 +79,7 @@ const router = createBrowserRouter(
         <Route path='analytics' element={<Analytics />} />
         <Route path='categories' element={<Category />} />
         <Route path='customers' element={<Customer />} />
-        <Route path='payments' element={<Payment />} />
+        <Route path='payments' element={<PaymentMethod />} />
         <Route path='edit-store' element={<Store />} />
         <Route path='settings' element={<Settings />} />
         <Route path='customize-store' element={<CustomizeStore />} />

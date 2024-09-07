@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
     addUpi,
+    changeCodStatus,
     changeStoreStatus,
     changeUpiStatus,
     createStore,
@@ -31,6 +32,8 @@ router.route("/update/status/:id").patch(verifyJwt, changeStoreStatus)
 router.route("/delete/:id").delete(verifyJwt, deleteStore)
 
 router.route("/subdomain/:subdomain").get(storeData)
+
+router.route("/cod/change-status/:storeId").patch(changeCodStatus)
 
 router.route("/upi/add/:storeId").patch(addUpi)
 

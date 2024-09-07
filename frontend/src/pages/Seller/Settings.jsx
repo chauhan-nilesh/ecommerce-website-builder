@@ -66,43 +66,43 @@ function Settings() {
   }
 
   return (
-    <section className='bg-gray-100 flex-grow h-full min-h-dvh lg:h-dvh lg:pb-8 pb-20'>
+    <section className='bg-white flex-grow h-full min-h-dvh lg:h-dvh lg:pb-8 pb-20'>
       <div className='lg:my-10 my-5 mx-3 lg:mx-5'>
         <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tight'>Settings</h2>
       </div>
       <div className='mx-5'>
         <div className='grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 gap-6'>
-          <div className='bg-white w-auto h-fit p-5 rounded-md'>
+          <div className='bg-gray-50 w-auto h-fit p-5 rounded-md'>
             <div className='flex flex-wrap justify-center mt-5 mb-4'>
               <img className='h-20 w-20' src="/person.svg" alt="" />
             </div>
             <h2 className='text-center text-xl tracking-tight font-semibold'>Change your personal information</h2>
             <div className='flex flex-wrap justify-center mt-5'>
               <Link to="../edit-profile">
-                <button className="btn btn-primary text-white">EDIT PROFILE</button>
+                <button className="btn btn-primary text-gray-50">EDIT PROFILE</button>
               </Link>
             </div>
           </div>
 
-          <div className='bg-white w-auto h-fit p-5 rounded-md'>
+          <div className='bg-gray-50 w-auto h-fit p-5 rounded-md'>
             <div className='flex flex-wrap justify-center mt-5 mb-4'>
               <img className='h-20 w-20' src="/payment.svg" alt="" />
             </div>
             <h2 className='text-center text-xl tracking-tight font-semibold'>Make change in payment method</h2>
             <div className='flex flex-wrap justify-center mt-5'>
               <Link to="../payments">
-                <button className="btn btn-primary text-white">UPDATE PAYMENT</button>
+                <button className="btn btn-primary text-gray-50">UPDATE PAYMENT</button>
               </Link>
             </div>
           </div>
 
-          <div className='bg-white w-auto h-fit p-5 rounded-md'>
+          <div className='bg-gray-50 w-auto h-fit p-5 rounded-md'>
             <div className='flex flex-wrap justify-center mt-5 mb-4'>
               <img className='h-20 w-20' src="/share.svg" alt="" />
             </div>
             <h2 className='text-center text-xl tracking-tight font-semibold'>Change your personal information</h2>
             <div className='flex flex-wrap justify-center mt-5'>
-                <button onClick={handleShare} className="btn btn-accent text-white">SHARE</button>
+                <button onClick={handleShare} className="btn btn-accent text-gray-50">SHARE</button>
               {/* <Link to="/">
               </Link> */}
             </div>
@@ -112,7 +112,7 @@ function Settings() {
       </div>
 
       <div className='flex justify-center items-center mt-16'>
-        <button type='button' onClick={openModal} className="btn btn-error text-white">Delete my account</button>
+        <button type='button' onClick={openModal} className="btn btn-error text-gray-50">Delete my account</button>
       </div>
       <div className='flex justify-center items-center mt-2'>
         <h3 className='text-gray-600'>Action cannot be reversed</h3>
@@ -144,7 +144,7 @@ function Settings() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-50 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-xl font-medium leading-6 text-gray-900"

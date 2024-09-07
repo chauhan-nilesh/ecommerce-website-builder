@@ -86,11 +86,11 @@ function Products() {
 
   return (
     <>
-      <section className='bg-gray-100 flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
+      <section className='bg-white flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
         <div className='lg:my-10 my-5 lg:mx-4 mx-3'>
           <div className='flex justify-between lg:justify-start lg:gap-5'>
             <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold lg:ml-4 tracking-tight'>All Products</h2>
-            <Link to="../add-product"><h2 className='text-md font-semibold bg-slate-900 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Product</h2></Link>
+            <Link to="../add-product"><h2 className='text-md font-semibold  bg-orange-600 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Product</h2></Link>
           </div>
 
           {store.products.length === 0 ?
