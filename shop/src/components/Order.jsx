@@ -104,7 +104,7 @@ function Order() {
                 <title>{"Orders - " + store.name}</title>
                 <meta name="description" content={store.metaDescription} />
             </Helmet>
-            <div className='px-5 lg:px-64 py-10'>
+            <div className='px-5 lg:px-64 py-7 lg:py-10'>
                 <div>
                     <h2 className='text-4xl font-bold'>Orders</h2>
                     <p className='text-gray-600 mt-2'>Check the status of recent orders, manage returns, and discover similar products.</p>
