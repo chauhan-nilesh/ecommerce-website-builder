@@ -65,8 +65,8 @@ function Header() {
                         <Link to="/" className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
                             <img
-                                className="h-8 w-auto"
-                                src="/vite.svg"
+                                className="h-10 w-auto"
+                                src="/eazzy.png"
                                 alt=""
                             />
                         </Link>
