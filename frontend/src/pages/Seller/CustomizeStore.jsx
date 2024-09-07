@@ -151,7 +151,7 @@ function CustomizeStore() {
                 id="metaTitle"
                 onChange={handleInput}
                 value={updateData.metaTitle}
-                placeholder="Store Name"
+                placeholder="Type store meta title"
                 className="input input-primary text-black bg-transparent w-full max-w-xs"
                 required
               />
@@ -162,7 +162,7 @@ function CustomizeStore() {
                 id="metaDescription"
                 onChange={handleInput}
                 value={updateData.metaDescription}
-                placeholder="Store Name"
+                placeholder="Give store meta description"
                 className="input input-primary text-black bg-transparent w-full max-w-xs"
               />
             </div>
