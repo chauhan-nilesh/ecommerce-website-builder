@@ -130,7 +130,7 @@ function Product() {
     <>
       <Helmet>
         <title>{product?.metaTitle}</title>
-        <meta name="description" content={product.metaDescription} />
+        <meta name="description" content={product?.metaDescription} />
       </Helmet>
       <div className='lg:mx-14 flex flex-wrap justify-between items-center h-full mb-10'>
         <div className="text-sm ml-4 lg:ml-10 breadcrumbs py-5 text-gray-600">
