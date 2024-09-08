@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Footer, Header } from '../components'
 import { useCustomerAuth } from '../store/customerAuth'
+import changeFavicon from '../Hooks/changeFavicon'
 
 function StoreLayout() {
 
@@ -10,6 +11,7 @@ function StoreLayout() {
   const { setStoreId, storeId } = useCustomerAuth()
 
   const subdomain = window.location.hostname.split('.')[0];
+
 
   useEffect(() => {
     try {
@@ -24,6 +26,8 @@ function StoreLayout() {
           })
 
           const responseData = await response.json();
+          
+          changeFavicon(responseData.data.store?.favicon)
 
           setLoading(false)
           if (response.ok) {

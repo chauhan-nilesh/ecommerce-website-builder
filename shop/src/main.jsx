@@ -30,8 +30,6 @@ import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
 import Category from './pages/Category.jsx'
 
-const subdomain = getSubdomain()
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
