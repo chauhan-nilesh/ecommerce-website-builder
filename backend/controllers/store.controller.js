@@ -96,7 +96,7 @@ const updateStoreName = asyncHandler(async (req, res) => {
 
 const updateSocial = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { bio, email, instagram, facebook, twitter, youtube } = req.body;
+    const { bio, email, instagram, facebook, twitter, youtube, returnPolicy, shippingPolicy } = req.body;
 
     const store = await stores.findByIdAndUpdate(id,
         {
@@ -106,7 +106,9 @@ const updateSocial = asyncHandler(async (req, res) => {
                 instagram,
                 facebook,
                 twitter,
-                youtube
+                youtube,
+                returnPolicy,
+                shippingPolicy
             }
         },
         {

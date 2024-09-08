@@ -106,6 +106,12 @@ const StoreSchema = new mongoose.Schema({
     metaDescription: {
         type: String
     },
+    returnPolicy: {
+        type: String
+    },
+    shippingPolicy: {
+        type: String
+    },
     whatsApp: {
         type: Number
     },

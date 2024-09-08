@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 function Product() {
   const { id } = useParams();
   const { addToCart } = useCart();
+  const [store, setStore] = useState({})
   const [isOpen, setIsOpen] = useState(false);
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,7 @@ function Product() {
       const store = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`);
       const storeData = await store.json();
       if (store.ok) {
+        setStore(storeData.data)
         setColor1(storeData.data.themeColorOne);
         setColor2(storeData.data.themeColorTwo);
       }
@@ -282,10 +284,7 @@ function Product() {
                 Shipping
               </div>
               <div className="collapse-content">
-                <p>Free shipping on orders over $300
-                  International shipping available
-                  Expedited shipping options
-                  Signature required upon delivery</p>
+                <p>{store?.shippingPolicy}</p>
               </div>
             </div>
             <div className="hidden lg:collapse collapse-plus bg-white">
@@ -294,10 +293,7 @@ function Product() {
                 Returns
               </div>
               <div className="collapse-content">
-                <p>Returns accepted within 30 days of purchase
-                  Items must be in original condition
-                  Return shipping fees apply
-                  Refunds will be issued to original payment method</p>
+                <p>{store?.returnPolicy}</p>
               </div>
             </div>
 
@@ -311,29 +307,13 @@ function Product() {
               <div tabIndex={1} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Shipping</div>
                 <div className="collapse-content">
-                  <p>Free shipping on orders over $300
-                    International shipping available
-                    Expedited shipping options
-                    Signature required upon delivery</p>
+                  <p>{store?.shippingPolicy}</p>
                 </div>
               </div>
               <div tabIndex={2} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Returns</div>
                 <div className="collapse-content">
-                  <p>Returns accepted within 30 days of purchase
-                    Items must be in original condition
-                    Return shipping fees apply
-                    Refunds will be issued to original payment method</p>
-                </div>
-              </div>
-              <div tabIndex={3} className="collapse collapse-plus border-b border-gray-200">
-                <div className="collapse-title text-lg font-bold text-black">Return Policy</div>
-                <div className="collapse-content">
-                  <p>Request a return within 30 days for an item to be eligible for refund</p>
-                  <p>Request</p>
-                  <p>Pre-paid shipping label included</p>
-                  <p>10% restocking fee for returns</p>
-                  <p>60 day return window</p>
+                  <p>{store?.returnPolicy}</p>
                 </div>
               </div>
             </div>
