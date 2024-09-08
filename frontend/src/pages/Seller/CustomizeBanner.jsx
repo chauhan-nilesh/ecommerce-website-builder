@@ -27,10 +27,11 @@ function CustomizeBanner() {
     axios.post(`${import.meta.env.VITE_API_URL}/api/store/upload/images`, formdata)
       .then(res => {
         toast.success(res.data.message)
+        setUploading(false)
       })
       .catch(err => console.log(err))
-    setUploading(false)
   }
+
 
   return (
     <div className='flex-grow h-full min-h-dvh mb-20'>
