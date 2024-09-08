@@ -51,7 +51,13 @@ function Category() {
     return (
         <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4 mb-10">
             <h2 className="text-xl lg:text-3xl font-bold tracking-tight text-gray-900">{category?.name}</h2>
-            <ProductCard products={products} color1={color1} color2={color2} />
+            {products ?
+                <ProductCard products={products} color1={color1} color2={color2} />
+                :
+                <div className='h-full w-full flex justify-center items-center'>
+                    <p className='font-bold text-xl lg:text-2xl'>No products</p>
+                </div>
+            }
         </div>
     )
 }
