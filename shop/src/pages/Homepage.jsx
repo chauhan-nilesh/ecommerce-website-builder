@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react'
-import { ProductCard, Category } from "../components"
+import { ProductCard, Category, Banner } from "../components"
 import { Helmet } from "react-helmet";
 import LazyLoadingPage from '../components/LazyLoadingPage'
 
@@ -11,7 +11,6 @@ function Homepage() {
   const [loading, setLoading] = useState(true)
 
   const subdomain = window.location.hostname.split('.')[0];
-  const Banner = lazy(() => import('../components/Banner'));
 
   async function getStoreData() {
     try {
@@ -51,9 +50,7 @@ function Homepage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={window.location.hostname} />
       </Helmet>
-      <Suspense fallback={<div data-theme='light' className="skeleton rounded-none h-96 w-full"></div>}>
-        <Banner />
-      </Suspense>
+      <Banner />
       {store.hideCategory === false ?
         <Category categories={store?.categories} />
         : null
