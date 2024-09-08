@@ -42,7 +42,7 @@ function Cart() {
     };
 
     return (
-        <section className="h-full bg-gray-50 py-6 sm:py-8 lg:py-10">
+        <section className="h-full bg-white py-6 sm:py-8 lg:py-10">
             <Helmet>
                 <title>{"Cart - " + store.name}</title>
                 <meta name="description" content={store.metaDescription} />

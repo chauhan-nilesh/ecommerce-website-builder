@@ -13,8 +13,8 @@ export default function Home() {
                     <div className="relative z-10 max-w-screen-xl px-4  pb-20 pt-10 sm:py-24 mx-auto sm:px-6 lg:px-8">
                         <div className="max-w-xl sm:mt-1 mt-80 space-y-8 text-center sm:text-right sm:ml-auto">
                             <h2 className="text-2xl font-extrabold sm:text-5xl">
-                                Launch your store online
-                                <br /><span className="sm:block text-xl lg:text-3xl font-bold font-sans text-green-700">with zero commissions</span>
+                                Launch your own online store
+                                <br /><span className="sm:block text-xl lg:text-3xl font-bold font-sans text-green-700">with 0% commissions</span>
                             </h2>
 
                             {token ?
