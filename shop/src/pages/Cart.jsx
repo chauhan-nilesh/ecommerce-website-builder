@@ -62,7 +62,7 @@ function Cart() {
                                             <li key={index} className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                                                 <Link to={"../product/" + product?._id}>
                                                     <div className="shrink-0">
-                                                        <img className="h-24 w-24 max-w-full rounded-lg object-cover" src={`${import.meta.env.VITE_API_URL}/uploads/` + product.images.featuredImage} alt={product.name} />
+                                                        <img className="h-24 w-24 max-w-full rounded-lg object-cover" src={product.images.featuredImage} alt={product.name} />
                                                     </div>
                                                 </Link>
                                                 <div className="relative flex flex-1 flex-col justify-between">

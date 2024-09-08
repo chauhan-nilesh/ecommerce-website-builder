@@ -344,7 +344,8 @@ function Checkout() {
                                     </label>
                                 </div>
                                 : null}
-                            <div className="relative">
+
+                            {/* <div className="relative">
                                 <input
                                     className="peer hidden"
                                     id="radio_2"
@@ -361,7 +362,8 @@ function Checkout() {
                                         <p className="text-slate-500 text-base leading-6">Pay by scanning QR code</p>
                                     </div>
                                 </label>
-                            </div>
+                            </div> */}
+
                         </form>
                     </div>
                 </div>
@@ -392,7 +394,7 @@ function Checkout() {
                     <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
                         {cart.map((product, index) => (
                             <div key={index} className="flex flex-col rounded-lg bg-white sm:flex-row">
-                                <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={`${import.meta.env.VITE_API_URL}/uploads/` + product?.images?.featuredImage} alt="" />
+                                <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={product?.images?.featuredImage} alt="" />
                                 <div className="flex w-full flex-col px-4 py-4">
                                     <span className="font-semibold">{product.name}</span>
                                     <span className="float-right text-gray-600 text-sm font-semibold">{"Qty: " + product?.quantity}</span>

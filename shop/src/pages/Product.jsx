@@ -154,7 +154,7 @@ function Product() {
 
           <div className="md:hidden carousel carousel-center max-w-fit p-2 gap-2 bg-white rounded-box">
             {Object.values(product?.images).map((image, idx) => (
-              image ? <div key={idx} className="carousel-item"><img src={`${import.meta.env.VITE_API_URL}/uploads/` + image} className="h-[420px] sm:h-[550px] rounded-box" alt={product?.name} /></div> : null
+              image ? <div key={idx} className="carousel-item"><img src={image} className="h-[420px] sm:h-[550px] rounded-box" alt={product?.name} /></div> : null
             ))}
           </div>
 
@@ -215,7 +215,7 @@ function Product() {
                       {product?.variants.filter(variant => variant.type === "color").map((variant, index) => (
                         <div
                           key={index}
-                          className={`h-10 w-10 rounded-full cursor-pointer ${selectColor === variant.name ? 'border-2 border-black' : ''}`}
+                          className={`h-10 w-10 rounded-full cursor-pointer ${selectColor === variant.name ? 'border-2 border-yellow-600' : ''}`}
                           style={{ backgroundColor: variant.color }}
                           onClick={() => {
                             setSelectColor(variant.name)

@@ -46,6 +46,10 @@ function Homepage() {
       <Helmet>
         <title>{subdomain[0].toUpperCase() + subdomain.slice(1)}</title>
         <meta name="description" content={store.metaDescription} />
+        <meta property="og:title" content={store.metaTitle} />
+        <meta property="og:description" content={store.metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.hostname} />
       </Helmet>
       <Suspense fallback={<div data-theme='light' className="skeleton rounded-none h-96 w-full"></div>}>
         <Banner />
