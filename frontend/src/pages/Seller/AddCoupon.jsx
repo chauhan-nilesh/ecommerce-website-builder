@@ -23,7 +23,7 @@ const AddCoupon = () => {
   const [status, setStatus] = useState(true)
 
   if (loading) {
-    return <h1>Loading...</h1>
+    return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>;
   }
 
   const handleInput = (e) => {

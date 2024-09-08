@@ -122,7 +122,7 @@ function Checkout() {
             if (response.ok) {
                 if (responseData.data.type === "percentage") {
                     if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
-                        if ((calculateSubtotal() * ((responseData.data.percentValue) / 100)) > 100) {
+                        if ((calculateSubtotal() * ((responseData.data.percentValue) / 100)) > responseData.data.minimumOrderValue) {
                             setDiscountValue(responseData.data.maximumDiscount)
                         } else {
                             setDiscountValue(Math.floor(calculateSubtotal() * ((responseData.data.percentValue) / 100)))
@@ -132,11 +132,11 @@ function Checkout() {
                 if (responseData.data.type === "flat") {
                     if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
                         setDiscountValue(responseData.data.flatDiscountAmount)
-                        toast.success(responseData.message)
                     } else {
                         toast.error(`This coupon is valid on shopping above ${"₹" + responseData.data.minimumOrderValue}`)
                     }
                 }
+                toast.success(responseData.message)
                 setIsCouponApplied(true)
             } else {
                 toast.error(responseData.message);
