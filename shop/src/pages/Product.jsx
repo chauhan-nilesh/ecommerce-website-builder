@@ -143,11 +143,11 @@ function Product() {
         <div className='grid grid-flow-row lg:grid-cols-2 h-full w-full'>
           <div className='w-full md:block lg:pb-9 pl-10 hidden'>
             <div className='w-full flex justify-center'>
-              <img className='md:h-[500px] lg:h-[600px] w-full' src={`${import.meta.env.VITE_API_URL}/uploads/` + defaultImage} alt={product?.name} />
+              <img className='md:h-[500px] lg:h-[600px] w-full' src={defaultImage} alt={product?.name} />
             </div>
             <div className='md:flex mt-5 justify-center'>
               {Object.values(product?.images).map((image, idx) => (
-                image ? <img key={idx} onClick={() => handleImage(image)} className={`h-24 w-auto ml-3 ${defaultImage === image ? 'border-2 border-black' : ''}`} src={`${import.meta.env.VITE_API_URL}/uploads/` + image} alt={product.name} /> : null
+                image ? <img key={idx} onClick={() => handleImage(image)} className={`h-24 w-auto ml-3 ${defaultImage === image ? 'border-2 border-black' : ''}`} src={image} alt={product.name} loading='lazy' /> : null
               ))}
             </div>
           </div>
