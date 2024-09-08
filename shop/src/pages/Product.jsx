@@ -139,7 +139,7 @@ function Product() {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/products">product</Link></li>
-            <li className='truncate'>{product?._id}</li>
+            <li className='truncate'>{product?.name.split(' ').join('-')}</li>
           </ul>
         </div>
         <div className='grid grid-flow-row lg:grid-cols-2 h-full w-full'>
