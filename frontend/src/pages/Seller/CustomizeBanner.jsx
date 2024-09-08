@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import useStoreData from '../../Hooks/useStoreData'
+import React, { useState } from 'react';
+import useStoreData from '../../Hooks/useStoreData';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
