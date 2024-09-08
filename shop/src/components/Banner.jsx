@@ -30,6 +30,23 @@ function Banner() {
         getThemeColor()
     }, [])
 
+    if (loading) {
+        return (
+            <>
+                <div className='hidden md:flex'>
+                    <div className='flex justify-center items-center text-4xl w-full h-96 font-bold'>
+                        <span className="loading loading-spinner loading-lg"></span>
+                    </div>
+                </div>
+                <div className='md:hidden flex'>
+                    <div className='flex justify-center items-center text-4xl w-full h-96 font-bold'>
+                        <span className="loading loading-spinner loading-lg"></span>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
             <div className='hidden md:flex'>
