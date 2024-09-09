@@ -38,7 +38,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="px-4 mt-4 divide-y text-gray-800 hidden" style={{backgroundColor: color2}}>
+    <footer className="px-4 mt-4 divide-y text-gray-800" style={{backgroundColor: color2}}>
       <div className="container flex flex-col justify-between py-10 lg:px-2 lg:mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3 lg:mx-8">
           <a rel="noopener noreferrer" href="#" className="flex space-x-3 justify-start">
@@ -49,7 +49,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="grid grid-cols-1 text-lg gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-3">
-          <div className="space-y-3">
+          {/* <div className="space-y-3">
             <h3 className="tracking-tight uppercase font-bold" style={{color: color1}}>Product</h3>
             <ul className="space-y-1 tracking-tight text-base" style={{color: color1}}>
               <li className="hover:brightness-150">
@@ -65,15 +65,18 @@ export default function Footer() {
                 <a rel="noopener noreferrer" href="#">FAQ</a>
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className="space-y-3">
             <h3 className="tracking-tight uppercase font-bold"  style={{color: color1}}>Company</h3>
             <ul className="space-y-1 tracking-tight text-base" style={{color: color1}}>
               <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="#">Privacy</a>
+                <a rel="noopener noreferrer" href="/shipping-policy">Shipping policy</a>
               </li>
               <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="#">Terms of Service</a>
+                <a rel="noopener noreferrer" href="/return-policy">Return & replacement policy</a>
+              </li>
+              <li className="hover:brightness-150">
+                <a rel="noopener noreferrer" href="/term-condition">Terms & condition</a>
               </li>
             </ul>
           </div>
@@ -102,7 +105,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="py-6 text-sm text-center dark:text-gray-600">Powered by Veelo. ©2024 All rights reserved.</div>
+      <div className="py-6 text-sm text-center dark:text-gray-600">Powered by Eazzy. ©2024 All rights reserved.</div>
     </footer>
   );
 }

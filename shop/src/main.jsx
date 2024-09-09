@@ -29,6 +29,8 @@ import CustomerPrivateRoute from './PrivateRoute/CustomerPrivateRoute.jsx'
 import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
 import Category from './pages/Category.jsx'
+import Returnpolicy from './pages/Returnpolicy.jsx'
+import Shippingpolicy from './pages/shippingpolicy.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -70,6 +72,8 @@ const router = createBrowserRouter(
             </CustomerPrivateRoute>
           } />
           <Route path='logout' element={<CustomerLogout />} />
+          <Route path='return-policy' element={<Returnpolicy />} />
+          <Route path='shipping-policy' element={<Shippingpolicy />} />
           <Route path='*' element={<Error />} />
         </Route>
     </>
