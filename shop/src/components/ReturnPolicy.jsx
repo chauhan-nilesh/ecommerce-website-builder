@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function Returnpolicy() {
-
+function ReturnPolicy() {
     const [store, setStore] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
@@ -46,4 +45,4 @@ function Returnpolicy() {
     );
 }
 
-export default Returnpolicy
+export default ReturnPolicy

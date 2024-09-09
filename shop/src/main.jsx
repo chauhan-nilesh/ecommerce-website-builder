@@ -18,7 +18,7 @@ import {
   Homepage,
   Order,
   OrderPage,
-  Returnpolicy,
+  ReturnPolicy,
   ShippingPolicy,
   UpdatePassword
 } from './components/index.js'
@@ -47,7 +47,7 @@ const router = createBrowserRouter(
           <Route path='login' element={<CustomerLogin />} />
           <Route path='product/:id' element={<Product />} />
           <Route path='category/:id' element={<Category />} />
-          <Route path='return-policy' element={<Returnpolicy />} />
+          <Route path='return-policy' element={<ReturnPolicy />} />
           <Route path='shipping-policy' element={<ShippingPolicy />} />
           <Route path='cart' element={<Cart />} />
           <Route path='checkout' element={
