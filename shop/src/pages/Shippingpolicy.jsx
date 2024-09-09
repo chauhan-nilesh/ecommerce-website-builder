@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function Shippingpolicy() {
+function ShippingPolicy() {
 
     const [store, setStore] = useState({})
     const [isLoading, setIsLoading] = useState(true)
@@ -46,4 +46,4 @@ function Shippingpolicy() {
     );
 }
 
-export default Shippingpolicy
+export default ShippingPolicy
