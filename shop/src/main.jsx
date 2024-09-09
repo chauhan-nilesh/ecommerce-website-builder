@@ -18,6 +18,8 @@ import {
   Homepage,
   Order,
   OrderPage,
+  Returnpolicy,
+  ShippingPolicy,
   UpdatePassword
 } from './components/index.js'
 import Product from './pages/Product.jsx'
@@ -45,6 +47,8 @@ const router = createBrowserRouter(
           <Route path='login' element={<CustomerLogin />} />
           <Route path='product/:id' element={<Product />} />
           <Route path='category/:id' element={<Category />} />
+          <Route path='return-policy' element={<Returnpolicy />} />
+          <Route path='shipping-policy' element={<ShippingPolicy />} />
           <Route path='cart' element={<Cart />} />
           <Route path='checkout' element={
             <CustomerPrivateRoute>

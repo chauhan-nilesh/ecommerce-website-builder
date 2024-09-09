@@ -13,5 +13,7 @@ import UpdatePassword from '../pages/UpdatePassword'
 import Account from '../pages/Account'
 import AccountContent from '../pages/AccountContent'
 import OrderPage from '../pages/OrderPage'
+import ShippingPolicy from '../pages/ShippingPolicy'
+import Returnpolicy from '../pages/Returnpolicy'
 
-export { Header, Footer, Banner, Homepage, ProductCard, CustomerSignUp, CustomerLogin, Category, Cart, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }
+export { Header, Footer, Banner, Homepage, ProductCard, CustomerSignUp, CustomerLogin, Category, Cart, Order, OrderPage, ShippingPolicy, Returnpolicy, AccountContent, UpdatePassword, Checkout, Account }
