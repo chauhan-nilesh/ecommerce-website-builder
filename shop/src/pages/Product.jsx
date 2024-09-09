@@ -189,19 +189,25 @@ function Product() {
                     </div>
 
                     <div className='flex gap-2'>
-                      {product?.variants.filter(variant => variant.type === "size").map((variant, index) => (
-                        <div
-                          key={index}
-                          className={`border px-5 py-1 ${selectSize === variant.name ? 'bg-black text-white' : 'border-gray-400'}`}
-                          onClick={() => {
-                            setSelectSize(variant.name)
-                            setSelectColor("")
-                            setSelectOther("")
-                          }}
-                        >
-                          {variant.name}
-                        </div>
-                      ))}
+                      {product?.variants.filter(variant => variant.type === "size").map((variant, index) => {
+                        return (
+                          <>
+                            {variant?.status === true ?
+                              <div
+                                key={index}
+                                className={`border px-5 py-1 ${selectSize === variant.name ? 'bg-black text-white' : 'border-gray-400'}`}
+                                onClick={() => {
+                                  setSelectSize(variant.name)
+                                  setSelectColor("")
+                                  setSelectOther("")
+                                }}
+                              >
+                                {variant.name}
+                              </div> : null
+                            }
+                          </>
+                        )
+                      })}
                     </div>
                   </>
                   :
@@ -214,18 +220,25 @@ function Product() {
                     <h3 className="text-base lg:text-lg font-medium text-gray-900">Color</h3>
 
                     <div className='flex gap-2'>
-                      {product?.variants.filter(variant => variant.type === "color").map((variant, index) => (
-                        <div
-                          key={index}
-                          className={`h-10 w-10 rounded-full cursor-pointer ${selectColor === variant.name ? 'border-2 border-yellow-600' : ''}`}
-                          style={{ backgroundColor: variant.color }}
-                          onClick={() => {
-                            setSelectColor(variant.name)
-                            setSelectSize("")
-                            setSelectOther("")
-                          }}
-                        ></div>
-                      ))}
+                      {product?.variants.filter(variant => variant.type === "color").map((variant, index) => {
+                        return (
+                          <>
+                            {variant?.status === true ?
+                              <div
+                                key={index}
+                                className={`h-10 w-10 rounded-full cursor-pointer ${selectColor === variant.name ? 'border-2 border-yellow-600' : ''}`}
+                                style={{ backgroundColor: variant.color }}
+                                onClick={() => {
+                                  setSelectColor(variant.name)
+                                  setSelectSize("")
+                                  setSelectOther("")
+                                }}
+                              ></div>
+                              : null
+                            }
+                          </>
+                        )
+                      })}
                     </div>
                   </>
                   :
@@ -239,19 +252,24 @@ function Product() {
                     <h3 className="text-sm lg:text-lg font-medium text-gray-900">Other</h3>
 
                     <div className='flex gap-2'>
-                      {product?.variants.filter(variant => variant.type === "other").map((variant, index) => (
-                        <div
-                          key={index}
-                          className={`border px-5 py-1 ${selectOther === variant.name ? 'bg-black text-white' : 'border-gray-400'}`}
-                          onClick={() => {
-                            setSelectOther(variant.name)
-                            setSelectColor("")
-                            setSelectSize("")
-                          }}
-                        >
-                          {variant.name}
-                        </div>
-                      ))}
+                      {product?.variants.filter(variant => variant.type === "other").map((variant, index) => {
+                        return (
+                          <>
+                            {variant?.status === true ? <div
+                              key={index}
+                              className={`border px-5 py-1 ${selectOther === variant.name ? 'bg-black text-white' : 'border-gray-400'}`}
+                              onClick={() => {
+                                setSelectOther(variant.name)
+                                setSelectColor("")
+                                setSelectSize("")
+                              }}
+                            >
+                              {variant.name} </div>
+                              : null
+                            }
+                          </>
+                        )
+                      })}
                     </div>
                   </>
                   :
@@ -261,7 +279,7 @@ function Product() {
 
               <button
                 type="submit"
-                className="mt-10 lg:flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                className="mt-2 lg:flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-xl font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
                 style={{ color: color2, backgroundColor: color1 }}
                 onClick={() => handleAddToCart()}
               >
