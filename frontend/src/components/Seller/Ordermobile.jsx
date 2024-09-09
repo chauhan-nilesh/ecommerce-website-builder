@@ -24,7 +24,7 @@ function Ordermobile({ orders }) {
                             </div>
                         </div>
                         <div className='flex justify-between border-zinc-300 border-t-2 pt-2 px-2'>
-                            <h3 className='font-bold tracking-tighter text-green-800'>{order.status}</h3>
+                            <h3 className='font-bold tracking-tighter text-green-800'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</h3>
                             <h3 className='font-bold tracking-tight px-2 bg-green-400 text-green-800'>{order.paymentMethod}</h3>
                         </div>
                     </Link>
