@@ -48,28 +48,28 @@ function Dashboard() {
                 <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
-              <h2 className='overflow-hidden text-4xl mt-4 lg:text-5xl font-extrabold'>{user?.store?.revenue}</h2>
+              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>&#8377;{user?.store?.revenue}</h2>
             </div>
             <div className='bg-white shadow-md lg:shadow-sm w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
                 <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Orders</h3>
                 </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
-              <h2 className='overflow-hidden text-4xl mt-4 lg:text-5xl font-extrabold'>{user?.store?.orders?.length}</h2>
+              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.orders?.length}</h2>
             </div>
             <div className='bg-white shadow-md lg:shadow-sm w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
                 <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Customer</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
-              <h2 className='overflow-hidden text-4xl mt-4 lg:text-5xl font-extrabold'>{user?.store?.customers?.length}</h2>
+              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.customers?.length}</h2>
             </div>
             <div className='bg-white shadow-md lg:shadow-sm w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
                 <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Products</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
-              <h2 className='overflow-hidden text-4xl mt-4 lg:text-5xl font-extrabold'>{user?.store?.products?.length}</h2>
+              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.products?.length}</h2>
             </div>
           </div>
           {/* <div className='grid grid-rows-2 grid-cols-none lg:grid-rows-none lg:grid-cols-2 gap-5 mt-8'> */}

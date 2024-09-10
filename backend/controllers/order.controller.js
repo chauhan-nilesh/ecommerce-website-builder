@@ -59,6 +59,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
         customer.couponsUsed.push(coupon.toUpperCase())
     }
 
+    store.revenue = Number(store.revenue) + Number(totalPrice)
     await store.save();
     await customer.save();
 
@@ -139,11 +140,16 @@ const cancelOrder = asyncHandler((async (req,res) => {
     })
 
     if (!updatedStatus) {
+        
         return res.status(500)
-            .json(
-                new ApiResponse(500, "", "Failed to cancel order")
-            )
+        .json(
+            new ApiResponse(500, "", "Failed to cancel order")
+        )
     }
+
+    const store = await stores.findById(updatedStatus.store.toString());
+    store.revenue = Number(store.revenue) - Number(updatedStatus.totalPrice);
+    await store.save();
 
     return res.status(200)
         .json(
