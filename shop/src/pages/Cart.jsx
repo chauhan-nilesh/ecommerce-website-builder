@@ -78,7 +78,7 @@ function Cart() {
                                                                 <div className="mx-auto flex h-8 items-stretch text-gray-600">
                                                                     <button
                                                                         className="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
-                                                                        onClick={() => updateQuantity(product?.id, product?.quantity - 1)}
+                                                                        onClick={() => updateQuantity(index, product?.quantity - 1)}
                                                                     >
                                                                         -
                                                                     </button>
@@ -87,7 +87,7 @@ function Cart() {
                                                                     </div>
                                                                     <button
                                                                         className="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
-                                                                        onClick={() => updateQuantity(product?.id, product.quantity + 1)}
+                                                                        onClick={() => updateQuantity(index, product.quantity + 1)}
                                                                     >
                                                                         +
                                                                     </button>
@@ -100,7 +100,7 @@ function Cart() {
                                                         <button
                                                             type="button"
                                                             className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900"
-                                                            onClick={() => removeFromCart(product?._id)}
+                                                            onClick={() => removeFromCart(index)}
                                                         >
                                                             <svg
                                                                 className="h-5 w-5"

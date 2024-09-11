@@ -16,7 +16,8 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
-    setCart(cart.filter((item) => item._id !== productId));
+    console.log(productId)
+    setCart(cart.filter((item,index) => index !== productId));
   };
 
   const removeAllProductsFromCart = () => {
@@ -25,8 +26,8 @@ export const CartProvider = ({ children }) => {
 
   const updateQuantity = (productId, quantity) => {
     setCart(
-      cart.map((item) =>
-        item.id === productId ? { ...item, quantity: quantity } : item
+      cart.map((item,index) =>
+        index === productId ? { ...item, quantity: quantity } : item
       )
     );
   };
