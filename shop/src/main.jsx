@@ -31,6 +31,7 @@ import CustomerPrivateRoute from './PrivateRoute/CustomerPrivateRoute.jsx'
 import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
 import Category from './pages/Category.jsx'
+import PaymentSuccess from './pages/PaymentSuccess.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -49,6 +50,7 @@ const router = createBrowserRouter(
           <Route path='category/:id' element={<Category />} />
           <Route path='return-policy' element={<ReturnPolicy />} />
           <Route path='shipping-policy' element={<ShippingPolicy />} />
+          <Route path='payment-success' element={<PaymentSuccess />} />
           <Route path='cart' element={<Cart />} />
           <Route path='checkout' element={
             <CustomerPrivateRoute>

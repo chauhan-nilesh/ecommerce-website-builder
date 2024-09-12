@@ -89,6 +89,16 @@ const StoreSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    razorpay: {
+        type: Boolean,
+        default: false
+    },
+    razorpayKeyId: {
+        type: String
+    },
+    razorpayKeySecret: {
+        type: String
+    },
     subdomain: {
         type: String,
         required: true

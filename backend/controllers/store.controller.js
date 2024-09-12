@@ -161,7 +161,7 @@ const deleteStore = asyncHandler(async (req, res) => {
 const storeData = asyncHandler(async (req, res) => {
     const { subdomain } = req.params;
     const store = await stores.findOne({ storename: subdomain }).select("-password").populate("products categories")
-    
+
     return res.status(200)
         .json(
             new ApiResponse(200, store, "Store data fetched successfully")
@@ -189,6 +189,31 @@ const changeCodStatus = asyncHandler(async (req, res) => {
         return res.status(200)
             .json(
                 new ApiResponse(200, store, "Payment method deactivated"))
+    }
+
+})
+
+const changeRazorpayStatus = asyncHandler(async (req, res) => {
+    const { storeId } = req.params;
+    const { razorpayKeyId, razorpayKeySecret, status } = req.body;
+
+    const store = await stores.findByIdAndUpdate(storeId,
+        {
+            $set: { razorpay: status, razorpayKeyId, razorpayKeySecret, }
+        },
+        {
+            new: true
+        })
+
+    if (store.razorpay) {
+        return res.status(200)
+            .json(
+                new ApiResponse(200, store, "Razorpay Activated")
+            )
+    } else {
+        return res.status(200)
+            .json(
+                new ApiResponse(200, store, "Razorpay deactivated"))
     }
 
 })
@@ -276,41 +301,41 @@ const deleteUpiId = asyncHandler(async (req, res) => {
 
 })
 
-const uploadStoreImage = asyncHandler(async (req,res) => {
+const uploadStoreImage = asyncHandler(async (req, res) => {
     const store = await stores.findById(req.body.storeId)
-    
-    const uploadImages = await stores.findOneAndUpdate({_id: req.body.storeId},{
-            logo: req.files.logo ? await uploadOnCloudinary(req.files.logo[0].path) : store.logo,
-            favicon: req.files.favicon ? await uploadOnCloudinary(req.files.favicon[0].path) : store.favicon,
-            banner: req.files.banner ? await uploadOnCloudinary(req.files.banner[0].path) : store.banner,
-            mobileBanner: req.files.mobileBanner ? await uploadOnCloudinary(req.files.mobileBanner[0].path) : store.mobileBanner
-        
+
+    const uploadImages = await stores.findOneAndUpdate({ _id: req.body.storeId }, {
+        logo: req.files.logo ? await uploadOnCloudinary(req.files.logo[0].path) : store.logo,
+        favicon: req.files.favicon ? await uploadOnCloudinary(req.files.favicon[0].path) : store.favicon,
+        banner: req.files.banner ? await uploadOnCloudinary(req.files.banner[0].path) : store.banner,
+        mobileBanner: req.files.mobileBanner ? await uploadOnCloudinary(req.files.mobileBanner[0].path) : store.mobileBanner
+
     })
 
 
     return res.status(200)
-    .json(
-        new ApiResponse(200,{store: uploadImages},"Images uploaded successfully")
-    )
+        .json(
+            new ApiResponse(200, { store: uploadImages }, "Images uploaded successfully")
+        )
 
 })
 
-const getCustomerData = asyncHandler(async (req,res) => {
-    const {storeId} = req.params;
-    
+const getCustomerData = asyncHandler(async (req, res) => {
+    const { storeId } = req.params;
+
     const storeExist = await stores.findById(storeId).populate("customers")
 
-    if(!storeExist){
+    if (!storeExist) {
         return res.status(400)
-        .json(
-            new ApiResponse(400,"","Store not exist")
-        )
+            .json(
+                new ApiResponse(400, "", "Store not exist")
+            )
     }
-    
+
     return res.status(200)
-    .json(
-        new ApiResponse(200,storeExist,"Store data fetched along with Customer data")
-    )
+        .json(
+            new ApiResponse(200, storeExist, "Store data fetched along with Customer data")
+        )
 
 })
 
@@ -323,6 +348,7 @@ export {
     deleteStore,
     storeData,
     changeCodStatus,
+    changeRazorpayStatus,
     addUpi,
     changeUpiStatus,
     deleteUpiId,

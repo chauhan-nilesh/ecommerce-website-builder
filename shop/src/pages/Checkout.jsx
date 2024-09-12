@@ -5,6 +5,7 @@ import { useCustomerAuth } from '../store/customerAuth';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 function Checkout() {
     const { storeId, customerData } = useCustomerAuth()
@@ -14,6 +15,7 @@ function Checkout() {
     const [coupon, setCoupon] = useState("")
     const [isCouponApplied, setIsCouponApplied] = useState(false)
     const [discountValue, setDiscountValue] = useState(0)
+    const [razorpayOrderId, setRazorpayOrderId] = useState(null)
     const [billingDetails, setBillingDetails] = useState({
         email: "",
         name: "",
@@ -150,43 +152,121 @@ function Checkout() {
         e.preventDefault()
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    storeId,
-                    custId: customerData._id,
-                    ...billingDetails,
-                    cart: [...cart],
-                    isCouponApplied,
-                    coupon,
-                    discountValue,
-                    totalPrice: (calculateTotal() - discountValue),
-                })
-            })
+            if (billingDetails.paymentMethod === "razorpay") {
 
-            
-            const responseData = await response.json()
-            
-            if (response.ok) {
-                removeAllProductsFromCart()
-                toast.success(responseData.message)
-                setBillingDetails({
-                    email: "",
-                    name: "",
-                    phoneNo: "",
-                    address1: "",
-                    address2: "",
-                    state: "",
-                    country: "India",
-                    pinCode: "",
-                    paymentMethod: ""
+                const { data: { key } } = await axios.get(`${import.meta.env.VITE_API_URL}/api/razorpay/getkey/${store._id}`)
+
+                const { data: { order } } = await axios.post(`${import.meta.env.VITE_API_URL}/api/razorpay/checkout`, {
+                    amount: (calculateTotal() - discountValue).toFixed(2),
+                    storeId: store._id
                 })
-                navigate("/orders")
+
+                setRazorpayOrderId(order)
+
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        storeId,
+                        custId: customerData._id,
+                        ...billingDetails,
+                        cart: [...cart],
+                        isCouponApplied,
+                        coupon,
+                        discountValue,
+                        totalPrice: (calculateTotal() - discountValue),
+                        razorpayOrderId
+                    })
+                })
+
+                const responseData = await response.json()
+
+                if (response.ok) {
+                    removeAllProductsFromCart()
+                    toast.success(responseData.message)
+                    setBillingDetails({
+                        email: "",
+                        name: "",
+                        phoneNo: "",
+                        address1: "",
+                        address2: "",
+                        state: "",
+                        country: "India",
+                        pinCode: "",
+                        paymentMethod: ""
+                    })
+                    navigate("/orders")
+                } else {
+                    toast.error(responseData.message)
+                }
+
+                const options = {
+                    key, // Enter the Key ID generated from the Dashboard
+                    amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    currency: "INR",
+                    name: "Eazzy",
+                    description: "Test Transaction",
+                    image: "https://example.com/your_logo",
+                    order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    callback_url: `${import.meta.env.VITE_API_URL}/api/razorpay/verify`,
+                    prefill: {
+                        name: 'Gaurav Kumar',
+                        email: 'gaurav.kumar@example.com',
+                        contact: '9999999999'
+                    },
+                    notes: {
+                        address: "Razorpay Corporate Office"
+                    },
+                    theme: {
+                        color: "#3399cc"
+                    }
+                };
+
+                const paymentObject = new window.Razorpay(options);
+                paymentObject.open();
+
+            } else if (billingDetails.paymentMethod === "COD") {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        storeId,
+                        custId: customerData._id,
+                        ...billingDetails,
+                        cart: [...cart],
+                        isCouponApplied,
+                        coupon,
+                        discountValue,
+                        totalPrice: (calculateTotal() - discountValue),
+                    })
+                })
+
+                const responseData = await response.json()
+
+                if (response.ok) {
+                    removeAllProductsFromCart()
+                    toast.success(responseData.message)
+                    setBillingDetails({
+                        email: "",
+                        name: "",
+                        phoneNo: "",
+                        address1: "",
+                        address2: "",
+                        state: "",
+                        country: "India",
+                        pinCode: "",
+                        paymentMethod: ""
+                    })
+                    navigate("/orders")
+                } else {
+                    toast.error(responseData.message)
+                }
             } else {
-                toast.error(responseData.message)
+                toast.error("Select atleast one payment method")
             }
         } catch (error) {
             console.log(error)
@@ -345,25 +425,26 @@ function Checkout() {
                                 </div>
                                 : null}
 
-                            {/* <div className="relative">
-                                <input
-                                    className="peer hidden"
-                                    id="radio_2"
-                                    type="radio"
-                                    name="paymentMethod"
-                                    value="UPI"
-                                    onChange={handleInput}
-                                />
-                                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                                <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_2">
-                                    <img className="w-14 object-contain" src="./cashless-payment.png" alt="" />
-                                    <div className="ml-5">
-                                        <span className="mt-2 font-semibold">UPI</span>
-                                        <p className="text-slate-500 text-base leading-6">Pay by scanning QR code</p>
-                                    </div>
-                                </label>
-                            </div> */}
-
+                            {store.razorpay ?
+                                <div className="relative">
+                                    <input
+                                        className="peer hidden"
+                                        id="radio_2"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="razorpay"
+                                        onChange={handleInput}
+                                    />
+                                    <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                                    <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_2">
+                                        <img className="w-14 object-contain" src="./cashless-payment.png" alt="" />
+                                        <div className="ml-5">
+                                            <span className="mt-2 font-semibold">Razorpay</span>
+                                            <p className="text-slate-500 text-base leading-6">Pay by UPI, debit card, credit card, net banking and more</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                : null}
                         </form>
                     </div>
                 </div>

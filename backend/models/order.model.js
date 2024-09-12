@@ -21,11 +21,14 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    razorpayOrderId: {
+        type: String
+    },
     email: {
         type: String,
         required: true
     },
-    name : {
+    name: {
         type: String,
         required: true
     },
@@ -66,6 +69,6 @@ const OrderSchema = new mongoose.Schema({
     coupon: {
         type: String
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 export const orders = mongoose.model("orders", OrderSchema)
