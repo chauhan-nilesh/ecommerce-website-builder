@@ -206,15 +206,15 @@ function Checkout() {
                     key, // Enter the Key ID generated from the Dashboard
                     amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                     currency: "INR",
-                    name: "Eazzy",
-                    description: "Test Transaction",
-                    image: "https://example.com/your_logo",
+                    name: store.name,
+                    description: store.description || "Transaction",
+                    image: store.logo,
                     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                     callback_url: `${import.meta.env.VITE_API_URL}/api/razorpay/verify`,
                     prefill: {
-                        name: 'Gaurav Kumar',
-                        email: 'gaurav.kumar@example.com',
-                        contact: '9999999999'
+                        name: billingDetails.name,
+                        email: billingDetails.email,
+                        contact: billingDetails.phoneNo
                     },
                     notes: {
                         address: "Razorpay Corporate Office"
