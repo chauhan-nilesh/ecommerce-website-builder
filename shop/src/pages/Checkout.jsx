@@ -183,25 +183,6 @@ function Checkout() {
 
                 const responseData = await response.json()
 
-                if (response.ok) {
-                    removeAllProductsFromCart()
-                    toast.success(responseData.message)
-                    setBillingDetails({
-                        email: "",
-                        name: "",
-                        phoneNo: "",
-                        address1: "",
-                        address2: "",
-                        state: "",
-                        country: "India",
-                        pinCode: "",
-                        paymentMethod: ""
-                    })
-                    navigate("/orders")
-                } else {
-                    toast.error(responseData.message)
-                }
-
                 const options = {
                     key, // Enter the Key ID generated from the Dashboard
                     amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -224,8 +205,28 @@ function Checkout() {
                     }
                 };
 
-                const paymentObject = new window.Razorpay(options);
-                paymentObject.open();
+                if (response.ok) {
+
+                    const paymentObject = new window.Razorpay(options);
+                    paymentObject.open();
+
+                    removeAllProductsFromCart()
+                    toast.success(responseData.message)
+                    setBillingDetails({
+                        email: "",
+                        name: "",
+                        phoneNo: "",
+                        address1: "",
+                        address2: "",
+                        state: "",
+                        country: "India",
+                        pinCode: "",
+                        paymentMethod: ""
+                    })
+                    navigate("/orders")
+                } else {
+                    toast.error(responseData.message)
+                }
 
             } else if (billingDetails.paymentMethod === "COD") {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order`, {

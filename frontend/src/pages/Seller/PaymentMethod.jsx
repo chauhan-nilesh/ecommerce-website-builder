@@ -184,7 +184,7 @@ function PaymentMethod() {
                                 }
                             </td>
                         </tr>
-                        <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50">
+                        {/* <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50">
                             <td className="p-3 text-base tracking-tight">
                                 <p>Razorpay payment gateway</p>
                             </td>
@@ -204,6 +204,33 @@ function PaymentMethod() {
                                         Deactivate
                                     </button>
                                     : <button type='button' onClick={openModal} className="px-3 py-1 font-semibold rounded-md bg-green-700 text-gray-50">
+                                        Activate
+                                    </button>
+                                }
+                            </td>
+                        </tr> */}
+
+                        {/* For temporary basis starts */}
+                        <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50 opacity-50 pointer-events-none">
+                            <td className="p-3 text-base tracking-tight">
+                                <p>Paytm payment gateway (Coming soon)</p>
+                            </td>
+                            <td className="p-3 text-base tracking-tight">
+                                <p>Paytm</p>
+                            </td>
+                            <td className="p-3 text-base tracking-tight">
+                                {false ?
+                                    <p className='text-green-800 font-bold'>Active</p>
+                                    :
+                                    <p className='text-red-800 font-bold'>Inactive</p>
+                                }
+                            </td>
+                            <td className="p-3 text-base tracking-tight">
+                                {false ?
+                                    <button type='button' onClick={handleCodStatus} className="px-3 py-1 font-semibold rounded-md bg-red-600 text-gray-50">
+                                        Deactivate
+                                    </button>
+                                    : <button type='button' onClick={handleCodStatus} className="px-3 py-1 font-semibold rounded-md bg-green-700 text-gray-50">
                                         Activate
                                     </button>
                                 }
@@ -234,6 +261,8 @@ function PaymentMethod() {
                                 }
                             </td>
                         </tr>
+                        {/* for temporary basis ends */}
+
                     </tbody>
                 </table>
                 {/* Dialog Box */}
