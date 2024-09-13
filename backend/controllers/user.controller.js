@@ -143,7 +143,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     if (existingUser) {
         return res.status(400).json(
-            new ApiResponse(400, "", "User already rgistered")
+            new ApiResponse(400, "", "User already registered")
         )
     }
 
