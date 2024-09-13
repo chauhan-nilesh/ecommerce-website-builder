@@ -111,7 +111,7 @@ const sendotp = asyncHandler(async (req, res) => {
     })
 
     const receiver = {
-        from: process.env.OTP_EMAIL_ID,
+        from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
         to: email,
         subject: "OTP Verification",
         text: `Your One Time Password(OTP) is ${OTP}`,
