@@ -52,11 +52,12 @@ import PrivateRoute from './PrivateRoute/index.jsx'
 import EditProduct from './pages/Seller/EditProducts.jsx'
 import EditCoupon from './pages/Seller/EditCoupon.jsx'
 import PaymentMethod from './pages/Seller/PaymentMethod.jsx'
+import ControlRoute from './helper/ControlRoute.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path='/' element={<Layout />} >
+      <Route path='/' element={<ControlRoute><Layout /></ControlRoute>} >
         <Route path='' element={<Home />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<Login />} />
@@ -103,9 +104,9 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
-      <React.StrictMode>
-        <RouterProvider router={router} />
-        <ToastContainer />
-      </React.StrictMode>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </React.StrictMode>
   </AuthProvider>
 )
