@@ -184,13 +184,13 @@ const orderPlaced = asyncHandler(async (req, res) => {
                 <tr>
                     <td>${ordered.product.name}</td>
                     <td>${ordered.product.quantity}</td>
-                    <td>${ordered.product.soldPrice}</td>
+                    <td>&#8377;${ordered.product.soldPrice}</td>
                 </tr>
             </table>
         </div>
 
         <div class="order-summary">
-            <p><strong>Total Amount: </strong> ${ordered.totalPrice}</p>
+            <p><strong>Total Amount: </strong> &#8377;${ordered.totalPrice}</p>
         </div>
 
         <p>Your order will be processed and shipped shortly. You can track your order status by logging into your account.</p>
@@ -321,7 +321,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
                 <tr>
                     <td>${ordered.product.name}</td>
                     <td>${ordered.product.quantity}</td>
-                    <td>${ordered.product.soldPrice}</td>
+                    <td>&#8377;${ordered.product.soldPrice}</td>
                 </tr>
             </table>
         </div>
@@ -334,7 +334,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
                 ${ordered.pinCode}</p>
         </div>
         <div class="order-summary">
-            <p><strong>Total Amount: </strong> ${ordered.totalPrice}</p>
+            <p><strong>Total Amount: </strong>&#8377;${ordered.totalPrice}</p>
         </div>
         <p>To view the order details, please log in to your seller dashboard.</p>
         <div class="button-container">
