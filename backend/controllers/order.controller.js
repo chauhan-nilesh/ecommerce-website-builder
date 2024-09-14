@@ -220,11 +220,11 @@ const orderPlaced = asyncHandler(async (req, res) => {
             from: `Eazzy < ${process.env.OTP_EMAIL_ID}> `,
             to: store.owner.email,
             subject: `Order received from your store ${store.name} !`,
-            html: `< !DOCTYPE html >
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            html: `<!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>Order Received Notification</title>
                         <style>
@@ -234,7 +234,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
                             margin: 0;
                             padding: 0;
                             color: #333;
-        }
+                            }
                             .email-container {
                                 max - width: 600px;
                             margin: 20px auto;
@@ -242,37 +242,37 @@ const orderPlaced = asyncHandler(async (req, res) => {
                             padding: 20px;
                             border-radius: 8px;
                             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+                            }
                             h1 {
                                 font - size: 24px;
                             color: #4CAF50;
-        }
+                            }
                             p {
                                 font - size: 16px;
                             line-height: 1.5;
-        }
+                            }
                             .order-details {
                                 margin: 20px 0;
-        }
+                            }
                             .order-details table {
                                 width: 100%;
                             border-collapse: collapse;
-        }
+                            }
                             .order-details table, .order-details th, .order-details td {
                                 border: 1px solid #ddd;
-        }
+                            }
                             .order-details th, .order-details td {
                                 padding: 10px;
                             text-align: left;
-        }
+                            }
                             .order-summary {
                                 margin: 20px 0;
                             text-align: right;
-        }
+                            }
                             .button-container {
                                 text - align: center;
                             margin-top: 20px;
-        }
+                            }
                             .button-container a {
                                 padding: 10px 20px;
                             background-color: #4CAF50;
@@ -280,7 +280,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
                             text-decoration: none;
                             border-radius: 4px;
                             font-weight: bold;
-        }
+                            }
                         </style>
                     </head>
                     <body>
@@ -352,7 +352,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
 
                     </body>
                 </html>`
-        }
+            }
 
         emailProvider.sendMail(sellerReceiver, (error, emailResponse) => {
             if (error) {
