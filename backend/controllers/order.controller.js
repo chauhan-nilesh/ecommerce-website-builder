@@ -8,11 +8,11 @@ import { customers } from "../models/customer.model.js";
 const orderPlaced = asyncHandler(async (req, res) => {
     const { storeId, custId, email, name, phoneNo, address1, address2, state, country, pinCode, paymentMethod, isCouponApplied, discountValue, coupon, totalPrice, cart } = req.body;
 
-    if(email === "" || name === "" || address1 === "" || address2 === "" || state === "" || country === "" || pinCode === "" ){
+    if (email === "" || name === "" || address1 === "" || address2 === "" || state === "" || country === "" || pinCode === "") {
         return res.status(404).json(new ApiResponse(404, "", "All fields are required"));
     }
 
-    if(paymentMethod === ""){
+    if (paymentMethod === "") {
         return res.status(404).json(new ApiResponse(404, "", "Payment method is not selected"));
     }
 
@@ -49,6 +49,48 @@ const orderPlaced = asyncHandler(async (req, res) => {
 
         store.orders.push(ordered._id);
         customer.orders.push(ordered._id);
+
+        const emailProvider = nodeMailer.createTransport({
+            service: "gmail",
+            secure: true,
+            port: 465,
+            auth: {
+                user: process.env.OTP_EMAIL_ID,
+                pass: process.env.OTP_EMAIL_PASS
+            },
+            tls: { rejectUnauthorized: false }
+        })
+
+        const receiver = {
+            from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+            to: customer.email,
+            subject: `Your Order for ${ordered.product.name} has been successfully placed`,
+            html: `<!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Email Template</title>
+            </head>
+            <body>
+              <h1>Hi, ${ordered.name}!</h1>
+              <p>Your order has been successfully placed</p>
+              <h4>Order details:</h4>
+              <b>${ordered.product.name}</b>
+              <p>Price: ${ordered.product.soldPrice}</p>
+              <p>Qty: ${ordered.product.quantity}</p>
+              <p>Payment mode: ${ordered.paymentMethod}</p>
+            </body>
+            </html>`
+        }
+
+        emailProvider.sendMail(receiver, (error, emailResponse) => {
+            if (error) {
+                console.log("Something went wrong while sending email to customer")
+            } else {
+                console.log("Email sent successfully to customer")
+            }
+        })
 
         return ordered;
     });
@@ -131,20 +173,20 @@ const updateStatus = asyncHandler(async (req, res) => {
         )
 })
 
-const cancelOrder = asyncHandler((async (req,res) => {
-    const {orderId} = req.params;
-    const {customerId} = req.body;
+const cancelOrder = asyncHandler((async (req, res) => {
+    const { orderId } = req.params;
+    const { customerId } = req.body;
 
     const updatedStatus = await orders.findOneAndUpdate({ _id: orderId, customerId: customerId }, {
         status: req.body.status
     })
 
     if (!updatedStatus) {
-        
+
         return res.status(500)
-        .json(
-            new ApiResponse(500, "", "Failed to cancel order")
-        )
+            .json(
+                new ApiResponse(500, "", "Failed to cancel order")
+            )
     }
 
     const store = await stores.findById(updatedStatus.store.toString());
