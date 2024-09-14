@@ -6,7 +6,7 @@ function Ordermobile({ orders }) {
 
     return (
         <div className='w-full'>
-            {orders.map((order, idx) => (
+            {orders.reverse().map((order, idx) => (
                 <div key={idx} className='bg-gray-50 shadow-md p-4 w-full rounded-md mt-3'>
                     <Link to={"/seller/orders/" + order._id}>
                         <div className='flex mb-3'>

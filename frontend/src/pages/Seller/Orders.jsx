@@ -96,7 +96,7 @@ function Orders() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order, idx) => (
+                  {orders.reverse().map((order, idx) => (
                     <tr key={idx} className="border-b border-opacity-20 border-gray-300 bg-white">
                       <td className="p-3 text-base tracking-tight">
                         <Link to={"/seller/orders/" + order?._id} className='underline font-semibold'>{"#" + order?._id}</Link>
