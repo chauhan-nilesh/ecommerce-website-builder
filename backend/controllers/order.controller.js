@@ -57,7 +57,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
         store.orders.push(ordered._id);
         customer.orders.push(ordered._id);
 
-        const date = new Date(dateString);
+        const date = new Date(ordered.createdAt);
 
         const emailProvider = nodeMailer.createTransport({
             service: "gmail",
