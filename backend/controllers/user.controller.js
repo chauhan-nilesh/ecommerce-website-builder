@@ -155,7 +155,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const token = await user.generateAccessToken()
 
-    if(user){
+    if (user) {
         const emailProvider = nodeMailer.createTransport({
             service: "gmail",
             secure: true,
@@ -166,14 +166,14 @@ const registerUser = asyncHandler(async (req, res) => {
             },
             tls: { rejectUnauthorized: false }
         })
-    
+
         const receiver = {
             from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
             to: process.env.ADMIN_EMAIL_ID,
             subject: "New user registered on eazzy",
-            text: `<h1>User Details</h1><p>Email: ${user.email}</p>`,
+            text: `User Email: ${user.email}`,
         }
-    
+
         emailProvider.sendMail(receiver, (error, emailResponse) => {
             if (error) {
                 console.log("Something went wrong while sending email to admin")
