@@ -213,10 +213,10 @@ function PaymentMethod() {
                         {/* For temporary basis starts */}
                         <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50 opacity-50 pointer-events-none">
                             <td className="p-3 text-base tracking-tight">
-                                <p>Paytm payment gateway (Coming soon)</p>
+                                <p>Razorpay payment gateway (Coming soon)</p>
                             </td>
                             <td className="p-3 text-base tracking-tight">
-                                <p>Paytm</p>
+                                <p>Razorpay</p>
                             </td>
                             <td className="p-3 text-base tracking-tight">
                                 {false ?
