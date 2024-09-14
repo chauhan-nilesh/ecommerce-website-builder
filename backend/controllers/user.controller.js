@@ -155,6 +155,34 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const token = await user.generateAccessToken()
 
+    if(user){
+        const emailProvider = nodeMailer.createTransport({
+            service: "gmail",
+            secure: true,
+            port: 465,
+            auth: {
+                user: process.env.OTP_EMAIL_ID,
+                pass: process.env.OTP_EMAIL_PASS
+            },
+            tls: { rejectUnauthorized: false }
+        })
+    
+        const receiver = {
+            from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+            to: process.env.ADMIN_EMAIL_ID,
+            subject: "New user registered on eazzy",
+            text: `<h1>User Details</h1><p>Email: ${user.email}</p>`,
+        }
+    
+        emailProvider.sendMail(receiver, (error, emailResponse) => {
+            if (error) {
+                console.log("Something went wrong while sending email to admin")
+            } else {
+                console.log("Email sent successfully to admin")
+            }
+        })
+    }
+
     return res.status(200)
         .json(
             new ApiResponse(200, { user, token: token }, "User registered successfully")
