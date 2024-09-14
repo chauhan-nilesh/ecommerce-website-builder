@@ -221,137 +221,129 @@ const orderPlaced = asyncHandler(async (req, res) => {
             to: store.owner.email,
             subject: `Order received from your store ${store.name} !`,
             html: `<!DOCTYPE html>
-            <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Order Received Notification</title>
-                        <style>
-                            body {
-                                font - family: Arial, sans-serif;
-                            background-color: #f4f4f4;
-                            margin: 0;
-                            padding: 0;
-                            color: #333;
-                            }
-                            .email-container {
-                                max - width: 600px;
-                            margin: 20px auto;
-                            background-color: #fff;
-                            padding: 20px;
-                            border-radius: 8px;
-                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                            }
-                            h1 {
-                                font - size: 24px;
-                            color: #4CAF50;
-                            }
-                            p {
-                                font - size: 16px;
-                            line-height: 1.5;
-                            }
-                            .order-details {
-                                margin: 20px 0;
-                            }
-                            .order-details table {
-                                width: 100%;
-                            border-collapse: collapse;
-                            }
-                            .order-details table, .order-details th, .order-details td {
-                                border: 1px solid #ddd;
-                            }
-                            .order-details th, .order-details td {
-                                padding: 10px;
-                            text-align: left;
-                            }
-                            .order-summary {
-                                margin: 20px 0;
-                            text-align: right;
-                            }
-                            .button-container {
-                                text - align: center;
-                            margin-top: 20px;
-                            }
-                            .button-container a {
-                                padding: 10px 20px;
-                            background-color: #4CAF50;
-                            color: #fff;
-                            text-decoration: none;
-                            border-radius: 4px;
-                            font-weight: bold;
-                            }
-                        </style>
-                    </head>
-                    <body>
-
-                        <div class="email-container">
-                            <h1>New Order Received from Your Store!</h1>
-                            <p>Dear ${store.owner.email},</p>
-                            <p>We are excited to inform you that a new order has been placed on your store!</p>
-
-                            <div class="order-details">
-                                <h2>Order Details</h2>
-                                <table>
-                                    <tr>
-                                        <th>Order Number</th>
-                                        <td>${ordered._id}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Customer Name</th>
-                                        <td>${ordered.name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Customer Email</th>
-                                        <td>${ordered.email}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Customer Mobile no.</th>
-                                        <td>${ordered.phoneNo}</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="order-details">
-                                <h2>Items Ordered</h2>
-                                <table>
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                    </tr>
-                                    <tr>
-                                        <td>${ordered.product.name}</td>
-                                        <td>${ordered.product.quantity}</td>
-                                        <td>${ordered.product.soldPrice}</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="order-summary">
-                                <strong>Shipping address: </strong>
-                                <p>${ordered.address1},
-                                    ${ordered.address2},
-                                    ${ordered.state},
-                                    ${ordered.country},
-                                    ${ordered.pinCode}</p>
-                            </div>
-
-                            <div class="order-summary">
-                                <p><strong>Total Amount: </strong> ${ordered.totalPrice}</p>
-                            </div>
-
-                            <p>To view the order details, please log in to your seller dashboard.</p>
-
-                            <div class="button-container">
-                                <a href="https://eazzy.store/seller/orders/${ordered._id}" target="_blank">View Order</a>
-                            </div>
-
-                            <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
-                        </div>
-
-                    </body>
-                </html>`
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Received Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .order-details {
+            margin: 20px 0;
+        }
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-details table, .order-details th, .order-details td {
+            border: 1px solid #ddd;
+        }
+        .order-details th, .order-details td {
+            padding: 10px;
+            text-align: left;
+        }
+        .order-summary {
+            margin: 20px 0;
+            text-align: right;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <h1>New Order Received from Your Store!</h1>
+        <p>Dear ${store.owner.email},</p>
+        <p>We are excited to inform you that a new order has been placed on your store!</p>
+        
+        <div class="order-details">
+            <h2>Order Details</h2>
+            <table>
+                <tr>
+                    <th>Order Number</th>
+                    <td>${ordered._id}</td>
+                </tr>
+                <tr>
+                    <th>Customer Name</th>
+                    <td>${ordered.name}</td>
+                </tr>
+                <tr>
+                    <th>Customer Email</th>
+                    <td>${ordered.email}</td>
+                </tr>
+                <tr>
+                    <th>Customer Mobile no.</th>
+                    <td>${ordered.phoneNo}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="order-details">
+            <h2>Items Ordered</h2>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>${ordered.product.name}</td>
+                    <td>${ordered.product.quantity}</td>
+                    <td>${ordered.product.soldPrice}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="order-summary">
+        <strong>Shipping address: </strong>
+            <p>${ordered.address1},
+                ${ordered.address2},
+                ${ordered.state},
+                ${ordered.country},
+                ${ordered.pinCode}</p>
+        </div>
+        <div class="order-summary">
+            <p><strong>Total Amount: </strong> ${ordered.totalPrice}</p>
+        </div>
+        <p>To view the order details, please log in to your seller dashboard.</p>
+        <div class="button-container">
+            <a href="https://eazzy.store/seller/orders/${ordered._id}" target="_blank">View Order</a>
+        </div>
+        <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
+    </div>
+    </body>
+            </html>`
             }
 
         emailProvider.sendMail(sellerReceiver, (error, emailResponse) => {
