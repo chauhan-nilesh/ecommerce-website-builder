@@ -48,8 +48,6 @@ function OrderPage() {
             <h3 className='lg:text-lg font-bold mt-4'>Shipment details</h3>
             <div className='border border-gray-400 rounded-lg px-6 py-4 mt-2'>
                 <p>Status: <span className='font-bold'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</span></p>
-                <p>Delivery Estimate</p>
-                <p className='font-bold text-green-700'>Tuesday, 23 April, 2024</p>
                 <div className='py-5 flex'>
                     <div className='w-1/3 flex justify-center items-center h-20 lg:h-44 border-[0.5px] border-gray-400 rounded-lg'>
                         <img className='h-full' src={order?.product?.images?.featuredImage} alt="product image" />
