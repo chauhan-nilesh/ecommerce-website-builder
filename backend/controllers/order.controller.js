@@ -96,7 +96,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
         const sellerReceiver = {
             from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
             to: store.owner.email,
-            subject: `Your Order for ${ordered.product.name} has been successfully placed`,
+            subject: `New Order received for ${ordered.product.name} from ${store.name}`,
             html: `<!DOCTYPE html>
 <html lang="en">
 <head>
