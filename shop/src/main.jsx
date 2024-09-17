@@ -32,12 +32,10 @@ import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
 import Category from './pages/Category.jsx'
 import PaymentSuccess from './pages/PaymentSuccess.jsx'
-import ScrollToTop from './utils/ScrollToTop.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <ScrollToTop>
       <Route path="/" element={
         <SubdomainExist>
           <CartProvider>
@@ -80,7 +78,6 @@ const router = createBrowserRouter(
         <Route path='logout' element={<CustomerLogout />} />
         <Route path='*' element={<Error />} />
       </Route>
-      </ScrollToTop>
     </>
   )
 )
