@@ -40,7 +40,7 @@ function OrderPage() {
                     <p className='text-gray-600'>Order total</p>
                 </div>
                 <div className='w-2/3'>
-                    <p className='font-semibold ml-3'>{dateFormat(order?.createdAt, "paddedShortDate")}</p>
+                    <p className='font-semibold ml-3'>{dateFormat(order?.createdAt, "mediumDate")}</p>
                     <p className='font-semibold ml-3 truncate'>{order?._id}</p>
                     <p className='font-semibold ml-3'>&#8377;{order?.product?.soldPrice}</p>
                 </div>

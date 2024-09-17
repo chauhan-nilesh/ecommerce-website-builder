@@ -112,7 +112,7 @@ function Order() {
 
                 {orders.length > 0 ?
                     <div className='grid grid-flow-row gap-3 mt-3'>
-                        {orders.reverse().map((order, idx) => (
+                        {orders.map((order, idx) => (
                             <div key={idx} className='bg-white rounded-xl border-[1px] border-gray-400 h-full w-full'>
                                 <div className='px-5 lg:px-10 py-5 border-b-[1px] border-gray-300 grid grid-cols-2 lg:grid-cols-4'>
                                     <div>
@@ -121,7 +121,7 @@ function Order() {
                                     </div>
                                     <div className='hidden lg:block'>
                                         <h3 className='font-bold'>Date placed</h3>
-                                        <p className='text-gray-700'>{dateFormat(order.createdAt, "paddedShortDate")}</p>
+                                        <p className='text-gray-700'>{dateFormat(order.createdAt, "mediumDate")}</p>
                                     </div>
                                     <div className='hidden lg:block'>
                                         <h3 className='font-bold'>Total Amount</h3>

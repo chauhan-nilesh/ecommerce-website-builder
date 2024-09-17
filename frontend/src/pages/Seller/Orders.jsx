@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Ordermobile } from '../../components/Seller'
 import { useAuth } from '../../store/auth'
 import { Link } from 'react-router-dom'
+import dateFormat from "dateformat";
 
 function Orders() {
   const { token } = useAuth()
@@ -96,7 +97,7 @@ function Orders() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.reverse().map((order, idx) => (
+                  {orders.map((order, idx) => (
                     <tr key={idx} className="border-b border-opacity-20 border-gray-300 bg-white">
                       <td className="p-3 text-base tracking-tight">
                         <Link to={"/seller/orders/" + order?._id} className='underline font-semibold'>{"#" + order?._id}</Link>
@@ -108,7 +109,7 @@ function Orders() {
                         <p className=''>{order?.product?.name}</p>
                       </td>
                       <td className="p-3 text-base tracking-tight">
-                        <p>{order?.createdAt.split("T")[0]}</p>
+                        <p>{dateFormat(order?.createdAt, "mediumDate")}</p>
                       </td>
                       <td className="p-3 text-base tracking-tight">
                         <p>{order?.name}</p>

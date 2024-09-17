@@ -377,7 +377,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
 const getAllOrders = asyncHandler(async (req, res) => {
     const { custId } = req.params;
 
-    const allOrders = await orders.find({ customerId: custId })
+    const allOrders = await orders.find({ customerId: custId }).sort({ createdAt: -1 })
 
     return res.status(200)
         .json(
@@ -389,7 +389,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
 const storeOrders = asyncHandler(async (req, res) => {
     const { storeId } = req.params;
 
-    const order = await orders.find({ store: storeId })
+    const order = await orders.find({ store: storeId }).sort({ createdAt: -1 })
 
     return res.status(200)
         .json(
