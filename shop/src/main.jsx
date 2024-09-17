@@ -32,61 +32,63 @@ import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
 import Category from './pages/Category.jsx'
 import PaymentSuccess from './pages/PaymentSuccess.jsx'
+import ScrollToTop from './utils/ScrollToTop.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-        <Route path="/" element={
-          <SubdomainExist>
-            <CartProvider>
-              <StoreLayout />
-            </CartProvider>
-          </SubdomainExist>
-        } >
-          <Route path='' element={<Homepage />} />
-          <Route path='signup' element={<CustomerSignUp />} />
-          <Route path='login' element={<CustomerLogin />} />
-          <Route path='product/:id' element={<Product />} />
-          <Route path='category/:id' element={<Category />} />
-          <Route path='return-policy' element={<ReturnPolicy />} />
-          <Route path='shipping-policy' element={<ShippingPolicy />} />
-          <Route path='payment-success' element={<PaymentSuccess />} />
-          <Route path='cart' element={<Cart />} />
-          <Route path='checkout' element={
-            <CustomerPrivateRoute>
-              <Checkout />
-            </CustomerPrivateRoute>
-          } />
-          <Route path='account' element={
-            <CustomerPrivateRoute>
-              <Account />
-            </CustomerPrivateRoute>
-          }>
-            <Route path='' element={<AccountContent />} />
-            <Route path='update-password' element={<UpdatePassword />} />
-          </Route>
-          <Route path='orders' element={
-            <CustomerPrivateRoute>
-              <Order />
-            </CustomerPrivateRoute>
-          } />
-          <Route path='order/:id' element={
-            <CustomerPrivateRoute>
-              <OrderPage />
-            </CustomerPrivateRoute>
-          } />
-          <Route path='logout' element={<CustomerLogout />} />
-          <Route path='*' element={<Error />} />
+      <ScrollToTop />
+      <Route path="/" element={
+        <SubdomainExist>
+          <CartProvider>
+            <StoreLayout />
+          </CartProvider>
+        </SubdomainExist>
+      } >
+        <Route path='' element={<Homepage />} />
+        <Route path='signup' element={<CustomerSignUp />} />
+        <Route path='login' element={<CustomerLogin />} />
+        <Route path='product/:id' element={<Product />} />
+        <Route path='category/:id' element={<Category />} />
+        <Route path='return-policy' element={<ReturnPolicy />} />
+        <Route path='shipping-policy' element={<ShippingPolicy />} />
+        <Route path='payment-success' element={<PaymentSuccess />} />
+        <Route path='cart' element={<Cart />} />
+        <Route path='checkout' element={
+          <CustomerPrivateRoute>
+            <Checkout />
+          </CustomerPrivateRoute>
+        } />
+        <Route path='account' element={
+          <CustomerPrivateRoute>
+            <Account />
+          </CustomerPrivateRoute>
+        }>
+          <Route path='' element={<AccountContent />} />
+          <Route path='update-password' element={<UpdatePassword />} />
         </Route>
+        <Route path='orders' element={
+          <CustomerPrivateRoute>
+            <Order />
+          </CustomerPrivateRoute>
+        } />
+        <Route path='order/:id' element={
+          <CustomerPrivateRoute>
+            <OrderPage />
+          </CustomerPrivateRoute>
+        } />
+        <Route path='logout' element={<CustomerLogout />} />
+        <Route path='*' element={<Error />} />
+      </Route>
     </>
   )
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <CustomerAuthProvider>
-      <React.StrictMode>
-        <RouterProvider router={router} />
-        <Toaster />
-      </React.StrictMode>
-    </CustomerAuthProvider>
+  <CustomerAuthProvider>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+      <Toaster />
+    </React.StrictMode>
+  </CustomerAuthProvider>
 )
