@@ -8,7 +8,7 @@ function SellerOrderPage() {
     const { id } = useParams()
     const { token } = useAuth()
     const [order, setOrder] = useState({})
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState("")
     const [loading, setLoading] = useState(true)
 
     const getOrderData = async () => {
@@ -147,6 +147,7 @@ function SellerOrderPage() {
                             value={status}
                             className="w-full rounded-md bg-gray-100 border border-gray-400 px-4 py-3 text-baseoutline-none"
                         >
+                            <option value="">Pending</option>
                             <option value="rejected">Rejected</option>
                             <option value="accepted">Accepted</option>
                             <option value="processed">Processed</option>
