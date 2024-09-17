@@ -75,9 +75,9 @@ export default function Footer() {
               <li className="hover:brightness-150">
                 <a rel="noopener noreferrer" href="/return-policy">Return & replacement policy</a>
               </li>
-              <li className="hover:brightness-150">
+              {/* <li className="hover:brightness-150">
                 <a rel="noopener noreferrer" href="/term-condition">Terms & condition</a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="space-y-3">
