@@ -59,7 +59,7 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
             )
     }
 
-    const store = await stores.findOne({ storename: subdomain }).select("-customers -orders -coupon -revenue -storename")
+    const store = await stores.findOne({ storename: subdomain }).select("-customers -orders -coupon -revenue -storename -razorpay -razorpayKeyId -razorpayKeySecret")
 
     return res.status(200)
         .json(
@@ -160,7 +160,7 @@ const deleteStore = asyncHandler(async (req, res) => {
 
 const storeData = asyncHandler(async (req, res) => {
     const { subdomain } = req.params;
-    const store = await stores.findOne({ storename: subdomain }).select("-password").populate("products categories")
+    const store = await stores.findOne({ storename: subdomain }).select("-password -razorpay -razorpayKeyId -razorpayKeySecret").populate("products categories")
 
     return res.status(200)
         .json(
@@ -323,7 +323,7 @@ const uploadStoreImage = asyncHandler(async (req, res) => {
 const getCustomerData = asyncHandler(async (req, res) => {
     const { storeId } = req.params;
 
-    const storeExist = await stores.findById(storeId).populate("customers")
+    const storeExist = await stores.findById(storeId).select("-razorpay -razorpayKeyId -razorpayKeySecret").populate("customers")
 
     if (!storeExist) {
         return res.status(400)
