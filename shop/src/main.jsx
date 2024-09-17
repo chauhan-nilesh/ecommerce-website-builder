@@ -37,7 +37,7 @@ import ScrollToTop from './utils/ScrollToTop.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <ScrollToTop />
+      <ScrollToTop>
       <Route path="/" element={
         <SubdomainExist>
           <CartProvider>
@@ -80,6 +80,7 @@ const router = createBrowserRouter(
         <Route path='logout' element={<CustomerLogout />} />
         <Route path='*' element={<Error />} />
       </Route>
+      </ScrollToTop>
     </>
   )
 )
