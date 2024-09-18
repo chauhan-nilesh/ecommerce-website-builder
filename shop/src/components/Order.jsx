@@ -51,6 +51,7 @@ function Order() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getStoreData()
         getAllOrders()
     }, [])
