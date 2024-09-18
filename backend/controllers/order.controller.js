@@ -50,7 +50,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
             isCouponApplied,
             discountValue,
             coupon,
-            product: { ...product, soldPrice: (product.salePrice - (discountValue / 2)) },
+            product: { ...product, soldPrice: (product.salePrice - (discountValue / cart.length)) },
             status: "pending"
         });
 

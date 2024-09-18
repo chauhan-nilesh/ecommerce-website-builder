@@ -121,25 +121,37 @@ function Checkout() {
 
             const responseData = await response.json();
 
+
             if (response.ok) {
-                if (responseData.data.type === "percentage") {
-                    if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
-                        if ((calculateSubtotal() * ((responseData.data.percentValue) / 100)) > responseData.data.minimumOrderValue) {
-                            setDiscountValue(responseData.data.maximumDiscount)
-                        } else {
-                            setDiscountValue(Math.floor(calculateSubtotal() * ((responseData.data.percentValue) / 100)))
+                const currentDate = new Date();
+
+                // Convert validFrom and validTill to Date objects
+                const fromDate = new Date(responseData.data.validFrom);
+                const tillDate = new Date(responseData.data.validTill);
+
+                // Check if the current date is between validFrom and validTill
+                if (currentDate >= fromDate && currentDate <= tillDate) {
+                    if (responseData.data.type === "percentage") {
+                        if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
+                            if ((calculateSubtotal() * ((responseData.data.percentValue) / 100)) > responseData.data.minimumOrderValue) {
+                                setDiscountValue(responseData.data.maximumDiscount)
+                            } else {
+                                setDiscountValue(Math.floor(calculateSubtotal() * ((responseData.data.percentValue) / 100)))
+                            }
                         }
                     }
-                }
-                if (responseData.data.type === "flat") {
-                    if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
-                        setDiscountValue(responseData.data.flatDiscountAmount)
-                    } else {
-                        toast.error(`This coupon is valid on shopping above ${"₹" + responseData.data.minimumOrderValue}`)
+                    if (responseData.data.type === "flat") {
+                        if (calculateSubtotal() >= responseData.data.minimumOrderValue) {
+                            setDiscountValue(responseData.data.flatDiscountAmount)
+                        } else {
+                            toast.error(`This coupon is valid on shopping above ${"₹" + responseData.data.minimumOrderValue}`)
+                        }
                     }
+                    toast.success(responseData.message)
+                    setIsCouponApplied(true)
+                } else {
+                    toast.error("Coupon is invalid");
                 }
-                toast.success(responseData.message)
-                setIsCouponApplied(true)
             } else {
                 toast.error(responseData.message);
             }
