@@ -189,7 +189,7 @@ function CustomizeFooter() {
                             {updateData.shippingPolicy}
                         </textarea>
 
-                        <button className="btn btn-primary text-lg mt-6 w-28 mb-8">Save</button>
+                        <button className="btn btn-primary text-lg mt-6 w-28 mb-12">Save</button>
                     </form>
                 </div>
             </div>
