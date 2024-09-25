@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
         <header className="py-2 px-3 lg:px-4 top-0 sticky text-violet-600 border-b border-gray-200 bg-white lg:hidden">
             <div className="container flex justify-between h-[55px]">
-                <a rel="noopener noreferrer" href="dashboard" aria-label="Back to homepage" className="flex items-center p-2">
+                <Link to="/seller/dashboard" className="flex items-center p-2">
                     <img className='h-10' src="/eazzy.png" alt="eazzy" />
-                </a>
+                </Link>
             </div>
         </header>
     )
