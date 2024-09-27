@@ -3,22 +3,23 @@ import cookieParser from "cookie-parser"
 import cors from "cors";
 const app = express()
 
-// Define the base domain you want to allow and allow all subdomains
-const allowedDomain = '.eazzy.store'; // Allow all subdomains of example.com
+// // Define the base domain you want to allow and allow all subdomains
+// const allowedDomain = '.eazzy.store'; // Allow all subdomains of example.com
 
-// Custom CORS options to allow subdomains
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (origin && (origin.endsWith(allowedDomain) || origin === `https://eazzy.store`)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true // Allow cookies and credentials to be sent
-};
+// // Custom CORS options to allow subdomains
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (origin && (origin.endsWith(allowedDomain) || origin === `https://eazzy.store`)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true // Allow cookies and credentials to be sent
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
