@@ -157,7 +157,7 @@ const sendotp = asyncHandler(async (req, res) => {
             padding: 15px;
             margin: 20px 0;
             text-align: center;
-            border: 2px dashed #de6000;
+            border: 2px dashed #ff9100;
             border-radius: 8px;
         }
         .otp-box .otp {
