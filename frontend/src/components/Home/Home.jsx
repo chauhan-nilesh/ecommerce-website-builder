@@ -50,7 +50,7 @@ export default function Home() {
                                 <img className='h-36' src="/cash-on-delivery.png" alt="" />
                             </div>
                             <h3 className='text-center text-xl font-bold py-2'>Zero commission</h3>
-                            <p className='text-center font-semibold text-zinc-600'>Sell & grow your business on Minis to keep all your profits to yourself</p>
+                            <p className='text-center font-semibold text-zinc-600'>Sell & grow your business on Eazzy to keep all your profits to yourself</p>
                         </div>
 
                         <div className='bg-violet-50 h-full lg:w-80 p-8 rounded-2xl lg:mt-0 mt-10'>

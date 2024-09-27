@@ -7,9 +7,9 @@ import { useAuth } from '../../store/auth';
 
 function Dashboard() {
 
-  const { user, loading } = useStoreData()
-  const { setToken } = useAuth()
-  const navigate = useNavigate()
+  const { user, loading } = useStoreData();
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
