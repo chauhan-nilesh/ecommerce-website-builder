@@ -2,6 +2,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js"
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { contactforms } from "../models/contactform.model.js";
+import nodeMailer from "nodemailer"
 
 const submitForm = asyncHandler(async (req, res) => {
     const {email, firstName, lastName, subject, message} = req.body;
