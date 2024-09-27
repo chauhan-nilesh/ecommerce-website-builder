@@ -114,7 +114,138 @@ const sendotp = asyncHandler(async (req, res) => {
         from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
         to: email,
         subject: "OTP Verification",
-        text: `Your One Time Password(OTP) is ${OTP}`,
+        html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Requested</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #ff8c00;
+        }
+        .header img {
+            width: 120px;
+        }
+        .content {
+            padding: 20px 30px;
+            color: #333;
+        }
+        .content h2 {
+            font-size: 24px;
+            color: #333;
+        }
+        .otp-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed #de6000;
+            border-radius: 8px;
+        }
+        .otp-box .otp {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+        .content p {
+            line-height: 1.7;
+            font-size: 16px;
+            color: #555;
+        }
+        .support {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .support a {
+            background-color: #ee7401;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .support a:hover {
+            background-color: #fd6900;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #007ad9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo and background -->
+        <div class="header">
+            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>OTP Requested</h2>
+            <p>Hi,</p>
+            <p>Your One Time Password (OTP) is:</p>
+
+            <!-- OTP Box with dashed border -->
+            <div class="otp-box">
+                <span class="otp">${OTP}</span>
+            </div>
+
+            <p>This password will expire in ten minutes if not used.</p>
+            <p>If you did not request this, please contact our customer support immediately to secure your account.</p>
+
+            <p>Thank You,<br><strong>Eazzy Team</strong></p>
+        </div>
+
+        <!-- Support Button -->
+        <div class="support">
+            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
+        </div>
+
+        <!-- Footer with security warning -->
+        <div class="footer">
+            <p>Never share your OTP with anyone. Even if the caller claims to be from Eazzy.</p>
+            <p>Sharing these details can lead to unauthorized access to your account.</p>
+            <p>This is an automatically generated email, please do not reply.</p>
+        </div>
+    </div>
+</body>
+</html>
+`,
     }
 
     const otpToken = await jwt.sign({ otp: OTP }, process.env.OTP_TOKEN_SECRET, { expiresIn: process.env.OTP_TOKEN_EXPIRY })
