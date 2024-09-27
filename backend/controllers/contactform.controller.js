@@ -133,8 +133,8 @@ const submitForm = asyncHandler(async (req, res) => {
         <!-- Email Footer -->
         <div class="footer">
             <p>Thank you,</p>
-            <p>Your Website Team</p>
-            <p><a href="https://www.yourwebsite.com">www.yourwebsite.com</a></p>
+            <p>Eazzy Team</p>
+            <p><a href="https://www.eazzy.store">www.eazzy.store</a></p>
         </div>
     </div>
 </body>
