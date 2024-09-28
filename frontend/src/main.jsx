@@ -20,7 +20,6 @@ import {
   ContactForm
 } from "./components/Home/index.js"
 import { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider } from './store/auth.jsx'
 import AdminLayout from './pages/Seller/SellerLayout.jsx'
 import {
