@@ -12,10 +12,10 @@ function CustomizeBanner() {
   const [uploading, setUploading] = useState(false)
 
   useEffect(()=> {
-    setLogo(user.store.logo)
-    setFavicon(user.store.favicon)
-    setBanner(user.store.banner)
-    setMobileBanner(user.store.mobileBanner)
+    setLogo(user?.store?.logo)
+    setFavicon(user?.store?.favicon)
+    setBanner(user?.store?.banner)
+    setMobileBanner(user?.store?.mobileBanner)
   }, [loading])
 
   if (loading) {
