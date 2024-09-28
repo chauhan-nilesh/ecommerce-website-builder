@@ -53,6 +53,7 @@ import EditProduct from './pages/Seller/EditProducts.jsx'
 import EditCoupon from './pages/Seller/EditCoupon.jsx'
 import PaymentMethod from './pages/Seller/PaymentMethod.jsx'
 import ControlRoute from './helper/ControlRoute.jsx'
+import BusinessDetails from './components/Home/BusinessDetails.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -66,6 +67,7 @@ const router = createBrowserRouter(
         <Route path='contact-us' element={<ContactForm />} />
         <Route path='about-us' element={<AboutUs />} />
         <Route path='create-store' element={<Createstore />} />
+        <Route path='business-details/:storename' element={<BusinessDetails />} />
         <Route path='logout' element={<Logout />} />
       </Route>
       <Route path='seller' element={

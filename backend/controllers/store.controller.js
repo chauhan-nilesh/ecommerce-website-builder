@@ -48,6 +48,21 @@ const createStore = asyncHandler(async (req, res) => {
         )
 })
 
+const businessdetails = asyncHandler(async (req,res) => {
+    const {storename, businessName, category, address, mobileNo} = req.body;
+    const store = await stores.findOneAndUpdate({storename}, {
+        businessName,
+        businessCategory: category,
+        address,
+        phoneNo: mobileNo
+    })
+
+    return res.status(200)
+    .json(
+        new ApiResponse(200, "", "Business Details Submitted")
+    )
+})  
+
 const getCurrentStoreData = asyncHandler(async (req, res) => {
     const { subdomain } = req.body;
     const storeExist = await stores.findOne({ storename: subdomain })
@@ -151,6 +166,12 @@ const deleteStore = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     const store = await stores.findByIdAndDelete(id).select("-password")
+
+    const user = await users.findByIdAndUpdate(store.owner,{
+        $unset:{
+            store
+        }
+    })
 
     return res.status(200)
         .json(
@@ -341,6 +362,7 @@ const getCustomerData = asyncHandler(async (req, res) => {
 
 export {
     createStore,
+    businessdetails,
     getCurrentStoreData,
     updateStoreName,
     updateSocial,

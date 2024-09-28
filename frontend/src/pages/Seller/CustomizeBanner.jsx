@@ -40,22 +40,38 @@ function CustomizeBanner() {
         <div className='mt-8'>
           <form className='grid grid-flow-row'>
             <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="logo">Logo</label>
-            <input
+            <div className="w-32 cursor-pointer">
+              <input onChange={e => setLogo(e.target.files[0])} type="file" id="logo" name="logo" accept="image/*" hidden />
+              <label htmlFor="logo">
+                <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
+                  <img src={logo ? URL.createObjectURL(logo) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                </div>
+              </label>
+            </div>
+            {/* <input
               type="file"
               id='logo'
               name='logo'
               onChange={e => setLogo(e.target.files[0])}
               className="file-input file-input-bordered bg-transparent file-input-primary w-full max-w-xs"
-            />
+            /> */}
 
-            {user.store.logo ?
+            {/* {user.store.logo ?
               <>
                 <h3 className='mt-5 font-semibold'>Current Logo:</h3>
                 <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.logo} alt="" />
               </>
-              : ""}
+              : ""} */}
             <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="favicon">Favicon</label>
-            <input
+            <div className="w-32 cursor-pointer">
+              <input onChange={e => setFavicon(e.target.files[0])} type="file" id="favicon" name="favicon" accept="image/*" hidden />
+              <label htmlFor="favicon" className="flex flex-col items-center">
+                <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
+                  <img src={favicon ? URL.createObjectURL(favicon) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                </div>
+              </label>
+            </div>
+            {/* <input
               type="file"
               name='favicon'
               id='favicon'
@@ -67,9 +83,17 @@ function CustomizeBanner() {
                 <h3 className='mt-5 font-semibold'>Current Favicon:</h3>
                 <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.favicon} alt="" />
               </>
-              : ""}
+              : ""} */}
             <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Upload Banner Image</label>
-            <input
+            <div className="w-32 cursor-pointer">
+              <input onChange={e => setBanner(e.target.files[0])} type="file" id="banner" name="banner" accept="image/*" hidden />
+              <label htmlFor="banner" className="flex flex-col items-center">
+                <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
+                  <img src={banner ? URL.createObjectURL(banner) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                </div>
+              </label>
+            </div>
+            {/* <input
               type="file"
               name='banner'
               id='banner'
@@ -82,7 +106,7 @@ function CustomizeBanner() {
                 <h3 className='mt-5 font-semibold'>Current Banner:</h3>
                 <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.banner} alt="" />
               </>
-              : ""}
+              : ""} */}
             {/* <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Add Banner Text</label>
             <input type="text" name='storeTitle' id="storeTitle" placeholder="Banner Text" className="input input-primary text-black bg-transparent w-full max-w-xs" />
             <div className="form-control mt-7 w-44">
@@ -92,8 +116,16 @@ function CustomizeBanner() {
               </label>
             </div> */}
 
-            <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="mobileBanner">Mobile Banner</label>
-            <input
+            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-6' htmlFor="mobileBanner">Mobile Banner</label>
+            <div className="w-32 cursor-pointer">
+              <input onChange={e => setMobileBanner(e.target.files[0])} type="file" id="mobileBanner" name="mobileBanner" accept="image/*" hidden />
+              <label htmlFor="mobileBanner" className="flex flex-col items-center">
+                <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
+                  <img src={mobileBanner ? URL.createObjectURL(mobileBanner) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                </div>
+              </label>
+            </div>
+            {/* <input
               type="file"
               id='mobileBanner'
               name='mobileBanner'
@@ -106,7 +138,7 @@ function CustomizeBanner() {
                 <h3 className='mt-5 font-semibold'>Current Mobile Banner:</h3>
                 <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.mobileBanner} alt="" />
               </>
-              : ""}
+              : ""} */}
 
             <button onClick={handleSubmit} className="btn btn-primary text-lg mt-6 w-28">{uploading ? <span className="loading loading-spinner loading-sm"></span> : "Save"}</button>
           </form>

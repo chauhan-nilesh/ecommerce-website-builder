@@ -6,15 +6,21 @@ const StoreSchema = new mongoose.Schema({
         lowercase: true,
         trim: true,
         unique: true,
-        reuired: true
+        required: true
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users"
     },
+    businessName: {
+        type: String,
+    },
+    businessCategory: {
+        type: String,
+    },
     name: {
         type: String,
-        Required: true
+        required: true
     },
     bio: {
         type: String

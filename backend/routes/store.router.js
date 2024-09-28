@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
     addUpi,
+    businessdetails,
     changeCodStatus,
     changeRazorpayStatus,
     changeStoreStatus,
@@ -21,6 +22,8 @@ import { upload } from "../middlewares/multer.middleware.js";
 const router = Router()
 
 router.route("/create-store").post(createStore)
+
+router.route("/businessdetails").post(businessdetails)
 
 router.route("/data").post(getCurrentStoreData)
 

@@ -59,7 +59,7 @@ function Createstore() {
 
             if (response.ok) {
                 toast.success(responseData.message)
-                navigate("/seller/dashboard")
+                navigate(`/business-details/${storename}`)
             } else {
                 toast.error(responseData.message)
             }
@@ -71,12 +71,12 @@ function Createstore() {
     return (
         <>
             <div className='flex flex-wrap justify-center items-center h-auto py-10 lg:py-3'>
-                <div className="lg:w-[700px] w-96 mx-auto bg-white p-8 rounded-2xl shadow-none">
+                <div className="lg:w-[700px] w-96 mx-5 lg:mx-auto bg-white py-8 rounded-2xl shadow-none">
                     <div className="grid place-items-center lg:mt-2 sm:mt-10">
                         <img className="sm:w-96 lg:w-[700] h-auto" src="https://i.ibb.co/2M7rtLk/Remote1.png" alt="image2" />
                     </div>
                     <h1 className="text-xl lg:text-4xl mt-8 text-black font-bold flex flex-wrap justify-center">Let's start creating your Store</h1>
-                    <p className='text-gray-400 mb-6 text-center mt-2 lg:text-base text-sm'>Add name and link to your Mini store</p>
+                    <p className='text-gray-400 mb-6 text-center mt-2 lg:text-base text-sm'>Add name and link to your eazzy store</p>
                     <form onSubmit={handleSubmit}>
                         <div className="form-input mt-5 mb-6">
                             <label className='font-bold' htmlFor="storename">Enter your store name</label><br />
@@ -86,7 +86,7 @@ function Createstore() {
                             <label className='font-bold' htmlFor="storename">Set your Store link</label><br />
                             <input onChange={handleInput} value={storename} className='w-full bg-gray-50 text-xl rounded-md px-4 py-4' type="text" name='storename' id="storename" placeholder=" " />
                             <p className='text-green-600 font-semibold'>{storename.length > 1 ? checkStatus : ""}</p>
-                            <p className='text-gray-500'>Store link looks like <span className='text-gray-700 font-semibold'>storename.{import.meta.env.VITE_HOSTNAME}</span></p>
+                            <p className='text-gray-500'>Store link looks like <span className='text-gray-700 font-semibold'>{storename? storename : "storename"}.{import.meta.env.VITE_HOSTNAME}</span></p>
                         </div>
                         <button type="submit"
                             className="bg-black w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-zinc-900 transition duration-200">Create</button>
