@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useStoreData from '../../Hooks/useStoreData';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -10,6 +10,13 @@ function CustomizeBanner() {
   const [banner, setBanner] = useState("")
   const [mobileBanner, setMobileBanner] = useState("")
   const [uploading, setUploading] = useState(false)
+
+  useEffect(()=> {
+    setLogo(user.store.logo)
+    setFavicon(user.store.favicon)
+    setBanner(user.store.banner)
+    setMobileBanner(user.store.mobileBanner)
+  }, [user])
 
   if (loading) {
     return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
