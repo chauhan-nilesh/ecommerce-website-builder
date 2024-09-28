@@ -61,7 +61,7 @@ function CustomizeBanner() {
               <input onChange={e => setLogo(e.target.files[0])} type="file" id="logo" name="logo" accept="image/*" hidden />
               <label htmlFor="logo">
                 <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
-                  <img src={logo ? getImageUrl(logo) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                  <img src={getImageUrl(logo)} alt="Upload images" className="w-28 p-2" />
                 </div>
               </label>
             </div>
@@ -84,7 +84,7 @@ function CustomizeBanner() {
               <input onChange={e => setFavicon(e.target.files[0])} type="file" id="favicon" name="favicon" accept="image/*" hidden />
               <label htmlFor="favicon" className="flex flex-col items-center">
                 <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
-                  <img src={favicon ? getImageUrl(favicon) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                  <img src={getImageUrl(favicon)} alt="Upload images" className="w-28 p-2" />
                 </div>
               </label>
             </div>
@@ -106,7 +106,7 @@ function CustomizeBanner() {
               <input onChange={e => setBanner(e.target.files[0])} type="file" id="banner" name="banner" accept="image/*" hidden />
               <label htmlFor="banner" className="flex flex-col items-center">
                 <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
-                  <img src={banner ? getImageUrl(banner) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                  <img src={getImageUrl(banner)} alt="Upload images" className="w-28 p-2" />
                 </div>
               </label>
             </div>
@@ -138,7 +138,7 @@ function CustomizeBanner() {
               <input onChange={e => setMobileBanner(e.target.files[0])} type="file" id="mobileBanner" name="mobileBanner" accept="image/*" hidden />
               <label htmlFor="mobileBanner" className="flex flex-col items-center">
                 <div className="border border-gray-300 rounded flex justify-center items-center mb-2">
-                  <img src={mobileBanner ? getImageUrl(mobileBanner) : "/image.svg"} alt="Upload images" className="w-28 p-2" />
+                  <img src={getImageUrl(mobileBanner)} alt="Upload images" className="w-28 p-2" />
                 </div>
               </label>
             </div>
