@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import React, { Fragment,useEffect, useState } from 'react'
 import { useAuth } from '../../store/auth';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { Dialog, Transition } from '@headlessui/react'
 
 function Settings() {

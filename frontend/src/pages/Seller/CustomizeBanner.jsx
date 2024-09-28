@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useStoreData from '../../Hooks/useStoreData';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 function CustomizeBanner() {
   const { user, loading } = useStoreData()

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import dateFormat from "dateformat";
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { useAuth } from '../../store/auth';
 
 function SellerOrderPage() {

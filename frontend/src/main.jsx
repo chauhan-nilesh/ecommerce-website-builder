@@ -19,7 +19,7 @@ import {
   TermsAndConditions,
   ContactForm
 } from "./components/Home/index.js"
-import { ToastContainer } from "react-toastify"
+import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider } from './store/auth.jsx'
 import AdminLayout from './pages/Seller/SellerLayout.jsx'
@@ -108,7 +108,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <React.StrictMode>
       <RouterProvider router={router} />
-      <ToastContainer />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
     </React.StrictMode>
   </AuthProvider>
 )

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
 import { useAuth } from '../../store/auth';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 function PaymentMethod() {
     let [isOpen, setIsOpen] = useState(false)

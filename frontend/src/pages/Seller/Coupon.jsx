@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useStoreData from '../../Hooks/useStoreData'
 import { useAuth } from '../../store/auth'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast';
 
 function Coupon() {
   const { token } = useAuth()

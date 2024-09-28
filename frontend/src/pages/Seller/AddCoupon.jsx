@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useStoreData from '../../Hooks/useStoreData';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const AddCoupon = () => {

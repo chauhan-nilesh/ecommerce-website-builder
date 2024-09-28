@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ProductVariants, Tags } from '../../components/Seller';
 import { useAuth } from '../../store/auth';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 

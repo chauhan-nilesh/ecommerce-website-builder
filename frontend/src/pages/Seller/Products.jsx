@@ -1,6 +1,6 @@
 import React, { Fragment,useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { Productmobile } from '../../components/Seller';
 import { useAuth } from '../../store/auth';
