@@ -16,7 +16,7 @@ function CustomizeBanner() {
     setFavicon(user.store.favicon)
     setBanner(user.store.banner)
     setMobileBanner(user.store.mobileBanner)
-  }, [user])
+  }, [loading])
 
   if (loading) {
     return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
