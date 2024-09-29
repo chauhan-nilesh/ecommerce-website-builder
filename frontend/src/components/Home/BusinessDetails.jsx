@@ -65,10 +65,10 @@ const BusinessDetails = () => {
       const responseData = await response.json()
 
       if (response.ok) {
-          toast.success(responseData.data.message)
+          toast.success("Store created successfully")
           navigate("/seller/dashboard")
       } else {
-          toast.error(responseData.data.message)
+          toast.error("Sumething went wrong")
       }
   } catch (error) {
       console.log(error)

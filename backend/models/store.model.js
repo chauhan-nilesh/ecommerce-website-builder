@@ -47,7 +47,7 @@ const StoreSchema = new mongoose.Schema({
     },
     themeColorTwo: {
         type: String,
-        default: "#e8e8e8"
+        default: "#fcfcfc"
     },
     hideCategory: {
         type: Boolean,
