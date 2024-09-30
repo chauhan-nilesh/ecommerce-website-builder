@@ -35,7 +35,7 @@ function ShippingPolicy() {
             <header className="text-center">
                 <h1 className="text-3xl lg:text-4xl font-bold text-black">Shipping Policy</h1>
             </header>
-            <section className="bg-white p-8 rounded-lg lg:mx-28">
+            <section className="bg-white px-4 py-8 rounded-lg lg:mx-28">
                 <div className="mb-8">
                     <p className="text-lg" dangerouslySetInnerHTML={{ __html: store.shippingPolicy }} />
                 </div>
