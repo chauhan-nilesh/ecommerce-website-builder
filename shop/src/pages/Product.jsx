@@ -300,10 +300,10 @@ function Product() {
             <div className="hidden lg:collapse collapse-plus bg-white">
               <input type="radio" name="my-accordion-3" defaultChecked />
               <div className="collapse-title uppercase tracking-tight text-lg font-bold">
-                SHIPPING
+                DELIVERY
               </div>
               <div className="collapse-content">
-                <p className='text-justify'>{store?.shippingPolicy}</p>
+                <p className='text-justify'>{store?.deliveryDetails}</p>
               </div>
             </div>
             <div className="hidden lg:collapse collapse-plus bg-white">
@@ -312,27 +312,27 @@ function Product() {
                 RETURNS
               </div>
               <div className="collapse-content">
-                <p className='text-justify'>{store?.returnPolicy}</p>
+                <p className='text-justify'>{store?.returnDetails}</p>
               </div>
             </div>
 
             <div className="lg:hidden mt-8">
               <div tabIndex={0} className="collapse collapse-plus border-b border-gray-200">
-                <div className="collapse-title text-lg font-bold text-black">Features</div>
+                <div className="collapse-title text-lg font-bold text-black">Product description</div>
                 <div className="collapse-content">
                   <p dangerouslySetInnerHTML={{ __html: product?.description }} />
                 </div>
               </div>
               <div tabIndex={1} className="collapse collapse-plus border-b border-gray-200">
-                <div className="collapse-title text-lg font-bold text-black">Shipping</div>
+                <div className="collapse-title text-lg font-bold text-black">Delivery</div>
                 <div className="collapse-content">
-                  <p className='text-justify'>{store?.shippingPolicy}</p>
+                  <p className='text-justify'>{product?.deliveryDetails}</p>
                 </div>
               </div>
               <div tabIndex={2} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Returns</div>
                 <div className="collapse-content">
-                  <p className='text-justify'>{store?.returnPolicy}</p>
+                  <p className='text-justify'>{store?.returnDetails}</p>
                 </div>
               </div>
             </div>
