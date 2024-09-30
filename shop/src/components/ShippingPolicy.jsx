@@ -31,13 +31,13 @@ function ShippingPolicy() {
     }
 
     return (
-        <div className="container mx-auto px-2 py-10">
+        <div className="container lg:mx-auto px-2 py-10">
             <header className="text-center">
                 <h1 className="text-4xl font-bold text-black">Shipping Policy</h1>
             </header>
             <section className="bg-white p-8 rounded-lg lg:mx-28">
                 <div className="mb-8">
-                    <p className="text-gray-600 text-lg">
+                    <p className="text-gray-600 text-lg text-justify">
                         { store.shippingPolicy }
                     </p>
                 </div>

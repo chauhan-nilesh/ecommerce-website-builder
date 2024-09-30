@@ -294,7 +294,7 @@ function Product() {
                 Features
               </div>
               <div className="collapse-content">
-                <span>{product?.description}</span>
+                <span className='text-justify'>{product?.description}</span>
               </div>
             </div>
             <div className="hidden lg:collapse collapse-plus bg-white">
@@ -303,7 +303,7 @@ function Product() {
                 Shipping
               </div>
               <div className="collapse-content">
-                <p>{store?.shippingPolicy}</p>
+                <p className='text-justify'>{store?.shippingPolicy}</p>
               </div>
             </div>
             <div className="hidden lg:collapse collapse-plus bg-white">
@@ -312,7 +312,7 @@ function Product() {
                 Returns
               </div>
               <div className="collapse-content">
-                <p>{store?.returnPolicy}</p>
+                <p className='text-justify'>{store?.returnPolicy}</p>
               </div>
             </div>
 
@@ -320,19 +320,19 @@ function Product() {
               <div tabIndex={0} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Features</div>
                 <div className="collapse-content">
-                  <p>{product?.description}</p>
+                  <p className='text-justify'>{product?.description}</p>
                 </div>
               </div>
               <div tabIndex={1} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Shipping</div>
                 <div className="collapse-content">
-                  <p>{store?.shippingPolicy}</p>
+                  <p className='text-justify'>{store?.shippingPolicy}</p>
                 </div>
               </div>
               <div tabIndex={2} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Returns</div>
                 <div className="collapse-content">
-                  <p>{store?.returnPolicy}</p>
+                  <p className='text-justify'>{store?.returnPolicy}</p>
                 </div>
               </div>
             </div>

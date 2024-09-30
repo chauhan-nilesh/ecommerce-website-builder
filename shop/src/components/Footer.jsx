@@ -44,7 +44,7 @@ export default function Footer() {
           <a rel="noopener noreferrer" href="#" className="flex space-x-3 justify-start">
             <h3 className="self-center text-3xl font-bold tracking-tight" style={{color: color1}}>About {store?.name}</h3>
           </a>
-          <p className='mt-3 tracking-tighter text-lg' style={{color: color1}}>
+          <p className='mt-3 text-justify text-lg' style={{color: color1}}>
             {store.bio}
           </p>
         </div>
