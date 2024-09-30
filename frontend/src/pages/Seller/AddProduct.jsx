@@ -77,12 +77,7 @@ function AddProduct() {
     setImages((prevImages) => ({ ...prevImages, [name]: files[0] }));
   };
 
-  const handleDescription = (e) => {
-    setDescription(e.target.value)
-  }
-
   const handleSubmit = async (e) => {
-    console.log(description)
     e.preventDefault();
     const formData = new FormData();
     Object.keys(product).forEach((key) => formData.append(key, product[key]));
