@@ -42,9 +42,9 @@ export default function Footer() {
       <div className="container flex flex-col justify-between py-10 lg:px-2 lg:mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3 lg:mx-8">
           <a rel="noopener noreferrer" href="#" className="flex space-x-3 justify-start">
-            <h3 className="self-center text-3xl font-bold tracking-tight" style={{color: color1}}>About {store?.name}</h3>
+            <h3 className="self-center text-2xl lg:text-3xl font-bold tracking-tight" style={{color: color1}}>About {store?.name}</h3>
           </a>
-          <p className='mt-3 text-justify text-lg' style={{color: color1}}>
+          <p className='mt-3 text-justify text-base tracking-tight' style={{color: color1}}>
             {store.bio}
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function Footer() {
             </ul>
           </div> */}
           <div className="space-y-3">
-            <h3 className="tracking-tight uppercase font-bold"  style={{color: color1}}>Company</h3>
+            <h3 className="tracking-tight uppercase text-base font-bold"  style={{color: color1}}>Company</h3>
             <ul className="space-y-1 tracking-tight text-base" style={{color: color1}}>
               <li className="hover:brightness-150">
                 <a rel="noopener noreferrer" href="/shipping-policy">Shipping policy</a>
@@ -81,7 +81,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-3">
-            <div className="uppercase font-bold tracking-tight" style={{color: color1}}>Social media</div>
+            <div className="text-base uppercase font-bold tracking-tight" style={{color: color1}}>Social media</div>
             <div className="flex justify-start space-x-3">
               <a rel="noopener noreferrer" href={store?.facebook} title="Facebook" className="flex items-center p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style={{color: color1}} className="w-5 h-5 fill-current hover:brightness-150">

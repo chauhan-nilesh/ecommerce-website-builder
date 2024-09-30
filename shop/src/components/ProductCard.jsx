@@ -43,7 +43,7 @@ function ProductCard({ products, color1, color2 }) {
                                     <span className="text-2xl font-bold" style={{color: color1}}>&#8377;{product?.salePrice}</span>
                                     <span className="text-sm line-through" style={{color: color1}}>&#8377;{product?.originalPrice}</span>
                                 </p>
-                                <button type='button' onClick={() => addToCart({ ...product, quantity: 1 })} className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-2.5 text-center text-sm font-medium hover:opacity-75 focus:outline-none"
+                                <button type='button' onClick={() => addToCart({ ...product, quantity: 1 })} className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-3 text-center text-sm font-medium hover:opacity-75 focus:outline-none"
                                 style={{color: color2, backgroundColor: color1}}
                                 >
                                     <img className='h-5 lg:block hidden' src="./cart.svg" alt="" />&nbsp;

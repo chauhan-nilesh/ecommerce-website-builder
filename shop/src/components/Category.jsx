@@ -5,7 +5,7 @@ function Category({ categories }) {
     return (
         <>
             <div className='mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4'>
-                <h2 className='text-2xl font-bold tracking-tight text-gray-900'>Categories</h2>
+                <h2 className='text-xl lg:text-2xl font-bold tracking-tight text-gray-900'>Categories</h2>
                 <div className="mt-6 flex overflow-x-auto space-x-5">
 
                     {categories?.map((category, index) => (

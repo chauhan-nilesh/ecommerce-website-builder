@@ -59,7 +59,7 @@ function Homepage() {
       {/* New Arrivals */}
       <div className="bg-white">
         <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">New Arrivals</h2>
+          <h2 className="text-xl lg:text-2xl font-bold tracking-tight text-gray-900">New Arrivals</h2>
 
           <ProductCard products={products} color1={color1} color2={color2} />
         </div>
@@ -67,7 +67,7 @@ function Homepage() {
 
       {/* All Products */}
       <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4 mb-10">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">All Products</h2>
+        <h2 className="text-xl lg:text-2xl font-bold tracking-tight text-gray-900">All Products</h2>
         <ProductCard products={products} color1={color1} color2={color2} />
       </div>
     </>

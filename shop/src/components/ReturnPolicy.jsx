@@ -36,9 +36,7 @@ function ReturnPolicy() {
             </header>
             <section className="bg-white px-4 py-8 rounded-lg lg:mx-28">
                 <div className="mb-8">
-                    <p className="text-gray-600 text-lg text-justify">
-                        { store.returnPolicy }
-                    </p>
+                    <p className="text-lg"  dangerouslySetInnerHTML={{ __html: store.returnPolicy }} />
                 </div>
             </section>
         </div>

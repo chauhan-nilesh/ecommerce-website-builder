@@ -291,16 +291,16 @@ function Product() {
             <div className="hidden lg:collapse collapse-plus bg-white mt-8">
               <input type="radio" name="my-accordion-3" defaultChecked />
               <div className="collapse-title uppercase tracking-tight text-lg font-bold">
-                Features
+                PRODUCT DESCRIPTION
               </div>
               <div className="collapse-content">
-                <span className='text-justify'>{product?.description}</span>
+                <p dangerouslySetInnerHTML={{ __html: product?.description }} />
               </div>
             </div>
             <div className="hidden lg:collapse collapse-plus bg-white">
               <input type="radio" name="my-accordion-3" defaultChecked />
               <div className="collapse-title uppercase tracking-tight text-lg font-bold">
-                Shipping
+                SHIPPING
               </div>
               <div className="collapse-content">
                 <p className='text-justify'>{store?.shippingPolicy}</p>
@@ -309,7 +309,7 @@ function Product() {
             <div className="hidden lg:collapse collapse-plus bg-white">
               <input type="radio" name="my-accordion-3" defaultChecked />
               <div className="collapse-title uppercase tracking-tight text-lg font-bold">
-                Returns
+                RETURNS
               </div>
               <div className="collapse-content">
                 <p className='text-justify'>{store?.returnPolicy}</p>
@@ -320,7 +320,7 @@ function Product() {
               <div tabIndex={0} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Features</div>
                 <div className="collapse-content">
-                  <p className='text-justify' dangerouslySetInnerHTML={{ __html: product?.description }} />
+                  <p dangerouslySetInnerHTML={{ __html: product?.description }} />
                 </div>
               </div>
               <div tabIndex={1} className="collapse collapse-plus border-b border-gray-200">
