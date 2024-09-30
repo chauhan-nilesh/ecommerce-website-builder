@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { ProductVariants, Tags } from '../../components/Seller';
 import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
 
 function AddProduct() {
   const [images, setImages] = useState({
@@ -16,7 +18,6 @@ function AddProduct() {
   const [product, setProduct] = useState({
     name: '',
     shortDescription: '',
-    description: '',
     originalPrice: '',
     salePrice: '',
     category: '',
@@ -25,6 +26,8 @@ function AddProduct() {
     stockQty: 0,
     stockStatus: true
   });
+  const { quill, quillRef } = useQuill();
+  const [description, setDescription] = useState('')
   const [tags, setTags] = useState([]);
   const [status, setStatus] = useState(true);
   const { token } = useAuth();
@@ -75,11 +78,29 @@ function AddProduct() {
     setImages((prevImages) => ({ ...prevImages, [name]: files[0] }));
   };
 
+  const handleDescription = useCallback(() => {
+    if (quill) {
+      setDescription(quill.root.innerHTML); // Get the HTML content from the editor
+    }
+  }, [quill]);
+
+  useEffect(() => {
+    if (quill) {
+      quill.on('text-change', handleDescription); // Attach text-change event
+    }
+    return () => {
+      if (quill) {
+        quill.off('text-change', handleDescription); // Clean up event listener on component unmount
+      }
+    };
+  }, [quill, handleDescription]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     Object.keys(product).forEach((key) => formData.append(key, product[key]));
     Object.keys(images).forEach((key) => formData.append(key, images[key]));
+    formData.append("description", description);
     formData.append("storeId", store._id);
     formData.append("status", status);
     formData.append("tags", JSON.stringify(tags));
@@ -96,7 +117,6 @@ function AddProduct() {
       setProduct({
         name: '',
         shortDescription: '',
-        description: '',
         originalPrice: '',
         salePrice: '',
         category: '',
@@ -172,14 +192,7 @@ function AddProduct() {
               </div>
               <div>
                 <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  required
-                  className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                  value={product.description}
-                  onChange={handleChange}
-                />
+                <div ref={quillRef} style={{height: "300px"}} /> {/* Quill editor */}
               </div>
               <div className='flex gap-3'>
                 <div className='w-full'>

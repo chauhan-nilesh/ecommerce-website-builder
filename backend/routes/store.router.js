@@ -12,6 +12,7 @@ import {
     getCurrentStoreData,
     getCustomerData,
     storeData,
+    updatePolicies,
     updateSocial,
     updateStoreName,
     uploadStoreImage
@@ -30,6 +31,8 @@ router.route("/data").post(getCurrentStoreData)
 router.route("/update/basic/:id").patch(verifyJwt, updateStoreName)
 
 router.route("/update/social/:id").patch(verifyJwt, updateSocial)
+
+router.route("/update/policy/:id").patch(verifyJwt, updatePolicies)
 
 router.route("/update/status/:id").patch(verifyJwt, changeStoreStatus)
 

@@ -53,6 +53,7 @@ import EditCoupon from './pages/Seller/EditCoupon.jsx'
 import PaymentMethod from './pages/Seller/PaymentMethod.jsx'
 import ControlRoute from './helper/ControlRoute.jsx'
 import BusinessDetails from './components/Home/BusinessDetails.jsx'
+import StorePolicy from './pages/Seller/StorePolicy.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -86,6 +87,7 @@ const router = createBrowserRouter(
         <Route path='settings' element={<Settings />} />
         <Route path='customize-store' element={<CustomizeStore />} />
         <Route path='customize-banner' element={<CustomizeBanner />} />
+        <Route path='store-policies' element={<StorePolicy />} />
         <Route path='customize-footer' element={<CustomizeFooter />} />
         <Route path='domain-settings' element={<DomainSettings />} />
         <Route path='edit-profile' element={<UserProfile />} />

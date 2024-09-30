@@ -15,8 +15,6 @@ function CustomizeFooter() {
         facebook: "",
         twitter: "",
         youtube: "",
-        returnPolicy: "",
-        shippingPolicy: ""
     })
 
     const getStoreData = async () => {
@@ -39,9 +37,7 @@ function CustomizeFooter() {
                     instagram: responseData.data.store.instagram,
                     facebook: responseData.data.store.facebook,
                     twitter: responseData.data.store.twitter,
-                    youtube: responseData.data.store.youtube,
-                    returnPolicy: responseData.data.store.returnPolicy,
-                    shippingPolicy: responseData.data.store.shippingPolicy
+                    youtube: responseData.data.store.youtube
                 })
                 setLoading(false)
             }
@@ -166,28 +162,6 @@ function CustomizeFooter() {
                                 placeholder="Youtube Link"
                             />
                         </label>
-
-                        <h2 className='mt-8 text-2xl font-bold text-zinc-900'>Store policies</h2>
-                        <label className='font-semibold tracking-tight text-zinc-700 text-lg mt-3' htmlFor="email">Return Policy</label>
-                        <textarea
-                            className="textarea textarea-bordered bg-white mt-1 w-[250px] lg:w-[320px]"
-                            name='returnPolicy'
-                            id='returnPolicy'
-                            onChange={handleInput}
-                            value={updateData.returnPolicy}
-                            placeholder="Type store return policy">
-                            {updateData.returnPolicy}
-                        </textarea>
-                        <label className='font-semibold tracking-tight text-zinc-700 text-lg mt-3' htmlFor="email">Shipping Policy</label>
-                        <textarea
-                            className="textarea textarea-bordered bg-white mt-1 w-[250px] lg:w-[320px]"
-                            name='shippingPolicy'
-                            id='shippingPolicy'
-                            onChange={handleInput}
-                            value={updateData.shippingPolicy}
-                            placeholder="Type store shipping policy">
-                            {updateData.shippingPolicy}
-                        </textarea>
 
                         <button className="btn btn-primary text-lg mt-6 w-28 mb-12">Save</button>
                     </form>

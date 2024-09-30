@@ -320,7 +320,7 @@ function Product() {
               <div tabIndex={0} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Features</div>
                 <div className="collapse-content">
-                  <p className='text-justify'>{product?.description}</p>
+                  <p className='text-justify' dangerouslySetInnerHTML={{ __html: product?.description }} />
                 </div>
               </div>
               <div tabIndex={1} className="collapse collapse-plus border-b border-gray-200">

@@ -111,7 +111,7 @@ const updateStoreName = asyncHandler(async (req, res) => {
 
 const updateSocial = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { bio, email, instagram, facebook, twitter, youtube, returnPolicy, shippingPolicy } = req.body;
+    const { bio, email, instagram, facebook, twitter, youtube } = req.body;
 
     const store = await stores.findByIdAndUpdate(id,
         {
@@ -121,7 +121,27 @@ const updateSocial = asyncHandler(async (req, res) => {
                 instagram,
                 facebook,
                 twitter,
-                youtube,
+                youtube
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, store, "Store data updated successfully")
+        )
+})
+
+const updatePolicies = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { returnPolicy, shippingPolicy } = req.body;
+
+    const store = await stores.findByIdAndUpdate(id,
+        {
+            $set: {
                 returnPolicy,
                 shippingPolicy
             }
@@ -366,6 +386,7 @@ export {
     getCurrentStoreData,
     updateStoreName,
     updateSocial,
+    updatePolicies,
     changeStoreStatus,
     deleteStore,
     storeData,
