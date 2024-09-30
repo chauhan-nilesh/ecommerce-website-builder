@@ -303,7 +303,7 @@ function Product() {
                 DELIVERY
               </div>
               <div className="collapse-content">
-                <p className='text-justify'>{store?.deliveryDetails}</p>
+                <p className='text-justify'>{product?.deliveryDetails}</p>
               </div>
             </div>
             <div className="hidden lg:collapse collapse-plus bg-white">
@@ -312,7 +312,7 @@ function Product() {
                 RETURNS
               </div>
               <div className="collapse-content">
-                <p className='text-justify'>{store?.returnDetails}</p>
+                <p className='text-justify'>{product?.returnDetails}</p>
               </div>
             </div>
 
