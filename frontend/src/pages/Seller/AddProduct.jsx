@@ -21,6 +21,8 @@ function AddProduct() {
     originalPrice: '',
     salePrice: '',
     category: '',
+    returnDetails: '',
+    deliveryDetails: '',
     metaTitle: '',
     metaDescription: '',
     stockQty: 0,
@@ -102,6 +104,8 @@ function AddProduct() {
         originalPrice: '',
         salePrice: '',
         category: '',
+        returnDetails: '',
+        deliveryDetails: '',
         metaTitle: '',
         metaDescription: '',
         stockQty: 0,
@@ -143,7 +147,7 @@ function AddProduct() {
       </div>
       <div className='lg:flex gap-5 mt-6'>
         <div className="w-full h-auto mt-10 lg:mt-0 space-y-6 rounded-lg">
-          <div className="w-full h-auto mt-10 lg:mt-0 lg:p-8 space-y-6 bg-white rounded-lg">
+          <div className="w-full h-auto mt-10 lg:mt-0 lg:py-8 space-y-6 bg-white rounded-lg">
             <div>
               <h4 className='font-bold text-lg'>Product Information</h4>
               <p className='text-gray-600 font-semibold text-sm tracking-tight'>Easily input essential details like name, price, and more to showcase your product.</p>
@@ -278,6 +282,28 @@ function AddProduct() {
                 />
               </div>
             </form>
+            <div>
+              <label htmlFor="returnDetails" className="block text-sm font-medium text-gray-700">Return Details</label>
+              <textarea
+                id="returnDetails"
+                name="returnDetails"
+                required
+                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                value={product.returnDetails}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="deliveryDetails" className="block text-sm font-medium text-gray-700">Delivery Details</label>
+              <textarea
+                id="deliveryDetails"
+                name="deliveryDetails"
+                required
+                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                value={product.deliveryDetails}
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <Tags tags={tags} setTags={setTags} />
         </div>

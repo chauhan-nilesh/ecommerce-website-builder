@@ -16,7 +16,7 @@ function createSlug(name) {
 }
 
 const addProduct = asyncHandler(async (req, res) => {
-    const { name, shortDescription, description, originalPrice, salePrice, category, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -44,6 +44,8 @@ const addProduct = asyncHandler(async (req, res) => {
         originalPrice,
         salePrice,
         category,
+        returnDetails,
+        deliveryDetails,
         metaTitle: metaTitle ? metaTitle : name,
         metaDescription: metaDescription ? metaDescription : description,
         stockQty,

@@ -21,7 +21,7 @@ const Tags = ({tags, setTags}) => {
   };
 
   return (
-    <div className="lg:p-6 bg-white rounded-lg">
+    <div className="lg:py-6 bg-white rounded-lg">
       <h2 className="text-xl font-semibold mb-2">Additional Information</h2>
       <p className="text-gray-600 mb-4">Utilize tags to categorize your products and enhance searchability.</p>
       <div className="mb-4">

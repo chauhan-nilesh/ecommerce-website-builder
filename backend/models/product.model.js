@@ -55,6 +55,12 @@ const ProductSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    returnDetails: {
+        type: String
+    },
+    deliveryDetails: {
+        type: String
+    },
     metaTitle: {
         type: String
     },

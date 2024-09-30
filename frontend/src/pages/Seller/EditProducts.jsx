@@ -23,6 +23,8 @@ function EditProduct() {
         originalPrice: '',
         salePrice: '',
         category: '',
+        returnDetails: '',
+        deliveryDetails: '',
         metaTitle: '',
         metaDescription: '',
         stockQty: 0,
@@ -81,6 +83,8 @@ function EditProduct() {
                     originalPrice: responseData.data.originalPrice,
                     salePrice: responseData.data.salePrice,
                     category: responseData.data.category._id,
+                    returnDetails: responseData.data.returnDetails,
+                    deliveryDetails: responseData.data.deliveryDetails,
                     metaTitle: responseData.data.metaTitle,
                     metaDescription: responseData.data.metaDescription,
                     stockQty: responseData.data.stockQty,
@@ -174,7 +178,7 @@ function EditProduct() {
             </div>
             <div className='lg:flex gap-5 mt-6'>
                 <div className="w-full h-auto mt-10 lg:mt-0 space-y-6 rounded-lg">
-                    <div className="w-full h-auto mt-10 lg:mt-0 lg:p-8 space-y-6 bg-white rounded-lg">
+                    <div className="w-full h-auto mt-10 lg:mt-0 lg:py-8 space-y-6 bg-white rounded-lg">
                         <div>
                             <h4 className='font-bold text-lg'>Product Information</h4>
                             <p className='text-gray-600 font-semibold text-sm tracking-tight'>Easily input essential details like name, price, and more to showcase your product.</p>
@@ -187,7 +191,7 @@ function EditProduct() {
                                     name="name"
                                     type="text"
                                     required
-                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                                     value={product.name}
                                     onChange={handleChange}
                                 />
@@ -198,7 +202,7 @@ function EditProduct() {
                                     id="shortDescription"
                                     name="shortDescription"
                                     required
-                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                                     value={product.shortDescription}
                                     onChange={handleChange}
                                 />
@@ -247,7 +251,7 @@ function EditProduct() {
                                         name="originalPrice"
                                         type="number"
                                         required
-                                        className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                                        className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                                         value={product.originalPrice}
                                         onChange={handleChange}
                                     />
@@ -259,7 +263,7 @@ function EditProduct() {
                                         name="salePrice"
                                         type="number"
                                         required
-                                        className="grow w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                                        className="grow w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                                         value={product.salePrice}
                                         onChange={handleChange}
                                     />
@@ -287,7 +291,7 @@ function EditProduct() {
                                     name="stockQty"
                                     type="number"
                                     required
-                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                                     value={product.stockQty}
                                     onChange={handleChange}
                                 />
@@ -305,6 +309,28 @@ function EditProduct() {
                                 />
                             </div>
                         </form>
+                        <div>
+                            <label htmlFor="returnDetails" className="block text-sm font-medium text-gray-700">Return Details</label>
+                            <textarea
+                                id="returnDetails"
+                                name="returnDetails"
+                                required
+                                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                value={product.returnDetails}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="deliveryDetails" className="block text-sm font-medium text-gray-700">Delivery Details</label>
+                            <textarea
+                                id="deliveryDetails"
+                                name="deliveryDetails"
+                                required
+                                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                value={product.deliveryDetails}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
                     <Tags tags={tags} setTags={setTags} />
                 </div>
