@@ -107,7 +107,7 @@ const getProductData = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name, shortDescription, description, originalPrice, salePrice, category, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -140,6 +140,8 @@ const updateProduct = asyncHandler(async (req, res) => {
             originalPrice,
             salePrice,
             category,
+            returnDetails,
+            deliveryDetails,
             metaTitle: metaTitle ? metaTitle : name,
             metaDescription: metaDescription ? metaDescription : description,
             stockQty,
