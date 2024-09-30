@@ -332,7 +332,7 @@ function Product() {
               <div tabIndex={2} className="collapse collapse-plus border-b border-gray-200">
                 <div className="collapse-title text-lg font-bold text-black">Returns</div>
                 <div className="collapse-content">
-                  <p className='text-justify'>{store?.returnDetails}</p>
+                  <p className='text-justify'>{product?.returnDetails}</p>
                 </div>
               </div>
             </div>
