@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { ProductVariants, Tags } from '../../components/Seller';
 import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { useQuill } from 'react-quilljs';
+import ReactQuill from 'react-quill';
 import 'quill/dist/quill.snow.css';
 
 function AddProduct() {
@@ -26,7 +26,6 @@ function AddProduct() {
     stockQty: 0,
     stockStatus: true
   });
-  const { quill, quillRef } = useQuill();
   const [description, setDescription] = useState('')
   const [tags, setTags] = useState([]);
   const [status, setStatus] = useState(true);
@@ -78,24 +77,12 @@ function AddProduct() {
     setImages((prevImages) => ({ ...prevImages, [name]: files[0] }));
   };
 
-  const handleDescription = useCallback(() => {
-    if (quill) {
-      setDescription(quill.root.innerHTML); // Get the HTML content from the editor
-    }
-  }, [quill]);
-
-  useEffect(() => {
-    if (quill) {
-      quill.on('text-change', handleDescription); // Attach text-change event
-    }
-    return () => {
-      if (quill) {
-        quill.off('text-change', handleDescription); // Clean up event listener on component unmount
-      }
-    };
-  }, [quill, handleDescription]);
+  const handleDescription = (e) => {
+    setDescription(e.target.value)
+  }
 
   const handleSubmit = async (e) => {
+    console.log(description)
     e.preventDefault();
     const formData = new FormData();
     Object.keys(product).forEach((key) => formData.append(key, product[key]));
@@ -192,7 +179,39 @@ function AddProduct() {
               </div>
               <div>
                 <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-                <div ref={quillRef} style={{height: "300px"}} /> {/* Quill editor */}
+                {/* Product Description Field (ReactQuill) */}
+                <div className="form-group">
+                  <label htmlFor="productDescription">Product Description</label>
+                  <ReactQuill
+                    value={description}
+                    onChange={setDescription}
+                    placeholder="Enter product description"
+                    modules={{
+                      toolbar: [
+                        [{ header: '1' }, { header: '2' }, { font: [] }],
+                        [{ size: [] }],
+                        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
+                        ['link', 'image'],
+                        ['clean'],
+                      ],
+                    }}
+                    formats={[
+                      'header',
+                      'font',
+                      'size',
+                      'bold',
+                      'italic',
+                      'underline',
+                      'strike',
+                      'blockquote',
+                      'list',
+                      'bullet',
+                      'link',
+                      'image',
+                    ]}
+                  />
+                </div>
               </div>
               <div className='flex gap-3'>
                 <div className='w-full'>
