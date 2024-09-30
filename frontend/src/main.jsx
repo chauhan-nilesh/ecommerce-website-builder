@@ -17,7 +17,8 @@ import {
   AboutUs,
   Pricing,
   TermsAndConditions,
-  ContactForm
+  ContactForm,
+  StorePolicy
 } from "./components/Home/index.js"
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './store/auth.jsx'
@@ -53,7 +54,6 @@ import EditCoupon from './pages/Seller/EditCoupon.jsx'
 import PaymentMethod from './pages/Seller/PaymentMethod.jsx'
 import ControlRoute from './helper/ControlRoute.jsx'
 import BusinessDetails from './components/Home/BusinessDetails.jsx'
-import StorePolicy from './pages/Seller/StorePolicy.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

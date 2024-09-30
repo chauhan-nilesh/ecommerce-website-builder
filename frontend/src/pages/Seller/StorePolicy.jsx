@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
 import { useQuill } from 'react-quilljs'; // QuillJS integration
+import Quill from 'quill';
 import 'quill/dist/quill.snow.css'; // Import Quill editor CSS
 
 function StorePolicy() {
