@@ -183,7 +183,7 @@ function AddProduct() {
                   <ReactQuill
                     value={description}
                     onChange={setDescription}
-                    className='h-[200px] mb-24'
+                    className='h-[200px] mb-28 lg:mb-24'
                     modules={{
                       toolbar: [
                         [{ header: '1' }, { header: '2' }, { font: [] }],
@@ -366,7 +366,7 @@ function AddProduct() {
                   value={product.metaDescription}
                   onChange={handleChange}
                   placeholder="Enter meta description of product"
-                  className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded"
+                  className="w-full h-[200px] px-3 py-2 bg-transparent border border-gray-300 rounded"
                 />
               </div>
             </div>

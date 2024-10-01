@@ -60,7 +60,7 @@ function Quicktable() {
                             <th className='text-slate-900'>Details</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='text-sm'>
                         {orders.map((order, index) => {
                             if (index < 4) {
                                 return <tr key={index}>

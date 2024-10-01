@@ -98,7 +98,7 @@ function CustomizeFooter() {
                     <form onSubmit={handleSubmit} className='grid grid-flow-row'>
                         <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="bio">Write something about your store</label>
                         <textarea
-                            className="textarea textarea-bordered resize-none bg-white mt-1 w-[250px] lg:w-[320px]"
+                            className="textarea textarea-bordered resize-none bg-white mt-1 h-[200px] w-[250px] lg:w-[380px]"
                             name='bio'
                             id='bio'
                             onChange={handleInput}
