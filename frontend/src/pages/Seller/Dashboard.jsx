@@ -32,7 +32,7 @@ function Dashboard() {
   return (
     <>
       <section className='bg-white flex-grow h-full pb-14 lg:pb-8'>
-        <div className='lg:my-5 my-5 mx-3'>
+        <div className='lg:my-10 my-5 lg:mx-4 mx-3'>
           <h2 className='lg:text-3xl text-2xl text-zinc-900 font-extrabold tracking-tight'>Dashboard</h2>
           {/* alert to verify email */}
           <div role="alert" className="alert mt-3 hidden">
@@ -45,28 +45,28 @@ function Dashboard() {
           <div className='grid grid-cols-2 mt-7 gap-5 lg:grid-cols-4 '>
             <div className='bg-white border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
+                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>&#8377;{user?.store?.revenue}</h2>
             </div>
             <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Orders</h3>
+                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Orders</h3>
                 </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.orders?.length}</h2>
             </div>
             <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Customer</h3>
+                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Customer</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.customers?.length}</h2>
             </div>
             <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Products</h3>
+                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Products</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.products?.length}</h2>
