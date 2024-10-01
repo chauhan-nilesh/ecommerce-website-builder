@@ -180,11 +180,10 @@ function AddProduct() {
                 <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
                 {/* Product Description Field (ReactQuill) */}
                 <div className="form-group">
-                  <label htmlFor="productDescription">Product Description</label>
                   <ReactQuill
                     value={description}
                     onChange={setDescription}
-                    placeholder="Enter product description"
+                    className='h-[200px] mb-24'
                     modules={{
                       toolbar: [
                         [{ header: '1' }, { header: '2' }, { font: [] }],

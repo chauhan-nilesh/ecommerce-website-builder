@@ -33,7 +33,7 @@ function Dashboard() {
     <>
       <section className='bg-white flex-grow h-full pb-14 lg:pb-8'>
         <div className='lg:my-5 my-5 mx-3'>
-          <h2 className='lg:text-3xl text-xl text-zinc-900 font-extrabold tracking-tight'>Dashboard</h2>
+          <h2 className='lg:text-3xl text-2xl text-zinc-900 font-extrabold tracking-tight'>Dashboard</h2>
           {/* alert to verify email */}
           <div role="alert" className="alert mt-3 hidden">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -43,30 +43,30 @@ function Dashboard() {
             </div>
           </div>
           <div className='grid grid-cols-2 mt-7 gap-5 lg:grid-cols-4 '>
-            <div className='bg-white shadow-md lg:shadow-sm w-auto rounded-xl p-4'>
+            <div className='bg-white border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
+                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>&#8377;{user?.store?.revenue}</h2>
             </div>
-            <div className='bg-white shadow-md lg:shadow-sm w-auto rounded-xl p-4'>
+            <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Orders</h3>
+                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Orders</h3>
                 </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.orders?.length}</h2>
             </div>
-            <div className='bg-white shadow-md lg:shadow-sm w-auto rounded-xl p-4'>
+            <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Customer</h3>
+                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Customer</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.customers?.length}</h2>
             </div>
-            <div className='bg-white shadow-md lg:shadow-sm w-auto rounded-xl p-4'>
+            <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-xl font-bold overflow-hidden tracking-tighter'>Total Products</h3>
+                <h3 className='lg:text-xl text-lg font-bold overflow-hidden tracking-tighter'>Total Products</h3>
               </div>
               {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.products?.length}</h2>
@@ -74,7 +74,7 @@ function Dashboard() {
           </div>
           {/* <div className='grid grid-rows-2 grid-cols-none lg:grid-rows-none lg:grid-cols-2 gap-5 mt-8'> */}
           <div className='mt-8 gap-4 lg:flex'>
-            <div className='bg-white shadow-md lg:shadow-sm lg:w-full h-fit p-5 rounded-xl'>
+            <div className='bg-white  border-gray-200 border lg:w-full h-fit p-5 rounded-xl'>
               <h2 className='lg:text-3xl text-xl font-bold tracking-tighter'>Store</h2>
               {user.store.logo ? <div className='flex flex-wrap justify-center mt-5'>
                 <img className='h-20' src={user?.store?.logo} alt="store logo" />
@@ -93,7 +93,7 @@ function Dashboard() {
                 </h2>
               </a>
             </div>
-            <div className='bg-white shadow-md lg:shadow-sm w-full h-90 mt-4 lg:mt-0 p-5 rounded-xl'>
+            <div className='bg-white  border-gray-200 border w-full h-90 mt-4 lg:mt-0 p-5 rounded-xl'>
               <h2 className='text-xl lg:text-3xl font-bold mb-3 tracking-tighter'>Recent Orders</h2>
               {user?.store?.orders?.length === 0 ?
                 <div className='w-full h-full flex justify-center'>

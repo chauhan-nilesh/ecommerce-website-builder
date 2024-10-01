@@ -108,13 +108,13 @@ function CustomizeStore() {
               onChange={handleInput}
               value={updateData.name}
               placeholder="Store Name"
-              className="input input-primary text-black bg-transparent w-full max-w-xs"
+              className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
               required
             />
             <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Current Theme Colors</label>
             <div className='flex space-x-3 w-full'>
               <input
-                className='p-1 h-10 w-14 block bg-gray-100 border border-blue-400 cursor-pointer rounded-lg'
+                className='p-1 h-10 w-14 block bg-gray-100 border cursor-pointer rounded-lg'
                 onChange={handleInput}
                 value={updateData.color1}
                 type="color"
@@ -122,7 +122,7 @@ function CustomizeStore() {
                 id="color1"
               />
               <input
-                className='p-1 h-10 w-14 block bg-gray-100 border border-blue-400 cursor-pointer rounded-lg'
+                className='p-1 h-10 w-14 block bg-gray-100 border cursor-pointer rounded-lg'
                 onChange={handleInput}
                 value={updateData.color2}
                 type="color"
@@ -152,7 +152,7 @@ function CustomizeStore() {
                 onChange={handleInput}
                 value={updateData.metaTitle}
                 placeholder="Type store meta title"
-                className="input input-primary text-black bg-transparent w-full max-w-xs"
+                className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
                 required
               />
 
@@ -163,11 +163,11 @@ function CustomizeStore() {
                 onChange={handleInput}
                 value={updateData.metaDescription}
                 placeholder="Give store meta description"
-                className="input input-primary text-black bg-transparent w-full max-w-xs"
+                className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
               />
             </div>
 
-            <button className="btn btn-primary text-white text-lg mt-6 w-28">Save</button>
+            <button className="bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 text-lg mt-6 w-28">Save</button>
           </form>
         </div>
       </div>

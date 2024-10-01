@@ -105,7 +105,7 @@ function CustomizeBanner() {
                 <img className='h-20 border border-gray-500 rounded-lg p-2' src={user.store.favicon} alt="" />
               </>
               : ""} */}
-            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Upload Banner Image</label>
+            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Desktop Banner Image</label>
             <div className="w-32 cursor-pointer">
               <input onChange={e => setBanner(e.target.files[0])} type="file" id="banner" name="banner" accept="image/*" hidden />
               <label htmlFor="banner" className="flex flex-col items-center">
@@ -161,7 +161,7 @@ function CustomizeBanner() {
               </>
               : ""} */}
 
-            <button onClick={handleSubmit} className="btn btn-primary text-lg mt-6 w-28">{uploading ? <span className="loading loading-spinner loading-sm"></span> : "Save"}</button>
+            <button onClick={handleSubmit} className="bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 text-lg mt-6 w-28">{uploading ? <span className="loading loading-spinner loading-sm"></span> : "Save"}</button>
           </form>
         </div>
       </div>

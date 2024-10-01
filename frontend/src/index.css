@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply font-sans; /* Apply Poppins as the default font globally */
+  }
+}
+
 :root{
   background-color: #ffffff;
   color: rgb(8, 8, 8);
