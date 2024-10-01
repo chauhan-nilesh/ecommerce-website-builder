@@ -51,7 +51,7 @@ function UpdatePassword() {
 
         <div className="lg:w-3/4 mt-8 lg:mt-0 h-full">
             <div>
-                <h4 className="lg:ml-8 font-bold text-3xl border-b-4 border-b-black">Update Password</h4>
+                <h4 className="lg:ml-8 font-semibold text-2xl border-b-4 border-b-black">Update Password</h4>
                 <div className='mt-8 lg:ml-8'>
                     <div className='grid grid-flow-row'>
                         <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="email">Your Email Id</label>
@@ -61,7 +61,7 @@ function UpdatePassword() {
                             id="email"
                             value={customerData?.email}
                             placeholder="Store Name"
-                            className="input input-primary text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
+                            className="border px-3 py-3 rounded-lg outline-none text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
                             readOnly
                             disabled
                         />
@@ -76,7 +76,7 @@ function UpdatePassword() {
                         onChange={handleInput}
                         value={changePassword?.oldPassword}
                         placeholder="Old Password"
-                        className="input input-primary text-black bg-transparent w-full max-w-xs"
+                        className="border px-3 py-3 rounded-lg outline-none text-black bg-transparent w-full max-w-xs"
                     />
                     <label className='font-semibold tracking-tight text-zinc-700 text-lg mt-5' htmlFor="newPassword">Enter New Password</label>
                     <input
@@ -86,9 +86,9 @@ function UpdatePassword() {
                         onChange={handleInput}
                         value={changePassword?.newPassword}
                         placeholder="New Password"
-                        className="input input-primary text-black bg-transparent w-full max-w-xs"
+                        className="border px-3 py-3 rounded-lg outline-none text-black bg-transparent w-full max-w-xs"
                     />
-                    <button className="btn btn-primary text-white text-lg mt-6 w-44">Update Password</button>
+                    <button className="btn text-white text-base mt-6 w-full lg:w-56">Update Password</button>
                 </form>
             </div>
         </div>

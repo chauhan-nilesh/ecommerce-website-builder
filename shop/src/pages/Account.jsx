@@ -38,7 +38,7 @@ function Account() {
                 <title>{"Account - " + store.name}</title>
                 <meta name="description" content={store.metaDescription} />
             </Helmet>
-            <h4 className="text-2xl font-bold">Hello {customerData.name},</h4>
+            <h4 className="text-2xl font-semibold truncate">Hello {customerData.name},</h4>
             <div className="lg:flex flex-wrap mt-6">
                 <div className="lg:w-1/4 w-full lg:h-full ">
                     <div className="lg:grid grid-rows-4 h-[26rem] hidden">
