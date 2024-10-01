@@ -202,7 +202,7 @@ function EditProduct() {
                                     id="shortDescription"
                                     name="shortDescription"
                                     required
-                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                    className="w-full h-[150px] px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                                     value={product.shortDescription}
                                     onChange={handleChange}
                                 />
@@ -211,7 +211,6 @@ function EditProduct() {
                                 <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
                                 {/* Product Description Field (ReactQuill) */}
                                 <div className="form-group">
-                                    <label htmlFor="productDescription">Product Description</label>
                                     <ReactQuill
                                         value={description}
                                         onChange={setDescription}

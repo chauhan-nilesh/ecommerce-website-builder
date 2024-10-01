@@ -171,7 +171,7 @@ function AddProduct() {
                   id="shortDescription"
                   name="shortDescription"
                   required
-                  className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full h-[150px] px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   value={product.shortDescription}
                   onChange={handleChange}
                 />
