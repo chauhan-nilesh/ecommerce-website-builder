@@ -15,9 +15,9 @@ function Ordermobile({ orders }) {
                             </div>
                             <div className='p-2 w-2/4'>
                                 <h3 className='font-semibold text-sm text-wrap tracking-tighter truncate'>{order.product.name}</h3>
-                                <p className='text-gray-600'>Qty: {order.product.quantity}</p>
-                                <p className='text-gray-600'>{order.product?.selectColor || order.product?.selectSize || order.product?.selectOther}</p>
-                                <p className='text-gray-600'>Order date: {dateFormat(order.createdAt,"mediumDate")}</p>
+                                <p className='text-gray-600 text-sm'>Qty: {order.product.quantity}</p>
+                                <p className='text-gray-600 text-sm'>{order.product?.selectColor || order.product?.selectSize || order.product?.selectOther}</p>
+                                <p className='text-gray-600 text-xs'>Order date: {dateFormat(order.createdAt,"mediumDate")}</p>
                             </div>
                             <div className='p-2 w-1/4'>
                                 <p className='font-bold text-lg tracking-tighter text-right'>&#8377;{order.product.soldPrice}</p>
