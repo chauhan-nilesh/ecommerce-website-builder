@@ -163,7 +163,7 @@ function CustomizeStore() {
                 onChange={handleInput}
                 value={updateData.metaDescription}
                 placeholder="Give store meta description"
-                className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                className="border outline-none h-[150px] rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
               />
             </div>
 
