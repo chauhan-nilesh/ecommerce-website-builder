@@ -15,6 +15,7 @@ import {
   Checkout,
   CustomerLogin,
   CustomerSignUp,
+  Error,
   Homepage,
   Order,
   OrderPage,
