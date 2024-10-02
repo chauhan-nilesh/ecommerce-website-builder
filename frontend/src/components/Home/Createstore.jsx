@@ -87,7 +87,12 @@ function Createstore() {
                             {storeAvailable ?
                                 <p className='text-green-600 font-semibold'>Store name is available</p>
                                 :
+                                <p>
+                                {storename !== "" ?
                                 <p className='text-red-600 font-semibold'>Store name is already taken</p>
+                                : null
+                                }
+                                </p>
                             }
                             <p className='text-gray-500'>Store link looks like <span className='text-gray-700 font-semibold'>{storename ? storename : "storename"}.{import.meta.env.VITE_HOSTNAME}</span></p>
                         </div>
