@@ -53,15 +53,15 @@ function Account() {
                     </div>
                     <div className='w-full lg:hidden'>
                         <div className='flex gap-2'>
-                            <Link className="text-sm w-1/2 font-semibold p-4 rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
+                            <Link className="text-xs w-1/2 font-semibold p-4 rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
                                 to="/account">Profile</Link>
-                            <Link className="text-sm w-1/2 font-semibold p-4 rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
+                            <Link className="text-xs w-1/2 font-semibold p-4 rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
                                 to="/orders">Orders</Link>
                         </div>
                         <div className='flex gap-2 mt-2'>
-                            <Link className="text-sm w-1/2 font-semibold p-4 rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
+                            <Link className="text-xs w-1/2 font-semibold p-4 text-center rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
                                 to="./update-password">Change Password</Link>
-                            <Link className="text-sm w-1/2 font-semibold p-4 rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
+                            <Link className="text-xs w-1/2 font-semibold p-4 rounded-md bg-slate-200 flex flex-wrap justify-center items-center"
                                 to="/logout">Logout</Link>
                         </div>
                     </div>

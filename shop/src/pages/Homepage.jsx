@@ -43,7 +43,7 @@ function Homepage() {
   return (
     <>
       <Helmet>
-        <title>{store.name}</title>
+        <title>{store.metaTitle}</title>
         <meta name="description" content={store.metaDescription} />
         <meta property="og:title" content={store.metaTitle} />
         <meta property="og:description" content={store.metaDescription} />

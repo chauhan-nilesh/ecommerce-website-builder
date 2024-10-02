@@ -108,7 +108,7 @@ function UserProfile() {
                                 onChange={handleInput}
                                 value={changePassword.oldPassword}
                                 placeholder="Old Password"
-                                className="input input-primary text-black bg-transparent w-full max-w-xs"
+                                className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
                             />
                             <label className='font-semibold tracking-tight text-zinc-700 text-lg mt-5' htmlFor="newPassword">Enter New Password</label>
                             <input
@@ -117,10 +117,10 @@ function UserProfile() {
                                 id="newPassword"
                                 onChange={handleInput}
                                 value={changePassword.newPassword}
-                                placeholder="Old Password"
-                                className="input input-primary text-black bg-transparent w-full max-w-xs"
+                                placeholder="New Password"
+                                className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
                             />
-                            <button className="btn btn-primary text-white text-lg mt-6 w-44">Update Password</button>
+                            <button className="bg-orange-600 text-white py-2 rounded-lg tracking-tight hover:bg-orange-700 mt-6 mb-10 w-44">Update Password</button>
                         </form>
                     </div>
                 </div>
