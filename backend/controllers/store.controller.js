@@ -67,7 +67,7 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
     const { subdomain } = req.body;
     const storeExist = await stores.findOne({ 
         $or: [
-            {storename: subdomain },
+            {subdomain: subdomain },
             {customDomain: subdomain}
         ]
     })
@@ -81,7 +81,7 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
 
     const store = await stores.findOne({
         $or: [
-            {storename: subdomain },
+            {subdomain: subdomain },
             {customDomain: subdomain}
         ]
     }).select("-customers -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret")
@@ -227,7 +227,7 @@ const storeData = asyncHandler(async (req, res) => {
     const { subdomain } = req.params;
     const store = await stores.findOne({ 
         $or: [
-            {storename: subdomain },
+            {subdomain: subdomain },
             {customDomain: subdomain}
         ]
     }).select("-customers -orders -owner -coupon -revenue -storename -password -razorpay -razorpayKeyId -razorpayKeySecret").populate("products categories")

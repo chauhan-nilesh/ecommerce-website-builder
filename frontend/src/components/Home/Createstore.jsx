@@ -7,7 +7,7 @@ function Createstore() {
 
     const [name, setName] = useState("")
     const [storename, setStorename] = useState("")
-    const [checkStatus, setCheckStatus] = useState("")
+    const [storeAvailable, setStoreAvailable] = useState(false)
     const navigate = useNavigate()
     const { userId } = useAuth()
 
@@ -31,8 +31,7 @@ function Createstore() {
                 })
 
                 const responseData = await response.json()
-
-                setCheckStatus(responseData.message)
+                setStoreAvailable(responseData.data)
 
             } catch (error) {
                 console.log(error)
@@ -52,7 +51,7 @@ function Createstore() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ storename, owner: userId, name, subdomain: `${storename}.${window.location.hostname.split('.')[0]}` })
+                body: JSON.stringify({ storename, owner: userId, name, subdomain: `${storename}.${window.location.hostname}` })
             })
 
             const responseData = await response.json()
@@ -85,8 +84,12 @@ function Createstore() {
                         <div className="form-input mt-5 mb-6">
                             <label className='font-bold' htmlFor="storename">Set your Store link</label><br />
                             <input onChange={handleInput} value={storename} className='w-full bg-gray-50 text-xl rounded-md px-4 py-4' type="text" name='storename' id="storename" placeholder=" " />
-                            <p className='text-green-600 font-semibold'>{storename.length > 1 ? checkStatus : ""}</p>
-                            <p className='text-gray-500'>Store link looks like <span className='text-gray-700 font-semibold'>{storename? storename : "storename"}.{import.meta.env.VITE_HOSTNAME}</span></p>
+                            {storeAvailable ?
+                                <p className='text-green-600 font-semibold'>Store name is available</p>
+                                :
+                                <p className='text-red-600 font-semibold'>Store name is already taken</p>
+                            }
+                            <p className='text-gray-500'>Store link looks like <span className='text-gray-700 font-semibold'>{storename ? storename : "storename"}.{import.meta.env.VITE_HOSTNAME}</span></p>
                         </div>
                         <button type="submit"
                             className="bg-black w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-zinc-900 transition duration-200">Create</button>

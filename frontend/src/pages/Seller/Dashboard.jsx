@@ -87,7 +87,7 @@ function Dashboard() {
                   Edit Store
                 </h2>
               </Link>
-              <a href={`https://${user?.store?.subdomain}.${import.meta.env.VITE_HOSTNAME}`}>
+              <a href={`https://${user?.store?.subdomain}`}>
                 <h2 className='text-center mt-2 text-bold bg-orange-600 py-4 rounded-xl font-bold text-white hover:bg-orange-500'>
                   View Store
                 </h2>

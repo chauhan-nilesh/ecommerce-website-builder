@@ -32,13 +32,13 @@ const checkStorenameUnique = async (req, res) => {
         if (existingStore) {
             return res.status(400)
                 .json(
-                    new ApiResponse(400, "", "Store name is already taken")
+                    new ApiResponse(400, false, "Store name is already taken")
                 )
         }
 
         return res.status(200)
             .json(
-                new ApiResponse(200, "", "Store name is available")
+                new ApiResponse(200, true, "Store name is available")
             )
 
     } catch (error) {
