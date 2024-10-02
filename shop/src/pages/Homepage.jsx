@@ -43,7 +43,7 @@ function Homepage() {
   return (
     <>
       <Helmet>
-        <title>{subdomain[0].toUpperCase() + subdomain.slice(1)}</title>
+        <title>{store.name}</title>
         <meta name="description" content={store.metaDescription} />
         <meta property="og:title" content={store.metaTitle} />
         <meta property="og:description" content={store.metaDescription} />
