@@ -8,7 +8,7 @@ export default function Footer() {
   const [color2, setColor2] = useState("#f2f2f2")
   const [loading, setLoading] = useState(true)
 
-  const subdomain = window.location.hostname.split('.')[0];
+  const subdomain = window.location.hostname;
 
   async function getThemeColor() {
     try {

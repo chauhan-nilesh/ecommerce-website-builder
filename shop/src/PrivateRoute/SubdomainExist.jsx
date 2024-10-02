@@ -18,7 +18,6 @@ function SubdomainExist({ children }) {
                         },
                         body: JSON.stringify({ subdomain })
                     })
-
                     const responseData = await response.json();
                     if (responseData.data.store.status === true) {
                         setStore(responseData.data.store)

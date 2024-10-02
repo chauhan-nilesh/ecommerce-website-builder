@@ -70,7 +70,7 @@ function CustomerLogin() {
     const [color2, setColor2] = useState("")
     const [loading, setLoading] = useState(true)
 
-    const subdomain = window.location.hostname.split('.')[0];
+    const subdomain = window.location.hostname;
 
     async function getThemeColor() {
         try {

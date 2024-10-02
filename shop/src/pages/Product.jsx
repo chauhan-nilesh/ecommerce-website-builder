@@ -28,7 +28,7 @@ function Product() {
   const [selectedOriginalPrice, setSelectedOriginalPrice] = useState({});
   const [selectedPrice, setSelectedPrice] = useState({});
 
-  const subdomain = window.location.hostname.split('.')[0];
+  const subdomain = window.location.hostname;
 
   async function getProductData() {
     try {

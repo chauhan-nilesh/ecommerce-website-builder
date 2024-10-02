@@ -70,7 +70,7 @@ function Checkout() {
     ];
 
     async function getStoreData() {
-        const subdomain = window.location.hostname.split('.')[0];
+        const subdomain = window.location.hostname;
         try {
             setLoading(true)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`)

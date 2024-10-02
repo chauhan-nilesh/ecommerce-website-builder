@@ -10,7 +10,7 @@ function Category() {
     const [color2, setColor2] = useState("")
     const [loading, setLoading] = useState(false)
 
-    const subdomain = window.location.hostname.split('.')[0];
+    const subdomain = window.location.hostname;
 
     const getCategoryProducts = async () => {
         try {

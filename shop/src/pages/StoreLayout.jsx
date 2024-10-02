@@ -10,7 +10,7 @@ function StoreLayout() {
   const [error, setError] = useState(null)
   const { setStoreId, storeId } = useCustomerAuth()
 
-  const subdomain = window.location.hostname.split('.')[0];
+  const subdomain = window.location.hostname;
 
 
   useEffect(() => {

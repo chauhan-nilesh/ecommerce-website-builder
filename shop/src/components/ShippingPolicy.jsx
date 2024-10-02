@@ -5,7 +5,7 @@ function ShippingPolicy() {
     const [store, setStore] = useState({})
     const [isLoading, setIsLoading] = useState(true)
 
-    const subdomain = window.location.hostname.split('.')[0];
+    const subdomain = window.location.hostname;
 
     async function getStoreData() {
         try {
