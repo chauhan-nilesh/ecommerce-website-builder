@@ -236,21 +236,21 @@ function DomainSettings() {
                       <div className="mb-6 border-t border-gray-200 pt-4">
                         <h3 className="text-lg font-bold mb-2">Instructions</h3>
                         <p className="text-sm">
-                          <span className='bg-orange-200 px-2 rounded-full'>1</span> Login to your domain provider (GoDaddy, Google Domains, NameCheap, etc.)
+                          <span className='bg-orange-200 px-2 rounded-full'>1</span> Login to your domain provider (GoDaddy, Hostinger, NameCheap, etc.)
                           <br /><br />
                           <span className='bg-orange-200 px-2 rounded-full'>2</span> Locate the page for updating your domain's DNS records. The page might be called something like DNS Management, Name Server Management, or Advanced Settings.
                           <br /><br />
                           <span className='bg-orange-200 px-2 rounded-full'>3</span>
                           Create a new record with:<br />
                           type: <b>A record</b><br />
-                          host, name, or alias, field: <b>@ or leave blank for exact domain name, for subdomain enter any value (store, shop, merch, etc.)</b><br />
-                          target or points to field: <b>20.204.168.64</b>
+                          host, name, or alias, field: <b>@ or leave blank for exact domain name</b><br />
+                          target or points to field: <b>76.76.21.21</b>
                           <br /><br />
                           <span className='bg-orange-200 px-2 rounded-full'>4</span>
                           Add one more record if you are not using subdomain (i.e using apex domain, eg: yourdomain.com)<br />
                           type: <b>A record</b><br />
                           host, name, or alias, field: <b>www</b><br />
-                          target or points to field: <b>20.204.168.64</b><br /><br />
+                          target or points to field: <b>76.76.21.21</b><br /><br />
                           For specific domain providers refer to <a href="https://knowledge.hubspot.com/domains-and-urls/update-your-dns-records" className="text-orange-600" target="_blank" rel="noopener noreferrer">this guide</a>.
                         </p>
                       </div>
