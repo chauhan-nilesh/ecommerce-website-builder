@@ -198,7 +198,7 @@ function DomainSettings() {
                             value={domain}
                             onChange={(e) => setDomain(e.target.value)}
                             className="border border-orange-500 w-full px-3 py-2 rounded bg-transparent focus:outline-none focus:ring-2 focus:ring-orange-500"
-                            placeholder="Your Domain Name"
+                            placeholder="Ex: example.com"
                           />
                           {!isValidDomain(domain) && domain && (
                             <p className="text-orange-500 mt-2">
