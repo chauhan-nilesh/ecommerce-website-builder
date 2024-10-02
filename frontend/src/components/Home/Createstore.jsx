@@ -11,6 +11,8 @@ function Createstore() {
     const navigate = useNavigate()
     const { userId } = useAuth()
 
+    const domain = window.location.hostname
+
     const handleStore = async (e) => {
         setName(e.target.value)
     }
@@ -51,7 +53,7 @@ function Createstore() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ storename, owner: userId, name, subdomain: `${storename}.${window.location.hostname}` })
+                body: JSON.stringify({ storename, owner: userId, name, subdomain: `${storename}.${domain}` })
             })
 
             const responseData = await response.json()
