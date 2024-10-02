@@ -2,6 +2,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { stores } from "../models/store.model.js";
+import nodeMailer from "nodemailer"
 import { users } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
@@ -48,9 +49,9 @@ const createStore = asyncHandler(async (req, res) => {
         )
 })
 
-const businessdetails = asyncHandler(async (req,res) => {
-    const {storename, businessName, category, address, mobileNo} = req.body;
-    const store = await stores.findOneAndUpdate({storename}, {
+const businessdetails = asyncHandler(async (req, res) => {
+    const { storename, businessName, category, address, mobileNo } = req.body;
+    const store = await stores.findOneAndUpdate({ storename }, {
         businessName,
         businessCategory: category,
         address,
@@ -58,17 +59,17 @@ const businessdetails = asyncHandler(async (req,res) => {
     })
 
     return res.status(200)
-    .json(
-        new ApiResponse(200, "", "Business Details Submitted")
-    )
-})  
+        .json(
+            new ApiResponse(200, "", "Business Details Submitted")
+        )
+})
 
 const getCurrentStoreData = asyncHandler(async (req, res) => {
     const { subdomain } = req.body;
-    const storeExist = await stores.findOne({ 
+    const storeExist = await stores.findOne({
         $or: [
-            {subdomain: subdomain },
-            {customDomain: subdomain}
+            { subdomain: subdomain },
+            { customDomain: subdomain }
         ]
     })
 
@@ -81,8 +82,8 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
 
     const store = await stores.findOne({
         $or: [
-            {subdomain: subdomain },
-            {customDomain: subdomain}
+            { subdomain: subdomain },
+            { customDomain: subdomain }
         ]
     }).select("-customers -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret")
 
@@ -119,13 +120,53 @@ const updateStoreName = asyncHandler(async (req, res) => {
         )
 })
 
-const addCustomDomain = asyncHandler(async (req,res) => {
+const addCustomDomain = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { customDomain } = req.body;
 
-    const store = await stores.findByIdAndUpdate(id,{
+    const store = await stores.findByIdAndUpdate(id, {
         customDomain
     })
+
+    if (store) {
+        const emailProvider = nodeMailer.createTransport({
+            service: "gmail",
+            secure: true,
+            port: 465,
+            auth: {
+                user: process.env.OTP_EMAIL_ID,
+                pass: process.env.OTP_EMAIL_PASS
+            },
+            tls: { rejectUnauthorized: false }
+        })
+
+        const receiver = {
+            from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+            to: process.env.ADMIN_EMAIL_ID,
+            subject: "New Custom Domain Registration Request on Eazzy",
+            html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Domain Request</title>
+    </head>
+    <body>
+            Store Name: <b>${store.storename}</b><br>
+            Custom Domain: <b>${store.customDomain}</b>
+            </body>
+            </html>
+            `,
+        }
+
+        emailProvider.sendMail(receiver, (error, emailResponse) => {
+            if (error) {
+                console.log("Something went wrong while sending email to admin")
+            } else {
+                console.log("Email sent successfully to admin")
+            }
+        })
+    }
 
     return res.status(200)
         .json(
@@ -211,8 +252,8 @@ const deleteStore = asyncHandler(async (req, res) => {
 
     const store = await stores.findByIdAndDelete(id).select("-password")
 
-    const user = await users.findByIdAndUpdate(store.owner,{
-        $unset:{
+    const user = await users.findByIdAndUpdate(store.owner, {
+        $unset: {
             store
         }
     })
@@ -225,10 +266,10 @@ const deleteStore = asyncHandler(async (req, res) => {
 
 const storeData = asyncHandler(async (req, res) => {
     const { subdomain } = req.params;
-    const store = await stores.findOne({ 
+    const store = await stores.findOne({
         $or: [
-            {subdomain: subdomain },
-            {customDomain: subdomain}
+            { subdomain: subdomain },
+            { customDomain: subdomain }
         ]
     }).select("-customers -orders -owner -coupon -revenue -storename -password -razorpay -razorpayKeyId -razorpayKeySecret").populate("products categories")
 
