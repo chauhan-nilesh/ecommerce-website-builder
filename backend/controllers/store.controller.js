@@ -71,7 +71,7 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
             {customDomain: subdomain}
         ]
     })
-
+    
     if (!storeExist) {
         return res.status(400)
             .json(
@@ -79,7 +79,12 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
             )
     }
 
-    const store = await stores.findOne({ storename: subdomain }).select("-customers -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret")
+    const store = await stores.findOne({
+        $or: [
+            {storename: subdomain },
+            {customDomain: subdomain}
+        ]
+    }).select("-customers -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret")
 
     return res.status(200)
         .json(
