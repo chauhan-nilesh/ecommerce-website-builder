@@ -5,7 +5,7 @@ function SubdomainExist({ children }) {
     const [loading, setLoading] = useState(true)
     const [store, setStore] = useState("")
 
-    const subdomain = window.location.hostname.split('.')[0];
+    const subdomain = window.location.hostname;
     
     useEffect(() => {
         try {
