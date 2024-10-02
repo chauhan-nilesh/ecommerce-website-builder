@@ -52,7 +52,7 @@ function Createstore() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ storename, owner: userId, name, subdomain: `${storename}` })
+                body: JSON.stringify({ storename, owner: userId, name, subdomain: `${storename}.${window.location.hostname.split('.')[0]}` })
             })
 
             const responseData = await response.json()

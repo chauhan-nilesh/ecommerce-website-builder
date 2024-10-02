@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+    addCustomDomain,
     addUpi,
     businessdetails,
     changeCodStatus,
@@ -27,6 +28,8 @@ router.route("/create-store").post(createStore)
 router.route("/businessdetails").post(businessdetails)
 
 router.route("/data").post(getCurrentStoreData)
+
+router.route("/add-domain/:id").patch(addCustomDomain)
 
 router.route("/update/basic/:id").patch(verifyJwt, updateStoreName)
 

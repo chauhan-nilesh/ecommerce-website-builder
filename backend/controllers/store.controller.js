@@ -71,7 +71,7 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
             {customDomain: subdomain}
         ]
     })
-    
+
     if (!storeExist) {
         return res.status(400)
             .json(
@@ -116,6 +116,20 @@ const updateStoreName = asyncHandler(async (req, res) => {
     return res.status(200)
         .json(
             new ApiResponse(200, store, "Store data updated successfully")
+        )
+})
+
+const addCustomDomain = asyncHandler(async (req,res) => {
+    const { id } = req.params;
+    const { customDomain } = req.body;
+
+    const store = await stores.findByIdAndUpdate(id,{
+        customDomain
+    })
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, store, "Domain Added Successfully")
         )
 })
 
@@ -399,6 +413,7 @@ export {
     createStore,
     businessdetails,
     getCurrentStoreData,
+    addCustomDomain,
     updateStoreName,
     updateSocial,
     updatePolicies,
