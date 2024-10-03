@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from './Header';
-import Footer from './Footer';
+import { Footer, Header } from '../components'
 import { Outlet } from 'react-router-dom';  // Import Outlet from react-router-dom
 
 export default function StoreLayout() {
@@ -17,9 +16,9 @@ export default function StoreLayout() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`);
       if (!response.ok) throw new Error('Failed to fetch store data');
       const data = await response.json();
-      setStore(data.data);
-      setColor1(data.data.themeColorOne || "#000000");
-      setColor2(data.data.themeColorTwo || "#f2f2f2");
+      setStore(data?.data);
+      setColor1(data?.data?.themeColorOne || "#000000");
+      setColor2(data?.data?.themeColorTwo || "#f7f7f7");
     } catch (error) {
       console.error('Error fetching store data:', error);
     } finally {
