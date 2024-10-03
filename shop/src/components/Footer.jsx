@@ -36,10 +36,10 @@ export default function Footer({ store, color1, color2 }) {
             <h3 className="tracking-tight uppercase text-base font-bold" style={{ color: color1 }}>Company</h3>
             <ul className="space-y-1 tracking-tight text-base" style={{ color: color1 }}>
               <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="/shipping-policy">Shipping policy</a>
+                <Link to="/shipping-policy">Shipping policy</Link>
               </li>
               <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="/return-policy">Return & replacement policy</a>
+                <Link to="/return-policy">Return & Replacement policy</Link>
               </li>
               {/* <li className="hover:brightness-150">
                 <a rel="noopener noreferrer" href="/term-condition">Terms & condition</a>
