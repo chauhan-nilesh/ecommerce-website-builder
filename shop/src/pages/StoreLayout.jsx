@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Footer, Header } from '../components'
 import { Outlet } from 'react-router-dom';
+import { useCustomerAuth } from '../store/customerAuth';
 
 export default function StoreLayout() {
   const [store, setStore] = useState({});
   const [color1, setColor1] = useState("#000000");
   const [color2, setColor2] = useState("#f2f2f2");
+  const { setStoreId } = useCustomerAuth();
   const [loading, setLoading] = useState(true);
 
   const subdomain = window.location.hostname;
@@ -17,6 +19,7 @@ export default function StoreLayout() {
       if (!response.ok) throw new Error('Failed to fetch store data');
       const data = await response.json();
       setStore(data.data);
+      setStoreId(data.data._id);
       setColor1(data.data.themeColorOne || "#000000");
       setColor2(data.data.themeColorTwo || "#f2f2f2");
     } catch (error) {

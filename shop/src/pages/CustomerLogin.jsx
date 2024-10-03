@@ -5,10 +5,15 @@ import { useCustomerAuth } from '../store/customerAuth'
 
 function CustomerLogin() {
     const { customerTokenInLS,setCustomerData, storeId } = useCustomerAuth()
+    const [store, setStore] = useState({})
+    const [color1, setColor1] = useState("")
+    const [color2, setColor2] = useState("")
+    const [loading, setLoading] = useState(true)
+
+    const subdomain = window.location.hostname;
     const [user, setUser] = useState({
         email: "",
-        password: "",
-        storeid: storeId
+        password: ""
     })
     const navigate = useNavigate()
 
@@ -30,7 +35,10 @@ function CustomerLogin() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(user)
+                body: JSON.stringify({
+                    ...user,
+                    storeid: store._id
+                })
             })
 
             setUser({
@@ -63,14 +71,6 @@ function CustomerLogin() {
             console.log(error)
         }
     }
-
-
-    const [store, setStore] = useState({})
-    const [color1, setColor1] = useState("")
-    const [color2, setColor2] = useState("")
-    const [loading, setLoading] = useState(true)
-
-    const subdomain = window.location.hostname;
 
     async function getThemeColor() {
         try {
