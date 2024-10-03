@@ -85,7 +85,7 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
             { subdomain: subdomain },
             { customDomain: subdomain }
         ]
-    }).select("-customers -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret")
+    }).select("-customers -address -businessName -businessCategory -phoneNo -updatedAt -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret")
 
     return res.status(200)
         .json(
@@ -271,7 +271,7 @@ const storeData = asyncHandler(async (req, res) => {
             { subdomain: subdomain },
             { customDomain: subdomain }
         ]
-    }).select("-customers -orders -owner -coupon -revenue -storename -password -razorpay -razorpayKeyId -razorpayKeySecret").populate("products categories")
+    }).select("-customers -address -businessName -businessCategory -phoneNo -updatedAt -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret").populate("products categories")
 
     return res.status(200)
         .json(

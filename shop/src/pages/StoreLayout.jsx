@@ -1,63 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import { Footer, Header } from '../components'
-import { useCustomerAuth } from '../store/customerAuth'
-import changeFavicon from '../Hooks/changeFavicon'
+import React, { useEffect, useState } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import { Outlet } from 'react-router-dom';  // Import Outlet from react-router-dom
 
-function StoreLayout() {
-
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const { setStoreId, storeId } = useCustomerAuth()
+export default function StoreLayout() {
+  const [store, setStore] = useState({});
+  const [color1, setColor1] = useState("#000000");
+  const [color2, setColor2] = useState("#f2f2f2");
+  const [loading, setLoading] = useState(true);
 
   const subdomain = window.location.hostname;
 
+  const getThemeColor = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`);
+      if (!response.ok) throw new Error('Failed to fetch store data');
+      const data = await response.json();
+      setStore(data.data);
+      setColor1(data.data.themeColorOne || "#000000");
+      setColor2(data.data.themeColorTwo || "#f2f2f2");
+    } catch (error) {
+      console.error('Error fetching store data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    try {
-      setLoading(true)
-        ; (async () => {
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/data`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ subdomain })
-          })
+    getThemeColor();
+  }, []);
 
-          const responseData = await response.json();
-          
-          changeFavicon(responseData.data.store?.favicon)
+  if (loading) return <div>Loading...</div>;
 
-          setLoading(false)
-          if (response.ok) {
-            setStoreId(responseData.data.store._id)
-          }
-
-        })()
-
-    } catch (error) {
-      setError(error)
-      setLoading(false)
-    }
-
-  }, [])
-
-  if (loading) {
-    return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
-  }
-
-  if (error) {
-    return <h1>Error: {error}</h1>
-  }
   return (
-
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  )
+    <div>
+      <Header store={store} color1={color1} color2={color2} />
+      
+      {/* Instead of {children}, use <Outlet /> to render nested routes */}
+      <main>
+        <Outlet />  
+      </main>
+      
+      <Footer store={store} color1={color1} color2={color2} />
+    </div>
+  );
 }
-
-export default StoreLayout
