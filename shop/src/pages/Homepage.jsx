@@ -1,44 +1,15 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react'
-import { ProductCard, Category, Banner } from "../components"
+import React from 'react';
+import { ProductCard, Category, Banner } from "../components";
 import { Helmet } from "react-helmet";
-import LazyLoadingPage from '../components/LazyLoadingPage'
+import LazyLoadingPage from '../components/LazyLoadingPage';
+import { useOutletContext } from 'react-router-dom';
 
 function Homepage() {
-  const [store, setStore] = useState({})
-  const [products, setProducts] = useState({})
-  const [color1, setColor1] = useState("")
-  const [color2, setColor2] = useState("")
-  const [loading, setLoading] = useState(true)
+  const { store, color1, color2, products } = useOutletContext(); // Access context passed from StoreLayout
 
-  const subdomain = window.location.hostname;
-
-  async function getStoreData() {
-    try {
-      setLoading(true)
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`)
-      const responseData = await response.json()
-      if (response.ok) {
-        setStore(responseData.data)
-        setProducts(responseData.data.products)
-        setColor1(responseData.data.themeColorOne)
-        setColor2(responseData.data.themeColorTwo)
-      }
-      setLoading(false)
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
+  if (!store || !products) {
+    return <LazyLoadingPage />;
   }
-
-  useEffect(() => {
-    getStoreData()
-  }, [])
-
-
-  if (loading) {
-    return <LazyLoadingPage />
-  }
-
 
   return (
     <>
@@ -50,11 +21,14 @@ function Homepage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={window.location.hostname} />
       </Helmet>
-      <Banner />
+
+      <Banner store={store} color1={color1} color2={color2} />
+      
       {store.hideCategory === false ?
         <Category categories={store?.categories} />
         : null
       }
+
 
       {/* New Arrivals */}
       <div className="bg-white">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Footer, Header } from '../components'
-import { Outlet } from 'react-router-dom';  // Import Outlet from react-router-dom
+import { Outlet } from 'react-router-dom';
 
 export default function StoreLayout() {
   const [store, setStore] = useState({});
@@ -16,9 +16,9 @@ export default function StoreLayout() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`);
       if (!response.ok) throw new Error('Failed to fetch store data');
       const data = await response.json();
-      setStore(data?.data);
-      setColor1(data?.data?.themeColorOne || "#000000");
-      setColor2(data?.data?.themeColorTwo || "#f7f7f7");
+      setStore(data.data);
+      setColor1(data.data.themeColorOne || "#000000");
+      setColor2(data.data.themeColorTwo || "#f2f2f2");
     } catch (error) {
       console.error('Error fetching store data:', error);
     } finally {
@@ -35,10 +35,10 @@ export default function StoreLayout() {
   return (
     <div>
       <Header store={store} color1={color1} color2={color2} />
-      
-      {/* Instead of {children}, use <Outlet /> to render nested routes */}
+
+      {/* Pass store, products, and colors to child components via Outlet */}
       <main>
-        <Outlet />  
+        <Outlet context={{ store, color1, color2, products: store.products }} />
       </main>
       
       <Footer store={store} color1={color1} color2={color2} />
