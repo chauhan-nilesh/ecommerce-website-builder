@@ -20,7 +20,6 @@ export default function StoreLayout() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`);
       if (!response.ok) throw new Error('Failed to fetch store data');
       const data = await response.json();
-      changeFavicon(data.data.store?.favicon);
       setStore(data.data);
       setStoreId(data.data._id);
       setColor1(data.data.themeColorOne || "#000000");
@@ -35,7 +34,8 @@ export default function StoreLayout() {
   useEffect(() => {
     getThemeColor();
   }, []);
-  console.log(store.favicon)
+
+  changeFavicon(store.favicon);
 
   if (loading) return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
 
