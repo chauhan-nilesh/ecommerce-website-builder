@@ -19,7 +19,7 @@ export default function StoreLayout() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`);
       if (!response.ok) throw new Error('Failed to fetch store data');
       const data = await response.json();
-      changeFavicon(data.data.store?.favicon);
+      changeFavicon(data.data.store.favicon);
       setStore(data.data);
       setStoreId(data.data._id);
       setColor1(data.data.themeColorOne || "#000000");
