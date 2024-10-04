@@ -1,13 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCustomerAuth } from '../store/customerAuth'
 import toast from 'react-hot-toast';
 
 function UpdatePassword() {
-    const { customerData, customerToken, loading } = useCustomerAuth()
+    const [loading, setLoading] = useState(true)
+    const [customerData, setCustomerData] = useState({})
+    const [customerToken, setCustomerToken] = useState(localStorage.getItem("customerToken"))
     const [changePassword, setChangePassword] = useState({
         oldPassword: "",
         newPassword: ""
     })
+
+    const customerAuthentication = async () => {
+        try {
+            setLoading(true)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/current-customer`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${customerToken}`
+                }
+            })
+
+            if(response.ok){
+                const data = await response.json();
+                setCustomerData(data.data)
+                setLoading(false)
+            } else {
+                setLoading(false)
+            }
+        } catch (error) {
+            console.log("Error while fetching customer data")
+        }
+    }
+
+    useEffect(()=> {
+        if(customerToken){
+            customerAuthentication()
+        }
+    },[])
 
     const handleInput = (e) => {
         const { name, value } = e.target;
