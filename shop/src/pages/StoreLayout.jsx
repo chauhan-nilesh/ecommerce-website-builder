@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Footer, Header } from '../components'
 import { Outlet } from 'react-router-dom';
+import changeFavicon from '../Hooks/changeFavicon'
 import { useCustomerAuth } from '../store/customerAuth';
 
 export default function StoreLayout() {
@@ -18,6 +19,7 @@ export default function StoreLayout() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/subdomain/${subdomain}`);
       if (!response.ok) throw new Error('Failed to fetch store data');
       const data = await response.json();
+      changeFavicon(data.data.store?.favicon);
       setStore(data.data);
       setStoreId(data.data._id);
       setColor1(data.data.themeColorOne || "#000000");
