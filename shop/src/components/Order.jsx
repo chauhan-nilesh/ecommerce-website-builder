@@ -7,12 +7,42 @@ import { Helmet } from 'react-helmet'
 import { Dialog, Transition } from '@headlessui/react'
 
 function Order() {
-    const { customerData, loading } = useCustomerAuth()
     let [isOpen, setIsOpen] = useState(false)
     const [orders, setOrders] = useState([])
     const [canceling, setCanceling] = useState(false)
     const [cancelOrderId, setCancelOrderId] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+
+    const [loading, setLoading] = useState(true)
+    const [customerData, setCustomerData] = useState({})
+    const [customerToken, setCustomerToken] = useState(localStorage.getItem("customerToken"))
+
+    const [store, setStore] = useState({})
+    const [metaLoading, setMetaLoading] = useState(true)
+
+    const subdomain = window.location.hostname;
+
+    const customerAuthentication = async () => {
+        try {
+            setLoading(true)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/current-customer`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${customerToken}`
+                }
+            })
+
+            if(response.ok){
+                const data = await response.json();
+                setCustomerData(data.data)
+                setLoading(false)
+            } else {
+                setLoading(false)
+            }
+        } catch (error) {
+            console.log("Error while fetching customer data")
+        }
+    }
 
     const getAllOrders = async () => {
         setIsLoading(true)
@@ -29,11 +59,6 @@ function Order() {
             setIsLoading(false)
         }
     }
-
-    const [store, setStore] = useState({})
-    const [metaLoading, setMetaLoading] = useState(true)
-
-    const subdomain = window.location.hostname;
 
     async function getStoreData() {
         try {
@@ -52,6 +77,9 @@ function Order() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if(customerToken){
+            customerAuthentication()
+        }
         getStoreData()
         getAllOrders()
     }, [])
