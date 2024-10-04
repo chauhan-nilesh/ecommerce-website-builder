@@ -35,6 +35,7 @@ export default function StoreLayout() {
   useEffect(() => {
     getThemeColor();
   }, []);
+  console.log(store.favicon)
 
   if (loading) return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
 
