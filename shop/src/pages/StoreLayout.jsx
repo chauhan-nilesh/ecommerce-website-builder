@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Footer, Header } from '../components'
 import { Outlet } from 'react-router-dom';
-import changeFavicon from '../Hooks/changeFavicon'
+import changeFavicon from '../Hooks/changeFavicon';
+import LazyLoadingPage from '../components/LazyLoadingPage';
 import { useCustomerAuth } from '../store/customerAuth';
 
 export default function StoreLayout() {
