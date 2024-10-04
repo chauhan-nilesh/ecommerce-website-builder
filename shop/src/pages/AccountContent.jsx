@@ -3,7 +3,9 @@ import { useCustomerAuth } from '../store/customerAuth';
 import toast from 'react-hot-toast';
 
 function AccountContent() {
-    const { customerData, customerToken, loading } = useCustomerAuth()
+    const [loading, setLoading] = useState(true)
+    const [customerData, setCustomerData] = useState({})
+    const [customerToken, setCustomerToken] = useState(localStorage.getItem("customerToken"))
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -15,15 +17,40 @@ function AccountContent() {
         pinCode: ''
     });
 
+    const customerAuthentication = async () => {
+        try {
+            setLoading(true)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/current-customer`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${customerToken}`
+                }
+            })
+
+            if(response.ok){
+                const data = await response.json();
+                setCustomerData(data.data)
+                setFormData({
+                    name: data.data?.name,
+                    email: data.data?.email,
+                    phone: data.data?.phoneNo,
+                    address: data.data?.address,
+                    state: data.data?.state,
+                    pinCode: data.data?.pinCode
+                })
+                setLoading(false)
+            } else {
+                setLoading(false)
+            }
+        } catch (error) {
+            console.log("Error while fetching customer data")
+        }
+    }
+
     useEffect(() => {
-        setFormData({
-            name: customerData?.name,
-            email: customerData?.email,
-            phone: customerData?.phoneNo,
-            address: customerData?.address,
-            state: customerData?.state,
-            pinCode: customerData?.pinCode
-        })
+        if(customerToken){
+            customerAuthentication()
+        }
     }, [])
 
     const handleInputChange = (e) => {
