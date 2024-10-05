@@ -321,17 +321,7 @@ function Orders() {
                     Mark the item as accepted
                   </Dialog.Title>
                   <div className="mt-3">
-                    <label className="flex items-center space-x-3">
-                      <input
-                        type="radio"
-                        value="withInputs"
-                        checked={selectedOption === 'withInputs'}
-                        onChange={handleOptionChange}
-                        className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
-                      />
-                      <span className="text-gray-700 text-lg">Fulfill with delivery tracking</span>
-                    </label>
-
+                  
                     <label className="flex items-center space-x-3">
                       <input
                         type="radio"
@@ -342,6 +332,18 @@ function Orders() {
                       />
                       <span className="text-gray-700 text-lg">Fulfill without delovery tracking</span>
                     </label>
+                    <br /><br />
+                    <label className="flex items-center space-x-3">
+                      <input
+                        type="radio"
+                        value="withInputs"
+                        checked={selectedOption === 'withInputs'}
+                        onChange={handleOptionChange}
+                        className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
+                      />
+                      <span className="text-gray-700 text-lg">Fulfill with delivery tracking</span>
+                    </label>
+                    
                     {selectedOption === 'withInputs' && (
                       <>
                         <p className="text-md mt-2 font-semibold tracking-tight text-slate-900">
