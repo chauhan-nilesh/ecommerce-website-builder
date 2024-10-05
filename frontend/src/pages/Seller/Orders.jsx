@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Ordermobile } from '../../components/Seller'
 import { useAuth } from '../../store/auth'
 import { Link } from 'react-router-dom'
 import dateFormat from "dateformat";
+import { Dialog, Transition } from '@headlessui/react'
 
 function Orders() {
   const { token } = useAuth();
@@ -140,7 +141,8 @@ function openModal(orderId) {
                         <p className='font-bold trac'>{"Rs. "+order?.product?.salePrice}</p>
                       </td>
                       <td className="p-3 text-base tracking-tight">
-                        <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;<button className='bg-red-600 text-white  px-3 py-2'>Reject</button>
+                        <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
+                        <button className='bg-red-600 text-white  px-3 py-2'>Reject</button>
                       </td>
                     </tr>
                   ))}
