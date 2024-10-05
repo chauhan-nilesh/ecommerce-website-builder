@@ -202,8 +202,8 @@ function Orders() {
                       </td>
                       {order?.status === 'pending' ?
                         <td className="p-3 text-base tracking-tight">
-                          <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
-                          <button onClick={(e) => openAcceptModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
+                          <button onClick={(e) => openAcceptModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
+                          <button onClick={(e) => openModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
                         </td>
                         :
                         <td className="p-3 text-base tracking-tight">
