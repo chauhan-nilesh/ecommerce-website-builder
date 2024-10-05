@@ -86,7 +86,7 @@ const loginCustomer = asyncHandler(async (req,res) => {
 })
 
 const getCurrentCustomer = asyncHandler(async (req,res) => {
-    const customer = await customers.findById(req.customer._id).select("-password")
+    const customer = await customers.findById(req.customer._id).select("-password").populate("orders")
     
     return res.status(200)
         .json(

@@ -35,28 +35,13 @@ function Order() {
             if(response.ok){
                 const data = await response.json();
                 setCustomerData(data.data)
+                setOrders(data.data.orders)
                 setLoading(false)
             } else {
                 setLoading(false)
             }
         } catch (error) {
             console.log("Error while fetching customer data")
-        }
-    }
-
-    const getAllOrders = async () => {
-        setIsLoading(true)
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/all-orders/${customerData._id}`)
-
-            if (response.ok) {
-                const responseData = await response.json()
-                setOrders(responseData.data)
-            }
-            setIsLoading(false)
-        } catch (error) {
-            console.error(error)
-            setIsLoading(false)
         }
     }
 
@@ -79,9 +64,8 @@ function Order() {
         window.scrollTo(0, 0);
         if(customerToken){
             customerAuthentication()
-            getStoreData()
-            getAllOrders()
         }
+        getStoreData()
     }, [])
 
     function closeModal() {
