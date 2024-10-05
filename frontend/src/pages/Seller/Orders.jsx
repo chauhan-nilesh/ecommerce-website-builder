@@ -342,7 +342,7 @@ function Orders() {
                     </label>
                     {selectedOption === 'withInputs' && (
                       <>
-                        <p className="text-md mt-2 tracking-tight text-slate-900">
+                        <p className="text-md mt-2 font-semibold tracking-tight text-slate-900">
                           Delivery Tracking Details
                         </p>
                         <input
