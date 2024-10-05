@@ -58,7 +58,7 @@ function Orders() {
     setOrderStatusId(orderId)
   }
 
-  const changeOrderStatus = async (e) => {
+  const changeOrderStatus = async (id) => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/update-status/${id}`, {
             method: "PATCH",
