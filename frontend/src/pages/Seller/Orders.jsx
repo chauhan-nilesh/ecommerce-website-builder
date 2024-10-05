@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import dateFormat from "dateformat";
 
 function Orders() {
-  const { token } = useAuth()
+  const { token } = useAuth();
+  let [isOpen, setIsOpen] = useState(false)
   const [orders, setOrders] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -44,6 +45,15 @@ function Orders() {
   useEffect(() => {
     getAllOrders()
   }, [])
+
+
+  function closeModal() {
+    setIsOpen(false)
+}
+
+function openModal(orderId) {
+    setIsOpen(true)
+}
 
   if (isLoading) {
     return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
@@ -130,7 +140,7 @@ function Orders() {
                         <p className='font-bold trac'>{"Rs. "+order?.product?.salePrice}</p>
                       </td>
                       <td className="p-3 text-base tracking-tight">
-                        <button className='bg-green-600 px-3 py-2'>Accept</button>&nbsp;&nbsp;<button className='bg-red-600 px-3 py-2'>Reject</button>
+                        <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;<button className='bg-red-600 text-white  px-3 py-2'>Reject</button>
                       </td>
                     </tr>
                   ))}
@@ -140,6 +150,66 @@ function Orders() {
           </div>
         </>
       }
+      <Transition appear show={isOpen} as={Fragment}>
+                <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-black/25" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center p-4 text-center">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                    <Dialog.Title
+                                        as="h3"
+                                        className="text-xl font-medium leading-6 text-gray-900"
+                                    >
+                                        Are you sure?
+                                    </Dialog.Title>
+                                    <div className="mt-2">
+                                        <p className="text-md tracking-tight text-gray-500">
+                                            You want to cancel the order
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-4 flex float-end space-x-2">
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                            onClick={closeModal}
+                                        >
+                                            Close
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                                            onClick={(e) => handleCancelOrder(cancelOrderId)}
+                                        >
+                                            Cancel order
+                                        </button>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
 
     </section >
   )
