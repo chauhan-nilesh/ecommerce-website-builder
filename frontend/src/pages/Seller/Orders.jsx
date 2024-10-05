@@ -327,7 +327,6 @@ function Orders() {
                         value="withInputs"
                         checked={selectedOption === 'withInputs'}
                         onChange={handleOptionChange}
-                        defaultChecked
                       />
                       Fulfill with delivery tracking
                     </label>
