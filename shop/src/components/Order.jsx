@@ -79,9 +79,9 @@ function Order() {
         window.scrollTo(0, 0);
         if(customerToken){
             customerAuthentication()
+            getStoreData()
+            getAllOrders()
         }
-        getStoreData()
-        getAllOrders()
     }, [])
 
     function closeModal() {
