@@ -7,16 +7,16 @@ import { Dialog, Transition } from '@headlessui/react';
 
 function Orders() {
   const { token } = useAuth();
-  let [isOpen, setIsOpen] = useState(false)
-  let [openAccept, setOpenAccept] = useState(false)
-  const [orders, setOrders] = useState([])
-  const [orderStatusId, setOrderStatusId] = useState('')
+  let [isOpen, setIsOpen] = useState(false);
+  let [openAccept, setOpenAccept] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [orderStatusId, setOrderStatusId] = useState('');
   const [selectedOption, setSelectedOption] = useState(false);
   const [tracking, setTracking] = useState({
     trackingId: '',
     trackingUrl: ''
-  })
-  const [isLoading, setIsLoading] = useState(true)
+  });
+  const [isLoading, setIsLoading] = useState(true);
 
   const getAllOrders = async () => {
     try {
