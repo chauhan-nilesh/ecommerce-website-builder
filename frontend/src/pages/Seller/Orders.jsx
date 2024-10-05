@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Ordermobile } from '../../components/Seller'
-import { useAuth } from '../../store/auth'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useEffect, useState } from 'react';
+import { Ordermobile } from '../../components/Seller';
+import { useAuth } from '../../store/auth';
+import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react';
 
 function Orders() {
   const { token } = useAuth();
