@@ -11,7 +11,7 @@ function Orders() {
   let [openAccept, setOpenAccept] = useState(false)
   const [orders, setOrders] = useState([])
   const [orderStatusId, setOrderStatusId] = useState('')
-  const [selectedOption, setSelectedOption] = useState('none');
+  const [selectedOption, setSelectedOption] = useState('withInputs');
   const [tracking, setTracking] = useState({
     trackingId: '',
     trackingUrl: ''
@@ -321,24 +321,26 @@ function Orders() {
                     Mark the item as accepted
                   </Dialog.Title>
                   <div className="mt-3">
-                    <label>
+                    <label className="flex items-center space-x-3">
                       <input
                         type="radio"
                         value="withInputs"
                         checked={selectedOption === 'withInputs'}
                         onChange={handleOptionChange}
+                        className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
                       />
-                      Fulfill with delivery tracking
+                      <span className="text-gray-700 text-lg">Fulfill with delivery tracking</span>
                     </label>
-                    <br />
-                    <label>
+
+                    <label className="flex items-center space-x-3">
                       <input
                         type="radio"
                         value="none"
                         checked={selectedOption === 'none'}
                         onChange={handleOptionChange}
+                        className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
                       />
-                      Fulfill without delovery tracking
+                      <span className="text-gray-700 text-lg">Fulfill without delovery tracking</span>
                     </label>
                     {selectedOption === 'withInputs' && (
                       <>
