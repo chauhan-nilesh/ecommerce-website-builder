@@ -33,6 +33,7 @@ import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
 import Category from './pages/Category.jsx'
 import PaymentSuccess from './pages/PaymentSuccess.jsx'
+import OrderSuccess from './pages/OrderSuccess.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -58,6 +59,7 @@ const router = createBrowserRouter(
             <Checkout />
           </CustomerPrivateRoute>
         } />
+        <Route path='order-success' element={<OrderSuccess />} />
         <Route path='account' element={
           <CustomerPrivateRoute>
             <Account />

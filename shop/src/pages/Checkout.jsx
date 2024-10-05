@@ -274,7 +274,7 @@ function Checkout() {
                         pinCode: "",
                         paymentMethod: ""
                     })
-                    navigate("/orders")
+                    navigate("/order-success")
                 } else {
                     toast.error(responseData.message)
                 }
@@ -338,7 +338,7 @@ function Checkout() {
                                 onChange={handleInput}
                                 value={billingDetails.phoneNo}
                                 className="w-full rounded-md border border-gray-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                                placeholder="Enter your name"
+                                placeholder="Enter your phone no."
                                 required
                             />
                         </div>
