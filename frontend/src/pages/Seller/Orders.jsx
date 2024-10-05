@@ -315,7 +315,7 @@ function Orders() {
                   >
                     Mark the item as accepted
                   </Dialog.Title>
-                  <div className="mt-2">
+                  <div className="mt-3">
                     <p className="text-md tracking-tight text-slate-900">
                       Delivery Tracking Details
                     </p>
@@ -326,7 +326,7 @@ function Orders() {
                       onChange={handleInput}
                       value={tracking.trackingId}
                       placeholder="Enter Tracking ID"
-                      className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                      className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
                     />
                     <input
                       type="text"
@@ -335,7 +335,7 @@ function Orders() {
                       onChange={handleInput}
                       value={tracking.trackingUrl}
                       placeholder="Enter Tracking Page URL"
-                      className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                      className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
                     />
                   </div>
 
