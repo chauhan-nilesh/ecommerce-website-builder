@@ -67,7 +67,7 @@ function Orders() {
   }
 
   function openModal(orderId) {
-    setOpenAccept(true)
+    setIsOpen(true)
     setOrderStatusId(orderId)
   }
 
