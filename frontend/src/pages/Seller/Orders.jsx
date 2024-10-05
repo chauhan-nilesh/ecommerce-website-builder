@@ -11,7 +11,7 @@ function Orders() {
   let [openAccept, setOpenAccept] = useState(false)
   const [orders, setOrders] = useState([])
   const [orderStatusId, setOrderStatusId] = useState('')
-  const [selectedOption, setSelectedOption] = useState('withInputs');
+  const [selectedOption, setSelectedOption] = useState(false);
   const [tracking, setTracking] = useState({
     trackingId: '',
     trackingUrl: ''
@@ -325,12 +325,12 @@ function Orders() {
                     <label className="flex items-center space-x-3">
                       <input
                         type="radio"
-                        value="none"
-                        checked={selectedOption === 'none'}
+                        value={false}
+                        checked={selectedOption === false}
                         onChange={handleOptionChange}
                         className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
                       />
-                      <span className="text-gray-700 text-lg">Fulfill without delovery tracking</span>
+                      <span className="text-gray-700 text-lg">Fulfill without delivery tracking</span>
                     </label>
                     
                     <br /><br />
@@ -338,15 +338,15 @@ function Orders() {
                     <label className="flex items-center space-x-3">
                       <input
                         type="radio"
-                        value="withInputs"
-                        checked={selectedOption === 'withInputs'}
+                        value={true}
+                        checked={selectedOption === true}
                         onChange={handleOptionChange}
                         className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
                       />
                       <span className="text-gray-700 text-lg">Fulfill with delivery tracking</span>
                     </label>
                     
-                    {selectedOption === 'withInputs' && (
+                    {selectedOption && (
                       <>
                         <p className="text-md mt-2 font-semibold tracking-tight text-slate-900">
                           Delivery Tracking Details
