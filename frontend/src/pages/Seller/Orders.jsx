@@ -9,6 +9,7 @@ function Orders() {
   const { token } = useAuth();
   let [isOpen, setIsOpen] = useState(false)
   const [orders, setOrders] = useState([])
+  const [orderStatusId, setOrderStatusId] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
   const getAllOrders = async () => {
@@ -54,7 +55,30 @@ function Orders() {
 
   function openModal(orderId) {
     setIsOpen(true)
+    setOrderStatusId(orderId)
   }
+
+  const changeOrderStatus = async (e) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/update-status/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ status: 'rejected' })
+        })
+
+        const responseData = await response.json()
+        if (response.ok) {
+            toast.success(responseData.message)
+        } else {
+            toast.error(responseData.message)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
   if (isLoading) {
     return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
@@ -201,7 +225,7 @@ function Orders() {
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                      onClick={(e) => handleCancelOrder(cancelOrderId)}
+                      onClick={(e) => changeOrderStatus(orderStatusId)}
                     >
                       Reject order
                     </button>
