@@ -126,9 +126,8 @@ function Orders() {
                     <th className="p-3 text-base tracking-tighter">Date</th>
                     <th className="p-3 text-base tracking-tighter">Items</th>
                     <th className="p-3 text-base tracking-tighter">Payment</th>
-                    <th className="p-3 text-base tracking-tighter">Status</th>
                     <th className="p-3 text-base tracking-tighter">Amount</th>
-                    <th className="p-3 text-base tracking-tighter">Fulfillment</th>
+                    <th className="p-3 text-base tracking-tighter">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -155,19 +154,22 @@ function Orders() {
                         </span>
                       </td>
                       <td className="p-3 text-base tracking-tight">
+                        <p className='font-bold trac'>{"Rs. " + order?.product?.salePrice}</p>
+                      </td>
+                      {order?.status === 'pending' ?
+                      <td className="p-3 text-base tracking-tight">
+                        <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
+                        <button onClick={(e) => openModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
+                      </td>
+                      : 
+                      <td className="p-3 text-base tracking-tight">
                         {order?.status === 'canceled' ?
                           <p className='text-red-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
                           :
                           <p className='text-green-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
                         }
                       </td>
-                      <td className="p-3 text-base tracking-tight">
-                        <p className='font-bold trac'>{"Rs. " + order?.product?.salePrice}</p>
-                      </td>
-                      <td className="p-3 text-base tracking-tight">
-                        <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
-                        <button onClick={(e) => openModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
-                      </td>
+                      }
                     </tr>
                   ))}
                 </tbody>

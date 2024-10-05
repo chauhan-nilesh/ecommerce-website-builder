@@ -90,7 +90,7 @@ function SellerOrderPage() {
             </div>
             <h3 className='lg:text-lg font-bold mt-4'>Status</h3>
             <div className='w-full border border-gray-400 rounded-lg p-4 mt-2'>
-                {status !== "canceled" ?
+                {status === "canceled" ?
                     <div>
                         <h3 className='lg:text-lg font-bold mt-4'>Order Status</h3>
                         <div className='border border-gray-400 bg-white rounded-lg p-4 mt-2'>
