@@ -11,6 +11,10 @@ function Orders() {
   let [openAccept, setOpenAccept] = useState(false)
   const [orders, setOrders] = useState([])
   const [orderStatusId, setOrderStatusId] = useState('')
+  const [tracking, setTracking] = useState({
+    trackingId: '',
+    trackingUrl: ''
+  })
   const [isLoading, setIsLoading] = useState(true)
 
   const getAllOrders = async () => {
@@ -49,6 +53,14 @@ function Orders() {
     getAllOrders()
   }, [])
 
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+
+    setTracking({
+        ...tracking,
+        [name]: value
+    })
+}
 
   function closeModal() {
     setIsOpen(false)
@@ -70,47 +82,47 @@ function Orders() {
 
   const changeOrderStatus = async (id) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/update-status/${id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({ status: 'rejected' })
-        })
-
-        const responseData = await response.json()
-        if (response.ok) {
-            toast.success(responseData.message)
-        } else {
-            toast.error(responseData.message)
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-const acceptOrderStatus = async (id) => {
-  try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/update-status/${id}`, {
-          method: "PATCH",
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({ status: 'rejected' })
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ status: 'rejected' })
       })
 
       const responseData = await response.json()
       if (response.ok) {
-          toast.success(responseData.message)
+        toast.success(responseData.message)
       } else {
-          toast.error(responseData.message)
+        toast.error(responseData.message)
       }
-  } catch (error) {
+    } catch (error) {
       console.log(error)
+    }
   }
-}
+
+  const acceptOrderStatus = async (id) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/accept/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ status: 'accepted', ...tracking })
+      })
+
+      const responseData = await response.json()
+      if (response.ok) {
+        toast.success(responseData.message)
+      } else {
+        toast.error(responseData.message)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   if (isLoading) {
     return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
@@ -189,18 +201,18 @@ const acceptOrderStatus = async (id) => {
                         <p className='font-bold trac'>{"Rs. " + order?.product?.salePrice}</p>
                       </td>
                       {order?.status === 'pending' ?
-                      <td className="p-3 text-base tracking-tight">
-                        <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
-                        <button onClick={(e) => openAcceptModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
-                      </td>
-                      : 
-                      <td className="p-3 text-base tracking-tight">
-                        {order?.status === 'canceled' ?
-                          <p className='text-red-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
-                          :
-                          <p className='text-green-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
-                        }
-                      </td>
+                        <td className="p-3 text-base tracking-tight">
+                          <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
+                          <button onClick={(e) => openAcceptModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
+                        </td>
+                        :
+                        <td className="p-3 text-base tracking-tight">
+                          {order?.status === 'canceled' ?
+                            <p className='text-red-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
+                            :
+                            <p className='text-green-600 font-bold tracking-tighter'>{(order?.status)[0].toUpperCase() + order?.status.slice(1)}</p>
+                          }
+                        </td>
                       }
                     </tr>
                   ))}
@@ -254,7 +266,7 @@ const acceptOrderStatus = async (id) => {
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Cancel
+                      Close
                     </button>
                     <button
                       type="button"
@@ -301,12 +313,30 @@ const acceptOrderStatus = async (id) => {
                     as="h3"
                     className="text-xl font-medium leading-6 text-gray-900"
                   >
-                    Are you sure?
+                    Mark the item as accepted
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-md tracking-tight text-gray-500">
-                      You want to reject the order request
+                    <p className="text-md tracking-tight text-slate-900">
+                      Delivery Tracking Details
                     </p>
+                    <input
+                      type="text"
+                      name='trackingId'
+                      id="trackingId"
+                      onChange={handleInput}
+                      value={tracking.trackingId}
+                      placeholder="Enter Tracking ID"
+                      className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                    />
+                    <input
+                      type="text"
+                      name='trackingUrl'
+                      id="trackingUrl"
+                      onChange={handleInput}
+                      value={tracking.trackingUrl}
+                      placeholder="Enter Tracking Page URL"
+                      className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                    />
                   </div>
 
                   <div className="mt-4 flex float-end space-x-2">
@@ -315,14 +345,14 @@ const acceptOrderStatus = async (id) => {
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeAcceptModal}
                     >
-                      Cancel
+                      Close
                     </button>
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                       onClick={(e) => acceptOrderStatus(orderStatusId)}
                     >
-                      Reject order
+                      Accept order
                     </button>
                   </div>
                 </Dialog.Panel>

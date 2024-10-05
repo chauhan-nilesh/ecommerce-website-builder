@@ -435,6 +435,30 @@ const updateStatus = asyncHandler(async (req, res) => {
         )
 })
 
+const acceptOrder = asyncHandler(async (req, res) => {
+    const { orderId } = req.params;
+    const {trackingId, trackingUrl} = req.body;
+
+    const updatedStatus = await orders.findOneAndUpdate({ _id: orderId }, {
+        status: req.body.status,
+        trackingNo: trackingId,
+        trackingPageUrl: trackingUrl
+    })
+
+    if (!updatedStatus) {
+        return res.status(500)
+            .json(
+                new ApiResponse(500, "", "Something went wrong while updating status")
+            )
+    }
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, updatedStatus, "Order accepted")
+        )
+})
+
+
 const cancelOrder = asyncHandler((async (req, res) => {
     const { orderId } = req.params;
     const { customerId } = req.body;
@@ -467,5 +491,6 @@ export {
     storeOrders,
     getOrderData,
     updateStatus,
+    acceptOrder,
     cancelOrder
 }

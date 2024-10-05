@@ -13,6 +13,8 @@ router.route("/get-data/:id").get(getOrderData)
 
 router.route("/update-status/:orderId").patch(verifyJwt,updateStatus)
 
+router.route("/accept/:orderId").patch(verifyJwt,acceptOrder)
+
 router.route("/cancel-order/:orderId").patch(cancelOrder)
 
 export { router as orderRouter }
