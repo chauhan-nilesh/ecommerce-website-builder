@@ -68,6 +68,12 @@ const OrderSchema = new mongoose.Schema({
     },
     coupon: {
         type: String
+    },
+    trackingNo: {
+        type: String
+    },
+    trackingPageUrl: {
+        type: String
     }
 }, { timestamps: true })
 
