@@ -89,11 +89,11 @@ function Orders() {
                     <th className="p-3 text-base tracking-tighter">Image</th>
                     <th className="p-3 text-base tracking-tighter">Name</th>
                     <th className="p-3 text-base tracking-tighter">Date</th>
-                    <th className="p-3 text-base tracking-tighter">Customer</th>
                     <th className="p-3 text-base tracking-tighter">Items</th>
                     <th className="p-3 text-base tracking-tighter">Payment</th>
                     <th className="p-3 text-base tracking-tighter">Status</th>
                     <th className="p-3 text-base tracking-tighter">Amount</th>
+                    <th className="p-3 text-base tracking-tighter">Fulfillment</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -112,9 +112,6 @@ function Orders() {
                         <p>{dateFormat(order?.createdAt, "mediumDate")}</p>
                       </td>
                       <td className="p-3 text-base tracking-tight">
-                        <p>{order?.name}</p>
-                      </td>
-                      <td className="p-3 text-base tracking-tight">
                         <p>{order?.product?.quantity}</p>
                       </td>
                       <td className="p-3 text-base tracking-tight">
@@ -131,6 +128,9 @@ function Orders() {
                       </td>
                       <td className="p-3 text-base tracking-tight">
                         <p className='font-bold trac'>{"Rs. "+order?.product?.salePrice}</p>
+                      </td>
+                      <td className="p-3 text-base tracking-tight">
+                        <button className='bg-green-600 px-3 py-2'>Accept</button>&nbsp;&nbsp;<button className='bg-red-600 px-3 py-2'>Reject</button>
                       </td>
                     </tr>
                   ))}
