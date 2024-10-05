@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { cancelOrder, getAllOrders, getOrderData, orderPlaced, storeOrders, updateStatus } from "../controllers/order.controller.js";
+import { acceptOrder, cancelOrder, getAllOrders, getOrderData, orderPlaced, storeOrders, updateStatus } from "../controllers/order.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 const router = Router()
 
