@@ -69,6 +69,9 @@ const OrderSchema = new mongoose.Schema({
     coupon: {
         type: String
     },
+    isTrackingDetailsProvided: {
+        type: Boolean
+    },
     trackingNo: {
         type: String
     },

@@ -11,6 +11,7 @@ function Orders() {
   let [openAccept, setOpenAccept] = useState(false)
   const [orders, setOrders] = useState([])
   const [orderStatusId, setOrderStatusId] = useState('')
+  const [selectedOption, setSelectedOption] = useState('none');
   const [tracking, setTracking] = useState({
     trackingId: '',
     trackingUrl: ''
@@ -53,14 +54,18 @@ function Orders() {
     getAllOrders()
   }, [])
 
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
   const handleInput = (e) => {
     const { name, value } = e.target;
 
     setTracking({
-        ...tracking,
-        [name]: value
+      ...tracking,
+      [name]: value
     })
-}
+  }
 
   function closeModal() {
     setIsOpen(false)
@@ -316,27 +321,51 @@ function Orders() {
                     Mark the item as accepted
                   </Dialog.Title>
                   <div className="mt-3">
-                    <p className="text-md tracking-tight text-slate-900">
-                      Delivery Tracking Details
-                    </p>
-                    <input
-                      type="text"
-                      name='trackingId'
-                      id="trackingId"
-                      onChange={handleInput}
-                      value={tracking.trackingId}
-                      placeholder="Enter Tracking ID"
-                      className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
-                    />
-                    <input
-                      type="text"
-                      name='trackingUrl'
-                      id="trackingUrl"
-                      onChange={handleInput}
-                      value={tracking.trackingUrl}
-                      placeholder="Enter Tracking Page URL"
-                      className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
-                    />
+                    <label>
+                      <input
+                        type="radio"
+                        value="withInputs"
+                        checked={selectedOption === 'withInputs'}
+                        onChange={handleOptionChange}
+                        defaultChecked
+                      />
+                      Fulfill with delivery tracking
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        value="none"
+                        checked={selectedOption === 'none'}
+                        onChange={handleOptionChange}
+                      />
+                      Fulfill without delovery tracking
+                    </label>
+                    {selectedOption === 'withInputs' && (
+                      <>
+                        <p className="text-md mt-2 tracking-tight text-slate-900">
+                          Delivery Tracking Details
+                        </p>
+                        <input
+                          type="text"
+                          name='trackingId'
+                          id="trackingId"
+                          onChange={handleInput}
+                          value={tracking.trackingId}
+                          placeholder="Enter Tracking ID"
+                          className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                        />
+                        <input
+                          type="text"
+                          name='trackingUrl'
+                          id="trackingUrl"
+                          onChange={handleInput}
+                          value={tracking.trackingUrl}
+                          placeholder="Enter Tracking Page URL"
+                          className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                        />
+                      </>
+                    )
+                    }
                   </div>
 
                   <div className="mt-4 flex float-end space-x-2">
