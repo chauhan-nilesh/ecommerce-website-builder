@@ -147,7 +147,7 @@ function SellerOrderPage() {
                             value={status}
                             className="w-full rounded-md bg-gray-100 border border-gray-400 px-4 py-3 text-baseoutline-none"
                         >
-                            <option value="">Pending</option>
+                            <option value="" disabled>Pending</option>
                             <option value="processed">Processed</option>
                             <option value="shipped">Shipped</option>
                             <option value="delivered">Delivered</option>
