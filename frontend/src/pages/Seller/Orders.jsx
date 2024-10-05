@@ -3,6 +3,7 @@ import { Ordermobile } from '../../components/Seller';
 import { useAuth } from '../../store/auth';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
+import toast from 'react-hot-toast';
 import { Dialog, Transition } from '@headlessui/react';
 
 function Orders() {
@@ -54,10 +55,6 @@ function Orders() {
     getAllOrders()
   }, [])
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
   const handleInput = (e) => {
     const { name, value } = e.target;
 
@@ -99,9 +96,11 @@ function Orders() {
       const responseData = await response.json()
       if (response.ok) {
         toast.success(responseData.message)
+        getAllOrders()
       } else {
         toast.error(responseData.message)
       }
+      setIsOpen(false)
     } catch (error) {
       console.log(error)
     }
@@ -115,15 +114,17 @@ function Orders() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ status: 'accepted', ...tracking })
+        body: JSON.stringify({ status: 'accepted', selectedOption, ...tracking })
       })
 
       const responseData = await response.json()
       if (response.ok) {
         toast.success(responseData.message)
+        getAllOrders()
       } else {
         toast.error(responseData.message)
       }
+      setOpenAccept(false)
     } catch (error) {
       console.log(error)
     }
@@ -325,30 +326,29 @@ function Orders() {
                     <label className="flex items-center space-x-3">
                       <input
                         type="radio"
-                        value={false}
+                        name='radio1'
                         checked={selectedOption === false}
-                        onChange={handleOptionChange}
-                        className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
+                        onChange={(e) => setSelectedOption(false)}
+                        className="form-radio h-5 w-5"
                       />
                       <span className="text-gray-700 text-lg">Fulfill without delivery tracking</span>
                     </label>
                     
-                    <br /><br />
 
                     <label className="flex items-center space-x-3">
                       <input
                         type="radio"
-                        value={true}
+                        name='radio1'
                         checked={selectedOption === true}
-                        onChange={handleOptionChange}
-                        className="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out"
+                        onChange={(e) => setSelectedOption(true)}
+                        className="form-radio h-5 w-5"
                       />
                       <span className="text-gray-700 text-lg">Fulfill with delivery tracking</span>
                     </label>
                     
                     {selectedOption && (
                       <>
-                        <p className="text-md mt-2 font-semibold tracking-tight text-slate-900">
+                        <p className="text-md mt-4 font-semibold tracking-tight text-slate-900">
                           Delivery Tracking Details
                         </p>
                         <input
@@ -358,7 +358,7 @@ function Orders() {
                           onChange={handleInput}
                           value={tracking.trackingId}
                           placeholder="Enter Tracking ID"
-                          className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                          className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full"
                         />
                         <input
                           type="text"
@@ -367,14 +367,14 @@ function Orders() {
                           onChange={handleInput}
                           value={tracking.trackingUrl}
                           placeholder="Enter Tracking Page URL"
-                          className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full max-w-xs"
+                          className="border outline-none rounded-lg mt-2 px-3 py-3 text-black bg-transparent w-full"
                         />
                       </>
                     )
                     }
                   </div>
 
-                  <div className="mt-4 flex float-end space-x-2">
+                  <div className="mt-4 flex justify-between">
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"

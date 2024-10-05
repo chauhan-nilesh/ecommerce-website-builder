@@ -437,10 +437,11 @@ const updateStatus = asyncHandler(async (req, res) => {
 
 const acceptOrder = asyncHandler(async (req, res) => {
     const { orderId } = req.params;
-    const {trackingId, trackingUrl} = req.body;
+    const {trackingId, trackingUrl, selectedOption} = req.body;
 
     const updatedStatus = await orders.findOneAndUpdate({ _id: orderId }, {
         status: req.body.status,
+        isTrackingDetailsProvided: selectedOption,
         trackingNo: trackingId,
         trackingPageUrl: trackingUrl
     })
