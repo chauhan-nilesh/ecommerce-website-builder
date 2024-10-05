@@ -8,6 +8,7 @@ import { Dialog, Transition } from '@headlessui/react'
 function Orders() {
   const { token } = useAuth();
   let [isOpen, setIsOpen] = useState(false)
+  let [openAccept, setOpenAccept] = useState(false)
   const [orders, setOrders] = useState([])
   const [orderStatusId, setOrderStatusId] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -54,7 +55,16 @@ function Orders() {
   }
 
   function openModal(orderId) {
-    setIsOpen(true)
+    setOpenAccept(true)
+    setOrderStatusId(orderId)
+  }
+
+  function closeAcceptModal() {
+    setOpenAccept(false)
+  }
+
+  function openAcceptModal(orderId) {
+    setOpenAccept(true)
     setOrderStatusId(orderId)
   }
 
@@ -78,6 +88,28 @@ function Orders() {
     } catch (error) {
         console.log(error)
     }
+}
+
+const acceptOrderStatus = async (id) => {
+  try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/update-status/${id}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ status: 'rejected' })
+      })
+
+      const responseData = await response.json()
+      if (response.ok) {
+          toast.success(responseData.message)
+      } else {
+          toast.error(responseData.message)
+      }
+  } catch (error) {
+      console.log(error)
+  }
 }
 
   if (isLoading) {
@@ -159,7 +191,7 @@ function Orders() {
                       {order?.status === 'pending' ?
                       <td className="p-3 text-base tracking-tight">
                         <button onClick={(e) => openModal(order._id)} className='bg-green-600 px-3 py-2 text-white '>Accept</button>&nbsp;&nbsp;
-                        <button onClick={(e) => openModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
+                        <button onClick={(e) => openAcceptModal(order._id)} className='bg-red-600 text-white  px-3 py-2'>Reject</button>
                       </td>
                       : 
                       <td className="p-3 text-base tracking-tight">
@@ -228,6 +260,67 @@ function Orders() {
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                       onClick={(e) => changeOrderStatus(orderStatusId)}
+                    >
+                      Reject order
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+      <Transition appear show={openAccept} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeAcceptModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-xl font-medium leading-6 text-gray-900"
+                  >
+                    Are you sure?
+                  </Dialog.Title>
+                  <div className="mt-2">
+                    <p className="text-md tracking-tight text-gray-500">
+                      You want to reject the order request
+                    </p>
+                  </div>
+
+                  <div className="mt-4 flex float-end space-x-2">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={closeAcceptModal}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                      onClick={(e) => acceptOrderStatus(orderStatusId)}
                     >
                       Reject order
                     </button>
