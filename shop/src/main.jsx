@@ -21,6 +21,7 @@ import {
   OrderPage,
   ReturnPolicy,
   ShippingPolicy,
+  Shop,
   UpdatePassword
 } from './components/index.js'
 import Product from './pages/Product.jsx'
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
         <Route path='' element={<Homepage />} />
         <Route path='signup' element={<CustomerSignUp />} />
         <Route path='login' element={<CustomerLogin />} />
+        <Route path='shop' element={<Shop />} />
         <Route path='product/:id' element={<Product />} />
         <Route path='category/:id' element={<Category />} />
         <Route path='return-policy' element={<ReturnPolicy />} />

@@ -111,7 +111,7 @@ function CustomizeStore() {
               className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
               required
             />
-            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Current Theme Colors</label>
+            {/* <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Current Theme Colors</label>
             <div className='flex space-x-3 w-full'>
               <input
                 className='p-1 h-10 w-14 block bg-gray-100 border cursor-pointer rounded-lg'
@@ -129,7 +129,7 @@ function CustomizeStore() {
                 name="color2"
                 id="color2"
               />
-            </div>
+            </div> */}
             <div className="form-control mt-6 w-44">
               <label className="label cursor-pointer">
                 <span className="label-text text-lg tracking-tight text-black font-semibold">Hide Categories</span>

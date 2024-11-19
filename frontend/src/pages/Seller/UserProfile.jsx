@@ -38,6 +38,7 @@ function UserProfile() {
         getUserData()
     }, [])
 
+
     if (loading) {
         return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
     }
@@ -53,6 +54,7 @@ function UserProfile() {
     }
 
     const handleSubmit = async (e) => {
+        console.log(userDetails)
         e.preventDefault();
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/update-password/${userDetails._id}`, {
@@ -81,7 +83,7 @@ function UserProfile() {
 
     return (
         <div className='w-full h-screen'>
-            <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
+            <div className='lg:my-7 lg:mx-10 my-3 mx-3 pb-10'>
                 <h2 className='text-2xl lg:text-4xl text-zinc-900 font-bold tracking-tight'>Profile</h2>
                 <div className='mt-8'>
                     <div className='grid grid-flow-row'>
@@ -91,6 +93,58 @@ function UserProfile() {
                             name='email'
                             id="email"
                             value={userDetails.email}
+                            placeholder="Store Name"
+                            className="input input-primary text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
+                            readOnly
+                            disabled
+                        />
+                    </div>
+                    <div className='grid grid-flow-row mt-3'>
+                        <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="email">Business Name</label>
+                        <input
+                            type="businessName"
+                            name='businessName'
+                            id="businessName"
+                            value={userDetails.store.businessName}
+                            placeholder="Store Name"
+                            className="input input-primary text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
+                            readOnly
+                            disabled
+                        />
+                    </div>
+                    <div className='grid grid-flow-row mt-3'>
+                        <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="email">Business Category</label>
+                        <input
+                            type="businessCategory"
+                            name='businessCategory'
+                            id="businessCategory"
+                            value={userDetails.store.businessCategory}
+                            placeholder="Store Name"
+                            className="input input-primary text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
+                            readOnly
+                            disabled
+                        />
+                    </div>
+                    <div className='grid grid-flow-row mt-3'>
+                        <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="email">Business Address</label>
+                        <input
+                            type="businessAddress"
+                            name='businessAddress'
+                            id="businessAddress"
+                            value={userDetails.store.address}
+                            placeholder="Store Name"
+                            className="input input-primary text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
+                            readOnly
+                            disabled
+                        />
+                    </div>
+                    <div className='grid grid-flow-row mt-3'>
+                        <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="email">Mobile No.</label>
+                        <input
+                            type="MobileNo"
+                            name='MobileNo'
+                            id="MobileNo"
+                            value={userDetails.store.phoneNo}
                             placeholder="Store Name"
                             className="input input-primary text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
                             readOnly

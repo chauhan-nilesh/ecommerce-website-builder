@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Footer, Header } from '../components'
+import { BottomNavbar, Footer, Header } from '../components'
 import { Outlet } from 'react-router-dom';
 import changeFavicon from '../Hooks/changeFavicon';
 import LazyLoadingPage from '../components/LazyLoadingPage';
@@ -49,7 +49,7 @@ export default function StoreLayout() {
       <main>
         <Outlet context={{ store, color1, color2, products: store.products }} />
       </main>
-      
+      <BottomNavbar color1={color1}/>
       <Footer store={store} color1={color1} color2={color2} />
     </div>
   );

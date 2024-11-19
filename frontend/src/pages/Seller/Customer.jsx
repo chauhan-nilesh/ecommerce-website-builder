@@ -81,7 +81,7 @@ function Customer() {
                                     <th className="p-3 text-base tracking-tighter">No. of Orders</th>
                                     <th className="p-3 text-base tracking-tighter">Phone No.</th>
                                     <th className="p-3 text-base tracking-tighter">Address</th>
-                                    <th className="p-3 text-base tracking-tighter">Delete</th>
+                                    {/* <th className="p-3 text-base tracking-tighter">Delete</th> */}
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,11 +102,11 @@ function Customer() {
                                     <td className="p-3 text-base tracking-tight">
                                         <p>{!customer.address ? "----" : customer.address}</p>
                                     </td>
-                                    <td className="p-3 text-base tracking-tight">
+                                    {/* <td className="p-3 text-base tracking-tight">
                                         <span className="px-3 py-1 font-semibold rounded-md bg-red-600 text-gray-50">
                                             <span>Delete</span>
                                         </span>
-                                    </td>
+                                    </td> */}
                                 </tr>
                                 ))}
                                 
