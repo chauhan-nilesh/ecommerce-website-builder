@@ -71,7 +71,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
         })
 
         const receiver = {
-            from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+            from: `${store.name} <${process.env.OTP_EMAIL_ID}>`,
             to: customer.email,
             subject: `Your Order for ${ordered.product.name} has been successfully placed`,
             html: `<!DOCTYPE html>
@@ -427,6 +427,168 @@ const updateStatus = asyncHandler(async (req, res) => {
             .json(
                 new ApiResponse(500, "", "Something went wrong while updating status")
             )
+    }
+
+    const orderData = await orders.findById(orderId).populate("store").populate("customerId");
+
+    if(updatedStatus.status === "delivered"){
+        const emailProvider = nodeMailer.createTransport({
+            service: "gmail",
+            secure: true,
+            port: 465,
+            auth: {
+                user: process.env.OTP_EMAIL_ID,
+                pass: process.env.OTP_EMAIL_PASS
+            },
+            tls: { rejectUnauthorized: false }
+        })
+
+        const receiver = {
+            from: `${orderData.store.name} <${process.env.OTP_EMAIL_ID}>`,
+            to: orderData.customerId.email,
+            subject: `${orderData.product.name} from your order have been delivered`,
+            html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .order-details {
+            margin: 20px 0;
+        }
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-details table, .order-details th, .order-details td {
+            border: 1px solid #ddd;
+        }
+        .order-details th, .order-details td {
+            padding: 10px;
+            text-align: left;
+        }
+        .order-summary {
+            margin: 20px 0;
+            text-align: right;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .button-container a:hover {
+            background-color: #45a049;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="email-container">
+        <h1>Order have been delivered successfully - Thank You for Your Purchase!</h1>
+        <p>Hi ${orderData.customerId.name},</p>
+        <p>We are happy to let you know that items from your order have been delivered. You can download a copy of the invoice for item(s) delivered by ${orderData.store.name}. Thank you for shopping with us!</p>
+        
+        <div class="order-details">
+            <h2>Order Details</h2>
+            <table>
+                <tr>
+                    <th>Order Number</th>
+                    <td>${orderData._id}</td>
+                </tr>
+                <tr>
+                    <th>Order Date</th>
+                    <td>${date.toLocaleDateString('en-IN', options)}
+                    </td>
+                </tr >
+    <tr>
+        <th>Payment Method</th>
+        <td>${orderData.paymentMethod}</td>
+    </tr>
+            </table >
+        </div >
+
+        <div class="order-details">
+            <h2>Items Purchased</h2>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>${orderData.product.name}</td>
+                    <td>${orderData.product.quantity}</td>
+                    <td>&#8377;${orderData.product.soldPrice}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="order-summary">
+            <p><strong>Total Amount: </strong> &#8377;${orderData.totalPrice}</p>
+        </div>
+
+        <p>Your order will be processed and shipped shortly. You can track your order status by logging into your account.</p>
+
+        <p>If you have any questions, feel free to contact our customer service team at 
+            <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.
+        </p>
+
+        <p>Thank you again for your purchase! We hope to see you again soon.</p>
+
+        <p>Best Regards,<br>Your Store Team</p>
+        </div >
+
+    </body >
+            </html >`
+        }
+
+        emailProvider.sendMail(receiver, (error, emailResponse) => {
+            if (error) {
+                console.log("Something went wrong while sending email to customer")
+            } else {
+                console.log("Email sent successfully to customer")
+            }
+        })
+
     }
 
     return res.status(200)
