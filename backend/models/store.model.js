@@ -129,6 +129,9 @@ const StoreSchema = new mongoose.Schema({
     shippingPolicy: {
         type: String
     },
+    aboutContent: {
+        type: String
+    },
     whatsApp: {
         type: Number
     },

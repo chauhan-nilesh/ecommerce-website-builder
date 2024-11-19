@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 import StoreLayout from './pages/StoreLayout.jsx'
 import {
+  AboutUs,
   Account,
   AccountContent,
   Cart,
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
         <Route path='category/:id' element={<Category />} />
         <Route path='return-policy' element={<ReturnPolicy />} />
         <Route path='shipping-policy' element={<ShippingPolicy />} />
+        <Route path='about' element={<AboutUs />} />
         <Route path='payment-success' element={<PaymentSuccess />} />
         <Route path='cart' element={<Cart />} />
         <Route path='checkout' element={

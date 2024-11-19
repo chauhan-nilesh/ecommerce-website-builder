@@ -25,6 +25,7 @@ import ProductVariants from "./ProductVariants";
 import Tags from "./Tags";
 import AddCategory from "../../pages/Seller/AddCategory";
 import EditCategory from "../../pages/Seller/EditCategory";
+import StoreAboutPage from "../../pages/Seller/StoreAboutPage";
 import AddCoupon from "../../pages/Seller/AddCoupon";
 import SellerOrderPage from "../../pages/Seller/SellerOrderPage";
 
@@ -33,6 +34,7 @@ export {
     Sidebar,
     Header,
     BottomNavBar,
+    StoreAboutPage,
     Orders,
     Store,
     Products,

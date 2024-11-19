@@ -14,6 +14,7 @@ import {
     getCustomerData,
     storeData,
     updatePolicies,
+    updateAboutPage,
     updateSocial,
     updateStoreName,
     uploadStoreImage
@@ -36,6 +37,8 @@ router.route("/update/basic/:id").patch(verifyJwt, updateStoreName)
 router.route("/update/social/:id").patch(verifyJwt, updateSocial)
 
 router.route("/update/policy/:id").patch(verifyJwt, updatePolicies)
+
+router.route("/update/aboutpage/:id").patch(verifyJwt, updateAboutPage)
 
 router.route("/update/status/:id").patch(verifyJwt, changeStoreStatus)
 

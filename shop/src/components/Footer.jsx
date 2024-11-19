@@ -71,7 +71,7 @@ export default function Footer({ store, color1, color2 }) {
           </div>
         </div>
       </div>
-      <div className="py-6 text-sm text-center dark:text-gray-600">Powered by Eazzy. ©2024 All rights reserved.</div>
+      <div className="py-6 text-sm text-center dark:text-gray-600">Powered by <a href='https://eazzy.store'>Eazzy</a>. ©2024 All rights reserved.</div>
     </footer>
   );
 }

@@ -222,6 +222,27 @@ const updatePolicies = asyncHandler(async (req, res) => {
         )
 })
 
+const updateAboutPage = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { aboutContent } = req.body;
+
+    const store = await stores.findByIdAndUpdate(id,
+        {
+            $set: {
+                aboutContent
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, store, "Store About Page updated")
+        )
+})
+
 const changeStoreStatus = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
@@ -458,6 +479,7 @@ export {
     updateStoreName,
     updateSocial,
     updatePolicies,
+    updateAboutPage,
     changeStoreStatus,
     deleteStore,
     storeData,

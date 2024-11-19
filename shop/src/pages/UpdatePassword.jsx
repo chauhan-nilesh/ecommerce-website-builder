@@ -50,6 +50,7 @@ function UpdatePassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(changePassword.oldPassword !== "" || changePassword.newPassword !== ""){
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/update-password`, {
                 method: "PATCH",
@@ -70,6 +71,10 @@ function UpdatePassword() {
             }
         } catch (error) {
             console.log(error)
+        }
+        }
+        else{
+            toast.error("All fields are required");
         }
     };
 
@@ -97,7 +102,7 @@ function UpdatePassword() {
                         />
                     </div>
                 </div>
-                <form onSubmit={handleSubmit} className='grid grid-flow-row lg:ml-8 mt-6'>
+                <form className='grid grid-flow-row lg:ml-8 mt-6'>
                     <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="oldPassword">Enter Old Password</label>
                     <input
                         type="text"
@@ -118,7 +123,7 @@ function UpdatePassword() {
                         placeholder="New Password"
                         className="border px-3 py-3 rounded-lg outline-none text-black bg-transparent w-full max-w-xs"
                     />
-                    <button className=" text-white py-2 rounded-lg tracking-tight hover:bg-orange-700 bg-black text-base mt-6 mb-10 w-full lg:w-56">Update Password</button>
+                    <button onClick={handleSubmit} className=" text-white py-2 rounded-lg tracking-tight hover:bg-zinc-700 bg-black text-base mt-6 mb-10 w-full lg:w-56">Update Password</button>
                 </form>
             </div>
         </div>
