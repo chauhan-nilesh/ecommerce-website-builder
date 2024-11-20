@@ -26,7 +26,7 @@ function SignUp() {
     }
 
     const sendOTP = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             setLoadingBtn(true)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/sendotp`, {
