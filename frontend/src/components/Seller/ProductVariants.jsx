@@ -18,6 +18,7 @@ const ProductVariants = ({variants, setVariants}) => {
   })
 
   function closeModal() {
+    setType("")
     setIsOpen(false)
   }
 
@@ -200,7 +201,7 @@ const ProductVariants = ({variants, setVariants}) => {
                         name="type"
                         className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md"
                       >
-                        <option value="select">Select type</option>
+                        <option value="">Select type</option>
                         <option value="color">color</option>
                         <option value="size">size</option>
                         <option value="other">other</option>

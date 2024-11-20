@@ -76,7 +76,7 @@ function StoreAboutPage() {
         <section className='bg-white flex-grow h-full min-h-dvh lg:h-dvh lg:pb-8 pb-20 px-3 lg:px-5'>
             <h2 className='mt-7 mb-3 text-lg font-semibold lg:text-xl'>About Us Page</h2>
             <form onSubmit={handleSubmit}>
-            <div className="form-group h-[300px] mb-20 lg:mb-10">
+            <div className="form-group h-[300px] mb-36 lg:mb-24">
                 <ReactQuill
                     value={aboutContent}
                     onChange={setAboutContent}

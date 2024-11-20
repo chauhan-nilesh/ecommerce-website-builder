@@ -15,7 +15,8 @@ function EditProduct() {
         image1: null,
         image2: null,
         image3: null,
-        image4: null
+        image4: null,
+        sizeChartImage: null
     });
     const [product, setProduct] = useState({
         name: '',
@@ -96,7 +97,8 @@ function EditProduct() {
                     image1: responseData.data.images.image1,
                     image2: responseData.data.images.image2,
                     image3: responseData.data.images.image3,
-                    image4: responseData.data.images.image4
+                    image4: responseData.data.images.image4,
+                    sizeChartImage: responseData.data?.sizeChartImage
                 });
                 setTags(responseData.data.tags);
                 setStatus(responseData.data.status);
@@ -362,6 +364,23 @@ function EditProduct() {
                         </div>
                     </div>
                     <ProductVariants variants={variants} setVariants={setVariants} />
+                    <div className="lg:px-6 py-2 bg-white rounded-lg">
+                        <h2 className="text-xl font-semibold mb-2">Upload size chart</h2>
+                        <p className="text-gray-600 mb-4">Prodcut size chart image.</p>
+                        <div className="mb-4">
+                            <div className="flex justify-center gap-6">
+                                <div className="flex flex-col items-center cursor-pointer">
+                                <input onChange={handleImageChange} type="file" id="sizeChartImage" name="sizeChartImage" accept="image/*" hidden />
+                                    <label htmlFor="sizeChartImage" className="flex flex-col items-center">
+                                        <div className="w-48 h-48 border border-gray-300 rounded flex justify-center items-center mb-2">
+                                            <img src={getImageUrl(images?.sizeChartImage)} alt="Upload images" className="w-32 h-32" />
+                                        </div>
+                                        <span className="text-gray-700">Upload Featured Image</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="lg:p-6 bg-white rounded-lg">
                         <h2 className="text-xl font-semibold mb-2">SEO Information</h2>
                         <p className="text-gray-600 mb-4">Utilize metadata to enhance searchability and Visibility on search engine.</p>

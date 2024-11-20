@@ -63,7 +63,7 @@ function OrderPage() {
                 <>
                     <h3 className='lg:text-lg font-bold mt-4'>Order Status</h3>
                     <div className='border border-gray-400 rounded-lg p-4 mt-2'>
-                    {order?.status === "pending" ?
+                        {order?.status === "pending" ?
                             <ul data-theme="light" className="steps steps-vertical lg:steps-horizontal lg:w-full font-bold">
                                 <li data-content="✓" className="step step-accent">Order placed</li>
                                 <li data-content="" className="step">Accepted</li>
@@ -117,6 +117,15 @@ function OrderPage() {
                     </div>
                 </>
             }
+
+            <h3 className='lg:text-lg font-bold mt-4'>Shipment Details</h3>
+            <div className='border border-gray-400 rounded-lg p-4 mt-2'>
+                <b className='tracking-tighter'>Tracking No.</b>
+                <p className='text-sm'>{order?.trackingNo}</p><br />
+                <b className='tracking-tighter'>Tracking Page Url</b>
+                <p className='text-sm text-blue-700'><a href={order?.trackingPageUrl}>{order?.trackingPageUrl}</a></p>
+            </div>
+
             <h3 className='lg:text-lg font-bold mt-4'>Payment infomation</h3>
             <div className='border border-gray-400 rounded-lg p-4 mt-2'>
                 <b className='tracking-tighter'>Payment method</b>

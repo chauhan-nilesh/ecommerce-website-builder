@@ -36,6 +36,9 @@ const ProductSchema = new mongoose.Schema({
     variants: [{
         type: Object
     }],
+    sizeChartImage: {
+        type: String
+    },
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "categories"

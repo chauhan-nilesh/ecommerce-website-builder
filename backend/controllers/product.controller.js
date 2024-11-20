@@ -60,7 +60,8 @@ const addProduct = asyncHandler(async (req, res) => {
             image2: images.image2 ? await uploadOnCloudinary(images.image2[0].path) : null,
             image3: images.image3 ? await uploadOnCloudinary(images.image3[0].path) : null,
             image4: images.image4 ? await uploadOnCloudinary(images.image4[0].path) : null
-        }
+        },
+        sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null
     };
 
 
@@ -155,7 +156,8 @@ const updateProduct = asyncHandler(async (req, res) => {
                 image2: await uploadOnCloudinary(images?.image2?.[0]?.path) || existingProduct.images.image2,
                 image3: await uploadOnCloudinary(images?.image3?.[0]?.path) || existingProduct.images.image3,
                 image4: await uploadOnCloudinary(images?.image4?.[0]?.path) || existingProduct.images.image4,
-            }
+            },
+            sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null
         },
         { new: true } // This option returns the updated document
     );

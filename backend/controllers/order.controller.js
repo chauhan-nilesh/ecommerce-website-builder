@@ -431,6 +431,8 @@ const updateStatus = asyncHandler(async (req, res) => {
 
     const orderData = await orders.findById(orderId).populate("store").populate("customerId");
 
+    const date = new Date(orderData.createdAt);
+
     if(updatedStatus.status === "delivered"){
         const emailProvider = nodeMailer.createTransport({
             service: "gmail",

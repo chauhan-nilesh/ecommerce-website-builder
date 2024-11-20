@@ -83,7 +83,6 @@ function Product() {
   useEffect(() => {
     updatePrice();
   }, [selectSize, selectColor, selectOther]);
-
   const updatePrice = () => {
     let variantPrice = product?.salePrice;
 
@@ -385,7 +384,7 @@ function Product() {
                       </div>
                     </div>
                     <div className="pb-3">
-                      <table className='w-full'>
+                      {/* <table className='w-full'>
                         <thead className='bg-gray-200'>
                           <tr>
                             <th className='py-4 px-3'>Size</th>
@@ -420,7 +419,8 @@ function Product() {
                             <td className='px-4 py-3 text-lg font-semibold'>48</td>
                           </tr>
                         </tbody>
-                      </table>
+                      </table> */}
+                      <img className='h-full w-full' src={product.sizeChartImage} alt="Size Chart" />
                     </div>
                   </Dialog.Panel>
                 </Transition.Child>

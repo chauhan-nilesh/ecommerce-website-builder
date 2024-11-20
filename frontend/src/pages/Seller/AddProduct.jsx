@@ -13,7 +13,8 @@ function AddProduct() {
     image1: null,
     image2: null,
     image3: null,
-    image4: null
+    image4: null,
+    sizeChartImage: null
   });
   const [product, setProduct] = useState({
     name: '',
@@ -82,7 +83,7 @@ function AddProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (product.name !== "" && product.shortDescription !== "" && product.originalPrice !== "" && product.salePrice !== "" && product.category !== "" && product.returnDetails !== "" && product.deliveryDetails !== "" && product.metaTitle !== "" && product.metaDescription !== "") {
-      console.log(product.name)
+      
       const formData = new FormData();
       Object.keys(product).forEach((key) => formData.append(key, product[key]));
       Object.keys(images).forEach((key) => formData.append(key, images[key]));
@@ -118,7 +119,8 @@ function AddProduct() {
           image1: null,
           image2: null,
           image3: null,
-          image4: null
+          image4: null,
+          sizeChartImage: null
         });
         setTags([]);
         setVariants([]);
@@ -343,6 +345,23 @@ return (
           </div>
         </div>
         <ProductVariants variants={variants} setVariants={setVariants} />
+        <div className="lg:px-6 py-2 bg-white rounded-lg">
+          <h2 className="text-xl font-semibold mb-2">Upload size chart</h2>
+          <p className="text-gray-600 mb-4">Prodcut size chart image.</p>
+          <div className="mb-4">
+          <div className="flex justify-center gap-6">
+              <div className="flex flex-col items-center cursor-pointer">
+                <input onChange={handleImageChange} type="file" id="sizeChartImage" name="sizeChartImage" accept="image/*" hidden />
+                <label htmlFor="sizeChartImage" className="flex flex-col items-center">
+                  <div className="w-48 h-48 border border-gray-300 rounded flex justify-center items-center mb-2">
+                    <img src={images.sizeChartImage ? URL.createObjectURL(images.sizeChartImage) : "/image.svg"} alt="Upload size chart images" className="w-32 h-32" />
+                  </div>
+                  <span className="text-gray-700">Upload Size chart Image</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="lg:p-6 bg-white rounded-lg">
           <h2 className="text-xl font-semibold mb-2">SEO Information</h2>
           <p className="text-gray-600 mb-4">Utilize metadata to enhance searchability and Visibility on search engine.</p>

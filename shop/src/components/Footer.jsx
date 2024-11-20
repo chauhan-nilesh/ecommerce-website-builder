@@ -41,6 +41,9 @@ export default function Footer({ store, color1, color2 }) {
               <li className="hover:brightness-150">
                 <Link to="/return-policy">Return & Replacement policy</Link>
               </li>
+              <li className="hover:brightness-150">
+                <Link to="/about">About Us</Link>
+              </li>
               {/* <li className="hover:brightness-150">
                 <a rel="noopener noreferrer" href="/term-condition">Terms & condition</a>
               </li> */}

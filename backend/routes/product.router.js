@@ -26,6 +26,10 @@ router.route("/add-product").post(
             name: "image4",
             maxCount: 1
         },
+        {
+            name: "sizeChartImage",
+            maxCount: 1
+        }
     ]),
     addProduct)
 
@@ -54,6 +58,10 @@ router.route("/update-product/:id").patch(upload.fields([
         name: "image4",
         maxCount: 1
     },
+    {
+        name: "sizeChartImage",
+        maxCount: 1
+    }
 ]), updateProduct)
 
 router.route("/delete/:id").delete(deleteProduct)
