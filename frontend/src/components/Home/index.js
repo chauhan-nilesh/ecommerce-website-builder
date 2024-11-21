@@ -8,7 +8,8 @@ import Pricing from "./Pricing";
 import TermsAndConditions from "../../pages/Home/TermsAndConditions";
 import AboutUs from "../../pages/Home/AboutUs";
 import ContactForm from "./ContactForm";
+import Subcription from "../../pages/Home/Subcription";
 import StorePolicy from "../../pages/Seller/StorePolicy";
 
 
-export {Header, Footer, Login, SignUp, Home, Pricing, TermsAndConditions, StorePolicy, ContactForm, AboutUs, Logout}
+export {Header, Footer, Login, SignUp, Home, Pricing, Subcription, TermsAndConditions, StorePolicy, ContactForm, AboutUs, Logout}

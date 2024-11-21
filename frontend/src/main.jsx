@@ -18,7 +18,8 @@ import {
   Pricing,
   TermsAndConditions,
   ContactForm,
-  StorePolicy
+  StorePolicy,
+  Subcription
 } from "./components/Home/index.js"
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './store/auth.jsx'
@@ -55,6 +56,7 @@ import EditCoupon from './pages/Seller/EditCoupon.jsx'
 import PaymentMethod from './pages/Seller/PaymentMethod.jsx'
 import ControlRoute from './helper/ControlRoute.jsx'
 import BusinessDetails from './components/Home/BusinessDetails.jsx'
+import PremiumRoute from './PrivateRoute/PremiumRoute.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -67,13 +69,16 @@ const router = createBrowserRouter(
         <Route path='terms-and-conditions' element={<TermsAndConditions />} />
         <Route path='contact-us' element={<ContactForm />} />
         <Route path='about-us' element={<AboutUs />} />
+        <Route path='subcription' element={<Subcription />} />
         <Route path='create-store' element={<Createstore />} />
         <Route path='business-details/:storename' element={<BusinessDetails />} />
         <Route path='logout' element={<Logout />} />
       </Route>
       <Route path='seller' element={
         <PrivateRoute>
-          <AdminLayout />
+          <PremiumRoute>
+            <AdminLayout />
+          </PremiumRoute>
         </PrivateRoute>
       } >
         <Route path='dashboard' element={<Dashboard />} />

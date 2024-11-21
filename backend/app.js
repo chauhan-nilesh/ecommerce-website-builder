@@ -42,6 +42,7 @@ import { couponRouter } from "./routes/coupon.router.js";
 import { orderRouter } from "./routes/order.router.js";
 import { contactFormRouter } from "./routes/contactform.router.js";
 import { razorpayRouter } from "./routes/razorpay.router.js";
+import { subscriptionRouter } from "./routes/subscription.router.js";
 
 app.use("/api/user", userRouter)
 
@@ -58,6 +59,8 @@ app.use("/api/coupon", couponRouter)
 app.use("/api/contactform", contactFormRouter)
 
 app.use("/api/order", orderRouter)
+
+app.use("/api/subscription", subscriptionRouter)
 
 app.use("/api/razorpay", razorpayRouter)
 

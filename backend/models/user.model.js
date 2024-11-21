@@ -21,6 +21,14 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    transactionId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "subscriptions"
+    },
+    subcription: {
+        type: Boolean,
+        default: false
+    },
     verifyCode: {
         type: String
     },

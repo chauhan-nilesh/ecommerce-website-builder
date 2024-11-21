@@ -14,7 +14,7 @@ function Pricing() {
                         <div className="flex flex-grow flex-col p-6 space-y-6 rounded shadow-lg sm:p-8 bg-gray-50">
                             <div className="space-y-2">
                                 <h4 className="text-2xl font-bold">Startup</h4>
-                                <h2 className="text-6xl font-bold">₹0 <span className='text-3xl text-gray-600 line-through'>₹999</span></h2>
+                                <h2 className="text-6xl font-bold">₹199 <span className='text-3xl text-gray-600 line-through'>₹2999</span></h2>
                             </div>
                             <p className="mt-3 leading-relaxed text-gray-600">Perfect for creators,startup and influencers</p>
                             <ul className="flex-1 mb-6 text-gray-600">
@@ -74,7 +74,7 @@ function Pricing() {
                                 </li>
                             </ul>
                             <Link to="/signup" className='inline-block px-5 py-3 font-semibold tracking-wider text-center rounded bg-orange-600 text-gray-50'>
-                                <button type="button">Get Started</button>
+                                <button type="button">Try for free</button>
                             </Link>
                         </div>
                     </div>

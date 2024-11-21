@@ -7,6 +7,7 @@ import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { storeNameValidation } from "../schemas/signUpSchema.js";
 import { stores } from "../models/store.model.js";
+import { subscriptions } from "../models/Subscription.model.js";
 
 const StorenameQuerySchema = z.object({
     storename: storeNameValidation
@@ -284,6 +285,28 @@ const registerUser = asyncHandler(async (req, res) => {
         isVerified: true
     })
 
+    const created = await subscriptions.create({
+        userId: user._id,
+        period: 1,
+        price: 0,
+        upiId: "Eazzy Free Trial",
+        failed: false
+    })
+
+    const startDate = new Date(created.createdAt);
+    startDate.setMonth(startDate.getMonth() + created.period);
+
+    const updateDates = await subscriptions.findByIdAndUpdate(created._id, {
+        $set: {
+            expiresOn: startDate.toISOString()
+        }
+    })
+
+    const userFree = await users.findOneAndUpdate({_id: user._id},{
+        transactionId: created._id,
+        subcription: true
+    })
+
     const token = await user.generateAccessToken()
 
     if (user) {
@@ -390,7 +413,17 @@ const deleteAccount = asyncHandler(async (req, res) => {
 
 const getCurrentUser = asyncHandler(async (req, res) => {
 
-    const user = await users.findById(req.user._id).select("-password").populate("store")
+    const user = await users.findById(req.user._id).select("-password").populate("store").populate("transactionId")
+
+    const currentDate = new Date();
+
+    if(user?.transactionId?.expiresOn < currentDate){
+        const userUpdated = await users.findOneAndUpdate({_id: user._id},{
+            transactionId: null,
+            subcription: false
+        })
+    }
+
     return res.status(200)
         .json(
             new ApiResponse(200, user, "current user fetched successfully")
@@ -412,6 +445,29 @@ const getUserData = asyncHandler(async (req, res) => {
         )
 })
 
+const subscriptionPayment = asyncHandler(async (req, res) => {
+
+    const {userId,
+        tId,
+        subcription,
+        upiId} = req.body;
+
+    const user = await users.findOneAndUpdate({_id: userId},{
+        transactionId: tId,
+        subcription: subcription
+    })
+
+    const transaction = await subscriptions.findOneAndUpdate({_id: tId},{
+        upiId,
+        failed: false
+    })
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, user, "Payment Completed")
+        )
+})
+
 export {
     registerUser,
     checkStorenameUnique,
@@ -422,5 +478,6 @@ export {
     updatePassword,
     deleteAccount,
     getCurrentUser,
-    getUserData
+    getUserData,
+    subscriptionPayment
 }
