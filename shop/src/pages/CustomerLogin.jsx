@@ -48,16 +48,16 @@ function CustomerLogin() {
             
             if (response.ok) {
                 
-                // const customerInfo = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/current-customer`, {
-                //     method: "GET",
-                //     headers: {
-                //         Authorization: `Bearer ${responseData.data.customerToken}`
-                //     }
-                // });
+                const customerInfo = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/current-customer`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${responseData.data.customerToken}`
+                    }
+                });
     
-                // const customerInfoData = await customerInfo.json()
+                const customerInfoData = await customerInfo.json()
                 // console.log(customerInfoData)
-                // setCustomerData(customerInfoData.data)
+                setCustomerData(customerInfoData.data)
                 customerTokenInLS(responseData.data.customerToken)
                 toast.success(responseData.message)
                 navigate("/")
