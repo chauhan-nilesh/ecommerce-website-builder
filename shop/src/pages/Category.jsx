@@ -41,6 +41,7 @@ function Category() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getCategoryProducts()
     }, [])
 

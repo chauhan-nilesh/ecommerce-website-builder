@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import toast from 'react-hot-toast';
 
 const ContactForm = () => {
@@ -10,6 +11,10 @@ const ContactForm = () => {
         message: "",
     });
 
+    useEffect(()=> {
+        window.scrollTo(0, 0);
+    }, [])
+    
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({

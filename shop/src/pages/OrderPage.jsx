@@ -23,6 +23,7 @@ function OrderPage() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getOrderData()
     }, [])
 

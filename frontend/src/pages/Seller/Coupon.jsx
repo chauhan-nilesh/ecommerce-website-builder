@@ -41,6 +41,7 @@ function Coupon() {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getCouponData()
   }, [])
 

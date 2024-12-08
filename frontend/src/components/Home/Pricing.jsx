@@ -1,7 +1,11 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 function Pricing() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    },[])
     return (
         <section className="py-10 px-8 lg:px-28 bg-gray-50 text-gray-800">
             <div className="container px-4 mx-auto">

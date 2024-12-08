@@ -1,6 +1,10 @@
 import React from 'react'
+import { useEffect } from 'react'
 
 function Error() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    },[])
     return (
         <section className="flex items-center h-screen p-16 dark:bg-gray-50 dark:text-gray-800">
             <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">

@@ -12,6 +12,7 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
       if (isTokenExpired(token)) {

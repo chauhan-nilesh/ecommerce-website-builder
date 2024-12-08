@@ -15,6 +15,10 @@ function CustomerSignUp() {
     })
     const navigate = useNavigate()
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    },[])
+
     const handleInput = (e) => {
         let name = e.target.name;
         let value = e.target.value;

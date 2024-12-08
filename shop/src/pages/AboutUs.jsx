@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 function AboutUs() {
     const { store, color1, color2 } = useOutletContext();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    },[])
+    
     return (
         <div className="container lg:mx-auto px-2 py-10">
             <header className="text-center">

@@ -42,6 +42,7 @@ function Createstore() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         check();
     }, [storename])
 

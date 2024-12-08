@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import { useAuth } from '../../store/auth'
+import { useEffect } from 'react';
 
 function Login() {
 
@@ -15,7 +16,11 @@ function Login() {
 
     const { storeTokenInLS, setUserId } = useAuth()
 
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     const handleInput = (e) => {
         let name = e.target.name;

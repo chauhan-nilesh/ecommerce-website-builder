@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ProductCard, Category, Banner } from "../components";
 import { Helmet } from "react-helmet";
 import LazyLoadingPage from '../components/LazyLoadingPage';
@@ -6,6 +6,10 @@ import { useOutletContext } from 'react-router-dom';
 
 function Homepage() {
   const { store, color1, color2, products } = useOutletContext(); // Access context passed from StoreLayout
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
 
   if (!store || !products) {
     return <LazyLoadingPage />;

@@ -1,10 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import { useAuth } from '../../store/auth';
+import { useEffect } from 'react';
 
 export default function Home() {
 
     const { token } = useAuth()
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
     return (
         <div>

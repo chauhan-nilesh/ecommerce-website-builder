@@ -19,6 +19,7 @@ const Subcription = () => {
     const [timeLeft, setTimeLeft] = useState(30); // Countdown timer in seconds
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (timeLeft > 0) {
             const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
             return () => clearTimeout(timer);

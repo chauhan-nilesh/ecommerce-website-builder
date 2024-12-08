@@ -1,6 +1,10 @@
 import React from 'react';
+import { useEffect } from 'react';
 
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
   return (
     <div className="container mx-auto px-2 py-10">
       <header className="text-center">

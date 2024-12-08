@@ -48,6 +48,7 @@ function AccountContent() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if(customerToken){
             customerAuthentication()
         }
