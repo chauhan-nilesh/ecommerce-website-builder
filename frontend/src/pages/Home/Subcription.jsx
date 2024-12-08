@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from "react-router-dom";
 import useStoreData from "../../Hooks/useStoreData";
@@ -16,6 +16,14 @@ const Subcription = () => {
     const navigate = useNavigate()
     const { user, loading } = useStoreData();
     const [tId, setTId] = useState("")
+    const [timeLeft, setTimeLeft] = useState(30); // Countdown timer in seconds
+
+    useEffect(() => {
+        if (timeLeft > 0) {
+            const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [timeLeft]);
 
     const handlePay = async (e) => {
         e.preventDefault()
@@ -43,6 +51,7 @@ const Subcription = () => {
             const responseData = await response.json()
             if (response.ok) {
                 setTId(responseData.data._id)
+                setTimeLeft(60)
             } else {
                 toast.error("Something went wrong. Try again after 15 minutes")
                 navigate("/subcription")
@@ -99,10 +108,18 @@ const Subcription = () => {
 
     return (
         <>
-            <div className="max-w-2xl mx-auto text-center mt-10">
-                <span className="font-bold tracking-wider uppercase text-orange-600">Startup Plan</span>
-                <h2 className="text-2xl font-bold lg:text-5xl">Perfect for creators,startup and influencers</h2>
-            </div>
+            {!isQrVisible ? (
+                <div className="max-w-2xl mx-auto text-center mt-10">
+                    <span className="font-bold tracking-wider uppercase text-orange-600">Startup Plan</span>
+                    <h2 className="text-2xl font-bold lg:text-5xl">Subscription</h2>
+                </div>
+            )
+                :
+                (
+                    <div className="max-w-2xl mx-auto text-center mt-10">
+                        <h2 className="text-2xl font-bold lg:text-3xl">Subscription Payment</h2>
+                    </div>
+                )}
             {user.subcription ?
                 <div className="flex flex-wrap justify-center items-stretch mx-4 my-10">
                     <div className="flex justify-center w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
@@ -203,12 +220,12 @@ const Subcription = () => {
                         </div>
                     </div>
                 </div>
-                : <main data-theme="light" className="mx-3 lg:mx-10 flex flex-wrap my-10 justify-center items-center">
-                    <div className="bg-gray-100 rounded-xl h-auto w-full md:w-[400px] px-3 lg:px-8 py-6">
-                        {/* Conditional Rendering: Show Form or QR Code */}
-                        {!isQrVisible ? (
-                            // Form Section
-                            <>
+                : <main data-theme="light" className="mx-3 lg:mx-10 flex my-10 justify-center items-center">
+                    {/* Conditional Rendering: Show Form or QR Code */}
+                    {!isQrVisible ? (
+                        // Form Section
+                        <>
+                            <div className="bg-gray-100 rounded-xl h-auto w-full md:w-[600px] px-3 lg:px-8 py-6">
                                 <h1 className="flex flex-wrap justify-center font-bold text-2xl mb-6">Subscribe Now</h1>
                                 <form>
 
@@ -286,34 +303,110 @@ const Subcription = () => {
                                         onClick={handlePay}
                                     />
                                 </form>
-                            </>
-                        ) : (
-                            // QR Code Section
-                            <>
-                                <h1 className="flex flex-wrap justify-center font-bold text-2xl mb-6">Pay via UPI</h1>
-                                <div className="flex flex-wrap justify-center bg-white mt-4 h-auto py-4 px-3 rounded-lg">
+                            </div>
+                        </>
+                    ) : (
+                        // QR Code Section
+                        // <>
+                        //     <h1 className="flex flex-wrap justify-center font-bold text-2xl mb-6">Pay via UPI</h1>
+                        //     <div className="flex flex-wrap justify-center bg-white mt-4 h-auto py-4 px-3 rounded-lg">
+                        //         <img
+                        //             src={`/qr-price.png`} // Replace with your QR code image path
+                        //             alt="QR Code"
+                        //             className="w-48 h-48"
+                        //         />
+                        //     </div>
+                        //     <div className="flex flex-wrap justify-center mt-4">
+                        //         <img className="h-6" src="/upi.png" alt="UPI" />
+                        //         <img className="h-6 ml-3" src="/gpay.png" alt="GPay" />
+                        //         <img className="h-6 ml-3" src="/phonepe.png" alt="PhonePe" />
+                        //         <img className="h-6 ml-3" src="/paytm.png" alt="Paytm" />
+                        //     </div>
+                        //     <p className="text-xs mt-6 ml-2 font-bold">After making payment click on done.</p>
+                        //     <button
+                        //         className="bg-zinc-900 text-white w-full rounded-lg px-4 py-3 mt-2"
+                        //         onClick={handleDone}
+                        //     >
+                        //         Done
+                        //     </button>
+                        // </>
+                        <>
+                            <div className="bg-white shadow-lg rounded-lg pt-5 px-1 mx-5">
+                                <div className="flex justify-between items-center border-b px-3 pb-4">
                                     <img
-                                        src={`/qr-price.png`} // Replace with your QR code image path
-                                        alt="QR Code"
-                                        className="w-48 h-48"
+                                        className="h-6"
+                                        src="/amazonpay.png" // Replace with your UPI logo path
+                                        alt="UPI"
                                     />
+                                    <span className="text-sm text-zinc-900 font-bold bg-zinc-300 p-2 truncate ml-3 rounded-lg">ID: #{tId}</span>
                                 </div>
-                                <div className="flex flex-wrap justify-center mt-4">
-                                    <img className="h-6" src="/upi.png" alt="UPI" />
-                                    <img className="h-6 ml-3" src="/gpay.png" alt="GPay" />
-                                    <img className="h-6 ml-3" src="/phonepe.png" alt="PhonePe" />
-                                    <img className="h-6 ml-3" src="/paytm.png" alt="Paytm" />
+
+                                <div className="bg-white rounded-lg rounded-t-none p-6 max-w-lg w-full">
+                                    {/* Header Section */}
+
+                                    {/* QR Code Section */}
+                                    <div className="mt-6 flex flex-col items-center">
+                                        <img
+                                            src={"/qr-price.png"} // Replace with your QR code image path
+                                            alt="QR Code"
+                                            className="w-40 h-40 border"
+                                        />
+                                        {/* <p className="text-lg font-semibold text-gray-800 mt-3">HANDLE@UPI</p> */}
+                                        <p className="text-center text-sm text-gray-600 mt-2">
+                                            Scan the QR Code with any UPI apps like BHIM, Paytm, Google Pay, PhonePe, or any banking UPI app to make
+                                            payment for this order. After successful payment, <span className="font-bold">click on done.</span>
+                                        </p>
+                                    </div>
+
+                                    {/* Payment Options */}
+                                    <div className="flex justify-center mt-4 space-x-4">
+                                        <img
+                                            className="h-6"
+                                            src="/upi.png" // Replace with your UPI logo path
+                                            alt="UPI"
+                                        />
+                                        <img
+                                            className="h-5"
+                                            src="/gpay.png" // Replace with your GPay logo path
+                                            alt="GPay"
+                                        />
+                                        <img
+                                            className="h-5"
+                                            src="/phonepe.png" // Replace with your PhonePe logo path
+                                            alt="PhonePe"
+                                        />
+                                        <img
+                                            className="h-5"
+                                            src="/paytm.png" // Replace with your Paytm logo path
+                                            alt="Paytm"
+                                        />
+                                    </div>
+
+                                    {/* Payment Info */}
+                                    <div className="mt-6 flex items-center justify-between">
+                                        <div>
+                                            <p className="text-lg font-bold text-gray-800">₹ {selectedPlan.price}.00</p>
+                                            <p className="text-sm text-gray-600">{upiId}</p>
+                                        </div>
+
+                                        {/* Countdown Timer */}
+                                        {timeLeft === 0 ?
+
+                                            <button onClick={handleDone} className="mt-4 bg-zinc-900 text-zinc-100 text-sm py-2 px-4 rounded flex items-center justify-center">
+                                                Done
+                                            </button>
+                                            :
+                                            <div className="mt-4 bg-zinc-900 text-zinc-100 text-sm py-2 px-4 rounded flex items-center justify-between">
+                                                <span>Waiting...</span>
+                                                <span className="font-bold">00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}</span>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
-                                <p className="text-xs mt-6 ml-2 font-bold">After making payment click on done.</p>
-                                <button
-                                    className="bg-zinc-900 text-white w-full rounded-lg px-4 py-3 mt-2"
-                                    onClick={handleDone}
-                                >
-                                    Done
-                                </button>
-                            </>
-                        )}
-                    </div>
+                            </div>
+                        </>
+                    )}
+
                 </main>
             }
         </>
