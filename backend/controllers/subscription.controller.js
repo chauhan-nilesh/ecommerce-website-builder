@@ -1,7 +1,7 @@
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import nodeMailer from "nodemailer";
-import { subscriptions } from "../models/subscription.model.js";
+import {subscriptions} from "../models/subscription.model.js"
 
 const createTransaction = asyncHandler(async (req, res) => {
     const { userId, period, price } = req.body;

@@ -7,7 +7,7 @@ import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { storeNameValidation } from "../schemas/signUpSchema.js";
 import { stores } from "../models/store.model.js";
-import { subscriptions } from "../models/Subscription.model.js";
+import { subscriptions } from "../models/subscription.model.js";
 
 const StorenameQuerySchema = z.object({
     storename: storeNameValidation
