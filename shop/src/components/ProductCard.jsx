@@ -43,7 +43,7 @@ function ProductCard({ products, color1, color2 }) {
 
                             <div className="lg:flex items-center justify-between mt-3">
                                 <p className='mb-4 lg:mb-0'>
-                                    <span className="text-2xl font-bold" style={{color: color1}}>&#8377;{product?.salePrice}</span>
+                                    <span className="text-2xl font-bold" style={{color: color1}}>&#8377;{product?.salePrice}</span>&nbsp;
                                     <span className="text-sm line-through" style={{color: color1}}>&#8377;{product?.originalPrice}</span>
                                 </p>
                                 <button type='button' onClick={() => addToCart({ ...product, quantity: 1 })} className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-3 text-center text-sm font-medium hover:opacity-75 focus:outline-none"

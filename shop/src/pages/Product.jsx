@@ -14,6 +14,7 @@ function Product() {
   const [defaultImage, setDefaultImage] = useState("");
   const [color1, setColor1] = useState("");
   const [color2, setColor2] = useState("");
+  const [sizeChartImage, setSizeChartImage] = useState("")
 
   //variants type
   const [typeSize, setTypeSize] = useState(false);
@@ -52,6 +53,7 @@ function Product() {
         const responseData = await response.json();
         setProduct({ ...responseData.data, quantity: 1 });
         setDefaultImage(responseData.data.images.featuredImage);
+        setSizeChartImage(responseData.data.sizeChartImage)
 
         // Check variants and set state accordingly
         responseData.data.variants.forEach((variant) => {
@@ -420,7 +422,7 @@ function Product() {
                           </tr>
                         </tbody>
                       </table> */}
-                      <img className='h-full w-full' src={product.sizeChartImage} alt="Size Chart" />
+                      <img className='h-full w-full' src={sizeChartImage} alt="Size Chart" />
                     </div>
                   </Dialog.Panel>
                 </Transition.Child>

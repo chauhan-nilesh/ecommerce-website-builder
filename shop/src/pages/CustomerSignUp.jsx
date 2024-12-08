@@ -6,6 +6,7 @@ import { useCustomerAuth } from '../store/customerAuth'
 function CustomerSignUp() {
     const { store, color1, color2 } = useOutletContext();
     const { customerTokenInLS } = useCustomerAuth()
+    const [loadingBtn, setLoadingBtn] = useState(false)
 
     const subdomain = window.location.hostname;
     const [user, setUser] = useState({
@@ -25,8 +26,8 @@ function CustomerSignUp() {
     }
 
     const handleSubmit = async (e) => {
-        console.log(store._id)
         e.preventDefault()
+        setLoadingBtn(true)
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/register`, {
                 method: "POST",
@@ -56,6 +57,7 @@ function CustomerSignUp() {
         } catch (error) {
             console.log(error)
         }
+        setLoadingBtn(true)
     }
 
     return (
@@ -74,7 +76,7 @@ function CustomerSignUp() {
                             <input onChange={handleInput} value={user?.password} className='w-full bg-gray-50 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
                         </div>
                         <button type="submit"
-                            className="w-full text-xl font-bold py-4 px-4 rounded-md hover:brightness-110 transition duration-200" style={{ color: color2, backgroundColor: color1 }}>Register</button>
+                            className="w-full text-xl font-bold py-4 px-4 rounded-md hover:brightness-110 transition duration-200" style={{ color: color2, backgroundColor: color1 }}>{!loadingBtn ? "Register" : <span className="loading loading-spinner loading-md"></span>}</button>
                     </form>
                 </div>
             </div>

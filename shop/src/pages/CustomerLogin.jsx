@@ -5,7 +5,8 @@ import { useCustomerAuth } from '../store/customerAuth'
 
 function CustomerLogin() {
     const { store, color1, color2 } = useOutletContext();
-    const { customerTokenInLS,setCustomerData } = useCustomerAuth()
+    const { customerTokenInLS,setCustomerData } = useCustomerAuth();
+    const [loadingBtn, setLoadingBtn] = useState(false)
    
     const [user, setUser] = useState({
         email: "",
@@ -26,6 +27,7 @@ function CustomerLogin() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
+            setLoadingBtn(true)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/login`, {
                 method: "POST",
                 headers: {
@@ -46,16 +48,16 @@ function CustomerLogin() {
             
             if (response.ok) {
                 
-                const customerInfo = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/current-customer`, {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${responseData.data.customerToken}`
-                    }
-                });
+                // const customerInfo = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/current-customer`, {
+                //     method: "GET",
+                //     headers: {
+                //         Authorization: `Bearer ${responseData.data.customerToken}`
+                //     }
+                // });
     
-                const customerInfoData = await customerInfo.json()
-
-                setCustomerData(customerInfoData.data)
+                // const customerInfoData = await customerInfo.json()
+                // console.log(customerInfoData)
+                // setCustomerData(customerInfoData.data)
                 customerTokenInLS(responseData.data.customerToken)
                 toast.success(responseData.message)
                 navigate("/")
@@ -66,6 +68,7 @@ function CustomerLogin() {
         } catch (error) {
             console.log(error)
         }
+        setLoadingBtn(false)
     }
 
     return (
@@ -84,7 +87,7 @@ function CustomerLogin() {
                             <input onChange={handleInput} value={user?.password} className='w-full bg-gray-50 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
                         </div>
                         <button type="submit"
-                            className="w-full text-xl font-bold py-4 px-4 rounded-md hover:brightness-110 transition duration-200" style={{color: color2, backgroundColor: color1}}>Login</button>
+                            className="w-full text-xl font-bold py-4 px-4 rounded-md hover:brightness-110 transition duration-200" style={{color: color2, backgroundColor: color1}}>{!loadingBtn ? "Login" : <span className="loading loading-spinner loading-md"></span>}</button>
                     </form>
                 </div>
             </div>
