@@ -51,7 +51,7 @@ function Coupon() {
 
   const deleteCoupon = async (id) => {
     try {
-      const response = await fetch(`/api/coupon/delete/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/coupon/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

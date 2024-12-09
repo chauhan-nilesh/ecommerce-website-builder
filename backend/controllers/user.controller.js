@@ -462,6 +462,378 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
         failed: false
     })
 
+
+    const emailProvider = nodeMailer.createTransport({
+        service: "gmail",
+        secure: true,
+        port: 465,
+        auth: {
+            user: process.env.OTP_EMAIL_ID,
+            pass: process.env.OTP_EMAIL_PASS
+        },
+        tls: { rejectUnauthorized: false }
+    })
+
+    const receiver = {
+        from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+        to: user.email,
+        subject: "Payment Confirmation for Your Eazzy Store Subscription",
+        html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Requested</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #ff8c00;
+        }
+        .header img {
+            width: 120px;
+        }
+        .content {
+            padding: 20px 30px;
+            color: #333;
+        }
+        .content h2 {
+            font-size: 24px;
+            color: #333;
+        }
+        .otp-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed #ff9100;
+            border-radius: 8px;
+        }
+        .otp-box .otp {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+        .content p {
+            line-height: 1.7;
+            font-size: 16px;
+            color: #555;
+        }
+        .support {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .support a {
+            background-color: #ee7401;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .order-details {
+            margin: 20px 0;
+        }
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-details table, .order-details th, .order-details td {
+            border: 1px solid #ddd;
+        }
+        .order-details th, .order-details td {
+            padding: 10px;
+            text-align: left;
+        }
+        .support a:hover {
+            background-color: #fd6900;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #007ad9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo and background -->
+        <div class="header">
+            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Payment Confirmation for Your Eazzy Store Subscription</h2>
+            <p>Hi ${user.store.name},</p>
+            <p>We are pleased to confirm that your payment for the Eazzy Store subscription has been successfully processed. Below are the details of your transaction:</p>
+            <div class="order-details">
+            <h2>Transaction Details</h2>
+            <table>
+                <tr>
+                    <th>Transaction Id</th>
+                    <td>${transaction._id}</td>
+                </tr>
+                <tr>
+                    <th>Subscription Plan</th>
+                    <td>${transaction.period} months</td>
+                </tr>
+                <tr>
+                    <th>Amount Paid</th>
+                    <td>Rs. ${transaction.price}</td>
+                </tr>
+                <tr>
+                    <th>Date of Payment</th>
+                    <td>${transaction.createdAt}</td>
+                </tr>
+            </table>
+        </div>
+        <p>Your subscription payment verification is under review. It will take 5 to 8 hours to be verified.</p>
+
+            <p>Thank you for trusting Eazzy Store. We're excited to support your journey!</p>
+            <p>If you did not made this payment, please contact our customer support immediately to secure your account.</p>
+
+            <p>Best regards,<br><strong>Eazzy Team</strong></p>
+        </div>
+
+        <!-- Support Button -->
+        <div class="support">
+            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
+        </div>
+
+        <!-- Footer with security warning -->
+        <div class="footer">
+            <p>Never share your OTP with anyone. Even if the caller claims to be from Eazzy.</p>
+            <p>Sharing these details can lead to unauthorized access to your account.</p>
+            <p>This is an automatically generated email, please do not reply.</p>
+        </div>
+    </div>
+</body>
+</html>
+`,
+    }
+
+    emailProvider.sendMail(receiver, (error, emailResponse) => {
+        if (error) {
+            return res.status(400).json({ message: error })
+        } else {
+            return res.status(200).json({ message: "Payment made successfully" })
+        }
+    })
+
+
+    const receiverAdmin = {
+        from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+        to: process.env.ADMIN_EMAIL_ID,
+        subject: "Eazzy Store Subscribtion Payment Request",
+        html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Requested</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #ff8c00;
+        }
+        .header img {
+            width: 120px;
+        }
+        .content {
+            padding: 20px 30px;
+            color: #333;
+        }
+        .content h2 {
+            font-size: 24px;
+            color: #333;
+        }
+        .otp-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed #ff9100;
+            border-radius: 8px;
+        }
+        .otp-box .otp {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+        .content p {
+            line-height: 1.7;
+            font-size: 16px;
+            color: #555;
+        }
+        .support {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .support a {
+            background-color: #ee7401;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .order-details {
+            margin: 20px 0;
+        }
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-details table, .order-details th, .order-details td {
+            border: 1px solid #ddd;
+        }
+        .order-details th, .order-details td {
+            padding: 10px;
+            text-align: left;
+        }
+        .support a:hover {
+            background-color: #fd6900;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #007ad9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo and background -->
+        <div class="header">
+            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Eazzy Store Subscribtion Payment Request</h2>
+            <p>Hi Admin,</p>
+            <p>Eazzy store received a subscription request. Below are the details of the transaction:</p>
+            <div class="order-details">
+            <h2>Transaction Details</h2>
+            <table>
+                <tr>
+                    <th>Transaction Id</th>
+                    <td>${transaction._id}</td>
+                </tr>
+                <tr>
+                    <th>Subscription Plan</th>
+                    <td>${transaction.period} months</td>
+                </tr>
+                <tr>
+                    <th>Amount Paid</th>
+                    <td>Rs. ${transaction.price}</td>
+                </tr>
+                <tr>
+                    <th>Date of Payment</th>
+                    <td>${transaction.createdAt}</td>
+                </tr>
+                <tr>
+                    <th>Store Id</th>
+                    <td>${user.store._id}</td>
+                </tr>
+                <tr>
+                    <th>Store Name</th>
+                    <td>${user.store.name}</td>
+                </tr>
+            </table>
+        </div>
+
+        <p>Best regards,<br><strong>Eazzy Store</strong></p>
+        </div>
+
+        <!-- Support Button -->
+        <div class="support">
+            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
+        </div>
+
+        <!-- Footer with security warning -->
+        <div class="footer">
+            <p>Never share your OTP with anyone. Even if the caller claims to be from Eazzy.</p>
+            <p>Sharing these details can lead to unauthorized access to your account.</p>
+            <p>This is an automatically generated email, please do not reply.</p>
+        </div>
+    </div>
+</body>
+</html>
+`,
+    }
+
+    emailProvider.sendMail(receiverAdmin, (error, emailResponse) => {
+        if (error) {
+            console.log("Something went wrong while sending email to admin")
+        } else {
+            console.log("Email sent successfully to admin")
+        }
+    })
+
+
     return res.status(200)
         .json(
             new ApiResponse(200, user, "Payment Completed")

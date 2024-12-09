@@ -1,7 +1,7 @@
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import nodeMailer from "nodemailer";
-import {subscriptions} from "../models/subscription.model.js"
+import { subscriptions } from "../models/subscription.model.js"
 
 const createTransaction = asyncHandler(async (req, res) => {
     const { userId, period, price } = req.body;
@@ -26,7 +26,16 @@ const createTransaction = asyncHandler(async (req, res) => {
             new ApiResponse(200, created, "Transaction initaited")
         )
 })
+const getUserTransaction = asyncHandler(async (req, res) => {
+    const { userId } = req.params;
+
+    const transactions = await subscriptions.find({ userId }).sort({ _id: -1 });
+    return res.status(200).json(
+        new ApiResponse(200, transactions, "Data retrieved Successfully")
+    )
+})
 
 export {
-    createTransaction
+    createTransaction,
+    getUserTransaction
 }

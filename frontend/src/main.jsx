@@ -46,6 +46,7 @@ import {
   Settings,
   Store,
   StoreAboutPage,
+  Transactions,
   UserProfile
 } from './components/Seller/index.js'
 import Error from './pages/Home/Error.jsx'
@@ -99,6 +100,7 @@ const router = createBrowserRouter(
         <Route path='domain-settings' element={<DomainSettings />} />
         <Route path='edit-profile' element={<UserProfile />} />
         <Route path='dialogbox' element={<DialogBox />} />
+        <Route path='transactions' element={<Transactions />} />
         <Route path='add-product' element={<AddProduct />} />
         <Route path='add-category' element={<AddCategory />} />
         <Route path='edit-category/:id' element={<EditCategory />} />

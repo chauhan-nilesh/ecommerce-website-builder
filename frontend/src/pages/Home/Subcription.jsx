@@ -17,9 +17,13 @@ const Subcription = () => {
     const { user, loading } = useStoreData();
     const [tId, setTId] = useState("")
     const [timeLeft, setTimeLeft] = useState(30); // Countdown timer in seconds
+    const [qrLoading, setQrLoading] = useState(true)
+
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(
+        `upi://pay?pa=9004627910@amazonpay&pn=UPI&am=${selectedPlan.price}&cu=INR&tn=OrderId:${tId}`
+    )}`;
 
     useEffect(() => {
-        window.scrollTo(0, 0);
         if (timeLeft > 0) {
             const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
             return () => clearTimeout(timer);
@@ -124,7 +128,7 @@ const Subcription = () => {
             {user.subcription ?
                 <div className="flex flex-wrap justify-center items-stretch mx-4 my-10">
                     <div className="flex justify-center w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
-                        <div className="">
+                        <div>
                             <div className="bg-orange-600 py-2 flex rounded-t justify-center items-center">
                                 <h4 className="text-white font-bold">Current Plan</h4>
                             </div>
@@ -155,7 +159,7 @@ const Subcription = () => {
                             <div className="flex flex-grow flex-col p-6 space-y-6 rounded shadow-lg">
                                 <div className="space-y-2">
                                     <h4 className="text-2xl font-bold">Startup</h4>
-                                    <h2 className="text-6xl font-bold">₹199 <span className='text-3xl text-gray-600 line-through'>₹999</span></h2>
+                                    <h2 className="text-2xl lg:text-5xl font-bold">₹199<span className='text-xl font-normal'>/month</span> <span className='text-xl lg:text-3xl text-gray-600 line-through'>₹999</span></h2>
                                 </div>
                                 <p className="mt-3 leading-relaxed text-gray-600">Perfect for creators,startup and influencers</p>
                                 <ul className="flex-1 mb-6 text-gray-600">
@@ -239,7 +243,7 @@ const Subcription = () => {
                                                     type="radio"
                                                     name="plan"
                                                     value="1"
-                                                    className="form-radio h-5 w-5 text-indigo-600"
+                                                    className="form-radio h-5 w-5 text-orange-600"
                                                     onChange={(e) => setSelectedPlan({ period: e.target.value, price: 199 })}
                                                 />
                                                 <span>1 Month - &#8377;199</span>
@@ -249,7 +253,7 @@ const Subcription = () => {
                                                     type="radio"
                                                     name="plan"
                                                     value="3"
-                                                    className="form-radio h-5 w-5 text-indigo-600"
+                                                    className="form-radio h-5 w-5 text-orange-600"
                                                     onChange={(e) => setSelectedPlan({ period: e.target.value, price: 499 })}
                                                 />
                                                 <span>3 Months - &#8377;499</span>
@@ -259,7 +263,7 @@ const Subcription = () => {
                                                     type="radio"
                                                     name="plan"
                                                     value="6"
-                                                    className="form-radio h-5 w-5 text-indigo-600"
+                                                    className="form-radio h-5 w-5 text-orange-600"
                                                     onChange={(e) => setSelectedPlan({ period: e.target.value, price: 999 })}
                                                 />
                                                 <span>6 Months - &#8377;999</span>
@@ -347,10 +351,13 @@ const Subcription = () => {
 
                                     {/* QR Code Section */}
                                     <div className="mt-6 flex flex-col items-center">
+                                        {qrLoading && <div className='flex h-52 w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>}
                                         <img
-                                            src={"/qr-price.png"} // Replace with your QR code image path
+                                            src={qrUrl} // 1 month price qr code
                                             alt="QR Code"
                                             className="w-40 h-40 border"
+                                            onLoad={() => setQrLoading(false)}
+                                            style={{ display: qrLoading ? "none" : "block" }}
                                         />
                                         {/* <p className="text-lg font-semibold text-gray-800 mt-3">HANDLE@UPI</p> */}
                                         <p className="text-center text-sm text-gray-600 mt-2">

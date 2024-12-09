@@ -4,7 +4,6 @@ import BottomNavBar from "./BottomNavBar";
 import Orders from "../../pages/Seller/Orders";
 import Products from "../../pages/Seller/Products";
 import Settings from "../../pages/Seller/Settings";
-import Transaction from "../../pages/Seller/Transaction";
 import Header from "./Header";
 import Category from "../../pages/Seller/Category";
 import Ordermobile from "./Ordermobile";
@@ -28,6 +27,7 @@ import EditCategory from "../../pages/Seller/EditCategory";
 import StoreAboutPage from "../../pages/Seller/StoreAboutPage";
 import AddCoupon from "../../pages/Seller/AddCoupon";
 import SellerOrderPage from "../../pages/Seller/SellerOrderPage";
+import Transactions from "../../pages/Seller/Transactions";
 
 export {
     Dashboard,
@@ -45,12 +45,12 @@ export {
     CustomizeBanner,
     CustomizeFooter,
     DomainSettings,
+    Transactions,
     Payment,
     Analytics,
     Coupon,
     Category,
     Settings,
-    Transaction,
     Ordermobile,
     Productmobile,
     AddProduct,
