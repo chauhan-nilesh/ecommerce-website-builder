@@ -15,6 +15,9 @@ const ProductImageScroller = ({ product }) => {
     isDragging.current = true;
     startX.current = e.clientX || e.touches[0].clientX;
     scrollLeft.current = containerRef.current.scrollLeft;
+
+    // Prevent default scrolling behavior on mobile devices
+    e.preventDefault();
   };
 
   // Handle drag move
