@@ -3,6 +3,7 @@ import { useCart } from "../store/CartContext";
 import { useParams, Link } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
 import { Helmet } from 'react-helmet';
+import ProductImageScroller from '../components/ProductImageScroller';
 
 function Product() {
   const { id } = useParams();
@@ -156,11 +157,17 @@ function Product() {
             </div>
           </div>
 
-          <div className="md:hidden carousel carousel-center max-w-fit p-2 gap-2 bg-white rounded-box">
+          {/* <div className="md:hidden carousel carousel-center max-w-fit p-2 gap-2 bg-white rounded-box">
             {Object.values(product?.images).map((image, idx) => (
               image ? <div key={idx} className="carousel-item"><img src={image} className="h-[420px] sm:h-[550px] rounded-box" alt={product?.name} /></div> : null
             ))}
-          </div>
+          </div> */}
+
+          {/* Image scroller for mobile */}
+
+          <ProductImageScroller product={product} />
+
+          {/* Mobile image scroller end */}
 
           <div className='py-2 px-4 md:px-4 md:py-4 lg:pr-10'>
             <h2 className='text-xl font-semibold tracking-tighter'>{product?.name}</h2>
