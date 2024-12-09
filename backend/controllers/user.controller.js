@@ -595,7 +595,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
         <!-- Main Content -->
         <div class="content">
             <h2>Payment Confirmation for Your Eazzy Store Subscription</h2>
-            <p>Hi ${user.store.name},</p>
+            <p>Hi user,</p>
             <p>We are pleased to confirm that your payment for the Eazzy Store subscription has been successfully processed. Below are the details of your transaction:</p>
             <div class="order-details">
             <h2>Transaction Details</h2>
@@ -797,10 +797,6 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
                 <tr>
                     <th>Store Id</th>
                     <td>${user.store._id}</td>
-                </tr>
-                <tr>
-                    <th>Store Name</th>
-                    <td>${user.store.name}</td>
                 </tr>
             </table>
         </div>

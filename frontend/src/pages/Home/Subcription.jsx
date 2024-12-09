@@ -56,7 +56,7 @@ const Subcription = () => {
             const responseData = await response.json()
             if (response.ok) {
                 setTId(responseData.data._id)
-                setTimeLeft(60)
+                setTimeLeft(30)
             } else {
                 toast.error("Something went wrong. Try again after 15 minutes")
                 navigate("/subcription")
