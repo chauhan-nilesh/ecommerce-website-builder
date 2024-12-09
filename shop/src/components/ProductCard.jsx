@@ -20,7 +20,7 @@ function ProductCard({ products, color1, color2 }) {
                             <Link className="hover:opacity-75" to={`/product/${product._id}`}>
                                 {!imageLoaded && (
                                     <div
-                                        className="h-48 flex skeleton items-center justify-center bg-gray-200"
+                                        className="h-48 flex skeleton items-center justify-center"
                                         style={{ borderRadius: '0.375rem 0.375rem 0 0' }}
                                     >
                                     </div>
@@ -30,7 +30,6 @@ function ProductCard({ products, color1, color2 }) {
                                         }`}
                                     src={product.images.featuredImage}
                                     alt="product image"
-                                    loading="lazy"
                                     onLoad={() => setImageLoaded(true)}
                                 />
                             </Link>
