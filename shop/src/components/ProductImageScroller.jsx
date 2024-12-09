@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 
 const ProductImageScroller = ({ product }) => {
   const images = Object.values(product?.images);
   const containerRef = useRef(null);
 
-  // State and refs for touch-based swipe functionality
+  // Refs to handle touch events
   const isSwiping = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
@@ -15,7 +15,7 @@ const ProductImageScroller = ({ product }) => {
       isSwiping.current = true;
       startX.current = e.touches[0].clientX; // Get touch position
       scrollLeft.current = containerRef.current.scrollLeft;
-      e.preventDefault(); // Prevent default scrolling
+      e.preventDefault(); // Prevent default page scrolling
     }
   };
 
