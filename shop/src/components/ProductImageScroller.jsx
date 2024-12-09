@@ -4,41 +4,33 @@ const ProductImageScroller = ({ product }) => {
   const images = Object.values(product?.images);
   const containerRef = useRef(null);
 
-  // For drag scroll functionality
-  const isDragging = useRef(false);
+  // State and refs for touch-based swipe functionality
+  const isSwiping = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
-  // Handle drag start
-  const handleDragStart = (e) => {
-    isDragging.current = true;
-    startX.current = e.clientX || e.touches[0].clientX;  // Get position (mouse or touch)
-    scrollLeft.current = containerRef.current.scrollLeft;
-    // Prevent default behavior to avoid page scrolling
-    e.preventDefault();
+  // Handle swipe start
+  const handleSwipeStart = (e) => {
+    if (images.length > 1) { // Only allow swipe if there's more than one image
+      isSwiping.current = true;
+      startX.current = e.touches[0].clientX; // Get touch position
+      scrollLeft.current = containerRef.current.scrollLeft;
+      e.preventDefault(); // Prevent default scrolling
+    }
   };
 
-  // Handle drag move
-  const handleDragMove = (e) => {
-    if (!isDragging.current) return;
-
-    const x = e.clientX || e.touches[0].clientX;  // Get position (mouse or touch)
-    const walk = (x - startX.current) * 3;  // Multiply for speed
+  // Handle swipe move
+  const handleSwipeMove = (e) => {
+    if (!isSwiping.current) return;
+    const x = e.touches[0].clientX; // Get current touch position
+    const walk = (x - startX.current) * 3; // Multiply for speed
     containerRef.current.scrollLeft = scrollLeft.current - walk; // Move container
   };
 
-  // Handle drag end
-  const handleDragEnd = () => {
-    isDragging.current = false;
+  // Handle swipe end
+  const handleSwipeEnd = () => {
+    isSwiping.current = false;
   };
-
-  // Handle mouse and touch events for dragging
-  const handleMouseDown = (e) => handleDragStart(e);
-  const handleMouseMove = (e) => handleDragMove(e);
-  const handleMouseUp = () => handleDragEnd();
-  const handleTouchStart = (e) => handleDragStart(e);
-  const handleTouchMove = (e) => handleDragMove(e);
-  const handleTouchEnd = () => handleDragEnd();
 
   return (
     <div className="md:hidden w-full p-4">
@@ -48,15 +40,11 @@ const ProductImageScroller = ({ product }) => {
           ref={containerRef}
           className="flex transition-transform duration-500"
           style={{
-            cursor: images.length > 1 ? 'grab' : 'default',
+            cursor: images.length > 1 ? 'grab' : 'default', // Show grab cursor if multiple images
           }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          onTouchStart={handleSwipeStart}
+          onTouchMove={handleSwipeMove}
+          onTouchEnd={handleSwipeEnd}
         >
           {images.map((image, idx) =>
             image ? (
