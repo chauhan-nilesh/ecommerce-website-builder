@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 
 const ProductImageScroller = ({ product }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const images = Object.values(product?.images);
   const containerRef = useRef(null);
 
@@ -13,19 +12,19 @@ const ProductImageScroller = ({ product }) => {
   // Handle drag start
   const handleDragStart = (e) => {
     isDragging.current = true;
-    startX.current = e.clientX || e.touches[0].clientX;
+    startX.current = e.clientX || e.touches[0].clientX;  // Get position (mouse or touch)
     scrollLeft.current = containerRef.current.scrollLeft;
-
-    // Prevent default scrolling behavior on mobile devices
+    // Prevent default behavior to avoid page scrolling
     e.preventDefault();
   };
 
   // Handle drag move
   const handleDragMove = (e) => {
     if (!isDragging.current) return;
-    const x = e.clientX || e.touches[0].clientX;
-    const walk = (x - startX.current) * 3; // Adjust the scroll speed
-    containerRef.current.scrollLeft = scrollLeft.current - walk;
+
+    const x = e.clientX || e.touches[0].clientX;  // Get position (mouse or touch)
+    const walk = (x - startX.current) * 3;  // Multiply for speed
+    containerRef.current.scrollLeft = scrollLeft.current - walk; // Move container
   };
 
   // Handle drag end
@@ -49,7 +48,6 @@ const ProductImageScroller = ({ product }) => {
           ref={containerRef}
           className="flex transition-transform duration-500"
           style={{
-            transform: `translateX(-${activeIndex * 100}%)`,
             cursor: images.length > 1 ? 'grab' : 'default',
           }}
           onMouseDown={handleMouseDown}
