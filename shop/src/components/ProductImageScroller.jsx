@@ -38,7 +38,7 @@ const ProductImageScroller = ({ product }) => {
 
       {/* Left Button */}
       <button
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-600 transition-all"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-zinc-100 text-black p-2 rounded-full shadow-lg hover:bg-zinc-200 transition-all"
         onClick={handlePrevClick}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ const ProductImageScroller = ({ product }) => {
 
       {/* Right Button */}
       <button
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-600 transition-all"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-zinc-100 text-black p-2 rounded-full shadow-lg hover:bg-zinc-200 transition-all"
         onClick={handleNextClick}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right" viewBox="0 0 24 24">
