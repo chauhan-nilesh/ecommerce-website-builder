@@ -1,57 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 
 const ProductImageScroller = ({ product }) => {
   const images = Object.values(product?.images);
-  const containerRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Refs to handle touch events
-  const isSwiping = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
-
-  // Handle swipe start
-  const handleSwipeStart = (e) => {
-    if (images.length > 1) { // Only allow swipe if there's more than one image
-      isSwiping.current = true;
-      startX.current = e.touches[0].clientX; // Get touch position
-      scrollLeft.current = containerRef.current.scrollLeft;
-      e.preventDefault(); // Prevent default page scrolling
-    }
+  // Function to handle left button click
+  const handlePrevClick = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
-  // Handle swipe move
-  const handleSwipeMove = (e) => {
-    if (!isSwiping.current) return;
-    const x = e.touches[0].clientX; // Get current touch position
-    const walk = (x - startX.current) * 3; // Multiply for speed
-    containerRef.current.scrollLeft = scrollLeft.current - walk; // Move container
-  };
-
-  // Handle swipe end
-  const handleSwipeEnd = () => {
-    isSwiping.current = false;
+  // Function to handle right button click
+  const handleNextClick = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
 
   return (
-    <div className="md:hidden w-full p-4">
-      {/* Image Scroller */}
+    <div className="md:hidden w-full p-4 relative">
+      {/* Image Container */}
       <div className="relative w-full overflow-hidden">
-        <div
-          ref={containerRef}
-          className="flex transition-transform duration-500"
-          style={{
-            cursor: images.length > 1 ? 'grab' : 'default', // Show grab cursor if multiple images
-          }}
-          onTouchStart={handleSwipeStart}
-          onTouchMove={handleSwipeMove}
-          onTouchEnd={handleSwipeEnd}
-        >
+        <div className="flex transition-transform duration-500">
           {images.map((image, idx) =>
             image ? (
-              <div key={idx} className="flex-shrink-0 w-full">
+              <div
+                key={idx}
+                className={`flex-shrink-0 w-full ${idx === currentIndex ? 'block' : 'hidden'}`}
+              >
                 <img
                   src={image}
-                  className="h-[420px] sm:h-[550px] w-full object-cover rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-105"
+                  className="h-[420px] sm:h-[550px] w-full object-cover rounded-xl shadow-lg transition-transform duration-300"
                   alt={product?.name}
                 />
               </div>
@@ -59,6 +35,26 @@ const ProductImageScroller = ({ product }) => {
           )}
         </div>
       </div>
+
+      {/* Left Button */}
+      <button
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-600 transition-all"
+        onClick={handlePrevClick}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left" viewBox="0 0 24 24">
+          <path d="M15 18l-6-6 6-6"></path>
+        </svg>
+      </button>
+
+      {/* Right Button */}
+      <button
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-600 transition-all"
+        onClick={handleNextClick}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right" viewBox="0 0 24 24">
+          <path d="M9 18l6-6-6-6"></path>
+        </svg>
+      </button>
     </div>
   );
 };
