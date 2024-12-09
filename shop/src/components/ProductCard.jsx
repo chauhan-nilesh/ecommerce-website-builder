@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../store/CartContext';
 
@@ -9,8 +9,22 @@ function ProductCard({ products, color1, color2 }) {
         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-5">
             {products.map((product, index) => {
                 if (product?.status === true && product?.stockStatus === true) {
-                    // Use local state for each product to track image loading
+                    // State for image loading
                     const [imageLoaded, setImageLoaded] = useState(false);
+
+                    useEffect(() => {
+                        // Reset the imageLoaded state when the component mounts
+                        setImageLoaded(false);
+                    }, [product]);
+
+                    const handleImageLoad = () => {
+                        setImageLoaded(true);
+                    };
+
+                    const handleImageError = () => {
+                        console.error(`Failed to load image: ${product.images.featuredImage}`);
+                        setImageLoaded(true); // Stop showing "Loading..." if the image fails
+                    };
 
                     return (
                         <div
@@ -27,12 +41,14 @@ function ProductCard({ products, color1, color2 }) {
                                     </div>
                                 )}
                                 <img
-                                    className={`h-fit w-auto rounded-t-lg object-cover ${!imageLoaded ? 'hidden' : ''
-                                        }`}
+                                    className={`h-fit w-auto rounded-t-lg object-cover ${
+                                        !imageLoaded ? 'hidden' : ''
+                                    }`}
                                     src={product.images.featuredImage}
                                     alt="product image"
                                     loading="lazy"
-                                    onLoad={() => setImageLoaded(true)}
+                                    onLoad={handleImageLoad}
+                                    onError={handleImageError}
                                 />
                             </Link>
                             {product?.salePrice < product?.originalPrice ? (
@@ -42,9 +58,7 @@ function ProductCard({ products, color1, color2 }) {
                                 >
                                     Sale
                                 </span>
-                            ) : (
-                                ''
-                            )}
+                            ) : null}
                             <div className="mt-4 px-3 lg:px-5 pb-5">
                                 <Link to={`/product/${product?._id}`}>
                                     <h5
