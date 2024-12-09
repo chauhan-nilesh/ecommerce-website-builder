@@ -4,7 +4,7 @@ function Banner({ store, color1, color2 }) {
 
   const [imageLoaded, setImageLoaded] = useState(false)
 
-  if (true) {
+  if (!store) {
     return (
       <>
         <div data-theme="light" className='hidden md:flex'>
