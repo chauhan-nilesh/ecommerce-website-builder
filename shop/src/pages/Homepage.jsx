@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import LazyLoadingPage from '../components/LazyLoadingPage';
 import { useOutletContext } from 'react-router-dom';
 import ShuffledProducts from '../components/ShuffledProducts';
+import ProductList from './ProductList';
 
 function Homepage() {
   const { store, color1, color2, products } = useOutletContext(); // Access context passed from StoreLayout
@@ -40,7 +41,7 @@ function Homepage() {
         <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4">
           <h2 className="text-xl lg:text-2xl font-bold tracking-tight text-gray-900">New Arrivals</h2>
 
-          <ProductCard products={products} color1={color1} color2={color2} />
+          <ProductList products={products} color1={color1} color2={color2} />
         </div>
       </div>
 

@@ -1,43 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../store/CartContext';
 
-function ShuffledProducts({ products, color1, color2 }) {
+function ProductList({ products, color1, color2 }) {
     const { addToCart } = useCart();
-    const [shuffledProducts, setShuffledProducts] = useState([]);
-    const [imageLoaded, setImageLoaded] = useState({}); // Store loading status for each product
-
-    // Shuffle products using Fisher-Yates algorithm and limit to 8 products
-    useEffect(() => {
-        const shuffleArray = (array) => {
-            let shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        };
-
-        const shuffled = shuffleArray(products);
-        setShuffledProducts(shuffled.slice(0, 8)); // Limit to 8 products
-    }, [products]);
-
-    // Handle image load
-    const handleImageLoad = (id) => {
-        setImageLoaded((prevState) => ({ ...prevState, [id]: true }));
-    };
 
     return (
         <div data-theme="light" className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-5">
-            {shuffledProducts.map((product, index) => {
+            {/* Slice the products array to get the last 8 items */}
+            {products.slice(-8).map((product, index) => {
                 if (product?.status === true && product?.stockStatus === true) {
+                    // Use local state for each product to track image loading
+                    const [imageLoaded, setImageLoaded] = useState(false);
+
                     return (
                         <div
                             key={index}
                             className="relative w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-md"
                         >
                             <Link className="hover:opacity-75" to={`/product/${product._id}`}>
-                                {!imageLoaded[product._id] && (
+                                {!imageLoaded && (
                                     <div
                                         className="h-48 flex skeleton items-center justify-center"
                                         style={{ borderRadius: '0.375rem 0.375rem 0 0' }}
@@ -45,11 +27,10 @@ function ShuffledProducts({ products, color1, color2 }) {
                                     </div>
                                 )}
                                 <img
-                                    className={`h-fit w-auto rounded-t-lg object-cover ${!imageLoaded[product._id] ? 'hidden' : ''
-                                        }`}
+                                    className={`h-fit w-auto rounded-t-lg object-cover ${!imageLoaded ? 'hidden' : ''}`}
                                     src={product.images.featuredImage}
                                     alt="product image"
-                                    onLoad={() => handleImageLoad(product._id)}
+                                    onLoad={() => setImageLoaded(true)}
                                 />
                             </Link>
                             {product?.salePrice < product?.originalPrice ? (
@@ -89,9 +70,7 @@ function ShuffledProducts({ products, color1, color2 }) {
                                     </p>
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            addToCart({ ...product, quantity: 1 })
-                                        }
+                                        onClick={() => addToCart({ ...product, quantity: 1 })}
                                         className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-3 text-center text-sm font-medium hover:opacity-75 focus:outline-none"
                                         style={{
                                             color: color2,
@@ -117,4 +96,4 @@ function ShuffledProducts({ products, color1, color2 }) {
     );
 }
 
-export default ShuffledProducts;
+export default ProductList;
