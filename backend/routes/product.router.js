@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
-import { addProduct, deleteProduct, getProductData, getProducts, updateProduct } from "../controllers/product.controller.js";
+import { addProduct, deleteProduct, getProductData, getProducts, searchProducts, updateProduct } from "../controllers/product.controller.js";
 
 const router = Router()
 
@@ -36,6 +36,8 @@ router.route("/add-product").post(
 router.route("/data/:id").get(getProductData)
 
 router.route("/get-data/:id").get(getProducts)
+
+router.route("/search").get(searchProducts)
 
 router.route("/update-product/:id").patch(upload.fields([
     {

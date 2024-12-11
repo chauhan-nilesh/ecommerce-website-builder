@@ -21,6 +21,7 @@ import {
   Order,
   OrderPage,
   ReturnPolicy,
+  SearchPage,
   ShippingPolicy,
   Shop,
   UpdatePassword
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
         <Route path='signup' element={<CustomerSignUp />} />
         <Route path='login' element={<CustomerLogin />} />
         <Route path='shop' element={<Shop />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path='product/:id' element={<Product />} />
         <Route path='category/:id' element={<Category />} />
         <Route path='return-policy' element={<ReturnPolicy />} />

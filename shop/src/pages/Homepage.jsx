@@ -11,7 +11,7 @@ function Homepage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, [])
 
   if (!store || !products) {
     return <LazyLoadingPage />;
@@ -29,7 +29,7 @@ function Homepage() {
       </Helmet>
 
       <Banner store={store} color1={color1} color2={color2} />
-      
+
       {store.hideCategory === false ?
         <Category categories={store?.categories} />
         : null

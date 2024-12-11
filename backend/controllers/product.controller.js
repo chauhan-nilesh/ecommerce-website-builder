@@ -181,11 +181,23 @@ const deleteProduct = asyncHandler(async (req, res) => {
         )
 })
 
+const searchProducts = asyncHandler(async (req, res) => {
+    const query = req.query.q || '';
+    const productData = await products.find({
+        name: { $regex: query, $options: 'i' },
+    });
+    return res.status(200)
+        .json(
+            new ApiResponse(200, productData, "Product Retrieved")
+        )
+})
+
 
 export {
     addProduct,
     getProducts,
     getProductData,
+    searchProducts,
     updateProduct,
     deleteProduct
 }

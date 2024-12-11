@@ -15,9 +15,10 @@ import AccountContent from '../pages/AccountContent'
 import OrderPage from '../pages/OrderPage'
 import BottomNavbar from './BottomNavbar'
 import Shop from '../pages/Shop'
+import SearchPage from '../pages/SearchPage'
 import Error from '../pages/Error'
 import ShippingPolicy from './ShippingPolicy'
 import ReturnPolicy from './ReturnPolicy'
 import AboutUs from '../pages/AboutUs'
 
-export { Header, Footer, Banner, Homepage, Shop, BottomNavbar, ProductCard, CustomerSignUp, CustomerLogin, Error, Category, Cart, ReturnPolicy, ShippingPolicy, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }
+export { Header, Footer, Banner, Homepage, Shop, BottomNavbar, ProductCard, SearchPage, CustomerSignUp, CustomerLogin, Error, Category, Cart, ReturnPolicy, ShippingPolicy, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }
