@@ -28,7 +28,7 @@ function Header({ store, color1, color2, openSearch, setOpenSearch }) {
 
         <div data-theme="light" className='bg-zinc-100 rounded-full hidden lg:flex justify-between'>
           <input
-            className="h-12 w-[500px] bg-zinc-100 outline-none rounded-full px-4 text-base"
+            className="h-12 w-[450px] bg-zinc-100 outline-none rounded-full px-4 text-base"
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -60,7 +60,7 @@ function Header({ store, color1, color2, openSearch, setOpenSearch }) {
                   background: color1,
                   color: color2,
                   borderRadius: '50%',
-                  padding: '0.1em 0.39em',
+                  padding: '0.1em 0.5em',
                   fontSize: '0.65rem',
                   fontWeight: 'bold'
                 }}>
@@ -96,7 +96,7 @@ function Header({ store, color1, color2, openSearch, setOpenSearch }) {
                   Login
                 </Link>
               </div>
-              <div className='lg:hidden lg:font-semibold text-base tracking-tighter bg-transparent pl-2 py-2 rounded-lg' style={{ color: color1 }}>
+              <div className='hidden lg:hidden lg:font-semibold text-base tracking-tighter bg-transparent pl-2 py-2 rounded-lg' style={{ color: color1 }}>
                 <Link to="/login">
                   <img alt="Avatar" src="/profile.svg" className='h-7' />
                 </Link>

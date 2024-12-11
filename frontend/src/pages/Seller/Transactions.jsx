@@ -78,10 +78,10 @@ function Transactions() {
                                             <th className="p-3 text-base tracking-tighter">Transaction Id</th>
                                             <th className="p-3 text-base tracking-tighter">UPI ID</th>
                                             <th className="p-3 text-base tracking-tighter">Transaction Date</th>
-                                            <th className="p-3 text-base tracking-tighter">UPI Reference ID</th>
+                                            <th className="p-3 text-base tracking-tighter">UPI Reference No</th>
                                             <th className="p-3 text-base tracking-tighter">From User</th>
                                             <th className="p-3 text-base tracking-tighter">Status</th>
-                                            <th className="p-3 text-base tracking-tighter">Amonut</th>
+                                            <th className="p-3 text-base tracking-tighter">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>

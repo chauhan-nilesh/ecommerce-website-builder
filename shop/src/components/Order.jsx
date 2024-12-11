@@ -120,7 +120,7 @@ function Order() {
             <div className='px-5 lg:px-64 py-7 lg:py-10'>
                 <div>
                     <h2 className='text-2xl lg:text-4xl font-bold'>Orders</h2>
-                    <p className='text-sx lg:text-base text-gray-600 mt-2'>Check the status of recent orders, manage returns, and discover similar products.</p>
+                    <p className='text-xs lg:text-base text-gray-600 mt-2'>Check the status of recent orders, manage returns, and discover similar products.</p>
                 </div>
 
                 {orders.length > 0 ?

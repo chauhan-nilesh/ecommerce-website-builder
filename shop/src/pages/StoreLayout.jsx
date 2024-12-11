@@ -57,8 +57,9 @@ export default function StoreLayout() {
 
       {/* Pass store, products, and colors to child components via Outlet */}
       <main>
+        {/* Mobile search bar */}
         {openSearch ?
-          <div data-theme="light" className='bg-zinc-100 my-2 px-3 rounded-full flex justify-between lg:hidden'>
+          <div data-theme="light" className='bg-zinc-100 my-2 rounded-full flex justify-between lg:hidden'>
             <input
               className="h-12 w-full bg-zinc-100 outline-none rounded-full px-4 text-base"
               type="search"
@@ -66,9 +67,9 @@ export default function StoreLayout() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for products"
             />
-            <button onClick={handleSearch} className={`${query ? "bg-zinc-800" : ""}  px-6 py-3 rounded-full`}>
+            <button onClick={handleSearch} className={`${query ? "bg-zinc-800" : ""}  px-6 py-auto rounded-full`}>
               {query ?
-                <img className='h-7 w-7' src="/search-icon.png" alt="search" />
+                <img className='h-7 w-8' src="/search-icon.png" alt="search" />
                 :
                 <img className='h-3
                  w-4' src="/remove.png" alt="search" />
