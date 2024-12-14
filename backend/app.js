@@ -64,4 +64,4 @@ app.use("/api/subscription", subscriptionRouter)
 
 app.use("/api/razorpay", razorpayRouter)
 
-export default app
+export default app;
