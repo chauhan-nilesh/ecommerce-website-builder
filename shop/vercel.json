@@ -1,14 +1,6 @@
 {
     "rewrites": [
         {
-            "source": "/dynamic-page/:id",
-            "destination": "/api/ssr?id=:id"
-        },
-        {
-            "source": "/api/(.*)",
-            "destination": "/api/$1"
-        },
-        {
             "source": "/(.*)",
             "destination": "/"
         }
