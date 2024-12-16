@@ -75,14 +75,14 @@ function Login() {
                 <h1 className="text-3xl text-black font-bold mb-6 flex flex-wrap justify-center">Login</h1>
                 <h3 className="text-gray-700">Not registered? <Link className='font-bold text-orange-600' to="/signup">Register</Link></h3>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-input mt-5 mb-6">
-                        <label htmlFor="email">Email</label><br />
-                        <input onChange={handleInput} type="email" placeholder=" " className="input input-bordered bg-gray-50 w-full max-w-xs" value={user.email} name='email' id="email" />
-                    </div>
-                    <div className="form-input mb-6">
-                        <label htmlFor="password">Password</label><br />
-                        <input onChange={handleInput} placeholder=" " className="input input-bordered bg-gray-50 w-full max-w-xs" value={user.password} type="password" name='password' id="password" />
-                    </div>
+                <div className="form-input mt-5 mb-6">
+                            <label htmlFor="email">Email</label><br />
+                            <input onChange={handleInput} value={user.email} className='w-full bg-gray-50 rounded-md px-3 py-3' type="email" name='email' id="email" placeholder=" " />
+                        </div>
+                        <div className="form-input mb-6">
+                            <label htmlFor="password">Password</label><br />
+                            <input onChange={handleInput} value={user.password} className='w-full bg-gray-50 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
+                        </div>
                     <button type="submit"
                         className="bg-orange-600 w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-orange-700 transition duration-200">{!loadingBtn ? "Login" : <span className="loading loading-spinner loading-md"></span>}</button>
                 </form>

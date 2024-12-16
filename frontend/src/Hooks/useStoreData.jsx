@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import isTokenExpired from "./verifyJwtToken"
 
 function useStoreData() {
     const [loading, setLoading] = useState(true)
@@ -10,6 +11,9 @@ function useStoreData() {
         ; (async () => {
             try {
                 setLoading(true)
+                if(isTokenExpired(token)){
+                    localStorage.clear()
+                }
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/current-user`, {
                     method: "GET",
                     headers: {

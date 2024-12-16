@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
+import isTokenExpired from "../Hooks/verifyJwtToken";
 
 export const AuthContext = createContext();
 
@@ -52,6 +53,9 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if(token){
+            if(isTokenExpired(token)){
+                localStorage.clear()
+            }
             userAuthentication()
         }
     }, [])
