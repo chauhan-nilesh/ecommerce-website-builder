@@ -19,7 +19,7 @@ export default function Home() {
                         <div className="max-w-xl sm:mt-1 mt-80 space-y-8 text-center sm:text-right sm:ml-auto">
                             <h2 className="text-2xl font-extrabold sm:text-5xl">
                                 Launch your own online store
-                                <br /><span className="sm:block text-xl lg:text-3xl font-bold font-sans text-green-700">with 0% commissions</span>
+                                <br /><span className="sm:block text-xl lg:text-3xl font-bold font-sans text-green-700">in 30 seconds</span>
                             </h2>
 
                             {token ?
@@ -52,10 +52,10 @@ export default function Home() {
 
                         <div className='bg-violet-50 h-full lg:w-80 p-8 rounded-2xl'>
                             <div className='flex justify-center items-center'>
-                                <img className='h-36' src="/cash-on-delivery.png" alt="" />
+                                <img className='h-36' src="/store-management.png" alt="" />
                             </div>
-                            <h3 className='text-center text-xl font-bold py-2'>Zero commission</h3>
-                            <p className='text-center font-semibold text-zinc-600'>Sell & grow your business on Eazzy to keep all your profits to yourself</p>
+                            <h3 className='text-center text-xl font-bold py-2'>Store Management</h3>
+                            <p className='text-center font-semibold text-zinc-600'>Effortlessly manage products, categories, orders, customers, and coupons - all from a user-friendly dashboard.</p>
                         </div>
 
                         <div className='bg-violet-50 h-full lg:w-80 p-8 rounded-2xl lg:mt-0 mt-10'>
@@ -63,15 +63,15 @@ export default function Home() {
                                 <img className='h-36' src="/influencer.png" alt="" />
                             </div>
                             <h3 className='text-center text-xl font-bold py-2'>Engage with customers</h3>
-                            <p className='text-center font-semibold text-zinc-600'>Market your store with your own domain</p>
+                            <p className='text-center font-semibold text-zinc-600'>Market your store with your own custom domain or subdomain for professional branding and ownership</p>
                         </div>
 
                         <div className='bg-violet-50 h-full lg:w-80 p-8 rounded-2xl lg:mt-0 mt-10'>
                             <div className='flex justify-center items-center'>
-                                <img className='h-36' src="/customer-service.png" alt="" />
+                                <img className='h-36' src="/store-custom.png" alt="" />
                             </div>
-                            <h3 className='text-center text-xl font-bold py-2'>Customer Support</h3>
-                            <p className='text-center font-semibold text-zinc-600'>Share customised items, answer their queries and more via whatsapp chat</p>
+                            <h3 className='text-center text-xl font-bold py-2'>Easy Store Customization</h3>
+                            <p className='text-center font-semibold text-zinc-600'>Tailor your store with customizable store policies, categories, and settings to suit your business needs.</p>
                         </div>
 
                     </div>
