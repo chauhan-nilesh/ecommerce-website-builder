@@ -283,7 +283,7 @@ const Subcription = () => {
                                         />
                                         <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                                         <label className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" htmlFor="radio_1">
-                                            <img className="w-14 object-contain" src="./cashless-payment.png" alt="" />
+                                            <img className="w-10 lg:w-14 object-contain" src="./cashless-payment.png" alt="" />
                                             <div className="ml-5">
                                                 <span className="mt-2 font-semibold">UPI</span>
                                                 <p className="text-slate-500 text-base leading-6">Pay through any UPI App</p>
