@@ -125,7 +125,7 @@ const Subcription = () => {
                         <h2 className="text-2xl font-bold lg:text-3xl">Subscription Payment</h2>
                     </div>
                 )}
-            {user.subcription ?
+            {user?.subcription ?
                 <div className="flex flex-wrap justify-center items-stretch mx-4 my-10">
                     <div className="flex justify-center w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
                         <div>
