@@ -20,7 +20,7 @@ const Subcription = () => {
     const [qrLoading, setQrLoading] = useState(true)
 
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(
-        `upi://pay?pa=9004627910@amazonpay&pn=UPI&am=${selectedPlan.price}&cu=INR&tn=OrderId:${tId}`
+        `upi://pay?pa=0000000000@amazonpay&pn=UPI&am=${selectedPlan.price}&cu=INR&tn=OrderId:${tId}`
     )}`;
 
     useEffect(() => {
@@ -311,30 +311,6 @@ const Subcription = () => {
                             </div>
                         </>
                     ) : (
-                        // QR Code Section
-                        // <>
-                        //     <h1 className="flex flex-wrap justify-center font-bold text-2xl mb-6">Pay via UPI</h1>
-                        //     <div className="flex flex-wrap justify-center bg-white mt-4 h-auto py-4 px-3 rounded-lg">
-                        //         <img
-                        //             src={`/qr-price.png`} // Replace with your QR code image path
-                        //             alt="QR Code"
-                        //             className="w-48 h-48"
-                        //         />
-                        //     </div>
-                        //     <div className="flex flex-wrap justify-center mt-4">
-                        //         <img className="h-6" src="/upi.png" alt="UPI" />
-                        //         <img className="h-6 ml-3" src="/gpay.png" alt="GPay" />
-                        //         <img className="h-6 ml-3" src="/phonepe.png" alt="PhonePe" />
-                        //         <img className="h-6 ml-3" src="/paytm.png" alt="Paytm" />
-                        //     </div>
-                        //     <p className="text-xs mt-6 ml-2 font-bold">After making payment click on done.</p>
-                        //     <button
-                        //         className="bg-zinc-900 text-white w-full rounded-lg px-4 py-3 mt-2"
-                        //         onClick={handleDone}
-                        //     >
-                        //         Done
-                        //     </button>
-                        // </>
                         <>
                             <div className="bg-white shadow-lg rounded-lg pt-5 px-1 mx-5">
                                 <div className="flex justify-between items-center border-b px-3 pb-4">
