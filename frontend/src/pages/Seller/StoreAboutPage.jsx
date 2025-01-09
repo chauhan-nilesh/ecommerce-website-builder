@@ -68,7 +68,7 @@ function StoreAboutPage() {
   // Render a loading spinner while data is being fetched
   if (loading) {
     return (
-      <div className='flex h-screen w-full justify-center items-center'>
+      <div className='flex h-[calc(100vh-80px)] lg:h-screen w-full justify-center items-center'>
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
