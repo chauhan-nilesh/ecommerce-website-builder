@@ -139,7 +139,7 @@ function AddProduct() {
 };
 
 if (isLoading) {
-  return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>;
+  return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>;
 }
 
 return (

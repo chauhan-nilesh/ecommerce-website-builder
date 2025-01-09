@@ -27,7 +27,7 @@ function Dashboard() {
   }, []);
 
   if (loading) {
-    return <div className='flex h-[calc(100vh-80px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+    return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
   }
 
   return (
@@ -53,7 +53,7 @@ function Dashboard() {
             </Link>
           </div>
 }
-          <div className='grid grid-cols-2 mt-7 gap-5 lg:grid-cols-4 '>
+          <div className='grid grid-cols-2 mt-4 lg:mt-7 gap-5 lg:grid-cols-4 '>
             <div className='bg-white border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
                 <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
