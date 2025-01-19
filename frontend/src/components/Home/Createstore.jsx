@@ -75,7 +75,7 @@ function Createstore() {
             <div className='flex flex-wrap justify-center items-center h-auto py-10 lg:py-3'>
                 <div className="lg:w-[700px] w-96 mx-5 lg:mx-auto bg-white py-8 rounded-2xl shadow-none">
                     <div className="grid place-items-center lg:mt-2 sm:mt-10">
-                        <img className="sm:w-96 lg:w-[700] h-auto" src="https://i.ibb.co/2M7rtLk/Remote1.png" alt="image2" />
+                        <img className="sm:w-96 lg:w-[700] h-auto" src="/explore.png" alt="image2" />
                     </div>
                     <h1 className="text-xl lg:text-4xl mt-8 text-black font-bold flex flex-wrap justify-center">Let's start creating your Store</h1>
                     <p className='text-gray-400 mb-6 text-center mt-2 lg:text-base text-sm'>Add name and link to your eazzy store</p>
