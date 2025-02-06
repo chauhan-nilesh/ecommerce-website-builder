@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 export function middleware(req) {
   const url = req.nextUrl;
 
-  // Redirect any `/vite-app/*` route to the Vite build
+  // Redirect `/vite-app/*` to the static Vite build files
   if (url.pathname.startsWith("/vite-app")) {
-    return NextResponse.rewrite(
+    return NextResponse.redirect(
       new URL(`/vite-build${url.pathname.replace("/vite-app", "")}`, req.url)
     );
   }
@@ -13,7 +13,6 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
-// Apply middleware only for `/vite-app/*` routes
 export const config = {
   matcher: "/vite-app/:path*",
 };
