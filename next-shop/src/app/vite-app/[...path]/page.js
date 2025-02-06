@@ -4,15 +4,11 @@ import { usePathname } from "next/navigation";
 
 export default function ViteApp() {
   const pathname = usePathname();
-  const vitePath = `/vite-build${pathname.replace("/vite-app", "")}`;
 
   useEffect(() => {
-    window.location.href = vitePath;
-  }, [vitePath]);
+    // Redirect to the Vite app and preserve the path
+    window.location.replace(`/vite-build/index.html`);
+  }, []);
 
-  return (
-    <head>
-      <meta httpEquiv="refresh" content={`0;url=${vitePath}`} />
-    </head>
-  );
+  return <p>Loading Vite App...</p>;
 }
