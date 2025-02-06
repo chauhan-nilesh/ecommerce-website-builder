@@ -2,19 +2,20 @@ import { NextResponse } from "next/server";
 
 export function middleware(req) {
   const url = req.nextUrl;
-  const visited = req.cookies.get("visited");
+  const userAgent = req.headers.get("user-agent") || "";
+  console.log(url)
 
-  if (!visited && url.pathname === "/") {
-    // Redirect only on the first visit
-    const response = NextResponse.redirect(new URL("/vite-build/", req.url));
-    response.cookies.set("visited", "true", { path: "/", maxAge: 60 * 60 * 24 }); // 1 day
-    return response;
+  // If the request is from a search engine bot, serve the SSR page
+  const isBot = /bot|google|bing|crawl|spider|slurp/i.test(userAgent);
+  if (isBot) {
+    return NextResponse.next(); // Allow SSR for SEO
   }
 
-  return NextResponse.next();
+  // Otherwise, send all requests to the Vite app
+  return NextResponse.rewrite(new URL("/vite-build/index.html", req.url));
 }
 
-// Apply middleware only to the root "/"
+// Apply middleware to all routes
 export const config = {
-  matcher: ["/"], 
+  matcher: "/:path*",
 };
