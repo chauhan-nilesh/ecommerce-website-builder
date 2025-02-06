@@ -4,25 +4,22 @@ export function middleware(req) {
   const url = req.nextUrl;
   const userAgent = req.headers.get("user-agent") || "";
 
-  // If the request is from a search engine bot, serve the SSR page
+  // If the request is from a search engine bot, allow SSR (for SEO)
   const isBot = /bot|google|bing|crawl|spider|slurp/i.test(userAgent);
   if (isBot) {
-    return NextResponse.next(); // Allow SSR for SEO
+    return NextResponse.next(); // Let Next.js render SSR
   }
 
-  // Only process root requests ("/") to serve Vite's index.html
-  if (url.pathname === "/") {
-    return NextResponse.rewrite(new URL("/vite-build/index.html", req.url));
+  // Avoid infinite loop: If request is already inside `/vite-build/`, do nothing
+  if (url.pathname.startsWith("/vite-build/")) {
+    return NextResponse.next();
   }
 
-  // Redirect all other requests to Vite build folder
-  return NextResponse.rewrite(new URL(`/vite-build${url.pathname}`, req.url));
-
-  // Otherwise, send all requests to the Vite app
-  // return NextResponse.rewrite(new URL("/vite-build/index.html", req.url));
+  // ✅ Rewrite `/` and all other routes to `/vite-build/index.html` without changing the URL
+  return NextResponse.rewrite(new URL("/vite-build/index.html", req.url));
 }
 
-// Apply middleware to all routes
+// Apply the middleware to all pages
 export const config = {
-  matcher: "/:path*",
+  matcher: "/:path*", // This makes it run on all routes
 };
