@@ -31,7 +31,6 @@ export async function generateMetadata() {
   }
 }
 
-
 export default function Home() {
   return (
     <html lang="en">
