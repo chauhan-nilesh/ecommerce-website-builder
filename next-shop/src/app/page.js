@@ -42,10 +42,10 @@ export default function Home() {
         <p>Loading...</p>
         <script>
           {`
-            if (navigator.userAgent.indexOf('Googlebot') === -1) {
-              window.location.replace('/vite-build/');
-            }
-          `}
+          if (navigator.userAgent.indexOf('Googlebot') === -1) {
+            window.location.replace('/');
+          }
+        `}
         </script>
       </body>
     </html>
