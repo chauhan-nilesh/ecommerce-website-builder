@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "/vite-app/:path*",
+        "destination": "/vite-build/:path*"
+      }
+    ]
+  }
+  
