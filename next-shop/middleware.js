@@ -11,12 +11,12 @@ export function middleware(req) {
   }
 
   // Avoid infinite loop: If request is already inside `/vite-build/`, do nothing
-  if (url.pathname.startsWith("/vite-build/")) {
+  if (url.pathname.startsWith("/shop/")) {
     return NextResponse.next();
   }
 
   // ✅ Rewrite `/` and all other routes to `/vite-build/index.html` without changing the URL
-  return NextResponse.rewrite(new URL("/vite-build/index.html", req.url));
+  return NextResponse.rewrite(new URL("/shop/index.html", req.url));
 }
 
 // Apply the middleware to all pages

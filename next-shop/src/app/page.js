@@ -10,6 +10,7 @@ export async function generateMetadata() {
     const baseUrl = `${protocol}://${host}`;
 
     console.log("Base URL:", baseUrl); // Debugging
+    console.log("Host URL:", host);
 
     // Fetch metadata using the full URL
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/store/data`, {
@@ -44,10 +45,10 @@ export default function Home() {
         dangerouslySetInnerHTML={{
           __html: `
           const isBot = /bot|googlebot|bingbot|crawler|spider|slurp/i.test(navigator.userAgent);
-          const isViteApp = window.location.pathname.startsWith('/vite-build');
+          const isViteApp = window.location.pathname.startsWith('/shop');
 
           if (!isBot && !isViteApp) {
-            window.location.replace('/vite-build/index.html');
+            window.location.replace('/shop/index.html');
           }
         `,
         }}

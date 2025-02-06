@@ -5,7 +5,7 @@ const nextConfig = {
       return [
         {
           source: "/:path*",
-          destination: "/vite-build/:path*",
+          destination: "/shop/:path*",
         },
       ];
     },
