@@ -68,7 +68,7 @@ function Account() {
                     </div>
                 </div>
 
-                <Outlet />
+                <Outlet context={{ color1: `${store.themeColorOne}`, color2: `${store.themeColorTwo}` }} />
             </div>
         </div>
     )

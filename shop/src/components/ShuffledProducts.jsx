@@ -66,7 +66,7 @@ function ShuffledProducts({ products, color1, color2 }) {
                                 <Link to={`/product/${product?._id}`}>
                                     <h5
                                         className="text-base lg:text-xl font-semibold tracking-tight truncate"
-                                        style={{ color: color1 }}
+                                        // style={{ color: color1 }}
                                     >
                                         {product?.name}
                                     </h5>
@@ -75,14 +75,14 @@ function ShuffledProducts({ products, color1, color2 }) {
                                     <p className="mb-4 lg:mb-0">
                                         <span
                                             className="text-2xl font-bold"
-                                            style={{ color: color1 }}
+                                            // style={{ color: color1 }}
                                         >
                                             &#8377;{product?.salePrice}
                                         </span>
                                         &nbsp;
                                         <span
                                             className="text-sm line-through"
-                                            style={{ color: color1 }}
+                                            // style={{ color: color1 }}
                                         >
                                             &#8377;{product?.originalPrice}
                                         </span>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useCustomerAuth } from '../store/customerAuth'
 import toast from 'react-hot-toast';
+import { useOutletContext } from 'react-router-dom';
 
 function UpdatePassword() {
+    const {color1,color2} = useOutletContext()
     const [loading, setLoading] = useState(true)
     const [customerData, setCustomerData] = useState({})
     const [customerToken, setCustomerToken] = useState(localStorage.getItem("customerToken"))
@@ -123,7 +125,7 @@ function UpdatePassword() {
                         placeholder="New Password"
                         className="border px-3 py-3 rounded-lg outline-none text-black bg-transparent w-full max-w-xs"
                     />
-                    <button onClick={handleSubmit} className=" text-white py-2 rounded-lg tracking-tight hover:bg-zinc-700 bg-black text-base mt-6 mb-10 w-full lg:w-56">Update Password</button>
+                    <button onClick={handleSubmit} style={{backgroundColor: color1, color: color2}} className="py-2 rounded-lg tracking-tight text-base mt-6 mb-10 w-full lg:w-56">Update Password</button>
                 </form>
             </div>
         </div>

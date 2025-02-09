@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
+import { HexColorPicker } from 'react-colorful';
+import { SketchPicker } from 'react-color';
 
 function CustomizeStore() {
   const [store, setStore] = useState({});
@@ -12,6 +14,8 @@ function CustomizeStore() {
     color1: "#ffffff",
     color2: "#000000",
   });
+  const [showPicker1, setShowPicker1] = useState(false)
+  const [showPicker2, setShowPicker2] = useState(false)
   const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(true);
   const { token } = useAuth();
@@ -111,9 +115,9 @@ function CustomizeStore() {
               className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
               required
             />
-            {/* <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Current Theme Colors</label>
+            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Color palette</label>
             <div className='flex space-x-3 w-full'>
-              <input
+              {/* <input
                 className='p-1 h-10 w-14 block bg-gray-100 border cursor-pointer rounded-lg'
                 onChange={handleInput}
                 value={updateData.color1}
@@ -128,8 +132,90 @@ function CustomizeStore() {
                 type="color"
                 name="color2"
                 id="color2"
-              />
-            </div> */}
+              /> */}
+
+              {/* <HexColorPicker
+                color={updateData.color1}
+                onChange={(color) =>
+                  setUpdateData({
+                    ...updateData,
+                    color1: color, // Corrected key assignment
+                  })
+                }
+              /> */}
+              {/* <SketchPicker
+                color={updateData.color1}
+                onChangeComplete={(newColor) => setUpdateData({
+                  ...updateData,
+                  color1: newColor.hex,
+                })}
+              /> */}
+
+              <div style={{ textAlign: "center", marginTop: "20px" }}>
+                {/* Color Preview Circle */}
+                <div
+                  onClick={() => setShowPicker1(!showPicker1)}
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "50%",
+                    backgroundColor: updateData.color1,
+                    cursor: "pointer",
+                    border: "2px solid #333",
+                    display: "inline-block",
+                  }}
+                ></div>
+
+                {/* Color Picker */}
+                {showPicker1 && (
+                  <div style={{ position: "absolute", marginTop: "10px" }}>
+                    <SketchPicker
+                      color={updateData.color1}
+                      onChangeComplete={(newColor) => {
+                        setUpdateData({
+                          ...updateData,
+                          color1: newColor.hex,
+                        })
+                        setShowPicker1(false); // Hide picker after selecting
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div style={{ textAlign: "center", marginTop: "20px" }}>
+                {/* Color Preview Circle */}
+                <div
+                  onClick={() => setShowPicker2(!showPicker2)}
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "50%",
+                    backgroundColor: updateData.color2,
+                    cursor: "pointer",
+                    border: "2px solid #333",
+                    display: "inline-block",
+                  }}
+                ></div>
+
+                {/* Color Picker */}
+                {showPicker2 && (
+                  <div style={{ position: "absolute", marginTop: "10px" }}>
+                    <SketchPicker
+                      color={updateData.color2}
+                      onChangeComplete={(newColor) => {
+                        setUpdateData({
+                          ...updateData,
+                          color2: newColor.hex,
+                        })
+                        setShowPicker2(false); // Hide picker after selecting
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            
+            </div>
             <div className="form-control mt-6 w-44">
               <label className="label cursor-pointer">
                 <span className="label-text text-lg tracking-tight text-black font-semibold">Hide Categories</span>
@@ -156,7 +242,7 @@ function CustomizeStore() {
                 required
               />
 
-            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-4' htmlFor="name">Meta description</label>
+              <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-4' htmlFor="name">Meta description</label>
               <textarea
                 name='metaDescription'
                 id="metaDescription"

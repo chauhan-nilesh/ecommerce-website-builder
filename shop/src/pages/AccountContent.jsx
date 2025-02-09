@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useCustomerAuth } from '../store/customerAuth';
 import toast from 'react-hot-toast';
+import { useOutletContext } from 'react-router-dom';
 
 function AccountContent() {
+    const {color1, color2} = useOutletContext()
     const [loading, setLoading] = useState(true)
     const [customerData, setCustomerData] = useState({})
     const [customerToken, setCustomerToken] = useState(localStorage.getItem("customerToken"))
@@ -129,7 +131,8 @@ function AccountContent() {
                                     </div>
                                     <div className="mt-4">
                                         <button
-                                            className="bg-black text-gray-50 font-semibold py-2 px-4 rounded hover:bg-zinc-800"
+                                            className="font-semibold py-2 px-4 rounded hover:bg-zinc-800"
+                                            style={{color: color2, backgroundColor: color1}}
                                             onClick={handleEditClick}
                                         >
                                             Edit Profile
@@ -199,14 +202,15 @@ function AccountContent() {
                                             <div className="mt-4 flex justify-between">
                                                 <button
                                                     type="button"
-                                                    className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+                                                    className="bg-zinc-600 text-white py-2 px-4 rounded hover:bg-gray-500"
                                                     onClick={handleEditClick}
                                                 >
                                                     Cancel
                                                 </button>
                                                 <button
                                                     type="submit"
-                                                    className="bg-black text-white py-2 px-4 rounded-md"
+                                                    className="py-2 px-4 rounded-md"
+                                                    style={{color: color2, backgroundColor: color1}}
                                                 >
                                                     Save
                                                 </button>

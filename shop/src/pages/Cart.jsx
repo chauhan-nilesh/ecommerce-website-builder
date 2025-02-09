@@ -158,9 +158,9 @@ function Cart() {
                         </div>
                     </div>
                     :
-                    <div className='flex justify-center items-center mt-12 lg:mt-10'>
+                    <div className='flex justify-center items-center h-[30rem] lg:h-auto mt-12 lg:mt-10'>
                         <div className=''>
-                            <img className='h-60' src="./shopping-cart.png" alt="" />
+                            <img className='h-32 ml-5 lg:ml-0 lg:h-52' src="./shopping-cart.png" alt="" />
                             <p className='text-center text-2xl font-semibold'>Your cart is empty</p>
                             <Link to="/">
                                 <button data-theme="light" style={{ backgroundColor: color1, color: color2 }} type='button' className='btn mt-10 w-full'>
