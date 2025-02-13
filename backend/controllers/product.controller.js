@@ -111,7 +111,7 @@ const getProductData = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status, affiliateProduct, affiliatePlatformName, affiliateLink } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -160,7 +160,10 @@ const updateProduct = asyncHandler(async (req, res) => {
                 image3: await uploadOnCloudinary(images?.image3?.[0]?.path) || existingProduct.images.image3,
                 image4: await uploadOnCloudinary(images?.image4?.[0]?.path) || existingProduct.images.image4,
             },
-            sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null
+            sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null,
+            affiliateProduct,
+            affiliatePlatformName,
+            affiliateLink
         },
         { new: true } // This option returns the updated document
     );

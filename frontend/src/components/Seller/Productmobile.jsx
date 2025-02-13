@@ -11,7 +11,7 @@ function Productmobile({products, openModal}) {
                 </div>
                 <div className='ml-5'>
                     <h3 className='text-sm font-semibold tracking-tight'>{product.name}</h3>
-                    <p className='text-sm'>Price: <span className='font-semibold px-2 py-1 rounded-lg text-gray-700'>&#8377; {product.originalPrice}</span></p>
+                    <p className='text-sm'>Price: <span className='font-semibold px-2 py-1 rounded-lg text-gray-700'>&#8377; {product.salePrice || product.originalPrice}</span></p>
                     <p className='text-sm'>Status: 
                     {product.status ?
                         <span className='text-green-600 font-semibold px-2 py-1 rounded-lg'>Visible</span>
