@@ -28,6 +28,7 @@ const MakeAffilateProduct = ({ product, handleChange, enableAffiliate, setEnable
                             <input
                                 type="text"
                                 id="affiliatePlatformName"
+                                name="affiliatePlatformName"
                                 value={product.affiliatePlatformName}
                                 onChange={handleChange}
                                 placeholder="Ex. Amazon, Flipkart, Myntra, and more"
@@ -39,6 +40,7 @@ const MakeAffilateProduct = ({ product, handleChange, enableAffiliate, setEnable
                             <input
                                 type="text"
                                 id="affiliateLink"
+                                name="affiliateLink"
                                 value={product.affiliateLink}
                                 onChange={handleChange}
                                 placeholder="Enter Affiliate Link to redirect customers"
