@@ -69,7 +69,16 @@ const ProductSchema = new mongoose.Schema({
     },
     metaDescription: {
         type: String
-    }
+    },
+    affiliateProduct: {
+        type: Boolean
+    },
+    affiliatePlatformName: {
+        type: String
+    },
+    affiliateLink: {
+        type: String
+    },
 })
 
 export const products = mongoose.model("products", ProductSchema)

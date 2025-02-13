@@ -31,7 +31,7 @@ const createStore = asyncHandler(async (req, res) => {
         storename,
         owner,
         name,
-        subdomain,
+        subdomain: subdomain.toLowerCase(),
         metaTitle: name,
         logo: "",
         favicon: "",

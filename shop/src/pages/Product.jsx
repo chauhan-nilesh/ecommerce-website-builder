@@ -286,14 +286,29 @@ function Product() {
                 }
               </div>
 
-              <button
-                type="submit"
-                className="mt-2 lg:flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-xl font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                style={{ color: color2, backgroundColor: color1 }}
-                onClick={() => handleAddToCart()}
-              >
-                Add to bag
-              </button>
+              {product?.affiliateProduct ?
+                <Link to={product?.affiliateLink}>
+                  <button
+                    type="button"
+                    className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-3 text-center text-sm font-medium hover:opacity-75 focus:outline-none"
+                    style={{
+                      color: color2,
+                      backgroundColor: color1,
+                    }}
+                  >
+                    <span className='font-bold'>Buy from {product?.affiliatePlatformName}</span>
+                  </button>
+                </Link>
+                :
+                <button
+                  type="submit"
+                  className="mt-2 lg:flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-xl font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{ color: color2, backgroundColor: color1 }}
+                  onClick={() => handleAddToCart()}
+                >
+                  Add to bag
+                </button>
+              }
             </div>
 
             <div className="hidden lg:collapse collapse-plus bg-white mt-8">

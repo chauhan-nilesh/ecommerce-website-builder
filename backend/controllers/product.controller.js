@@ -16,7 +16,7 @@ function createSlug(name) {
 }
 
 const addProduct = asyncHandler(async (req, res) => {
-    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status, affiliateProduct, affiliatePlatformName, affiliateLink } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -61,7 +61,10 @@ const addProduct = asyncHandler(async (req, res) => {
             image3: images.image3 ? await uploadOnCloudinary(images.image3[0].path) : null,
             image4: images.image4 ? await uploadOnCloudinary(images.image4[0].path) : null
         },
-        sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null
+        sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null,
+        affiliateProduct,
+        affiliatePlatformName,
+        affiliateLink
     };
 
 

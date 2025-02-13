@@ -66,7 +66,7 @@ function ShuffledProducts({ products, color1, color2 }) {
                                 <Link to={`/product/${product?._id}`}>
                                     <h5
                                         className="text-base lg:text-xl font-semibold tracking-tight truncate"
-                                        // style={{ color: color1 }}
+                                    // style={{ color: color1 }}
                                     >
                                         {product?.name}
                                     </h5>
@@ -75,37 +75,52 @@ function ShuffledProducts({ products, color1, color2 }) {
                                     <p className="mb-4 lg:mb-0">
                                         <span
                                             className="text-2xl font-bold"
-                                            // style={{ color: color1 }}
+                                        // style={{ color: color1 }}
                                         >
                                             &#8377;{product?.salePrice}
                                         </span>
                                         &nbsp;
                                         <span
                                             className="text-sm line-through"
-                                            // style={{ color: color1 }}
+                                        // style={{ color: color1 }}
                                         >
                                             &#8377;{product?.originalPrice}
                                         </span>
                                     </p>
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            addToCart({ ...product, quantity: 1 })
-                                        }
-                                        className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-3 text-center text-sm font-medium hover:opacity-75 focus:outline-none"
-                                        style={{
-                                            color: color2,
-                                            backgroundColor: color1,
-                                        }}
-                                    >
-                                        <img
-                                            className="h-5 lg:block hidden"
-                                            src="./cart.svg"
-                                            alt=""
-                                        />
-                                        &nbsp;
-                                        <span>Add to cart</span>
-                                    </button>
+                                    {product?.affiliateProduct ?
+                                        <Link to={product?.affiliateLink}>
+                                            <button
+                                                type="button"
+                                                className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-3 text-center text-sm font-medium hover:opacity-75 focus:outline-none"
+                                                style={{
+                                                    color: color2,
+                                                    backgroundColor: color1,
+                                                }}
+                                            >
+                                                <span className='font-bold'>Buy from {product?.affiliatePlatformName}</span>
+                                            </button>
+                                        </Link>
+                                        :
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                addToCart({ ...product, quantity: 1 })
+                                            }
+                                            className="flex items-center w-full lg:w-auto justify-center rounded-md px-5 py-3 text-center text-sm font-medium hover:opacity-75 focus:outline-none"
+                                            style={{
+                                                color: color2,
+                                                backgroundColor: color1,
+                                            }}
+                                        >
+                                            <img
+                                                className="h-5 lg:block hidden"
+                                                src="./cart.svg"
+                                                alt=""
+                                            />
+                                            &nbsp;
+                                            <span>Add to cart</span>
+                                        </button>
+                                    }
                                 </div>
                             </div>
                         </div>
