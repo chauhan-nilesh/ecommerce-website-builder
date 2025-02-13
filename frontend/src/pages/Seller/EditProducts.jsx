@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'quill/dist/quill.snow.css';
+import MakeAffilateProduct from '../../components/Seller/MakeAffilateProduct';
 
 function EditProduct() {
     const { id } = useParams();
@@ -29,11 +30,14 @@ function EditProduct() {
         metaTitle: '',
         metaDescription: '',
         stockQty: 0,
-        stockStatus: true
+        stockStatus: true,
+        affiliateLink: '',
+        affiliatePlatformName: ''
     });
     const [description, setDescription] = useState('')
     const [tags, setTags] = useState([]);
     const [status, setStatus] = useState(true);
+    const [enableAffiliate, setEnableAffiliate] = useState(false)
     const [store, setStore] = useState({});
     const [categories, setCategories] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -89,7 +93,9 @@ function EditProduct() {
                     metaTitle: responseData.data.metaTitle,
                     metaDescription: responseData.data.metaDescription,
                     stockQty: responseData.data.stockQty,
-                    stockStatus: responseData.data.stockStatus
+                    stockStatus: responseData.data.stockStatus,
+                    affiliateLink: responseData.data.affiliateLink,
+                    affiliatePlatformName: responseData.data.affiliatePlatformName
                 });
                 setDescription(responseData.data.description)
                 setImages({
@@ -102,6 +108,7 @@ function EditProduct() {
                 });
                 setTags(responseData.data.tags);
                 setStatus(responseData.data.status);
+                setEnableAffiliate(responseData.data.affiliateProduct)
                 setVariants(responseData.data.variants);
             }
 
@@ -134,6 +141,7 @@ function EditProduct() {
         formData.append("description", description);
         formData.append("storeId", store._id);
         formData.append("status", status);
+        formData.append("affiliateProduct", enableAffiliate);
         formData.append("tags", JSON.stringify(tags));
         formData.append("variants", JSON.stringify(variants));
 
@@ -333,6 +341,7 @@ function EditProduct() {
                             />
                         </div>
                     </div>
+                    <MakeAffilateProduct enableAffiliate={enableAffiliate} setEnableAffiliate={setEnableAffiliate} product={product} handleChange={handleChange} />
                     <Tags tags={tags} setTags={setTags} />
                 </div>
                 <div className="w-full h-auto mt-10 lg:mt-0 space-y-6 rounded-lg">
@@ -370,7 +379,7 @@ function EditProduct() {
                         <div className="mb-4">
                             <div className="flex justify-center gap-6">
                                 <div className="flex flex-col items-center cursor-pointer">
-                                <input onChange={handleImageChange} type="file" id="sizeChartImage" name="sizeChartImage" accept="image/*" hidden />
+                                    <input onChange={handleImageChange} type="file" id="sizeChartImage" name="sizeChartImage" accept="image/*" hidden />
                                     <label htmlFor="sizeChartImage" className="flex flex-col items-center">
                                         <div className="w-48 h-48 border border-gray-300 rounded flex justify-center items-center mb-2">
                                             <img src={getImageUrl(images?.sizeChartImage)} alt="Upload images" className="w-32 h-32" />

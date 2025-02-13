@@ -95,7 +95,7 @@ function AddProduct() {
       formData.append("description", description);
       formData.append("storeId", store._id);
       formData.append("status", status);
-      formData.append("affiliateProduct", enableAffiliate)
+      formData.append("affiliateProduct", enableAffiliate);
       formData.append("tags", JSON.stringify(tags));
       formData.append("variants", JSON.stringify(variants));
 
