@@ -78,7 +78,7 @@ function ProductList({ products, color1, color2 }) {
                                                     backgroundColor: color1,
                                                 }}
                                             >
-                                                <span className='font-bold'>{product?.affiliatePlatformName}</span>
+                                                <span className='font-bold'>Buy from {product?.affiliatePlatformName}</span>
                                             </button>
                                         </Link>
                                         :
