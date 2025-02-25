@@ -17,7 +17,7 @@ function Pricing() {
                     <div className="flex w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
                         <div>
                             <div className="bg-orange-600 py-2 flex rounded-t justify-center items-center">
-                                <h4 className="text-white font-bold">Get first 1 month for free*</h4>
+                                <h4 className="text-white font-bold">Get first 4 months for free*</h4>
                             </div>
                             <div className="flex flex-grow flex-col p-6 space-y-6 rounded shadow-lg sm:p-8 bg-gray-50">
                                 <div className="space-y-2">
