@@ -1,7 +1,7 @@
 import express from "express";
-import cookieParser from "cookie-parser"
+import cookieParser from "cookie-parser";
 import cors from "cors";
-const app = express()
+const app = express();
 
 // Define the base domain you want to allow and allow all subdomains
 // const allowedDomain = '.eazzy.store'; // Allow all subdomains of example.com
