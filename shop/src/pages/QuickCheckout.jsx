@@ -30,6 +30,12 @@ export default function QuickCheckout() {
     const subdomain = window.location.hostname;
     const { addQuickCheckoutProduct, quickCheckoutProduct } = useCart();
 
+    useEffect(() => {
+        if(!localStorage.getItem("customerToken")){
+            navigate("/login")
+        }
+    }, [])
+
     // Fetch store data
     useEffect(() => {
         async function getStoreData() {
