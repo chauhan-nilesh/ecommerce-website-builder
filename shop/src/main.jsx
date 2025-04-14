@@ -20,6 +20,7 @@ import {
   Homepage,
   Order,
   OrderPage,
+  QuickCheckout,
   ReturnPolicy,
   SearchPage,
   ShippingPolicy,
@@ -59,6 +60,7 @@ const router = createBrowserRouter(
         <Route path='shipping-policy' element={<ShippingPolicy />} />
         <Route path='about' element={<AboutUs />} />
         <Route path='payment-success' element={<PaymentSuccess />} />
+        <Route path='quick-checkout' element={<QuickCheckout />} />
         <Route path='cart' element={<Cart />} />
         <Route path='checkout' element={
           <CustomerPrivateRoute>

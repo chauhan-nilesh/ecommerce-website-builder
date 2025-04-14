@@ -20,5 +20,6 @@ import Error from '../pages/Error'
 import ShippingPolicy from './ShippingPolicy'
 import ReturnPolicy from './ReturnPolicy'
 import AboutUs from '../pages/AboutUs'
+import QuickCheckout from '../pages/QuickCheckout'
 
-export { Header, Footer, Banner, Homepage, Shop, BottomNavbar, ProductCard, SearchPage, CustomerSignUp, CustomerLogin, Error, Category, Cart, ReturnPolicy, ShippingPolicy, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }
+export { Header, Footer, Banner, Homepage, Shop, QuickCheckout, BottomNavbar, ProductCard, SearchPage, CustomerSignUp, CustomerLogin, Error, Category, Cart, ReturnPolicy, ShippingPolicy, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }

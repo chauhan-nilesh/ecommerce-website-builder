@@ -1,13 +1,14 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useCart } from "../store/CartContext";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
 import { Helmet } from 'react-helmet';
 import ProductImageScroller from '../components/ProductImageScroller';
 
 function Product() {
   const { id } = useParams();
-  const { addToCart } = useCart();
+  const navigate = useNavigate()
+  const { addToCart, addQuickCheckoutProduct } = useCart();
   const [store, setStore] = useState({})
   const [isOpen, setIsOpen] = useState(false);
   const [product, setProduct] = useState({});
@@ -130,6 +131,23 @@ function Product() {
     };
     addToCart(selectedProduct);
   };
+
+
+  const quickCheckout = async (e) => {
+    e.preventDefault();
+    try {
+      addQuickCheckoutProduct({
+        ...product,
+        selectSize,
+        selectColor,
+        selectOther,
+        salePrice: Number(selectedPrice),
+      })
+      navigate("/quick-checkout")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -300,14 +318,24 @@ function Product() {
                   </button>
                 </Link>
                 :
-                <button
-                  type="submit"
-                  className="mt-2 lg:flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-xl font-medium text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                  style={{ color: color2, backgroundColor: color1 }}
-                  onClick={() => handleAddToCart()}
-                >
-                  Add to bag
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    className="mt-4 lg:flex w-full items-center justify-center shadow-sm rounded-md px-8 py-3 text-xl font-medium text-white"
+                    style={{ color: color2, backgroundColor: color1 }}
+                    onClick={quickCheckout}
+                  >
+                    Order Now - Cash on Delivery
+                  </button>
+                  <button
+                    type="submit"
+                    className="mt-5 lg:flex w-full items-center justify-center shadow-sm rounded-md px-8 py-3 text-xl font-medium text-white"
+                    style={{ backgroundColor: color2, color: color1 }}
+                    onClick={() => handleAddToCart()}
+                  >
+                    Add to bag
+                  </button>
+                </div>
               }
             </div>
 
