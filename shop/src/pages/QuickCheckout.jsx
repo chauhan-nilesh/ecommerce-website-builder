@@ -289,7 +289,8 @@ export default function QuickCheckout() {
                                         {step < 2 ? (
                                             <button
                                                 onClick={() => setStep(step + 1)}
-                                                className="w-full bg-orange-600 text-white py-3 rounded-md font-medium flex items-center justify-center hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                                                className="w-full py-3 rounded-md font-medium flex items-center justify-center"
+                                                style={{backgroundColor: store?.themeColorOne, color: store?.themeColorTwo}}
                                             >
                                                 {step === 1 && "Continue to Shipping"}
                                                 <ChevronRight size={18} className="ml-1" />
@@ -297,13 +298,15 @@ export default function QuickCheckout() {
                                         ) : step === 2 ? (
                                             <button
                                             onClick={placeOrder}
-                                                className="w-full bg-orange-600 text-white py-3 rounded-md font-medium flex items-center justify-center hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                                                className="w-full py-3 rounded-md font-medium flex items-center justify-center"
+                                                style={{backgroundColor: store?.themeColorOne, color: store?.themeColorTwo}}
                                             >
                                                 Complete Order
                                             </button>
                                         ) : (
                                             <button
-                                                className="w-full bg-orange-600 text-white py-3 rounded-md font-medium flex items-center justify-center hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                                                className="w-full py-3 rounded-md font-medium flex items-center justify-center"
+                                                style={{backgroundColor: store?.themeColorOne, color: store?.themeColorTwo}}
                                             >
                                                 Return to Shop
                                             </button>
