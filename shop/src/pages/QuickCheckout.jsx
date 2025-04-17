@@ -183,7 +183,7 @@ export default function QuickCheckout() {
                                                 <div className="ml-4 flex flex-1 flex-col">
                                                     <div className="flex justify-between text-base font-medium text-gray-800">
                                                         <h3>{item.name}</h3>
-                                                        <p className="ml-4">${item?.price?.toFixed(2)}</p>
+                                                        <p className="ml-4">₹{item?.price?.toFixed(2)}</p>
                                                     </div>
                                                     <p className="mt-1 text-sm text-gray-500">Quantity: {item.quantity}</p>
                                                 </div>
@@ -327,10 +327,10 @@ export default function QuickCheckout() {
                                             <Shield size={16} className="mr-2" />
                                             <span>Secure Checkout</span>
                                         </div>
-                                        <div className="flex items-center text-sm text-gray-600">
+                                        {/* <div className="flex items-center text-sm text-gray-600">
                                             <Check size={16} className="mr-2" />
                                             <span>30-Day Money Back Guarantee</span>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
