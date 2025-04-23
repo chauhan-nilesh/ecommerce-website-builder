@@ -5,6 +5,8 @@ import { useCustomerAuth } from '../store/customerAuth';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
+import axios from "axios"
+import { load } from '@cashfreepayments/cashfree-js'
 
 function Checkout() {
     const { storeId, customerData } = useCustomerAuth()
@@ -14,7 +16,6 @@ function Checkout() {
     const [coupon, setCoupon] = useState("")
     const [isCouponApplied, setIsCouponApplied] = useState(false)
     const [discountValue, setDiscountValue] = useState(0)
-    const [razorpayOrderId, setRazorpayOrderId] = useState(null)
     const [billingDetails, setBillingDetails] = useState({
         email: "",
         name: "",
@@ -26,9 +27,7 @@ function Checkout() {
         pinCode: "",
         paymentMethod: ""
     })
-
     const [loading, setLoading] = useState(false)
-
     const statesOfIndia = [
         "Andhra Pradesh",
         "Arunachal Pradesh",
@@ -68,6 +67,52 @@ function Checkout() {
         "Jammu & Kashmir"
     ];
 
+    //Start CashFree PG
+    let cashfree;
+    let insitialzeSDK = async function () {
+        cashfree = await load({
+            mode: "sandbox",
+        })
+    }
+
+    insitialzeSDK()
+
+    const [orderId, setOrderId] = useState("")
+
+    const getSessionId = async () => {
+        try {
+            let res = await axios.get(`${import.meta.env.VITE_API_URL}/api/order/initiate-payment`)
+
+            if (res.data && res.data.payment_session_id) {
+
+                console.log(res.data)
+                setOrderId(res.data.order_id)
+                return res.data.payment_session_id
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const verifyPayment = async () => {
+        try {
+
+            let res = await axios.post(`${import.meta.env.VITE_API_URL}/api/order/verify-payment`, {
+                orderId: orderId
+            })
+
+            if (res && res.data) {
+                alert("payment verified")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // End Cashfree PG
+
     async function getStoreData() {
         const subdomain = window.location.hostname;
         try {
@@ -88,6 +133,15 @@ function Checkout() {
         window.scrollTo(0, 0);
         getStoreData()
     }, [])
+
+    useEffect(() => {
+        if (customerData) {
+            setBillingDetails({
+                ...billingDetails,
+                email: customerData?.email
+            })
+        }
+    }, [customerData])
 
     if (loading) {
         return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
@@ -162,10 +216,25 @@ function Checkout() {
 
     const handleCheckout = async (e) => {
         e.preventDefault()
-
         try {
+            //Start CashFree PG
+            if (billingDetails.paymentMethod === "cashfree") {
+                let sessionId = await getSessionId()
+                let checkoutOptions = {
+                    paymentSessionId: sessionId,
+                    redirectTarget: "_modal",
+                }
+
+                cashfree.checkout(checkoutOptions).then((res) => {
+                    console.log("payment initialized")
+
+                    verifyPayment(orderId)
+                })
+            }
+            //End CashFree PG
+
             if (billingDetails.paymentMethod === "COD") {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order-cod`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -232,11 +301,10 @@ function Checkout() {
                                 type="email"
                                 id="email"
                                 name="email"
-                                onChange={handleInput}
                                 value={billingDetails.email}
                                 className="w-full rounded-md border border-zinc-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                                 placeholder="your.email@gmail.com"
-                                required
+                                disabled
                             />
                         </div>
                         <label htmlFor="card-holder" className="mt-4 mb-2 block text-base font-medium">Name</label>
@@ -366,11 +434,29 @@ function Checkout() {
                                 </div>
                             }
 
+                            <div className="relative">
+                                <input
+                                    className="peer hidden"
+                                    id="radio_2"
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="cashfree"
+                                    onChange={handleInput}
+                                />
+                                <span className="peer-checked:border-zinc-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-zinc-300 bg-white"></span>
+                                <label className="peer-checked:border-2 peer-checked:border-zinc-700 peer-checked:bg-zinc-50 flex cursor-pointer select-none rounded-lg border border-zinc-300 p-4" htmlFor="radio_2">
+                                    <img className="w-14 object-contain" src="./cashfree.png" alt="" />
+                                    <div className="ml-5">
+                                        <span className="mt-2 font-semibold">Online Payment</span>
+                                        <p className="text-slate-500 text-base leading-6">UPI/Debit Card/Credit Card/Net Banking</p>
+                                    </div>
+                                </label>
+                            </div>
+
                         </form>
                     </div>
                 </div>
                 <div className="px-4 lg:pt-4">
-
                     <p className="text-xl font-medium">Apply coupon</p>
                     <p className="text-zinc-400">Apply your coupon to get offers</p>
                     <div className="mt-2 space-y-3 mb-8 rounded-lg border bg-white px-2 py-4 sm:px-6">
