@@ -177,6 +177,30 @@ function Header() {
                                     <button onClick={() => setMobileMenuOpen(false)}>Terms & Conditions</button>
                                 </Link>
                                 <Link
+                                    to="shipping-policy"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-orange-50"
+                                >
+                                    <button onClick={() => setMobileMenuOpen(false)}>Shipping Policy</button>
+                                </Link>
+                                <Link
+                                    to="refund-policy"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-orange-50"
+                                >
+                                    <button onClick={() => setMobileMenuOpen(false)}>Refund Policy</button>
+                                </Link>
+                                <Link
+                                    to="cookie-policy"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-orange-50"
+                                >
+                                    <button onClick={() => setMobileMenuOpen(false)}>Cookie Policy</button>
+                                </Link>
+                                <Link
+                                    to="contact-us"
+                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-orange-50"
+                                >
+                                    <button onClick={() => setMobileMenuOpen(false)}>Contact Us</button>
+                                </Link>
+                                <Link
                                     to="about-us"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-orange-50"
                                 >
