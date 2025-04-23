@@ -6,6 +6,7 @@ import {
 } from '@headlessui/react'
 import {
     Bars3Icon,
+    ChevronDownIcon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Link, NavLink } from 'react-router-dom'
@@ -13,7 +14,7 @@ import { useAuth } from '../../store/auth'
 
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+    const [open, setOpen] = useState(false);
     const { token } = useAuth()
 
     return (
@@ -21,7 +22,7 @@ function Header() {
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <Link to="/" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Your Company</span>
+                        <span className="sr-only">Eazzy</span>
                         <img className="h-12 w-auto" src="/eazzy.png" alt="" />
                     </Link>
                 </div>
@@ -41,6 +42,87 @@ function Header() {
                     </NavLink>
                     <NavLink to="pricing" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
                         Pricing
+                    </NavLink>
+                    <NavLink to="terms-and-conditions" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
+                        Terms & Conditions
+                    </NavLink>
+                    {/* <div data-theme="light" className="dropdown relative">
+                        <div tabIndex={0} role="button" className="text-sm font-semibold leading-6 text-zinc-900 flex items-center">Policies <ChevronDownIcon className='h-5 w-5' /></div>
+                        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                            <li><NavLink to="privacy-policy" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
+                                Privacy Policy
+                            </NavLink></li>
+                            <li><NavLink to="refund-policy" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
+                                Refund Policy
+                            </NavLink></li>
+                            <li><NavLink to="shipping-policy" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
+                                Shipping Policy
+                            </NavLink></li>
+                            <li><NavLink to="cookie-policy" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
+                                Cookie Policy
+                            </NavLink></li>
+                        </ul>
+                    </div> */}
+                    <div className="relative inline-block text-left">
+                        <button
+                            onClick={() => setOpen(!open)}
+                            className="inline-flex items-center text-sm font-semibold leading-6 text-zinc-900"
+                        >
+                            Policies
+                            <ChevronDownIcon className="h-5 w-5 ml-1" />
+                        </button>
+
+                        {open && (
+                            <ul className="absolute mt-2 right-0 w-52 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-2 space-y-1">
+                                <li>
+                                    <NavLink
+                                        to="/privacy-policy"
+                                        className={({ isActive }) =>
+                                            `block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 ${isActive ? 'text-orange-600' : 'text-zinc-900'
+                                            }`
+                                        }
+                                    >
+                                        Privacy Policy
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="/refund-policy"
+                                        className={({ isActive }) =>
+                                            `block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 ${isActive ? 'text-orange-600' : 'text-zinc-900'
+                                            }`
+                                        }
+                                    >
+                                        Refund Policy
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="/shipping-policy"
+                                        className={({ isActive }) =>
+                                            `block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 ${isActive ? 'text-orange-600' : 'text-zinc-900'
+                                            }`
+                                        }
+                                    >
+                                        Shipping Policy
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="/cookie-policy"
+                                        className={({ isActive }) =>
+                                            `block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 ${isActive ? 'text-orange-600' : 'text-zinc-900'
+                                            }`
+                                        }
+                                    >
+                                        Cookie Policy
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        )}
+                    </div>
+                    <NavLink to="contact-us" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
+                        Contact Us
                     </NavLink>
                     <NavLink to="about-us" className={({ isActive }) => `text-sm font-semibold leading-6 ${isActive ? "text-orange-600" : " text-zinc-900"}`}>
                         About Us
@@ -108,8 +190,8 @@ function Header() {
                                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-orange-50"
                                     >
                                         <button onClick={() => setMobileMenuOpen(false)}>
-                                        Account
-                                            </button>
+                                            Account
+                                        </button>
                                     </Link>
                                     : <>
                                         <Link

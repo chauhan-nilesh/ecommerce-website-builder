@@ -19,7 +19,11 @@ import {
   TermsAndConditions,
   ContactForm,
   StorePolicy,
-  Subcription
+  Subcription,
+  PrivacyPolicy,
+  RefundPolicy,
+  CookiePolicy,
+  ShippingPolicy
 } from "./components/Home/index.js"
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './store/auth.jsx'
@@ -68,6 +72,11 @@ const router = createBrowserRouter(
         <Route path='login' element={<Login />} />
         <Route path='pricing' element={<Pricing />} />
         <Route path='terms-and-conditions' element={<TermsAndConditions />} />
+        <Route path='privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='refund-policy' element={<RefundPolicy />} />
+        <Route path='cookie-policy' element={<CookiePolicy />} />
+        <Route path='shipping-policy' element={<ShippingPolicy />} />
+        <Route path='privacy-policy' element={<PrivacyPolicy />} />
         <Route path='contact-us' element={<ContactForm />} />
         <Route path='about-us' element={<AboutUs />} />
         <Route path='subcription' element={<Subcription />} />

@@ -11,10 +11,10 @@ const ContactForm = () => {
         message: "",
     });
 
-    useEffect(()=> {
+    useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
-    
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -51,7 +51,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto p-6 my-8 bg-white bg-transparent rounded-lg shadow-lg">
+        <div className="max-w-lg mx-auto p-6 my-8 bg-white bg-transparent rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold text-center mb-4">Contact us</h2>
             <p className="text-center text-gray-600 mb-6">
                 Our team is happy to answer your questions. Fill out the form and we’ll
@@ -139,6 +139,13 @@ const ContactForm = () => {
                     Send Message
                 </button>
             </form>
+            <div className="mb-8 text-gray-600 text-md mt-10">
+                <p className="mb-4 font-semibold">Reach out to us!</p>
+                <ul className="list-disc list-inside">
+                    <li><strong>Email:</strong> mail.eazzystore@gamil.com</li>
+                    <li><strong>Phone:</strong> +91-9920475160 (Mon-Fri, 10 AM - 6 PM)</li>
+                </ul>
+            </div>
         </div>
     );
 };
