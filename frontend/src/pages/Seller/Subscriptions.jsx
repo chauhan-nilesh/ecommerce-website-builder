@@ -102,7 +102,7 @@ function Subscriptions() {
                             <button onClick={generatePDF} className="px-3 py-2 text-sm text-white font-bold rounded-lg bg-[#198c36]">Download PDF</button>
                         </div>
 
-                        {transactions.length === 0 ?
+                        {transactions?.length === 0 ?
 
                             <div className='w-full mt-20'>
                                 <div className='flex justify-center items-center'>
@@ -139,31 +139,31 @@ function Subscriptions() {
                                         {transactions.map((transaction, index) =>
                                             <tr key={index} className="border-b border-opacity-20 border-gray-300 bg-white">
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction.planType.toUpperCase()}</p>
+                                                    <p>{transaction?.planType?.toUpperCase()}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction._id}</p>
+                                                    <p>{transaction?._id}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction.upiId ? transaction.upiId : "-"}</p>
+                                                    <p>{transaction?.upiId ? transaction?.upiId : "-"}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction.createdAt.split("T")[0]}</p>
+                                                    <p>{transaction?.createdAt?.split("T")[0]}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction.upiReferenceNo}</p>
+                                                    <p>{transaction?.upiReferenceNo}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction.expiresOn.split("T")[0]}</p>
+                                                    <p>{transaction?.expiresOn?.split("T")[0]}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction.failed ? <span className='text-red-600 font-semibold'>Failed</span> : <span className='text-green-600 font-semibold'>Success</span>}</p>
+                                                    <p>{transaction?.failed ? <span className='text-red-600 font-semibold'>Failed</span> : <span className='text-green-600 font-semibold'>Success</span>}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction.status ? <span className='text-green-600 font-semibold'>Received</span> : <span className='text-yellow-500 font-semibold'>In Review</span>}</p>
+                                                    <p>{transaction?.status ? <span className='text-green-600 font-semibold'>Received</span> : <span className='text-yellow-500 font-semibold'>In Review</span>}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>Rs. {transaction.price}</p>
+                                                    <p>Rs. {transaction?.price}</p>
                                                 </td>
                                             </tr>
                                         )}
