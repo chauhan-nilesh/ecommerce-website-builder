@@ -142,7 +142,7 @@ const ContactForm = () => {
             <div className="mb-8 text-gray-600 text-md mt-10">
                 <p className="mb-4 font-semibold">Reach out to us!</p>
                 <ul className="list-disc list-inside">
-                    <li><strong>Email:</strong> mail.eazzystore@gamil.com</li>
+                    <li><strong>Email:</strong> mail.eazzystore@gmail.com</li>
                     <li><strong>Phone:</strong> +91-9920475160 (Mon-Fri, 10 AM - 6 PM)</li>
                     <li><strong>Address:</strong> EktaMilan Society, RNA Colony, Chembur, Mumbai - 400074</li>
                 </ul>
