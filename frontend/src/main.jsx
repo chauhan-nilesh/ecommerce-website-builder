@@ -19,11 +19,11 @@ import {
   TermsAndConditions,
   ContactForm,
   StorePolicy,
-  Subcription,
   PrivacyPolicy,
   RefundPolicy,
   CookiePolicy,
-  ShippingPolicy
+  ShippingPolicy,
+  Checkout
 } from "./components/Home/index.js"
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './store/auth.jsx'
@@ -50,7 +50,7 @@ import {
   Settings,
   Store,
   StoreAboutPage,
-  Transactions,
+  Subscriptions,
   UserProfile
 } from './components/Seller/index.js'
 import Error from './pages/Home/Error.jsx'
@@ -71,6 +71,7 @@ const router = createBrowserRouter(
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<Login />} />
         <Route path='pricing' element={<Pricing />} />
+        <Route path='checkout' element={<Checkout />} />
         <Route path='terms-and-conditions' element={<TermsAndConditions />} />
         <Route path='privacy-policy' element={<PrivacyPolicy />} />
         <Route path='refund-policy' element={<RefundPolicy />} />
@@ -79,7 +80,6 @@ const router = createBrowserRouter(
         <Route path='privacy-policy' element={<PrivacyPolicy />} />
         <Route path='contact-us' element={<ContactForm />} />
         <Route path='about-us' element={<AboutUs />} />
-        <Route path='subcription' element={<Subcription />} />
         <Route path='create-store' element={<Createstore />} />
         <Route path='business-details/:storename' element={<BusinessDetails />} />
         <Route path='logout' element={<Logout />} />
@@ -109,7 +109,7 @@ const router = createBrowserRouter(
         <Route path='domain-settings' element={<DomainSettings />} />
         <Route path='edit-profile' element={<UserProfile />} />
         <Route path='dialogbox' element={<DialogBox />} />
-        <Route path='transactions' element={<Transactions />} />
+        <Route path='subscriptions' element={<Subscriptions />} />
         <Route path='add-product' element={<AddProduct />} />
         <Route path='add-category' element={<AddCategory />} />
         <Route path='edit-category/:id' element={<EditCategory />} />

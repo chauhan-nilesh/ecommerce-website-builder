@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Quicktable from '../../components/Seller/Quicktable';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useStoreData from '../../Hooks/useStoreData';
 import isTokenExpired from '../../Hooks/verifyJwtToken';
 import { useAuth } from '../../store/auth';

@@ -8,12 +8,12 @@ import Pricing from "./Pricing";
 import TermsAndConditions from "../../pages/Home/TermsAndConditions";
 import AboutUs from "../../pages/Home/AboutUs";
 import ContactForm from "./ContactForm";
-import Subcription from "../../pages/Home/Subcription";
 import StorePolicy from "../../pages/Seller/StorePolicy";
 import PrivacyPolicy from "../../pages/Home/PrivacyPolicy";
 import CookiePolicy from "../../pages/Home/CookiePolicy";
 import RefundPolicy from "../../pages/Home/RefundPolicy";
 import ShippingPolicy from "../../pages/Home/ShippingPolicy";
+import Checkout from "./Checkout";
 
 
-export {Header, Footer, Login, SignUp, Home, Pricing, Subcription, TermsAndConditions,CookiePolicy, RefundPolicy, ShippingPolicy, PrivacyPolicy, StorePolicy, ContactForm, AboutUs, Logout}
+export {Header, Footer, Login, SignUp, Home, Pricing, Checkout, TermsAndConditions,CookiePolicy, RefundPolicy, ShippingPolicy, PrivacyPolicy, StorePolicy, ContactForm, AboutUs, Logout}

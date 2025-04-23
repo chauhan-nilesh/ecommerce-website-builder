@@ -95,7 +95,8 @@ function SignUp() {
                         storeTokenInLS(responseData.data.token)
                         localStorage.removeItem("code")
                         toast.success(responseData.message)
-                        navigate("/create-store")
+                        navigate("/pricing")
+                        // navigate("/create-store")
                     } else {
                         toast.error(responseData.message)
                     }

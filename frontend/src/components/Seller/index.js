@@ -27,7 +27,7 @@ import EditCategory from "../../pages/Seller/EditCategory";
 import StoreAboutPage from "../../pages/Seller/StoreAboutPage";
 import AddCoupon from "../../pages/Seller/AddCoupon";
 import SellerOrderPage from "../../pages/Seller/SellerOrderPage";
-import Transactions from "../../pages/Seller/Transactions";
+import Subscriptions from "../../pages/Seller/Subscriptions";
 
 export {
     Dashboard,
@@ -45,7 +45,7 @@ export {
     CustomizeBanner,
     CustomizeFooter,
     DomainSettings,
-    Transactions,
+    Subscriptions,
     Payment,
     Analytics,
     Coupon,

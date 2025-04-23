@@ -8,6 +8,10 @@ const SubscriptionSchema = new mongoose.Schema({
     price: {
         type: Number
     },
+    planType: {
+        type: String,
+        required: true
+    },
     upiId: {
         type: String
     },
