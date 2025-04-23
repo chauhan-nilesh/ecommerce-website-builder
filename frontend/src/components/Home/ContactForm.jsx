@@ -144,6 +144,7 @@ const ContactForm = () => {
                 <ul className="list-disc list-inside">
                     <li><strong>Email:</strong> mail.eazzystore@gamil.com</li>
                     <li><strong>Phone:</strong> +91-9920475160 (Mon-Fri, 10 AM - 6 PM)</li>
+                    <li><strong>Phone:</strong> EKTAMILAN SOC. RNA COL., chembur, Maharashtra, PIN: 400074</li>
                 </ul>
             </div>
         </div>
